@@ -186,11 +186,13 @@ namespace Liberator.Driver
         {
             if (element == null)
             {
-                var load = new WebDriverWait(Driver, _timeout).Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
+                var load = new WebDriverWait(Driver, _timeout)
+                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
-                var wait = new WebDriverWait(Driver, _timeout).Until(ExpectedConditions.StalenessOf(element));
+                var wait = new WebDriverWait(Driver, _timeout)
+                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(element));
             }
             else
             {
@@ -206,7 +208,8 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+                var wait = new WebDriverWait(_driver, _timeout)
+                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
                 if (wait == null) { throw new Exception("Could not confirm clickability of the element required."); }
                 return true;
             }
@@ -220,7 +223,8 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(locator));
+                var wait = new WebDriverWait(_driver, _timeout)
+                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
                 if (wait == null) { throw new Exception("Could not confirm clickability of the element required."); }
                 return true;
             }
@@ -234,7 +238,7 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementExists(locator));
+                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
                 if (wait == null) { throw new Exception("Could not confirm existence of the element required."); }
                 return true;
             }
@@ -248,7 +252,7 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementIsVisible(locator));
+                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
                 if (wait == null) { throw new Exception("Could not confirm visibility of the element required."); }
                 return true;
             }

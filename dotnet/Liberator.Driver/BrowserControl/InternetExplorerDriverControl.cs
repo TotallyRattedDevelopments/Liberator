@@ -141,10 +141,10 @@ namespace Liberator.Driver.BrowserControl
 
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ScrollBehavior"), out scroll);
-                InternetExplorerPageLoadStrategy strategy = InternetExplorerPageLoadStrategy.Default;
+                PageLoadStrategy strategy = PageLoadStrategy.Default;
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_PageLoadStrategy"), out strategy);
-                InternetExplorerUnexpectedAlertBehavior alert = InternetExplorerUnexpectedAlertBehavior.Dismiss;
-                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UnexpectedAlertBehavior"), out alert);
+//                InternetExplorerUnexpectedAlertBehavior alert = InternetExplorerUnexpectedAlertBehavior.Dismiss;
+//                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UnexpectedAlertBehavior"), out alert);
 
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableFullPageScreenshot"), out screenshot);
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableNativeEvents"), out native);
@@ -164,7 +164,7 @@ namespace Liberator.Driver.BrowserControl
                 options.BrowserAttachTimeout = BrowserTimeout;
                 if (cmdLine.Length > 1) { options.BrowserCommandLineArguments = cmdLine; }
                 options.ElementScrollBehavior = scroll;
-                options.EnableFullPageScreenshot = screenshot;
+//                options.EnableFullPageScreenshot = screenshot;
                 options.EnableNativeEvents = native;
                 options.EnablePersistentHover = hover;
                 options.EnsureCleanSession = cleanSession;
@@ -177,7 +177,7 @@ namespace Liberator.Driver.BrowserControl
                 options.PageLoadStrategy = strategy;
                 //options.Proxy = IEProxy;
                 options.RequireWindowFocus = requireFocus;
-                options.UnexpectedAlertBehavior = alert;
+//                options.UnexpectedAlertBehavior = alert;
                 options.UsePerProcessProxy = perProcess;
 
                 Options = options;

@@ -104,7 +104,7 @@ namespace Liberator.Driver.BrowserControl
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("Edge_PageLoadStrategy"), out epls);
                 EdgeOptions options = new EdgeOptions()
                 {
-                    PageLoadStrategy = epls
+                    PageLoadStrategy = (PageLoadStrategy)epls
                 };
                 Options = options;
             }
