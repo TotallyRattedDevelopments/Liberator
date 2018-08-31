@@ -3,7 +3,6 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -52,7 +51,7 @@ namespace Liberator.Driver
         {
             try
             {
-                if (typeof(TWebDriver) != typeof(PhantomJSDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
+                if (typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
                     _driver.Manage().Cookies.AddCookie(new Cookie(name, value));
                 }
@@ -562,7 +561,7 @@ namespace Liberator.Driver
             {
                 _lastPage = _driver.FindElement(By.TagName("html"));
                 _driver.Navigate().Back();
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
+                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(_lastPage));
             }
             catch (Exception ex)
             {
@@ -580,7 +579,7 @@ namespace Liberator.Driver
             {
                 _lastPage = _driver.FindElement(By.TagName("html"));
                 _driver.Navigate().Forward();
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
+                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(_lastPage));
             }
             catch (Exception ex)
             {
@@ -836,7 +835,7 @@ namespace Liberator.Driver
             Locator = frameLocator;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
+                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
                 Element = _driver.FindElement(frameLocator);
                 _driver.SwitchTo().Frame(Element);
             }
@@ -859,7 +858,8 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Name(frameName)));
+                var wait = new WebDriverWait(_driver, _timeout)
+                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Name(frameName)));
                 _driver.SwitchTo().Frame(frameName);
             }
             catch (Exception ex)

@@ -21,10 +21,7 @@ namespace Liberator.Driver.BrowserControl
         public TimeSpan CommandTimeout { get; set; }
 
 
-        /// <summary>
-        /// Holds the desired capabilities for the remote web driver
-        /// </summary>
-        public DesiredCapabilities DesiredCapabilities { get; set; }
+        public DriverOptions Options { get; set; }
         
         #endregion
 
@@ -52,10 +49,9 @@ namespace Liberator.Driver.BrowserControl
             {
                 Uri remoteAddress = null;
                 string address = Preferences.Preferences.GetPreferenceSetting("Remote_DefaultRemoteAddress");
-                SetPlatform(PlatformType.Windows);
+                //SetPlatform(PlatformType.Windows);
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
-                DesiredCapabilityBrowser(EnumRemoteDriver.NotSpecified);
-                Driver = new RemoteWebDriver(remoteAddress, DesiredCapabilities, CommandTimeout);
+                Driver = new RemoteWebDriver(remoteAddress, Options);
                 return Driver;
             }
             catch (Exception ex)
@@ -93,8 +89,7 @@ namespace Liberator.Driver.BrowserControl
                 Uri remoteAddress = null;
                 string address = Preferences.Preferences.GetPreferenceSetting("Remote_DefaultRemoteAddress");
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
-                DesiredCapabilityBrowser(driverType);
-                Driver = new RemoteWebDriver(remoteAddress, DesiredCapabilities, CommandTimeout);
+                Driver = new RemoteWebDriver(remoteAddress, Options);
                 return Driver;
             }
             catch (Exception ex)
@@ -119,117 +114,41 @@ namespace Liberator.Driver.BrowserControl
             }
         }
 
-
-        /// <summary>
-        /// Adds a capability to the remote web driver
-        /// </summary>
-        /// <param name="capability">The capability to add</param>
-        /// <param name="value">The value for the capability</param>
-        public void AddCapability(string capability, object value)
-        {
-            try
-            {
-                DesiredCapabilities.SetCapability(capability, value);
-            }
-            catch (Exception ex)
-            {
-                switch (Preferences.Preferences.DebugLevel)
-                {
-                    case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could add the capability as specified.");
-                        break;
-                    case EnumConsoleDebugLevel.NotSpecified:
-                    case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
-                        break;
-                    case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
-                        break;
-                }
-            }
-        }
-
         #endregion
 
         #region Private Methods
-
-        /// <summary>
-        /// Sets the desired capabilities for the remote driver
-        /// </summary>
-        /// <param name="remote">The type of remote driver</param>
-        [Obsolete("Please use the approporiate Options class as Desired Capabilities are now obsolete.")]
-        private void DesiredCapabilityBrowser(EnumRemoteDriver remote)
-        {
-            switch (remote)
-            {
-                case EnumRemoteDriver.Android:
-                    DesiredCapabilities = DesiredCapabilities.Android();
-                    break;
-                case EnumRemoteDriver.NotSpecified:
-                case EnumRemoteDriver.Chrome:
-                    DesiredCapabilities = DesiredCapabilities.Chrome();
-                    break;
-                case EnumRemoteDriver.Edge:
-                    DesiredCapabilities = DesiredCapabilities.Edge();
-                    break;
-                case EnumRemoteDriver.Firefox:
-                    DesiredCapabilities = DesiredCapabilities.Firefox();
-                    break;
-                case EnumRemoteDriver.HTMLUnit:
-                    DesiredCapabilities = DesiredCapabilities.HtmlUnit();
-                    break;
-                case EnumRemoteDriver.HTMLUnitJS:
-                    DesiredCapabilities = DesiredCapabilities.HtmlUnitWithJavaScript();
-                    break;
-                case EnumRemoteDriver.InternetExplorer:
-                    DesiredCapabilities = DesiredCapabilities.InternetExplorer();
-                    break;
-                case EnumRemoteDriver.Opera:
-                    DesiredCapabilities = DesiredCapabilities.Opera();
-                    break;
-                case EnumRemoteDriver.PhantomJS:
-                    DesiredCapabilities = DesiredCapabilities.PhantomJS();
-                    break;
-                case EnumRemoteDriver.Safari:
-                    DesiredCapabilities = DesiredCapabilities.Safari();
-                    break;
-                default:
-                    DesiredCapabilities = DesiredCapabilities.Chrome();
-                    break;
-            }
-        }
+        
 
 
-        /// <summary>
-        /// Sets the platform on which to run the tests
-        /// </summary>
-        /// <param name="type">The platform type</param>
-        private void SetPlatform(PlatformType type)
-        {
-            try
-            {
-                DesiredCapabilities.Platform = new Platform(type);
+        ///// <summary>
+        ///// Sets the platform on which to run the tests
+        ///// </summary>
+        ///// <param name="type">The platform type</param>
+        //private void SetPlatform(PlatformType type)
+        //{
+        //    try
+        //    {
+        //        DesiredCapabilities.Platform = new Platform(type);
 
-            }
-            catch (Exception ex)
-            {
-                switch (Preferences.Preferences.DebugLevel)
-                {
-                    case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could set the browser platform.");
-                        break;
-                    case EnumConsoleDebugLevel.NotSpecified:
-                    case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
-                        break;
-                    case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
-                        break;
-                }
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        switch (Preferences.Preferences.DebugLevel)
+        //        {
+        //            case EnumConsoleDebugLevel.Human:
+        //                Console.WriteLine("Could set the browser platform.");
+        //                break;
+        //            case EnumConsoleDebugLevel.NotSpecified:
+        //            case EnumConsoleDebugLevel.Message:
+        //                Console.WriteLine(ex.Message);
+        //                break;
+        //            case EnumConsoleDebugLevel.StackTrace:
+        //                Console.WriteLine(ex.Message);
+        //                Console.WriteLine(ex.StackTrace);
+        //                break;
+        //        }
+        //    }
+        //}
 
         #endregion
     }
