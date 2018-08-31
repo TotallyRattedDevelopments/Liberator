@@ -104,7 +104,7 @@ namespace Liberator.Driver.BrowserControl
                 AddPreferencesToFirefoxProfile();
                 SetProxyPreferences();
                 Options.Profile = Profile;
-                Driver = new FirefoxDriver();
+                Driver = new FirefoxDriver(Service);
                 //Driver = new FirefoxDriver(Service, Options, CommandTimeout);
                 return Driver;
             }
@@ -147,7 +147,7 @@ namespace Liberator.Driver.BrowserControl
                 FirefoxProfile profile = profileManager.GetProfile("Automation");
                 Profile = profile;
                 Options.Profile = Profile;
-                Driver = new FirefoxDriver(Service, Options, CommandTimeout);
+                Driver = new FirefoxDriver(Service);
                 return Driver;
             }
             catch (Exception ex)
