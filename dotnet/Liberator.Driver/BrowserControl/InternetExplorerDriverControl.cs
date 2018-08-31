@@ -141,10 +141,6 @@ namespace Liberator.Driver.BrowserControl
 
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ScrollBehavior"), out scroll);
-                PageLoadStrategy strategy = PageLoadStrategy.Default;
-                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_PageLoadStrategy"), out strategy);
-//                InternetExplorerUnexpectedAlertBehavior alert = InternetExplorerUnexpectedAlertBehavior.Dismiss;
-//                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UnexpectedAlertBehavior"), out alert);
 
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableFullPageScreenshot"), out screenshot);
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableNativeEvents"), out native);
@@ -174,7 +170,6 @@ namespace Liberator.Driver.BrowserControl
                 options.IgnoreZoomLevel = ignoreZoom;
                 if (url.Contains(@"/")) { options.InitialBrowserUrl = url; }
                 options.IntroduceInstabilityByIgnoringProtectedModeSettings = instability;
-                options.PageLoadStrategy = strategy;
                 //options.Proxy = IEProxy;
                 options.RequireWindowFocus = requireFocus;
 //                options.UnexpectedAlertBehavior = alert;

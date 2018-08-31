@@ -6,7 +6,6 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -435,6 +434,7 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
+        [Ignore("Currently not allowing a cookie access")]
         [Test]
         [Category("InternetExplorer")]
         public void InternetExplorer_CookieTests()
