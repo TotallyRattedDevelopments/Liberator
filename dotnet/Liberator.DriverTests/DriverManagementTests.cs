@@ -354,6 +354,7 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
+        [Ignore("Currently not allowing a cookie access")]
         [Test]
         [Category("Chrome")]
         public void Chrome_CookieTests()
