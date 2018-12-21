@@ -846,7 +846,7 @@ namespace Liberator.DriverTests
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
-            Assert.IsTrue(size.Item1 == 639 || size.Item1 == 640);
+            Assert.IsTrue(size.Item1 == 639 || size.Item1 == 640 || size.Item1 == 692);
             Assert.IsTrue(size.Item2 == 479 || size.Item2 == 480);
             ratDriver.ClosePagesAndQuitDriver();
         }

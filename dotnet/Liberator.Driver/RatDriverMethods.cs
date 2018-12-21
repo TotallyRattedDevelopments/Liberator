@@ -1,13 +1,12 @@
-﻿using OpenQA.Selenium;
+﻿using Liberator.Driver.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Liberator.Driver.Enums;
 using System.Runtime.InteropServices;
 
 namespace Liberator.Driver
@@ -27,7 +26,7 @@ namespace Liberator.Driver
             try
             {
                 var wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                    .Until(ExpectedConditions
                     .ElementToBeClickable(element));
             }
             catch (Exception ex)
@@ -49,7 +48,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(_driver.FindElement(locator)));
+                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(_driver.FindElement(locator)));
             }
             catch (Exception ex)
             {
@@ -73,7 +72,7 @@ namespace Liberator.Driver
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
                 var wait = new WebDriverWait(_driver, timeSpan)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                    .Until(ExpectedConditions
                     .ElementToBeClickable(element));
             }
             catch (Exception ex)
@@ -98,7 +97,7 @@ namespace Liberator.Driver
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
                 var wait = new WebDriverWait(this._driver, timeSpan)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                    .Until(ExpectedConditions
                     .ElementToBeClickable(_driver.FindElement(locator)));
             }
             catch (Exception ex)
@@ -121,7 +120,7 @@ namespace Liberator.Driver
             try
             {
                 bool wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                    .Until(ExpectedConditions
                     .InvisibilityOfElementLocated(locator));
                 if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
             }
@@ -146,7 +145,7 @@ namespace Liberator.Driver
             try
             {
                 bool wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+                    .Until(ExpectedConditions
                     .InvisibilityOfElementWithText(locator, text));
                 if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
             }
@@ -1405,7 +1404,7 @@ namespace Liberator.Driver
         private Actions HoverAction(By locator)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
-            _element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions
+            _element = wait.Until(ExpectedConditions
                 .ElementIsVisible(locator));
             return new Actions(_driver);
         }
@@ -1418,7 +1417,7 @@ namespace Liberator.Driver
         private Actions HoverAction(IWebElement element)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
-            _element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+            _element = wait.Until(ExpectedConditions.ElementToBeClickable(element));
             return new Actions(_driver);
         }
 
