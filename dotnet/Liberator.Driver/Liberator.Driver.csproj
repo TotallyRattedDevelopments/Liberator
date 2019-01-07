@@ -148,12 +148,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Liberator\Liberator.csproj">
-      <Project>{4d801d6e-2316-4d0b-8fd9-c5ef2ebdb963}</Project>
-      <Name>Liberator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="BrowserDrivers\chromedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -169,6 +163,12 @@
     <Content Include="BrowserDrivers\phantomjs.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Liberator\Liberator.csproj">
+      <Project>{e02bde49-929d-4155-8541-359bc9a9007a}</Project>
+      <Name>Liberator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

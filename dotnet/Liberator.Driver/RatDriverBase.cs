@@ -5,12 +5,12 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using OpenQA.Selenium.Support.UI;
 
 namespace Liberator.Driver
 {
@@ -188,13 +188,13 @@ namespace Liberator.Driver
             if (element == null)
             {
                 var load = new WebDriverWait(Driver, _timeout)
-                    .Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
+                    .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
                 var wait = new WebDriverWait(Driver, _timeout)
                     .Until(
-                    ExpectedConditions.StalenessOf(element));
+                    Liberator.ExpectedConditions.StalenessOf(element));
             }
             else
             {

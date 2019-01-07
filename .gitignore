@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/java/target/classes
+/java/lib
+/java/.idea
+/dotnet/Liberator.SequaliserTests/obj/Release
+/dotnet/Liberator.Sequaliser/obj/Release
+/dotnet/Liberator.DynamicPageEngine/obj/Release
+/dotnet/Liberator.DynamicPageEngine/bin/Debug

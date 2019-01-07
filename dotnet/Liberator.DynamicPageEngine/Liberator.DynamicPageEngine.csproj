@@ -58,20 +58,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\PageObjectEntry.cs" />
+    <Compile Include="Output\ClassWriter.cs" />
+    <Compile Include="Output\IWriter.cs" />
+    <Compile Include="Output\XMLWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scan\HTMLScanner.cs" />
     <Compile Include="Scan\IScanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Entities\XMLSchema1.xsd">
+    <None Include="Entities\PageObject.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Output\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

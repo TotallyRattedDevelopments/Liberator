@@ -35,14 +35,25 @@ namespace Liberator.DynamicPageEngine.Scan
             return ((HtmlNode)body).Descendants(tag);
         }
 
-        public static void Extract(this IEnumerable<IXPathNavigable> elements)
+
+        public static IEnumerable<IXPathNavigable> GetAllElements(this IXPathNavigable body)
+        {
+            return ((HtmlNode)body).Descendants();
+        }
+
+
+
+        public static void ExtractClassPaths(this IEnumerable<IXPathNavigable> elements)
         {
             XmlDocument xmlDocument = InitialiseXmlDocument();
 
             foreach (IXPathNavigable element in elements)
             {
+                var thing = ((XmlNode)element);
             }
         }
+
+        
 
         private static XmlDocument InitialiseXmlDocument()
         {
