@@ -3,33 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator", "Liberator\Liberator.csproj", "{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16} = {8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.Driver", "Liberator.Driver\Liberator.Driver.csproj", "{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.DriverTests", "Liberator.DriverTests\Liberator.DriverTests.csproj", "{24751508-21C4-497E-AD4E-CBA2ADF8183A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963} = {4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}
 		{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16} = {8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.Excellerator", "Liberator.Excellerator\Liberator.Excellerator.csproj", "{E5EDF7D9-DE78-4C59-9D67-D47FC4A397B1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963} = {4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.Sequaliser", "Liberator.Sequaliser\Liberator.Sequaliser.csproj", "{1DC35ACB-473D-4B75-A230-6FCF1772FF24}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963} = {4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.ExcelleratorTests", "Liberator.ExcelleratorTests\Liberator.ExcelleratorTests.csproj", "{D957F817-475B-4141-81D4-D628C5F54558}"
-	ProjectSection(ProjectDependencies) = postProject
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963} = {4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberator.SequaliserTests", "Liberator.SequaliserTests\Liberator.SequaliserTests.csproj", "{DDCE9902-541C-407E-A9B4-A4DB2C383FBE}"
 EndProject
@@ -45,22 +30,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|ARM.Build.0 = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|x64.Build.0 = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Debug|x86.Build.0 = Debug|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|ARM.ActiveCfg = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|ARM.Build.0 = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|x64.ActiveCfg = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|x64.Build.0 = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|x86.ActiveCfg = Release|Any CPU
-		{4D801D6E-2316-4D0B-8FD9-C5EF2EBDB963}.Release|x86.Build.0 = Release|Any CPU
 		{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -160,5 +129,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3063E134-D14C-41E0-B3D5-FCEF80892D78}
 	EndGlobalSection
 EndGlobal
