@@ -128,39 +128,33 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool screenshot = true;
-                bool native = true;
-                bool hover = true;
-                bool cleanSession = true;
-                bool forceCreate = false;
-                bool forceShell = false;
-                bool ignoreZoom = false;
-                bool instability = true;
-                bool requireFocus = false;
-                bool perProcess = false;
 
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ScrollBehavior"), out scroll);
 
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableFullPageScreenshot"), out screenshot);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableNativeEvents"), out native);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnablePersistentHover"), out hover);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnsureCleanSession"), out cleanSession);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceCreateProcessApi"), out forceCreate);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceShellWindowsApi"), out forceShell);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IgnoreZoomLevel"), out ignoreZoom);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IntroduceInstability"), out instability);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_RequireWindowFocus"), out requireFocus);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UsePerProcessProxy"), out perProcess);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableFullPageScreenshot"), out bool screenshot);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableNativeEvents"), out bool native);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnablePersistentHover"), out bool hover);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnsureCleanSession"), out bool cleanSession);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceCreateProcessApi"), out bool forceCreate);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceShellWindowsApi"), out bool forceShell);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IgnoreZoomLevel"), out bool ignoreZoom);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IntroduceInstability"), out bool instability);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_RequireWindowFocus"), out bool requireFocus);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UsePerProcessProxy"), out bool perProcess);
 
                 string cmdLine = Preferences.Preferences.GetPreferenceSetting("IE_CommandLineArguments");
                 string url = Preferences.Preferences.GetPreferenceSetting("IE_InitialBrowserUrl");
 
-                InternetExplorerOptions options = new InternetExplorerOptions();
-                options.BrowserAttachTimeout = BrowserTimeout;
+                InternetExplorerOptions options = new InternetExplorerOptions
+                {
+                    BrowserAttachTimeout = BrowserTimeout
+                };
+
                 if (cmdLine.Length > 1) { options.BrowserCommandLineArguments = cmdLine; }
+
                 options.ElementScrollBehavior = scroll;
-//                options.EnableFullPageScreenshot = screenshot;
+//              options.EnableFullPageScreenshot = screenshot;
                 options.EnableNativeEvents = native;
                 options.EnablePersistentHover = hover;
                 options.EnsureCleanSession = cleanSession;
@@ -170,9 +164,9 @@ namespace Liberator.Driver.BrowserControl
                 options.IgnoreZoomLevel = ignoreZoom;
                 if (url.Contains(@"/")) { options.InitialBrowserUrl = url; }
                 options.IntroduceInstabilityByIgnoringProtectedModeSettings = instability;
-                //options.Proxy = IEProxy;
+//              options.Proxy = IEProxy;
                 options.RequireWindowFocus = requireFocus;
-//                options.UnexpectedAlertBehavior = alert;
+//              options.UnexpectedAlertBehavior = alert;
                 options.UsePerProcessProxy = perProcess;
 
                 Options = options;
@@ -204,16 +198,12 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool hidePrompt = true;
-                Int32 port = 4444;
-                bool sidi = false;
-
                 InternetExplorerDriverLogLevel logLevel = InternetExplorerDriverLogLevel.Debug;
                 Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_LoggingLevel"), out logLevel);
 
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_HideCommandPromptWindow"), out hidePrompt);
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_Port"), out port);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_SuppressInitialDiagnosticInformation"), out sidi);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_HideCommandPromptWindow"), out bool hidePrompt);
+                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_Port"), out int port);
+                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_SuppressInitialDiagnosticInformation"), out bool sidi);
 
                 string ieHost = Preferences.Preferences.GetPreferenceSetting("IE_Host");
                 string extract = Preferences.Preferences.GetPreferenceSetting("IE_LibraryExtractionPath");
