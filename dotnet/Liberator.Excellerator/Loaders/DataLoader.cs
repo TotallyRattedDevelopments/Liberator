@@ -152,7 +152,7 @@ namespace Liberator.Excellerator.Loaders
             {
                 _wkBook.Activate();
                 _wkSheet.Select(false);
-                _colRange = _wkSheet.Rows[1];
+                _colRange = (MSExcel.Range)_wkSheet.Rows[1];
                 return _colRange;
             }
             catch (Exception)
@@ -172,8 +172,8 @@ namespace Liberator.Excellerator.Loaders
             {
                 foreach (MSExcel.Range cell in _colRange.Cells)
                 {
-                    if (cell.Value == null || cell.Value == "") { break; }
-                    ColumnHeaders.Add(cell.Value);
+                    if (cell.Value == null || cell.Value.ToString() == "") { break; }
+                    ColumnHeaders.Add(cell.Value.ToString());
                 }
                 return ColumnHeaders;
             }
