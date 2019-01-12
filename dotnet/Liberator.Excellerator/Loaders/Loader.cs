@@ -45,7 +45,7 @@ namespace Liberator.Excellerator.Loaders
             try
             {
                 _wkBook.Activate();
-                _wkSheet = _app.Worksheets[_sheet];
+                _wkSheet = (MSExcel.Worksheet) _app.Worksheets[_sheet];
                 _wkSheet.Select(false);
                 return _wkSheet;
             }

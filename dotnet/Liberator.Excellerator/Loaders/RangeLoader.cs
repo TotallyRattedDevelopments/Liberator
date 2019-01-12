@@ -132,7 +132,7 @@ namespace Liberator.Excellerator.Loaders
         /// 
         /// </summary>
         /// <returns></returns>
-        public object[,] GetDataRange(string range)
+        public MSExcel.Range GetDataRange(string range)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace Liberator.Excellerator.Loaders
                     
                     returnRange = _wkSheet.Range[rowLeft, colLeft];
                 }
-                return returnRange.Value;
+                return returnRange;
             }
             catch (Exception)
             {
