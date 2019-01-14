@@ -1,14 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Liberator.Excellerator.Loaders;
+﻿using Liberator.Excellerator.Loaders;
 using NUnit.Framework;
-using MSExcel = Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using MSExcel = Microsoft.Office.Interop.Excel;
 
 namespace Liberator.ExcelleratorTests.Workbooks
 {
@@ -127,9 +123,9 @@ namespace Liberator.ExcelleratorTests.Workbooks
                 string path = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location);
                 wkBook = loader.OpenWorkbook(path + "\\Workbooks\\AttributeTestFile.xlsx");
                 wkSheet = loader.SelectWorksheet("Data");
-                object[,] range = loader.GetDataRange("A1:D2");
+                MSExcel.Range range = loader.GetDataRange("A1:D2");
                 Assert.That(range != null, Is.True);
-                string cellValue = range[1,1].ToString();
+                string cellValue = (string)(range.Cells[1, 1] as MSExcel.Range).Value;
                 Assert.That(cellValue.Contains("ID"));
             }
             

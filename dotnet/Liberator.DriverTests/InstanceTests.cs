@@ -14,7 +14,8 @@ namespace Liberator.DriverTests
     public class InstanceTests
     {
         [Test]
-        public void TwinDriverCntrol()
+        [Ignore("Experimental testing of threading concepts.")]
+        public void TwinDriverControl()
         {
             IRodent chrome = new RatDriver<ChromeDriver>();
             var winChrome = chrome.WindowHandles.Last().Value;

@@ -65,7 +65,7 @@ namespace Liberator.Excellerator.Mappers
                 {
                     for (int column = 0; column < DataRange.Columns.Count; column++)
                     {
-                        cellValue = DataRange[row, column];
+                        cellValue = DataRange[row, column].ToString();
                         columnNumber = ColumnHeaders.IndexOf(cellValue);
                         DataArray[row, columnNumber] = cellValue;
                     }

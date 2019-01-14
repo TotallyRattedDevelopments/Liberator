@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Liberator.Driver")]
 [assembly: AssemblyDescription("A high performance abstraction layer for Selenium WebDriver")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Totally Ratted Ltd, T/A Totally Ratted Developments")]
+[assembly: AssemblyCompany("Liberator Test Tools")]
 [assembly: AssemblyProduct("Liberator.Driver")]
-[assembly: AssemblyCopyright("Copyright ©2017, Totally Ratted Ltd")]
+[assembly: AssemblyCopyright("Copyright ©2017-2019, Totally Ratted Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
