@@ -14,6 +14,7 @@ namespace Liberator.DriverTests
     public class InstanceTests
     {
         [Test]
+        [Category("Multi Instance Tests")]
         [Ignore("Experimental testing of threading concepts.")]
         public void TwinDriverControl()
         {

@@ -11,11 +11,11 @@ namespace Liberator.DynamicPageEngine.Entities
     {
         public string Id { get; set; }
 
-        public string LinkText { get; set; }
+        public string Link { get; set; }
 
         public string TagName { get; set; }
 
-        public string ClassName { get; set; }
+        public IEnumerable<string> ClassName { get; set; }
 
         public string CssSelector { get; set; }
 
