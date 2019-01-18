@@ -1,16 +1,38 @@
-﻿using System;
+﻿using Liberator.DynamicPageEngine.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace Liberator.DynamicPageEngine.Output
 {
     public class XMLWriter : IWriter
     {
-        public void WriteFile(string name, string outputPath)
+
+        /// <summary>
+        /// The HTML document
+        /// </summary>
+        public IXPathNavigable PageDocument { get; set; }
+        
+        public XMLWriter(List<PageObjectEntry> pageObjectEntries)
         {
-            throw new NotImplementedException();
+            InitialiseXmlDocument();
+        }
+
+
+        XmlDocument InitialiseXmlDocument()
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xmlDocument.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = xmlDocument.DocumentElement;
+            xmlDocument.InsertBefore(xmlDeclaration, root);
+            PageDocument = xmlDocument;
+            return xmlDocument;
         }
     }
 }
+/* 
+        XmlElement element1 = doc.CreateElement( string.Empty, "body", string.Empty );
+        doc.AppendChild( element1 );
+        doc.Save( "D:\\document.xml" );
+
+     */

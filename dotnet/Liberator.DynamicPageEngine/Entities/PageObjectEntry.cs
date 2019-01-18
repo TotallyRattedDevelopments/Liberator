@@ -15,6 +15,10 @@ namespace Liberator.DynamicPageEngine.Entities
 
         public string TagName { get; set; }
 
+        public string NameAttribute { get; set; }
+
+        public string ObjectName { get; set; }
+
         public IEnumerable<string> ClassName { get; set; }
 
         public string CssSelector { get; set; }

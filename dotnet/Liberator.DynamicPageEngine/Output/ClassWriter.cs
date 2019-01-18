@@ -8,9 +8,6 @@ namespace Liberator.DynamicPageEngine.Output
 {
     public class ClassWriter : IWriter
     {
-        public void WriteFile(string name, string outputPath)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

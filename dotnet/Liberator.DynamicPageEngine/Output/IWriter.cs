@@ -2,6 +2,6 @@
 {
     internal interface IWriter
     {
-        void WriteFile(string name, string outputPath);
+
     }
 }
