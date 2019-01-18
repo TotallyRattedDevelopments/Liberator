@@ -6,7 +6,6 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,22 +85,6 @@ namespace Liberator.DriverTests
         public void Opera_ClickLinkWithClock()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            var devLink = ratDriver.FindElementByLinkText("Developments");
-            Assert.IsTrue(ratDriver.ElementExists(devLink));
-            RatClock clock = new RatClock();
-            var targetTime = clock.LaterBy(new TimeSpan(0, 0, 0, 30, 0));
-            ratDriver.ClickLink(devLink, clock);
-            Assert.IsTrue(clock.IsNowBefore(targetTime));
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_ClickLinkWithClock()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
@@ -194,22 +177,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_ClickLinkWithClockBy()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            var devLink = ratDriver.FindElementByLinkText("Developments");
-            Assert.IsTrue(ratDriver.ElementExists(devLink));
-            RatClock clock = new RatClock();
-            var targetTime = clock.LaterBy(new TimeSpan(0, 0, 0, 30, 0));
-            ratDriver.ClickLink(By.LinkText("Developments"), clock);
-            Assert.IsTrue(clock.IsNowBefore(targetTime));
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_GetElementTextWithClock()
         {
@@ -285,21 +252,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_GetElementTextWithClock()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            RatClock clock = new RatClock();
-            var targetTime = clock.LaterBy(new TimeSpan(0, 0, 0, 30, 0));
-            var text = ratDriver.GetElementText(By.LinkText("Developments"), clock);
-            Assert.IsTrue(clock.IsNowBefore(targetTime));
-            Assert.IsTrue(text.Contains("Developments"));
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_GetElementAttribute()
         {
@@ -352,18 +304,6 @@ namespace Liberator.DriverTests
         public void Opera_GetElementAttribute()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            var text = ratDriver.GetElementText(By.Id("carousel-example"));
-            Assert.IsTrue(ratDriver.GetElementAttribute(ratDriver.FindElementById("carousel-example"), "data-ride").Contains("carousel"));
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_GetElementAttribute()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             var text = ratDriver.GetElementText(By.Id("carousel-example"));
@@ -447,21 +387,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_GetElementAttributeWithClock()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            var clock = new RatClock();
-            var targetTime = clock.LaterBy(new TimeSpan(0, 0, 0, 30, 0));
-            var text = ratDriver.GetElementText(By.Id("carousel-example"));
-            var element = ratDriver.GetElementAttribute(ratDriver.FindElementById("carousel-example"), "data-ride", clock);
-            Assert.IsTrue(clock.IsNowBefore(targetTime));
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindByClassName()
         {
@@ -527,19 +452,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindByClassName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement element = ratDriver.FindElementByClassName("carousel-inner");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindElementsByClassName()
         {
@@ -592,18 +504,6 @@ namespace Liberator.DriverTests
         public void Opera_FindElementsByClassName()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IEnumerable<IWebElement> elements = ratDriver.FindElementsByClassName("menutext");
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementsByClassName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IEnumerable<IWebElement> elements = ratDriver.FindElementsByClassName("menutext");
@@ -677,19 +577,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByClassName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement parent = ratDriver.FindElementByCssSelector(".nav.navbar-nav.navbar-right");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByClassName("menutext", parent);
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindSubElementsByClassNameLocator()
         {
@@ -742,18 +629,6 @@ namespace Liberator.DriverTests
         public void Opera_FindSubElementsByClassNameLocator()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByClassName("menutext", By.ClassName("container"));
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByClassNameLocator()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByClassName("menutext", By.ClassName("container"));
@@ -818,19 +693,6 @@ namespace Liberator.DriverTests
         public void Opera_FindById()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement element = ratDriver.FindElementById("home");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindById()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IWebElement element = ratDriver.FindElementById("home");
@@ -905,19 +767,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindByLinkText()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement element = ratDriver.FindElementByLinkText("Developments");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindElementsByLinkText()
         {
@@ -970,18 +819,6 @@ namespace Liberator.DriverTests
         public void Opera_FindElementsByLinkText()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IEnumerable<IWebElement> elements = ratDriver.FindElementsByLinkText("Read Details");
-            Assert.IsTrue(elements.Count() == 6);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementsByLinkText()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IEnumerable<IWebElement> elements = ratDriver.FindElementsByLinkText("Read Details");
@@ -1046,19 +883,6 @@ namespace Liberator.DriverTests
         public void Opera_FindSubElementsByLinkText()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement parent = ratDriver.FindElementById("just-intro");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByLinkText("Read Details", parent);
-            Assert.IsTrue(elements.Count() == 3);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByLinkText()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IWebElement parent = ratDriver.FindElementById("just-intro");
@@ -1133,19 +957,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByLinkTextLocator()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            By parent = By.Id("just-intro");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByLinkText("Read Details", parent);
-            Assert.IsTrue(elements.Count() == 3);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindElementByTagName()
         {
@@ -1198,18 +1009,6 @@ namespace Liberator.DriverTests
         public void Opera_FindElementByTagName()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement element = ratDriver.FindElementByTag("body");
-            Assert.IsNotNull(element);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementByTagName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IWebElement element = ratDriver.FindElementByTag("body");
@@ -1278,18 +1077,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementsByTagName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IEnumerable<IWebElement> elements = ratDriver.FindElementsByTag("section");
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindSubElementsByTagName()
         {
@@ -1346,19 +1133,6 @@ namespace Liberator.DriverTests
         public void Opera_FindSubElementsByTagName()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement parent = ratDriver.FindElementById("just-intro");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByTag("a", parent);
-            Assert.IsTrue(elements.Count() == 3);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByTagName()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IWebElement parent = ratDriver.FindElementById("just-intro");
@@ -1433,19 +1207,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByTagNameLocator()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            By parent = By.Id("just-intro");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByTag("a", parent);
-            Assert.IsTrue(elements.Count() == 3);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindElementByXPath()
         {
@@ -1511,19 +1272,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementByXPath()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement element = ratDriver.FindElementByXPath(".//*[@id='carousel-example']");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindElementsByXPath()
         {
@@ -1576,18 +1324,6 @@ namespace Liberator.DriverTests
         public void Opera_FindElementsByXPath()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IEnumerable<IWebElement> elements = ratDriver.FindElementsByXPath(".//section");
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindElementsByXPath()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IEnumerable<IWebElement> elements = ratDriver.FindElementsByXPath(".//section");
@@ -1661,19 +1397,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByXPath()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement parent = ratDriver.FindElementByXPath("html/body");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByXPath(".//section", parent);
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_FindSubElementsByXPathLocator()
         {
@@ -1730,19 +1453,6 @@ namespace Liberator.DriverTests
         public void Opera_FindSubElementsByXPathLocator()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            By parent = By.XPath("html/body");
-            IEnumerable<IWebElement> elements = ratDriver.FindSubElementsByXPath(".//section", parent);
-            Assert.IsTrue(elements.Count() == 5);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_FindSubElementsByXPathLocator()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             By parent = By.XPath("html/body");
@@ -1822,20 +1532,6 @@ namespace Liberator.DriverTests
         }
 
         [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_ExtractElementFromCollectionByAttributeLocator()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            By parent = By.XPath("html/body");
-            IWebElement element = ratDriver.ExtractElementFromCollectionByAttribute(parent, EnumLocatorType.XPath, ".//section", "class", "note-sec");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
         [Category("Firefox")]
         public void Firefox_ExtractElementFromCollectionByAttribute()
         {
@@ -1896,20 +1592,6 @@ namespace Liberator.DriverTests
         public void Opera_ExtractElementFromCollectionByAttribute()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            ratDriver.MaximiseView();
-            IWebElement parent = ratDriver.FindElementByXPath("html/body");
-            IWebElement element = ratDriver.ExtractElementFromCollectionByAttribute(parent, EnumLocatorType.XPath, ".//section", "class", "note-sec");
-            Assert.IsTrue(element.Displayed);
-            Assert.IsTrue(element.Enabled);
-            ratDriver.ClosePagesAndQuitDriver();
-        }
-
-        [Test]
-        [Category("PhantomJS")]
-        public void PhantomJS_ExtractElementFromCollectionByAttribute()
-        {
-            RatDriver<PhantomJSDriver> ratDriver = new RatDriver<PhantomJSDriver>();
             ratDriver.NavigateToPage("http://www.totallyratted.com");
             ratDriver.MaximiseView();
             IWebElement parent = ratDriver.FindElementByXPath("html/body");

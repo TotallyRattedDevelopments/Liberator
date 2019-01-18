@@ -41,6 +41,7 @@ namespace Liberator.Driver.BrowserControl
         /// </summary>
         public EdgeDriverControl()
         {
+            Options = new EdgeOptions();
             string timeout = Preferences.Preferences.GetPreferenceSetting("Timeout");
             if (!timeout.Contains(",")) { timeout = "0,0,0,10,0"; }
             var to = timeout.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
@@ -61,7 +62,6 @@ namespace Liberator.Driver.BrowserControl
             {
                 Process[] webdrivers = Process.GetProcessesByName("MicrosoftWebDriver");
                 foreach (Process driver in webdrivers) { driver.Kill(); }
-                SetEdgeOptions();
                 SetEdgeDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Driver = new EdgeDriver(Preferences.Preferences.GetPreferenceSetting("Edge_DriverPath"), Options, CommandTimeout);
@@ -92,41 +92,7 @@ namespace Liberator.Driver.BrowserControl
 
         #region Private Methods
 
-
-        /// <summary>
-        /// Sets the Chrome Options from the app.config file
-        /// </summary>
-        private void SetEdgeOptions()
-        {
-            try
-            {
-                EdgePageLoadStrategy epls = EdgePageLoadStrategy.Default;
-                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("Edge_PageLoadStrategy"), out epls);
-                EdgeOptions options = new EdgeOptions()
-                {
-                    PageLoadStrategy = epls
-                };
-                Options = options;
-            }
-            catch (Exception ex)
-            {
-                switch (Preferences.Preferences.DebugLevel)
-                {
-                    case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not configure the Edge Driver Options settings.");
-                        break;
-                    case EnumConsoleDebugLevel.NotSpecified:
-                    case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
-                        break;
-                    case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
-                        break;
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Sets the Chrome Driver Service setting from the app.config file
         /// </summary>
