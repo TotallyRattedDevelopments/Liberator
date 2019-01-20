@@ -1,9 +1,4 @@
-﻿using Liberator.DynamicPageEngine.Scan;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Liberator.DynamicPageEngine.Entities
 {
@@ -19,7 +14,7 @@ namespace Liberator.DynamicPageEngine.Entities
 
         public string ObjectName { get; set; }
 
-        public IEnumerable<string> ClassName { get; set; }
+        public IEnumerable<string> ClassNames { get; set; }
 
         public string CssSelector { get; set; }
 
