@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<package xmlns="{0}">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+    Liberator Driver works as an abstraction layer over Selenium WebDriver.
+    
+    Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. 
+    Every setting of the individual driver types can be set using a single App.config file, enabling the dependent frameworks built on its functionality to 
+    fine tune their performance. Errors in browser interaction are correctly trapped for all Selenium methods.
+    </description>
+    <releaseNotes>v0.7.4 Release of Liberator Driver.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Selenium WebDriver QA Automation</tags>
+    <summary>Abstraction layer for Selenium Automation</summary>
+
+    <dependencies>
+      <dependency id="DotNetSeleniumExtras.PageObjects" version="3.11.0"/>
+      <dependency id="DotNetSeleniumExtras.PageObjects.Core" version="3.12.0"/>
+      <dependency id="DotNetSeleniumExtras.PageObjects.Core.Linq" version="1.0.0"/>
+      <dependency id="DotNetSeleniumExtras.WaitHelpers" version="4.7.0"/>
+      <dependency id="MathNet.Numerics" version="3.11.0"/>
+      <dependency id="Newtonsoft.Json" version="12.0.1"/>
+      <dependency id="NUnit" version="3.11.0"/>
+      <dependency id="Selenium.Support" version="3.141.0"/>
+      <dependency id="System.Buffers" version="4.5.0"/>
+      <dependency id="System.Runtime.InteropServices.RuntimeInformation" version="4.3.0"/>
+    </dependencies>
+    
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.ComponentModel" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.Core" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.Drawing" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="net472"/>
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework="net472"/>
+    </frameworkAssemblies>
+  </metadata>
+  
+  <files>
+    <file src="*.dll" target="lib\net472"/>
+    <file src="*.xml" target="lib\net472"/>
+    <file src="BrowserDrivers\" target="drivers"/>
+  </files>
+  
+</package>
