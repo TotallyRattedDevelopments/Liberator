@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Liberator.DriverTests
 {
@@ -27,6 +28,8 @@ namespace Liberator.DriverTests
                     item.Kill();
                 }
             }
+
+            Thread.Sleep(500);
         }
     }
 }
