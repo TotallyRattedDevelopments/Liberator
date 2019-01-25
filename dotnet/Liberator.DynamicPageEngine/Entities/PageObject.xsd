@@ -29,11 +29,12 @@
       </xs:documentation>
     </xs:annotation>
     <xs:choice minOccurs="1" maxOccurs="unbounded">
-      <xs:element name="reference" type="xs:integer" />
       <xs:element name="id" type="xs:string" nillable="true" />
-      <xs:element name="name" type="xs:string" nillable="true" />
-      <xs:element name="tag" type="xs:string" nillable="true" />
-      <xs:element name="cssClasses" type="xs:string" nillable="true" />
+      <xs:element name="link" type="xs:string" nillable="true" />
+      <xs:element name="tagName" type="xs:string" nillable="true" />
+      <xs:element name="nameAttribute" type="xs:string" nillable="true" />
+      <xs:element name="objectName" type="xs:string" nillable="true" />
+      <xs:element name="cssSelector" type="xs:string" nillable="true" />
       <xs:element name="xPath" type="xs:string" nillable="true" />
     </xs:choice>
   </xs:complexType>

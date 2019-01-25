@@ -7,7 +7,7 @@ using System.IO;
 namespace Liberator.DynamicPageEngineTests
 {
     [TestFixture]
-    public class PageIterationTests
+    public class HTMLScannerTests
     {
         HTMLScanner HTMLScanner;
 
@@ -16,7 +16,7 @@ namespace Liberator.DynamicPageEngineTests
         List<PageObjectEntry> pageObjects;
 
 
-        public PageIterationTests()
+        public HTMLScannerTests()
         {
             HTMLScanner = new HTMLScanner();
             htmlPage = null;

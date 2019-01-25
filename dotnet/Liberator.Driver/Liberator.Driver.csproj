@@ -83,10 +83,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Liberator.Driver.nuspec" />
-    <None Include="nuspec.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics">
