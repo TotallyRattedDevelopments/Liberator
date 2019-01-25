@@ -561,7 +561,7 @@ namespace Liberator.Driver
             {
                 _lastPage = _driver.FindElement(By.TagName("html"));
                 _driver.Navigate().Back();
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(_lastPage));
+                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
             }
             catch (Exception ex)
             {
@@ -579,7 +579,7 @@ namespace Liberator.Driver
             {
                 _lastPage = _driver.FindElement(By.TagName("html"));
                 _driver.Navigate().Forward();
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(_lastPage));
+                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
             }
             catch (Exception ex)
             {
@@ -835,7 +835,7 @@ namespace Liberator.Driver
             Locator = frameLocator;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
+                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
                 Element = _driver.FindElement(frameLocator);
                 _driver.SwitchTo().Frame(Element);
             }
@@ -859,7 +859,7 @@ namespace Liberator.Driver
             try
             {
                 var wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Name(frameName)));
+                    .Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Name(frameName)));
                 _driver.SwitchTo().Frame(frameName);
             }
             catch (Exception ex)

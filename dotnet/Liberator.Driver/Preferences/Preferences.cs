@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Liberator.Driver.Enums;
+using System;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Liberator.Driver.Preferences;
-using Liberator.Driver.Enums;
 
 namespace Liberator.Driver.Preferences
 {
