@@ -1,16 +1,16 @@
 ﻿using Liberator.Driver.BrowserControl;
+using Liberator.Driver.Enums;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Liberator.Driver.Enums;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Chrome;
+using System.Linq;
+using System.Runtime.InteropServices;
+using OpenQA.Selenium.Support.UI;
 
 namespace Liberator.Driver
 {
@@ -46,6 +46,7 @@ namespace Liberator.Driver
         {
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
+            
             GetPidsOfExistingBrowsersAndDrivesr(driverType);
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
@@ -187,12 +188,13 @@ namespace Liberator.Driver
             if (element == null)
             {
                 var load = new WebDriverWait(Driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.TagName("body")));
+                    .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
                 var wait = new WebDriverWait(Driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.StalenessOf(element));
+                    .Until(
+                    Liberator.ExpectedConditions.StalenessOf(element));
             }
             else
             {
@@ -202,65 +204,7 @@ namespace Liberator.Driver
         }
         #endregion
 
-        #region Private Methods
 
-        private bool WaitForElementToBeClickable(IWebElement element)
-        {
-            try
-            {
-                var wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
-                if (wait == null) { throw new Exception("Could not confirm clickability of the element required."); }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private bool WaitForElementToBeClickable(By locator)
-        {
-            try
-            {
-                var wait = new WebDriverWait(_driver, _timeout)
-                    .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
-                if (wait == null) { throw new Exception("Could not confirm clickability of the element required."); }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private bool WaitForElementToExist(By locator)
-        {
-            try
-            {
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
-                if (wait == null) { throw new Exception("Could not confirm existence of the element required."); }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private bool WaitForElementToBeVisible(By locator)
-        {
-            try
-            {
-                var wait = new WebDriverWait(_driver, _timeout).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
-                if (wait == null) { throw new Exception("Could not confirm visibility of the element required."); }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
 
         /// <summary>
         /// 
@@ -342,7 +286,6 @@ namespace Liberator.Driver
             }
             return null;
         }
-
-        #endregion
+        
     }
 }
