@@ -1,9 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Liberator.Driver.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
-using Liberator.Driver.Enums;
 
 namespace Liberator.Driver
 {

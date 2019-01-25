@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Liberator.Driver.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
@@ -6,7 +7,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Liberator.Driver.Enums;
 using System.Runtime.InteropServices;
 
 namespace Liberator.Driver
@@ -25,7 +25,9 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+                var wait = new WebDriverWait(_driver, _timeout)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(element));
             }
             catch (Exception ex)
             {
@@ -69,7 +71,9 @@ namespace Liberator.Driver
             try
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(_driver, timeSpan).Until(ExpectedConditions.ElementToBeClickable(element));
+                var wait = new WebDriverWait(_driver, timeSpan)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(element));
             }
             catch (Exception ex)
             {
@@ -92,7 +96,9 @@ namespace Liberator.Driver
             try
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(this._driver, timeSpan).Until(ExpectedConditions.ElementToBeClickable(_driver.FindElement(locator)));
+                var wait = new WebDriverWait(this._driver, timeSpan)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(_driver.FindElement(locator)));
             }
             catch (Exception ex)
             {
@@ -113,7 +119,9 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+                bool wait = new WebDriverWait(_driver, _timeout)
+                    .Until(ExpectedConditions
+                    .InvisibilityOfElementLocated(locator));
                 if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
             }
             catch (Exception ex)
@@ -136,7 +144,9 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.InvisibilityOfElementWithText(locator, text));
+                bool wait = new WebDriverWait(_driver, _timeout)
+                    .Until(ExpectedConditions
+                    .InvisibilityOfElementWithText(locator, text));
                 if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
             }
             catch (Exception ex)
@@ -166,7 +176,8 @@ namespace Liberator.Driver
             {
                 try
                 {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                    if (_debugLevel == EnumConsoleDebugLevel.Human)
+                    { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     element.SendKeys(Keys.Enter);
                 }
                 catch (Exception ex)
@@ -1393,7 +1404,8 @@ namespace Liberator.Driver
         private Actions HoverAction(By locator)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
-            _element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            _element = wait.Until(ExpectedConditions
+                .ElementIsVisible(locator));
             return new Actions(_driver);
         }
 

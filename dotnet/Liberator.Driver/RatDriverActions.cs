@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Liberator.Driver.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;  
+using System;
 using System.Collections.Generic;
-using Liberator.Driver.Enums;
 using System.Runtime.InteropServices;
 
 namespace Liberator.Driver
