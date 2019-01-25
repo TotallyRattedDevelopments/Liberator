@@ -68,9 +68,9 @@ namespace Liberator.DynamicPageEngine.Output
         /// Saves the output of the document to the passed filepath
         /// </summary>
         /// <param name="filePath">The file path to use when saving the document</param>
-        public void OuputDocument(string filePath)
+        public void OuputDocument(string filePath, string fileName)
         {
-            Tree.Save(filePath + PageName);
+            Tree.Save(filePath + "\\" + fileName + "_" + PageName + ".xml");
         }
 
     }
