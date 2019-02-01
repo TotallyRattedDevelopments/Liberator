@@ -58,9 +58,28 @@
     <Compile Include="Enums\EnumDriverType.cs" />
     <Compile Include="Enums\EnumLocatorType.cs" />
     <Compile Include="Enums\EnumPhoneType.cs" />
+    <Compile Include="ExpectedConditions.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="IRatDriver.cs" />
     <Compile Include="IRodent.cs" />
+    <Compile Include="PageObjects\ByAll.cs" />
+    <Compile Include="PageObjects\ByChained.cs" />
+    <Compile Include="PageObjects\ByFactory.cs" />
+    <Compile Include="PageObjects\ByIdOrName.cs" />
+    <Compile Include="PageObjects\CacheLookupAttribute.cs" />
+    <Compile Include="PageObjects\DefaultElementLocator.cs" />
+    <Compile Include="PageObjects\DefaultPageObjectMemberDecorator.cs" />
+    <Compile Include="PageObjects\FindsByAllAttribute.cs" />
+    <Compile Include="PageObjects\FindsByAttribute.cs" />
+    <Compile Include="PageObjects\FindsBySequenceAttribute.cs" />
+    <Compile Include="PageObjects\How.cs" />
+    <Compile Include="PageObjects\IElementLocator.cs" />
+    <Compile Include="PageObjects\IPageObjectMemberDecorator.cs" />
+    <Compile Include="PageObjects\PageFactory.cs" />
+    <Compile Include="PageObjects\RetryingElementLocator.cs" />
+    <Compile Include="PageObjects\WebDriverObjectProxy.cs" />
+    <Compile Include="PageObjects\WebElementListProxy.cs" />
+    <Compile Include="PageObjects\WebElementProxy.cs" />
     <Compile Include="Performance\EnumTiming.cs" />
     <Compile Include="Performance\ITimer.cs" />
     <Compile Include="Performance\RatTimer.cs" />
@@ -117,12 +136,6 @@
     <Content Include="BrowserDrivers\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Liberator\Liberator.csproj">
-      <Project>{e02bde49-929d-4155-8541-359bc9a9007a}</Project>
-      <Name>Liberator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
