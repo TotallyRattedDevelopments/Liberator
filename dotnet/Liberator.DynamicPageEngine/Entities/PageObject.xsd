@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="XMLSchema1"
+    targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:annotation>
+    <xs:documentation>
+      The base schema for the creation of XML Pgae Objects from the Dynamic Page Engine
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="page">
+    <xs:complexType>
+      <xs:sequence minOccurs="1">
+        <xs:element name="navigation" type="mstns:navigationObjects" />
+        <xs:element name="objects" type="mstns:pageObjects" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:complexType name="pageObject">
+    <xs:annotation>
+      <xs:documentation>
+        A reference to an object on the page that has a number of navigational paths
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="id" type="xs:string" nillable="true" />
+      <xs:element name="link" type="xs:string" nillable="true" />
+      <xs:element name="tagName" type="xs:string" nillable="true" />
+      <xs:element name="nameAttribute" type="xs:string" nillable="true" />
+      <xs:element name="objectName" type="xs:string" nillable="true" />
+      <xs:element name="cssSelector" type="xs:string" nillable="true" />
+      <xs:element name="xPath" type="xs:string" nillable="true" />
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="pageObjects">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="object" type="mstns:pageObject" nillable="false" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="navigationObject">
+    <xs:annotation>
+      <xs:documentation>
+        A reference to an object on the page that as some form of navigational impact
+        this may be due to a URL or an attached javascript action
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="reference" type="xs:integer" nillable="false" />
+      <xs:element name="address" type="xs:anyURI" nillable="true" />
+      <xs:element name="javaScript" type="xs:string" nillable="true" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="navigationObjects">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="navigation" type="mstns:navigationObject" nillable="false" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
