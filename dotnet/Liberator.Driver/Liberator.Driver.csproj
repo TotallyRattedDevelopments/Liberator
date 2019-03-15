@@ -133,6 +133,7 @@
     <Content Include="BrowserDrivers\IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="BrowserDrivers\MicrosoftWebDriver.exe" />
     <Content Include="BrowserDrivers\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

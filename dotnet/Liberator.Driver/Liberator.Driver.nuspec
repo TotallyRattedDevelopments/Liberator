@@ -14,16 +14,12 @@
     Every setting of the individual driver types can be set using a single App.config file, enabling the dependent frameworks built on its functionality to 
     fine tune their performance. Errors in browser interaction are correctly trapped for all Selenium methods.
     </description>
-    <releaseNotes>v0.7.4 Release of Liberator Driver.</releaseNotes>
+    <releaseNotes>v0.7.5 Release of Liberator Driver.</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>Selenium WebDriver QA Automation</tags>
     <summary>Abstraction layer for Selenium Automation</summary>
 
     <dependencies>
-      <dependency id="DotNetSeleniumExtras.PageObjects" version="3.11.0"/>
-      <dependency id="DotNetSeleniumExtras.PageObjects.Core" version="3.12.0"/>
-      <dependency id="DotNetSeleniumExtras.PageObjects.Core.Linq" version="1.0.0"/>
-      <dependency id="DotNetSeleniumExtras.WaitHelpers" version="4.7.0"/>
       <dependency id="MathNet.Numerics" version="3.11.0"/>
       <dependency id="Newtonsoft.Json" version="12.0.1"/>
       <dependency id="NUnit" version="3.11.0"/>

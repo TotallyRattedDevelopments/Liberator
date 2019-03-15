@@ -49,7 +49,8 @@ namespace Liberator.Driver.Preferences
         static private ConfigReader GetDriverReader()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            _reader = new ConfigReader(Path.GetDirectoryName(assembly.Location) + @"\Liberator.Driver.dll.config");
+            string libraryLoc = assembly.FullName.Split(',')[0];
+            _reader = new ConfigReader(Path.GetDirectoryName(assembly.Location) + @"\" + libraryLoc + ".dll.config");
             _reader.GetAppSettings();
             _appSettings = _reader.AppSettings;
             _kvList = _appSettings.Settings;
