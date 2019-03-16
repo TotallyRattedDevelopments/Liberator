@@ -35,13 +35,13 @@ namespace Liberator.Driver
             }
             if (ex.GetType() == typeof(DriverServiceNotFoundException))
             {
-                if (EqualityComparer<TWebDriver>.Default.Equals(_driver, default(TWebDriver))) { HandleNullDriverException(ex); }
-                if (_driver != null) { HandleDriverServiceException(ex); }
+                if (EqualityComparer<TWebDriver>.Default.Equals(Driver, default(TWebDriver))) { HandleNullDriverException(ex); }
+                if (Driver != null) { HandleDriverServiceException(ex); }
             }
             if (ex.GetType() == typeof(WebDriverException))
             {
-                if (EqualityComparer<TWebDriver>.Default.Equals(_driver, default(TWebDriver))) { HandleNullDriverException(ex); }
-                if (_driver != null) { HandleGenericDriverException(ex); }
+                if (EqualityComparer<TWebDriver>.Default.Equals(Driver, default(TWebDriver))) { HandleNullDriverException(ex); }
+                if (Driver != null) { HandleGenericDriverException(ex); }
             }
         }
 
@@ -135,7 +135,7 @@ namespace Liberator.Driver
         {
             KillDrivers();
             bool alertHandling = Convert.ToBoolean(Preferences.Preferences.KVList["RatDriverAlertHandling"].Value);
-            Console.WriteLine("An unanticipated alert has been displayed by the browser, {0}", _driver.GetType().ToString());
+            Console.WriteLine("An unanticipated alert has been displayed by the browser, {0}", Driver.GetType().ToString());
             Console.WriteLine("Current configuration settings indicate that Alert Handling is set to {0}", alertHandling.ToString());
             if (alertHandling)
             {

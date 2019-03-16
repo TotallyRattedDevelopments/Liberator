@@ -39,7 +39,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().Window(windowName);
+                Driver.SwitchTo().Window(windowName);
             }
             catch (Exception ex)
             {
@@ -60,13 +60,13 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.Title;
+                return Driver.Title;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Unable to get the title of the browser that is in focus");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -80,7 +80,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.Url;
+                return Driver.Url;
             }
             catch (Exception ex)
             {
@@ -98,13 +98,13 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.WindowHandles;
+                return Driver.WindowHandles;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Unable to get the title of the browser that is in focus");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -121,10 +121,10 @@ namespace Liberator.Driver
         {
             try
             {
-                _lastPage = FindElementByTag("body");
+                LastPage = FindElementByTag("body");
                 Driver.ExecuteJavaScript("window.open();");
-                _driver.SwitchTo().Window(_driver.WindowHandles.Last());
-                WindowHandles.Add(_driver.CurrentWindowHandle, _driver.Title);
+                Driver.SwitchTo().Window(Driver.WindowHandles.Last());
+                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
             }
             catch (Exception ex)
             {
@@ -140,10 +140,10 @@ namespace Liberator.Driver
         {
             try
             {
-                var winHandle = _driver.CurrentWindowHandle;
-                _lastPage = FindElementByTag("body");
-                _driver.Close();
-                _driver.SwitchTo().Window(WindowHandles.Last().Value);
+                var winHandle = Driver.CurrentWindowHandle;
+                LastPage = FindElementByTag("body");
+                Driver.Close();
+                Driver.SwitchTo().Window(WindowHandles.Last().Value);
                 WindowHandles.Remove(winHandle);
             }
             catch (Exception ex)

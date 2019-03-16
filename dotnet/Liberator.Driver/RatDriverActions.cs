@@ -43,7 +43,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Build().Perform();
@@ -86,7 +86,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Click().Build().Perform();
@@ -130,7 +130,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ClickAndHold().Build().Perform();
@@ -174,7 +174,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ContextClick().Build().Perform();
@@ -219,7 +219,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DoubleClick().Build().Perform();
@@ -252,7 +252,7 @@ namespace Liberator.Driver
                 if (waitForSource) { WaitForElementToBeClickable(source); }
                 if (waitForTarget) { WaitForElementToBeClickable(target); }
                 _action = HoverAction(source);
-                _action.MoveToElement(_element).DragAndDrop(source, target).Build().Perform();
+                _action.MoveToElement(Element).DragAndDrop(source, target).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -276,8 +276,8 @@ namespace Liberator.Driver
             Locators.Add(target);
             try
             {
-                Element = _driver.FindElement(source);
-                var _target = _driver.FindElement(target);
+                Element = Driver.FindElement(source);
+                var _target = Driver.FindElement(target);
                 var list = new List<IWebElement>();
                 list.Add(Element);
                 list.Add(_target);
@@ -288,7 +288,7 @@ namespace Liberator.Driver
                 if (waitForTarget) { WaitForElementToBeClickable(target); }
 
                 _action = HoverAction(source);
-                _action.MoveToElement(_element).DragAndDrop(Element, _target).Build().Perform();
+                _action.MoveToElement(Element).DragAndDrop(Element, _target).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -333,7 +333,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DragAndDropToOffset(Element, xOffset, yOffset).Build().Perform();
@@ -379,10 +379,10 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
-                _action.MoveToElement(_driver.FindElement(locator)).KeyDown(Element, key).Build().Perform();
+                _action.MoveToElement(Driver.FindElement(locator)).KeyDown(Element, key).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -424,7 +424,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).KeyUp(Element, key).Build().Perform();
@@ -471,7 +471,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveByOffset(xOffset, yOffset).Build().Perform();
@@ -518,7 +518,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveToElement(Element, xOffset, yOffset).Build().Perform();
@@ -561,7 +561,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Release().Build().Perform();
@@ -607,7 +607,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); } ;
                 Element.Click();
                 Element.Clear();

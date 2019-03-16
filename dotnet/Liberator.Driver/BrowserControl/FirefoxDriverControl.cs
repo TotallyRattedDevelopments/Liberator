@@ -5,6 +5,7 @@ using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 
 namespace Liberator.Driver.BrowserControl
 {
@@ -507,16 +508,12 @@ namespace Liberator.Driver.BrowserControl
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("Firefox_SuppressInitialDiagnosticInformation"), out sidi);
 
 
-                string driverLocation = Preferences.Preferences.GetPreferenceSetting("Firefox_DriverPath");
-                string path = null;
-
-                if (driverLocation != "" || driverLocation != null) { path = Preferences.Preferences.DriverPath; }
-                else { path = driverLocation; }
+                string driverLocation = Directory.GetParent(Preferences.Preferences._firefoxDriverLocation).FullName;
 
                 string binaryPath = Preferences.Preferences.GetPreferenceSetting("Firefox_BinaryPath");
                 string host = Preferences.Preferences.GetPreferenceSetting("Firefox_Host");
 
-                FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(path);
+                FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(driverLocation);
                 service.BrowserCommunicationPort = browserComm;
                 service.ConnectToRunningBrowser = connect;
                 if (binaryPath.Contains(@"|")) { service.FirefoxBinaryPath = binaryPath; }

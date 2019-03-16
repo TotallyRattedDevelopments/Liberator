@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace Liberator.Driver.BrowserControl
 {
@@ -210,7 +211,7 @@ namespace Liberator.Driver.BrowserControl
                 string log = Preferences.Preferences.GetPreferenceSetting("IE_LogFile");
                 string whitelist = Preferences.Preferences.GetPreferenceSetting("IE_WhitelistedIPAddresses");
 
-                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Preferences.Preferences.DriverPath);
+                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Directory.GetParent(Preferences.Preferences._internetExplorerDriverLocation).FullName);
                 service.HideCommandPromptWindow = hidePrompt;
                 if (ieHost.Length > 1) { service.Host = ieHost; }
                 if (extract.Length > 1) { service.LibraryExtractionPath = extract; }

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
 
 namespace Liberator.Driver
 {
@@ -47,7 +48,7 @@ namespace Liberator.Driver
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
             
-            GetPidsOfExistingBrowsersAndDrivesr(driverType);
+            GetPidsOfExistingBrowsersAndDrivers(driverType);
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
@@ -210,7 +211,7 @@ namespace Liberator.Driver
         /// 
         /// </summary>
         /// <param name="driverType"></param>
-        public void GetPidsOfExistingBrowsersAndDrivesr(string driverType)
+        public void GetPidsOfExistingBrowsersAndDrivers(string driverType)
         {
             GetProcessIds(out _originalPids);
         }
@@ -257,8 +258,7 @@ namespace Liberator.Driver
                     return "iexplorer";
                 case "operadriver":
                     return "opera";
-                case "phantomjsdriver":
-                    return "phantomjs";
+
             }
             return null;
         }
@@ -281,8 +281,6 @@ namespace Liberator.Driver
                     return "iedriver";
                 case "operadriver":
                     return "operadriver";
-                case "phantomjsdriver":
-                    return "phantomjsdriver";
             }
             return null;
         }

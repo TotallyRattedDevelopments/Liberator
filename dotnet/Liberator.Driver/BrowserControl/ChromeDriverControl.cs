@@ -5,6 +5,7 @@ using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Liberator.Driver.BrowserControl
@@ -70,12 +71,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                string binaryLocation = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_BinaryLocation");
-                string path = null;
-
-                if (binaryLocation == "" || binaryLocation == null) { path = Preferences.Preferences.DriverPath; }
-                else { path = binaryLocation; }
-
                 Process[] chromedrivers = Process.GetProcessesByName("chromedriver");
                 foreach (Process driver in chromedrivers) { driver.Kill(); }
                 SetOptions();
@@ -83,7 +78,7 @@ namespace Liberator.Driver.BrowserControl
                 AddAdditionalCapabilities();
                 //SetChromePerformanceLoggingPreferences();
                 //Options.SetLoggingPreference("performance", LogLevel.All);
-                Driver = new ChromeDriver(path, Options, CommandTimeout);
+                Driver = new ChromeDriver(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName, Options, CommandTimeout);
                 return Driver;
             }
             catch (Exception ex)

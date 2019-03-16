@@ -64,7 +64,7 @@ namespace SeleniumExtras.PageObjects
         XPath,
 
         /// <summary>
-        /// Finds by a custom <see cref="By"/> implementation.
+        /// Finds by a custom implementation.
         /// </summary>
         Custom
     }

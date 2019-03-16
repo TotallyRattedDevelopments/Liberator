@@ -65,7 +65,7 @@ namespace Liberator.Driver.BrowserControl
                 SetOperaOptions();
                 //SetOperaDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                Driver = new OperaDriver(Path.GetDirectoryName(assembly.Location) + Preferences.Preferences.GetPreferenceSetting("DriverPath"), Options, CommandTimeout);
+                Driver = new OperaDriver(Directory.GetParent(Preferences.Preferences._operaDriverLocation).FullName, Options, CommandTimeout);
                 return Driver;
             }
             catch (Exception ex)

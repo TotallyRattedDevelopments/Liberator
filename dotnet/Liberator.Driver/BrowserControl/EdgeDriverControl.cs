@@ -64,7 +64,7 @@ namespace Liberator.Driver.BrowserControl
                 foreach (Process driver in webdrivers) { driver.Kill(); }
                 SetEdgeDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                Driver = new EdgeDriver(Preferences.Preferences.GetPreferenceSetting("Edge_DriverPath"), Options, CommandTimeout);
+                Driver = new EdgeDriver(Directory.GetParent(Preferences.Preferences._edgeDriverLocation).FullName, Options, CommandTimeout);
                 return Driver;
             }
             catch (Exception ex)
