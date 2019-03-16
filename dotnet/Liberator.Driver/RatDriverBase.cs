@@ -26,7 +26,6 @@ namespace Liberator.Driver
 
         TimeSpan _timeout;
         TimeSpan _sleepInterval;
-        String _driverpath;
         Actions _action;
 
         List<int> _originalPids;

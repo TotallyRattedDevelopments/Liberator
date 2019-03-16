@@ -384,7 +384,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                string path = "";
                 string portServer, whitelist;
 
                 Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_AndroidDebugBridgePort"), out int android);
