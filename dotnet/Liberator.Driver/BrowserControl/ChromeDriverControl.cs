@@ -413,7 +413,7 @@ namespace Liberator.Driver.BrowserControl
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the settings for the mobile driver service.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
@@ -456,7 +456,7 @@ namespace Liberator.Driver.BrowserControl
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the capabilities from the config file.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
@@ -528,7 +528,7 @@ namespace Liberator.Driver.BrowserControl
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the mobile emulation settings.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
@@ -702,7 +702,7 @@ namespace Liberator.Driver.BrowserControl
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the mobile emulation settings.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
