@@ -172,8 +172,6 @@ namespace Liberator.Driver
                                                     Convert.ToInt32(to[2]),
                                                     Convert.ToInt32(to[3]),
                                                     Convert.ToInt32(to[4]));
-
-            _driverpath = Preferences.Preferences.KVList["DriverPath"].Value;
         }
 
         #endregion

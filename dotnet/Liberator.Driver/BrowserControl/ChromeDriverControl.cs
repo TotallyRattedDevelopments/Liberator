@@ -339,19 +339,13 @@ namespace Liberator.Driver.BrowserControl
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_HideCommandPromptWindow"), out bool command);
                 Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_Port"), out int port);
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_SuppressInitialDiagnosticInformation"), out bool sidi);
-
-
-                string binaryLocation = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_BinaryLocation");
-                string path = null;
-
-                if (binaryLocation != "" || binaryLocation != null) { path = Preferences.Preferences.DriverPath; }
-                else { path = binaryLocation; }
+                
 
                 string logPath = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_LogPath");
                 string portServer = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_PortServerAddress");
                 string whitelist = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_WhitelistedIPAddresses");
 
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService(path);
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName);
                 service.AndroidDebugBridgePort = android;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = command;
@@ -399,13 +393,10 @@ namespace Liberator.Driver.BrowserControl
                 Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_Port"), out int port);
                 Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_SuppressInitialDiagnosticInformation"), out bool sidi);
 
-                if (Preferences.Preferences.GetPreferenceSetting("ChromeDriver_BinaryLocation") == "") { path = Preferences.Preferences.DriverPath; }
-                else { path = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_BinaryLocation"); }
-
                 portServer = Preferences.Preferences.KVList["ChromeDriver_PortServerAddress"].Value;
                 whitelist = Preferences.Preferences.KVList["ChromeDriver_WhitelistedIPAddresses"].Value;
 
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService(path);
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName);
                 service.AndroidDebugBridgePort = android;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = prompt;
