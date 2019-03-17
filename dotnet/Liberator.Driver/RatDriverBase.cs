@@ -155,7 +155,7 @@ namespace Liberator.Driver
 
         private void GetWebDriverSettings()
         {
-            var si = Preferences.Preferences.KVList["Sleep"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var si = Preferences.BaseSettings.KVList["Sleep"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             _sleepInterval = new TimeSpan(Convert.ToInt32(si[0]),
                                                     Convert.ToInt32(si[1]),
@@ -163,7 +163,7 @@ namespace Liberator.Driver
                                                     Convert.ToInt32(si[3]),
                                                     Convert.ToInt32(si[4]));
 
-            var to = Preferences.Preferences.KVList["Timeout"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var to = Preferences.BaseSettings.KVList["Timeout"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             _timeout = new TimeSpan(Convert.ToInt32(to[0]),
                                                     Convert.ToInt32(to[1]),
@@ -230,7 +230,7 @@ namespace Liberator.Driver
 
         private void EstablishDriverSettings()
         {
-            Preferences.Preferences.GetPreferences();
+            Preferences.BaseSettings.GetPreferences();
             Id = Guid.NewGuid();
             WindowHandles = new Dictionary<string, string>();
             GetWebDriverSettings();

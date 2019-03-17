@@ -26,6 +26,7 @@
     <DocumentationFile>C:\Users\kevmccarthy\source\repos\LiberatorTestTools\dotnet\Liberator.Driver\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="App.config" />
     <None Remove="BrowserDrivers\chromedriver.exe" />
     <None Remove="BrowserDrivers\geckodriver.exe" />
     <None Remove="BrowserDrivers\IEDriverServer.exe" />
@@ -48,6 +49,7 @@
     <Content Include="BrowserDrivers\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.7.0" />

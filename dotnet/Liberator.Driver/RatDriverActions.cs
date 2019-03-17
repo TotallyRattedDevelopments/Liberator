@@ -242,9 +242,11 @@ namespace Liberator.Driver
         public void DragAndDrop(IWebElement source, IWebElement target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Element = source;
-            var list = new List<IWebElement>();
-            list.Add(source);
-            list.Add(target);
+            var list = new List<IWebElement>
+            {
+                source,
+                target
+            };
             Elements = list;
 
             try
@@ -271,16 +273,20 @@ namespace Liberator.Driver
         public void DragAndDrop(By source, By target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Locator = source;
-            Locators = new List<By>();
-            Locators.Add(source);
-            Locators.Add(target);
+            Locators = new List<By>
+            {
+                source,
+                target
+            };
             try
             {
                 Element = Driver.FindElement(source);
                 var _target = Driver.FindElement(target);
-                var list = new List<IWebElement>();
-                list.Add(Element);
-                list.Add(_target);
+                var list = new List<IWebElement>
+                {
+                    Element,
+                    _target
+                };
 
                 Elements = (IEnumerable<IWebElement>)list;
 
@@ -1216,7 +1222,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not take a screenshot.");
                 }
@@ -1238,7 +1244,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not return the JavaScript Executor.");
                 }
@@ -1260,7 +1266,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed JavaScript.");
                 }
@@ -1282,7 +1288,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed JavaScript with the specified parameters.");
                 }
@@ -1303,7 +1309,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }
@@ -1325,7 +1331,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }

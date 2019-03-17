@@ -35,11 +35,6 @@ namespace Liberator.Driver.BrowserControl
         public IWebDriver Driver { get; set; }
 
         /// <summary>
-        /// The maximum amount of time to wait between commands
-        /// </summary>
-        public TimeSpan CommandTimeout { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         public TouchActions Touch { get; set; }
@@ -53,10 +48,7 @@ namespace Liberator.Driver.BrowserControl
         /// </summary>
         public ChromeDriverControl()
         {
-            string timeout = Preferences.Preferences.GetPreferenceSetting("Timeout");
-            if (!timeout.Contains(",")) { timeout = "0,0,0,10,0"; }
-            var to = timeout.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            CommandTimeout = new TimeSpan(Convert.ToInt32(to[0]), Convert.ToInt32(to[1]), Convert.ToInt32(to[2]), Convert.ToInt32(to[3]), Convert.ToInt32(to[4]));
+            Options = new ChromeOptions();
         }
 
         #endregion
@@ -78,12 +70,12 @@ namespace Liberator.Driver.BrowserControl
                 AddAdditionalCapabilities();
                 //SetChromePerformanceLoggingPreferences();
                 //Options.SetLoggingPreference("performance", LogLevel.All);
-                Driver = new ChromeDriver(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName, Options, CommandTimeout);
+                Driver = new ChromeDriver(Directory.GetParent(Preferences.BaseSettings.ChromeDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start chrome driver.");
@@ -117,12 +109,12 @@ namespace Liberator.Driver.BrowserControl
                 Options.EnableMobileEmulation(phoneName);
                 SetMobileDriverService();
                 AddAdditionalCapabilities();
-                Driver = new ChromeDriver(Service, Options, CommandTimeout);
+                Driver = new ChromeDriver(Service, Options, Preferences.BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
@@ -158,12 +150,12 @@ namespace Liberator.Driver.BrowserControl
                 SetOptions();
                 AddAdditionalCapabilities();
                 AmendMobileEmulationForChrome(touch, height, width, userAgent, pixelRatio);
-                Driver = new ChromeDriver(Service, Options, CommandTimeout);
+                Driver = new ChromeDriver(Service, Options, Preferences.BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
@@ -207,7 +199,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to add the capability {0} | Value: {1}", name, value);
@@ -239,7 +231,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to add the extension {0}", extensionPath);
@@ -285,17 +277,17 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("Chrome_LeaveBrowserRunning"), out bool leaveRunning);
-                string debug = Preferences.Preferences.GetPreferenceSetting("Chrome_DebuggerAddress");
-                string minidump = Preferences.Preferences.GetPreferenceSetting("Chrome_MinidumpPath");
+                bool.TryParse(Preferences.Chrome.LeaveBrowserRunning, out bool leaveRunning);
+                string debug = Preferences.Chrome.DebuggerAddress;
+                string minidump = Preferences.Chrome.MinidumpPath;
 
                 // SetChromePerformanceLoggingPreferences();
 
                 ChromeOptions options = new ChromeOptions()
                 {
-                    BinaryLocation = Preferences.Preferences.GetPreferenceSetting("Chrome_BinaryLocation")
+                    BinaryLocation = Preferences.BaseSettings.ChromeLocation
                 };
-                if (debug.Contains(@"\")) { options.DebuggerAddress = Preferences.Preferences.GetPreferenceSetting("Chrome_DebuggerAddress"); }
+                if (debug.Contains(@"\")) { options.DebuggerAddress = Preferences.Chrome.DebuggerAddress; }
                 options.LeaveBrowserRunning = leaveRunning;
                 if (minidump.Contains(@"\")) { options.MinidumpPath = minidump; }
                 //options.PerformanceLoggingPreferences = LoggingPreferences
@@ -308,7 +300,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to load driver options settings from the config file.");
@@ -334,18 +326,18 @@ namespace Liberator.Driver.BrowserControl
             try
             {
 
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_AndroidDebugBridgePort"), out int android);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_EnableVerboseLogging"), out bool verbose);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_HideCommandPromptWindow"), out bool command);
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_Port"), out int port);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_SuppressInitialDiagnosticInformation"), out bool sidi);
+                int.TryParse(Preferences.Chrome.AndroidDebugBridgePort, out int android);
+                bool.TryParse(Preferences.Chrome.EnableVerboseLogging, out bool verbose);
+                bool.TryParse(Preferences.Chrome.HideCommandPromptWindow, out bool command);
+                int.TryParse(Preferences.Chrome.Port, out int port);
+                bool.TryParse(Preferences.Chrome.SuppressInitialDiagnosticInformation, out bool sidi);
                 
 
-                string logPath = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_LogPath");
-                string portServer = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_PortServerAddress");
-                string whitelist = Preferences.Preferences.GetPreferenceSetting("ChromeDriver_WhitelistedIPAddresses");
+                string logPath = Preferences.Chrome.LogPath;
+                string portServer = Preferences.Chrome.PortServerAddress;
+                string whitelist = Preferences.Chrome.WhitelistedIPAddresses;
 
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName);
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.BaseSettings.ChromeDriverLocation).FullName);
                 service.AndroidDebugBridgePort = android;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = command;
@@ -358,7 +350,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the settings for the mobile driver service.");
@@ -386,29 +378,29 @@ namespace Liberator.Driver.BrowserControl
             {
                 string portServer, whitelist;
 
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_AndroidDebugBridgePort"), out int android);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_EnableVerboseLogging"), out bool verbose);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_HideCommandPromptWindow"), out bool prompt);
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_Port"), out int port);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeDriver_SuppressInitialDiagnosticInformation"), out bool sidi);
+                int.TryParse(Preferences.Chrome.AndroidDebugBridgePort, out int android);
+                bool.TryParse(Preferences.Chrome.EnableVerboseLogging, out bool verbose);
+                bool.TryParse(Preferences.Chrome.HideCommandPromptWindow, out bool prompt);
+                int.TryParse(Preferences.Chrome.Port, out int port);
+                bool.TryParse(Preferences.Chrome.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                portServer = Preferences.Preferences.KVList["ChromeDriver_PortServerAddress"].Value;
-                whitelist = Preferences.Preferences.KVList["ChromeDriver_WhitelistedIPAddresses"].Value;
+                portServer = Preferences.Chrome.PortServerAddress;
+                whitelist = Preferences.Chrome.WhitelistedIPAddresses;
 
-                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.Preferences._chromeDriverLocation).FullName);
+                ChromeDriverService service = ChromeDriverService.CreateDefaultService(Directory.GetParent(Preferences.BaseSettings.ChromeDriverLocation).FullName);
                 service.AndroidDebugBridgePort = android;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = prompt;
                 service.LogPath = "";
                 service.Port = port;
-                if (portServer.Contains(@"\")) { service.PortServerAddress = portServer; }
+                service.PortServerAddress = portServer;
                 service.SuppressInitialDiagnosticInformation = sidi;
-                if (whitelist.Contains(@"\")) { service.WhitelistedIPAddresses = whitelist; }
+                service.WhitelistedIPAddresses = whitelist;
                 Service = service;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the settings for the mobile driver service.");
@@ -432,8 +424,7 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-
-                var capabilityList = Preferences.Preferences.GetPreferenceSetting("Chrome_CapabilityList");
+                var capabilityList = Preferences.Chrome.CapabilityList;
 
                 if (capabilityList.Contains(","))
                 {
@@ -451,7 +442,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the capabilities from the config file.");
@@ -503,14 +494,11 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool touch = false;
-                Int64 h = 0, w = 0;
-                Double pixel;
 
-                Boolean.TryParse(Preferences.Preferences.KVList["ChromeMobileEmulation_EnableTouchEvents"].Value, out touch);
-                Int64.TryParse(Preferences.Preferences.KVList["ChromeMobileEmulation_Height"].Value, out h);
-                Int64.TryParse(Preferences.Preferences.KVList["ChromeMobileEmulation_Width"].Value, out w);
-                Double.TryParse(Preferences.Preferences.KVList["ChromeMobileEmulation_PixelRatio"].Value, out pixel);
+                bool.TryParse(Preferences.Chrome.EnableTouchEvents, out bool touch);
+                long.TryParse(Preferences.Chrome.Height, out long h);
+                long.TryParse(Preferences.Chrome.Width, out long w);
+                double.TryParse(Preferences.Chrome.PixelRatio, out double pixel);
 
                 ChromeMobileEmulationDeviceSettings settings = new ChromeMobileEmulationDeviceSettings()
                 {
@@ -523,7 +511,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the mobile emulation settings.");
@@ -548,7 +536,7 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                var extensionList = Preferences.Preferences.GetPreferenceSetting("Chrome_ExtensionsList");
+                var extensionList = Preferences.Chrome.ExtensionsList;
 
                 if (extensionList.Contains(","))
                 {
@@ -558,7 +546,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to add the extensions specified in the config file");
@@ -585,7 +573,7 @@ namespace Liberator.Driver.BrowserControl
             object objValue = new object();
             try
             {
-                var preferenceList = Preferences.Preferences.GetPreferenceSetting("Chrome_LocalStatePreferences");
+                var preferenceList = Preferences.Chrome.LocalStatePreferences;
 
 
                 if (preferenceList.Contains(","))
@@ -604,7 +592,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to add the local state settings specified in the config file");
@@ -631,7 +619,7 @@ namespace Liberator.Driver.BrowserControl
             string name = "";
             try
             {
-                var preferenceList = Preferences.Preferences.GetPreferenceSetting("Chrome_UserProfilePreferences");
+                var preferenceList = Preferences.Chrome.UserProfilePreferences;
 
                 if (preferenceList.Contains(","))
                 {
@@ -649,7 +637,7 @@ namespace Liberator.Driver.BrowserControl
                 }            }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to add the user profile settings specified in the config file");
@@ -677,14 +665,14 @@ namespace Liberator.Driver.BrowserControl
             {
                 string userAgent;
 
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeMobileEmulation_EnableTouchEvents"), out bool touch);
-                Int64.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeMobileEmulation_Height"), out long height);
-                Double.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeMobileEmulation_PixelRatio"), out double ratio);
-                Int64.TryParse(Preferences.Preferences.GetPreferenceSetting("ChromeMobileEmulation_Width"), out long width);
+                bool.TryParse(Preferences.Chrome.EnableTouchEvents, out bool touch);
+                long.TryParse(Preferences.Chrome.Height, out long height);
+                double.TryParse(Preferences.Chrome.PixelRatio, out double ratio);
+                long.TryParse(Preferences.Chrome.Width, out long width);
 
                 ChromeMobileEmulationDeviceSettings settings = new ChromeMobileEmulationDeviceSettings();
 
-                userAgent = Preferences.Preferences.GetPreferenceSetting("ChromeMobileEmulation_UserAgent");
+                userAgent = Preferences.Chrome.UserAgent;
 
                 settings.EnableTouchEvents = touch;
                 settings.Height = height;
@@ -697,7 +685,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Driver was unable to load the mobile emulation settings.");
@@ -735,7 +723,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Unable to set Chrome Mobile Emulation settings.");

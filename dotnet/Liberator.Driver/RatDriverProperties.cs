@@ -76,7 +76,7 @@ namespace Liberator.Driver
         /// <summary>
         /// A system reference to hWnd property
         /// </summary>
-        public IntPtr hWindow { get; set; }
+        public IntPtr HWindow { get; set; }
 
 
 

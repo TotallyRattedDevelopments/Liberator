@@ -1403,7 +1403,7 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.BaseSettings.KVList["MenuHoverTime"].Value)));
             Element = wait.Until(ExpectedConditions
                 .ElementIsVisible(locator));
             return new Actions(Driver);
@@ -1416,7 +1416,7 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(IWebElement element)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.BaseSettings.KVList["MenuHoverTime"].Value)));
             Element = wait.Until(ExpectedConditions.ElementToBeClickable(element));
             return new Actions(Driver);
         }
