@@ -17,7 +17,7 @@ namespace Liberator.Driver
         /// <param name="ex">Exception which caused the method to be called</param>
         protected internal void HandleErrors(Exception ex)
         {
-            Enum.TryParse(Preferences.BaseSettings.KVList["ConsoleDebugLevel"].Value, out _debugLevel);
+            Enum.TryParse(Preferences.BaseSettings.DebugLevel.ToString(), out _debugLevel);
 
             if (_debugLevel == EnumConsoleDebugLevel.Message || _debugLevel == EnumConsoleDebugLevel.StackTrace) { Console.WriteLine(ex.Message); }
             if (_debugLevel == EnumConsoleDebugLevel.StackTrace) { Console.WriteLine(ex.StackTrace); }
@@ -134,7 +134,7 @@ namespace Liberator.Driver
         private void HandleAlertException(Exception ex)
         {
             KillDrivers();
-            bool alertHandling = Convert.ToBoolean(Preferences.BaseSettings.KVList["RatDriverAlertHandling"].Value);
+            bool alertHandling = Preferences.BaseSettings.AlertHandling;
             Console.WriteLine("An unanticipated alert has been displayed by the browser, {0}", Driver.GetType().ToString());
             Console.WriteLine("Current configuration settings indicate that Alert Handling is set to {0}", alertHandling.ToString());
             if (alertHandling)

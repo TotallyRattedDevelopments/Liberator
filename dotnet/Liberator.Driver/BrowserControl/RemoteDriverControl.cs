@@ -32,10 +32,6 @@ namespace Liberator.Driver.BrowserControl
         /// </summary>
         public RemoteDriverControl()
         {
-            string timeout = Preferences.BaseSettings.GetPreferenceSetting("Timeout");
-            if (!timeout.Contains(",")) { timeout = "0,0,0,10,0"; }
-            var to = timeout.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            CommandTimeout = new TimeSpan(Convert.ToInt32(to[0]), Convert.ToInt32(to[1]), Convert.ToInt32(to[2]), Convert.ToInt32(to[3]), Convert.ToInt32(to[4]));
         }
 
 
@@ -48,7 +44,7 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 Uri remoteAddress = null;
-                string address = Preferences.BaseSettings.GetPreferenceSetting("Remote_DefaultRemoteAddress");
+                string address = Preferences.Remote.DefaultRemoteAddress;
                 //SetPlatform(PlatformType.Windows);
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
                 Driver = new RemoteWebDriver(remoteAddress, Options);
@@ -87,7 +83,7 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 Uri remoteAddress = null;
-                string address = Preferences.BaseSettings.GetPreferenceSetting("Remote_DefaultRemoteAddress");
+                string address = Preferences.Remote.DefaultRemoteAddress;
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
                 Driver = new RemoteWebDriver(remoteAddress, Options);
                 return Driver;

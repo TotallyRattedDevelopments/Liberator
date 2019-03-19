@@ -42,10 +42,7 @@ namespace Liberator.Driver.BrowserControl
         /// </summary>
         public OperaDriverControl()
         {
-            string timeout = Preferences.BaseSettings.GetPreferenceSetting("Timeout");
-            if (!timeout.Contains(",")) { timeout = "0,0,0,10,0"; }
-            var to = timeout.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            CommandTimeout = new TimeSpan(Convert.ToInt32(to[0]), Convert.ToInt32(to[1]), Convert.ToInt32(to[2]), Convert.ToInt32(to[3]), Convert.ToInt32(to[4]));
+
         }
 
         #endregion
@@ -65,7 +62,7 @@ namespace Liberator.Driver.BrowserControl
                 SetOperaOptions();
                 //SetOperaDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                Driver = new OperaDriver(Directory.GetParent(Preferences.BaseSettings.OperaDriverLocation).FullName, Options, CommandTimeout);
+                Driver = new OperaDriver(Directory.GetParent(Preferences.BaseSettings.OperaDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
@@ -86,15 +83,14 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool running = false;
-                Boolean.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_LeaveBrowserRunning"), out running);
+                bool.TryParse(Preferences.Opera.LeaveBrowserRunning, out bool running);
 
                 OperaOptions options = new OperaOptions()
                 {
-                    BinaryLocation = Preferences.BaseSettings.GetPreferenceSetting("Opera_BinaryLocation"),
-                    DebuggerAddress = Preferences.BaseSettings.GetPreferenceSetting("Opera_DebuggerAddress"),
+                    BinaryLocation = Preferences.BaseSettings.OperaLocation,
+                    DebuggerAddress = Preferences.Opera.DebuggerAddress ?? null,
                     LeaveBrowserRunning = running,
-                    MinidumpPath = Preferences.BaseSettings.GetPreferenceSetting("Opera_MinidumpPath")
+                    MinidumpPath = Preferences.Opera.MinidumpPath ?? null
                 };
                 Options = options;
             }
@@ -127,31 +123,25 @@ namespace Liberator.Driver.BrowserControl
             {
                 int android = -1;
 
-                int.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_AndroidDebugBridgePort"), out android);
-                bool.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_EnableVerboseLogging"), out bool verbose);
-                bool.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_HideCommandPromptWindow"), out bool hidePrompt);
-                int.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_Port"), out int port);
-                bool.TryParse(Preferences.BaseSettings.GetPreferenceSetting("Opera_SuppressInitialDiagnosticInformation"), out bool sidi);
+                int.TryParse(Preferences.Opera.AndroidDebugBridgePort, out android);
+                bool.TryParse(Preferences.Opera.EnableVerboseLogging, out bool verbose);
+                bool.TryParse(Preferences.Opera.HideCommandPromptWindow, out bool hidePrompt);
+                int.TryParse(Preferences.Opera.Port, out int port);
+                bool.TryParse(Preferences.Opera.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                string operaLocation = Preferences.BaseSettings.GetPreferenceSetting("Opera_DriverPath");
-                string path = null;
+                string operaLocation = Preferences.BaseSettings.OperaDriverLocation;
 
-                if (operaLocation != "" || operaLocation != null) { path = Preferences.BaseSettings.DriverPath; }
-                else { path = operaLocation; }
+                string logPath = Preferences.Opera.LogPath;
+                string portServer = Preferences.Opera.PortServerAddress;
+                string prefix = Preferences.Opera.UrlPathPrefix;
 
-                string logPath = Preferences.BaseSettings.GetPreferenceSetting("Opera_LogPath");
-                string portServer = Preferences.BaseSettings.GetPreferenceSetting("Opera_PortServerAddress");
-                string prefix = Preferences.BaseSettings.GetPreferenceSetting("Opera_UrlPathPrefix");
-
-                OperaDriverService service = OperaDriverService.CreateDefaultService(path);
-                service.AndroidDebugBridgePort = android;
-                service.EnableVerboseLogging = verbose;
-                service.HideCommandPromptWindow = hidePrompt;
-                if (logPath.Length > 1) { service.LogPath = logPath; }
-                service.Port = port;
-                if (portServer.Length > 1) { service.PortServerAddress = portServer; }
-                service.SuppressInitialDiagnosticInformation = sidi;
-                if (prefix.Length > 1) { service.UrlPathPrefix = prefix; }
+                OperaDriverService service = OperaDriverService.CreateDefaultService(operaLocation);
+                //service.AndroidDebugBridgePort = android >= 0 ? android : -1 ;
+                //service.EnableVerboseLogging = verbose;
+                //service.HideCommandPromptWindow = hidePrompt;
+                //service.Port = port;
+                //service.PortServerAddress = portServer ?? null;
+                //service.SuppressInitialDiagnosticInformation = sidi;
                 Service = service;
             }
             catch (Exception ex)

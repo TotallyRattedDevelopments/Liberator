@@ -3249,6 +3249,36 @@
             Base settings for RAT Driver
             </summary>
         </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.Timeout">
+            <summary>
+            Standard timeout
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.Sleep">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.ImplicitWait">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.MenuHoverTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.PageLoad">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.AsyncJavaScript">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ChromeDriverLocation">
             <summary>
             Location of Chrome Driver. Defaults to the supplied version.
@@ -3277,6 +3307,21 @@
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ChromeLocation">
             <summary>
             Location of the Chrome application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.FirefoxLocation">
+            <summary>
+            Locations of the Firefox application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.OperaLocation">
+            <summary>
+            Location of the Opera application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.DebugLevel">
+            <summary>
+            The debug level to use for the test run
             </summary>
         </member>
         <member name="M:Liberator.Driver.Preferences.BaseSettings.GetGrandfatherDirectory">
@@ -3622,6 +3667,68 @@
         <member name="P:Liberator.Driver.Preferences.Firefox.Preferences">
             <summary>
             Comma separated list of preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.Opera">
+            <summary>
+            Preferences for the Opera Driver
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.DebuggerAddress">
+            <summary>
+            Gets or sets the address of a Opera debugger server to connect to. Should be of the form "{hostname|IP address}:port".
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.LeaveBrowserRunning">
+            <summary>
+            Gets or sets a value indicating whether Opera should be left running after the OperaDriver instance is exited. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.MinidumpPath">
+            <summary>
+            Gets or sets the directory in which to store minidump files.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.AndroidDebugBridgePort">
+            <summary>
+            Gets or sets the port on which the Android Debug Bridge is listening for commands.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.EnableVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the OperaDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.LogPath">
+            <summary>
+            Gets or sets the location of the log file written to by the OperaDriver executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.PortServerAddress">
+            <summary>
+            Gets or sets the address of a server to contact for reserving a port.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Opera.UrlPathPrefix">
+            <summary>
+            Gets or sets the base URL path prefix for commands (e.g., "wd/url").
             </summary>
         </member>
         <member name="T:Liberator.Driver.RatClock">

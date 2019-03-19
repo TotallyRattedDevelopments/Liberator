@@ -22,8 +22,7 @@ namespace Liberator.Driver
         where TWebDriver : IWebDriver, new()
     {
         #region Internal Variables
-
-        TimeSpan _timeout;
+        
         TimeSpan _sleepInterval;
         Actions _action;
 
@@ -155,21 +154,7 @@ namespace Liberator.Driver
 
         private void GetWebDriverSettings()
         {
-            var si = Preferences.BaseSettings.KVList["Sleep"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-            _sleepInterval = new TimeSpan(Convert.ToInt32(si[0]),
-                                                    Convert.ToInt32(si[1]),
-                                                    Convert.ToInt32(si[2]),
-                                                    Convert.ToInt32(si[3]),
-                                                    Convert.ToInt32(si[4]));
-
-            var to = Preferences.BaseSettings.KVList["Timeout"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-            _timeout = new TimeSpan(Convert.ToInt32(to[0]),
-                                                    Convert.ToInt32(to[1]),
-                                                    Convert.ToInt32(to[2]),
-                                                    Convert.ToInt32(to[3]),
-                                                    Convert.ToInt32(to[4]));
         }
 
         #endregion
@@ -184,12 +169,12 @@ namespace Liberator.Driver
         {
             if (element == null)
             {
-                var load = new WebDriverWait(Driver, _timeout)
+                var load = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
-                var wait = new WebDriverWait(Driver, _timeout)
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(
                     Liberator.ExpectedConditions.StalenessOf(element));
             }
@@ -230,7 +215,6 @@ namespace Liberator.Driver
 
         private void EstablishDriverSettings()
         {
-            Preferences.BaseSettings.GetPreferences();
             Id = Guid.NewGuid();
             WindowHandles = new Dictionary<string, string>();
             GetWebDriverSettings();

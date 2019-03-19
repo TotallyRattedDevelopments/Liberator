@@ -774,7 +774,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.DoubleTap(element).Build().Perform();
         //    }
@@ -795,7 +795,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.DoubleTap(Element).Build().Perform();
         //    }
@@ -817,7 +817,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Down(x, y).Build().Perform();
         //    }
@@ -840,7 +840,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Down(x, y).Build().Perform();
         //    }
@@ -863,7 +863,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(element, x, y, speed).Build().Perform();
         //    }
@@ -887,7 +887,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(Element, x, y, speed).Build().Perform();
         //    }
@@ -909,7 +909,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(speedX, speedY).Build().Perform();
         //    }
@@ -932,7 +932,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(speedX, speedY).Build().Perform();
         //    }
@@ -952,7 +952,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.LongPress(element).Build().Perform();
         //    }
@@ -973,7 +973,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.LongPress(Element).Build().Perform();
         //    }
@@ -995,7 +995,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Move(x, y).Build().Perform();
         //    }
@@ -1018,7 +1018,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Move(x, y).Build().Perform();
         //    }
@@ -1040,7 +1040,7 @@ namespace Liberator.Driver
         //    Element = _element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(x, y).Build().Perform();
         //    }
@@ -1063,7 +1063,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(x, y).Build().Perform();
         //    }
@@ -1085,7 +1085,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(element, x, y).Build().Perform();
         //    }
@@ -1108,7 +1108,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(Element, x, y).Build().Perform();
         //    }
@@ -1128,7 +1128,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.SingleTap(element).Build().Perform();
         //    }
@@ -1149,7 +1149,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.SingleTap(Element).Build().Perform();
         //    }
@@ -1171,7 +1171,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Up(x, y).Build().Perform();
         //    }
@@ -1194,7 +1194,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Up(x, y).Build().Perform();
         //    }

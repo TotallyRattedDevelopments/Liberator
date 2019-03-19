@@ -25,7 +25,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                var wait = new WebDriverWait(Driver, _timeout)
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .ElementToBeClickable(element));
             }
@@ -48,7 +48,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                var wait = new WebDriverWait(Driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Driver.FindElement(locator)));
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Driver.FindElement(locator)));
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(Driver, _timeout)
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementLocated(locator));
                 if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
@@ -144,7 +144,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(Driver, _timeout)
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementWithText(locator, text));
                 if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
@@ -1403,7 +1403,7 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.BaseSettings.KVList["MenuHoverTime"].Value)));
+            WebDriverWait wait = new WebDriverWait(Driver, Preferences.BaseSettings.MenuHoverTime);
             Element = wait.Until(ExpectedConditions
                 .ElementIsVisible(locator));
             return new Actions(Driver);
@@ -1416,7 +1416,7 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(IWebElement element)
         {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.BaseSettings.KVList["MenuHoverTime"].Value)));
+            WebDriverWait wait = new WebDriverWait(Driver, Preferences.BaseSettings.MenuHoverTime);
             Element = wait.Until(ExpectedConditions.ElementToBeClickable(element));
             return new Actions(Driver);
         }

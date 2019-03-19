@@ -97,15 +97,15 @@ namespace Liberator.Driver.BrowserControl
                 bool.TryParse(Preferences.Edge.SuppressInitialDiagnosticInformation, out bool sidi);
                 bool.TryParse(Preferences.Edge.UseVerboseLogging, out bool verbose);
                 
-                string driverLocation = Preferences.BaseSettings.EdgeDriverLocation;
+                string driverLocation = Directory.GetParent(Preferences.BaseSettings.EdgeDriverLocation).FullName;
 
                 string host = Preferences.Edge.Host;
                 string package = Preferences.Edge.Package;
 
                 EdgeDriverService service = EdgeDriverService.CreateDefaultService(driverLocation);
                 service.HideCommandPromptWindow = command;
-                if (host.Contains(@"\")) { service.Host = host; }
-                if (host.Contains(@"\")) { service.Package = package; }
+                service.Host = host ?? null;
+                service.Package = package ?? null;
                 service.Port = Convert.ToInt32(port);
                 service.SuppressInitialDiagnosticInformation = sidi;
                 service.UseVerboseLogging = verbose;
