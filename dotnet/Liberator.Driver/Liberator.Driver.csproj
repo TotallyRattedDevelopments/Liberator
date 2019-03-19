@@ -25,7 +25,7 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
-    <DocumentationFile>C:\Users\kevmccarthy\source\repos\LiberatorTestTools\dotnet\Liberator.Driver\Liberator.Driver.xml</DocumentationFile>
+    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="BrowserDrivers\chromedriver.exe" />
