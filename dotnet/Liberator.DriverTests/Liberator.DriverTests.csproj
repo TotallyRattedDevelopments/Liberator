@@ -47,7 +47,6 @@
     <Compile Include="DriverMethodTests.cs" />
     <Compile Include="DriverMobileTests.cs" />
     <Compile Include="Hooks.cs" />
-    <Compile Include="InstanceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

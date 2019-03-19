@@ -26,19 +26,14 @@
         EdgeDriver = 3,
 
         /// <summary>
-        /// PhantomJS web driver
-        /// </summary>
-        PhantomJSDriver = 4,
-
-        /// <summary>
         /// Internet Explorer web driver
         /// </summary>
-        InternetExplorerDriver = 5,
+        InternetExplorerDriver = 4,
 
         /// <summary>
         /// Opera web driver
         /// </summary>
-        OperaDriver = 6
+        OperaDriver = 5
     }
 
     /// <summary>

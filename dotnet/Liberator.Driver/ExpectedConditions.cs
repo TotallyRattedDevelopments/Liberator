@@ -25,7 +25,7 @@ using OpenQA.Selenium;
 namespace Liberator
 {
     /// <summary>
-    /// Supplies a set of common conditions that can be waited for using <see cref="WebDriverWait"/>.
+    /// Supplies a set of common conditions that can be waited for using WebDriverWait
     /// </summary>
     /// <example>
     /// <code>

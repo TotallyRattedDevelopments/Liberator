@@ -49,6 +49,18 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
+        //[Test]
+        //[Category("Chrome")]
+        //public void Testing()
+        //{
+        //    RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
+        //    ratDriver.NavigateToPage("http://www.google.com");
+        //    ratDriver.SendValueToField(By.Name("q"), "monkey");
+        //    ratDriver.ClickLink(By.Name("btnK"));
+        //    ratDriver.FindElementByCssSelector(".LC20lb");
+        //    ratDriver.ClosePagesAndQuitDriver();
+        //}
+
         [Test]
         [Category("Edge")]
         public void InstantiateEdgeDriver()
