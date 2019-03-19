@@ -4192,10 +4192,11 @@
             Base constructor for RatDriver
             </summary>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Enums.EnumDriverType,System.String)">
             <summary>
             Creates an anstance of Firefox with a specified profile
             </summary>
+            <param name="enumDriverType"></param>
             <param name="profileName">The name of the profile to load</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean)">

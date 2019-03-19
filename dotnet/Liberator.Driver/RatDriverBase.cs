@@ -49,6 +49,21 @@ namespace Liberator.Driver
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
             WaitForPageToLoad(null);
+            Console.WriteLine("Boop");
+            WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+            ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
+        }
+
+        public RatDriver(string driverPath)
+        {
+            EstablishDriverSettings();
+            string driverType = typeof(TWebDriver).Name;
+            Preferences.BaseSettings.ChromeDriverLocation = driverPath;
+            GetPidsOfExistingBrowsersAndDrivers(driverType);
+            string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
+            IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
+            Driver = (TWebDriver)controller.StartDriver();
+            WaitForPageToLoad(null);
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
             ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
         }
@@ -56,8 +71,9 @@ namespace Liberator.Driver
         /// <summary>
         /// Creates an anstance of Firefox with a specified profile
         /// </summary>
+        /// <param name="enumDriverType"></param>
         /// <param name="profileName">The name of the profile to load</param>
-        public RatDriver(string profileName)
+        public RatDriver(EnumDriverType enumDriverType, string profileName)
         {
             string driverType = typeof(TWebDriver).Name;
 
