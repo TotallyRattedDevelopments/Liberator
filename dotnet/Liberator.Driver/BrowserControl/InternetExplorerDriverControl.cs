@@ -77,8 +77,8 @@ namespace Liberator.Driver.BrowserControl
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
-                //Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
-                Driver = new InternetExplorerDriver(Service);
+                Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
+                //Driver = new InternetExplorerDriver(Service);
                 return Driver;
             }
             catch (Exception ex)

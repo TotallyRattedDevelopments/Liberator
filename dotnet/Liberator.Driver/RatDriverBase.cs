@@ -22,8 +22,7 @@ namespace Liberator.Driver
         where TWebDriver : IWebDriver, new()
     {
         #region Internal Variables
-        
-        TimeSpan _sleepInterval;
+
         Actions _action;
 
         List<int> _originalPids;

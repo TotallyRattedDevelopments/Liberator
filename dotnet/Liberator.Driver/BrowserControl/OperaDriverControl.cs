@@ -136,12 +136,12 @@ namespace Liberator.Driver.BrowserControl
                 string prefix = Preferences.Opera.UrlPathPrefix;
 
                 OperaDriverService service = OperaDriverService.CreateDefaultService(operaLocation);
-                //service.AndroidDebugBridgePort = android >= 0 ? android : -1 ;
-                //service.EnableVerboseLogging = verbose;
-                //service.HideCommandPromptWindow = hidePrompt;
-                //service.Port = port;
-                //service.PortServerAddress = portServer ?? null;
-                //service.SuppressInitialDiagnosticInformation = sidi;
+                service.AndroidDebugBridgePort = android >= 0 ? android : -1 ;
+                service.EnableVerboseLogging = verbose;
+                service.HideCommandPromptWindow = hidePrompt;
+                service.Port = port;
+                service.PortServerAddress = portServer ?? null;
+                service.SuppressInitialDiagnosticInformation = sidi;
                 Service = service;
             }
             catch (Exception ex)

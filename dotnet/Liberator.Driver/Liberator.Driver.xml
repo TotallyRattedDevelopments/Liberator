@@ -3256,27 +3256,37 @@
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.Sleep">
             <summary>
-            
+            The length of time to sleep
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ImplicitWait">
             <summary>
-            
+            Implicit wait value for WebDriver
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.MenuHoverTime">
             <summary>
-            
+            The amount of time to keep a hover active
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.PageLoad">
             <summary>
-            
+            Page Load wait time
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.AsyncJavaScript">
             <summary>
-            
+            Asynchronous JavaScript wait time
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.AlertHandling">
+            <summary>
+            Whether to allow RatDriver to handle alerts
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.InternalTimers">
+            <summary>
+            Whether to use internal timers
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ChromeDriverLocation">
@@ -3472,70 +3482,6 @@
             Gets or sets the width in pixels to be used by the browser when emulating a mobile device.
             </summary>
         </member>
-        <member name="T:Liberator.Driver.Preferences.ConfigReader">
-            <summary>
-            Provides a reader for configuration files
-            </summary>
-        </member>
-        <member name="P:Liberator.Driver.Preferences.ConfigReader.FilePath">
-            <summary>
-            The file path of the configuration file
-            </summary>
-        </member>
-        <member name="P:Liberator.Driver.Preferences.ConfigReader.FileMap">
-            <summary>
-            Represents a file mapping for the configuration file
-            </summary>
-        </member>
-        <member name="P:Liberator.Driver.Preferences.ConfigReader.Config">
-            <summary>
-            Represents the configuration file being interpreted
-            </summary>
-        </member>
-        <member name="P:Liberator.Driver.Preferences.ConfigReader.AppSettings">
-            <summary>
-            Contains the AppSettings element of the configuration file
-            </summary>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.#ctor">
-            <summary>
-            Base constructor for the config reader
-            </summary>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.#ctor(System.String)">
-            <summary>
-            Constructor for the config reader
-            </summary>
-            <param name="filePath">Path of the config file</param>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.Dispose">
-            <summary>
-            Disposes of the instance
-            </summary>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.Dispose(System.Boolean)">
-            <summary>
-            Disposes of the instance
-            </summary>
-            <param name="disposing">Whether the object is disposing</param>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.GetSetting(System.String)">
-            <summary>
-            Get a setting from the configuration file
-            </summary>
-            <param name="setting">The name of the setting</param>
-            <returns>The setting from the configuration file</returns>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.GetAppSettings">
-            <summary>
-            Gets the file map and maps the config file and extracts the app settings section
-            </summary>
-        </member>
-        <member name="M:Liberator.Driver.Preferences.ConfigReader.GetConfiguration">
-            <summary>
-            Gets the file map and maps the config file
-            </summary>
-        </member>
         <member name="T:Liberator.Driver.Preferences.Edge">
             <summary>
             Preferences for EdgeDriver
@@ -3669,6 +3615,181 @@
             Comma separated list of preferences in the format {name}={value}|{type}
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.InternetExplorer">
+            <summary>
+            Preferences for Internet Explorer Driver Server
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.CommandLineArguments">
+            <summary>
+            Gets or sets the command line arguments used in launching Internet Explorer when the Windows CreateProcess API is used. This property only has an effect when the OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi is true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.ScrollBehavior">
+            <summary>
+            Gets or sets the value for describing how elements are scrolled into view in the IE driver. Defaults to scrolling the element to the top of the viewport.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.EnableFullPageScreenshot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.EnableNativeEvents">
+            <summary>
+            Gets or sets a value indicating whether to use native events in interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.EnablePersistentHover">
+            <summary>
+            Gets or sets a value indicating whether to enable persistently sending WM_MOUSEMOVE messages to the IE window during a mouse hover.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.EnsureCleanSession">
+            <summary>
+            Gets or sets a value indicating whether to clear the Internet Explorer cache before launching the browser. When set to true, clears the system cache for all instances of Internet Explorer, even those already running when the driven instance is launched. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.ForceCreateProcessApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows CreateProcess API when launching Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.ForceShellWindowsApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows ShellWindows API when attaching to Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.IgnoreZoomLevel">
+            <summary>
+            Gets or sets a value indicating whether to ignore the zoom level of Internet Explorer .
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.InitialBrowserUrl">
+            <summary>
+            Gets or sets the initial URL displayed when IE is launched. If not set, the browser launches with the internal startup page for the WebDriver server.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.IntroduceInstability">
+            <summary>
+            Gets or sets a value indicating whether to ignore the settings of the Internet Explorer Protected Mode.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.PageLoadStrategy">
+            <summary>
+            Gets or sets the value for describing how the browser is to wait for pages to load in the browser. Defaults to OpenQA.Selenium.PageLoadStrategy.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.RequireWindowFocus">
+            <summary>
+            Gets or sets a value indicating whether to require the browser window to have focus before interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.UnexpectedAlertBehavior">
+            <summary>
+            Gets or sets the value for describing how unexpected alerts are to be handled in the browser. Defaults to OpenQA.Selenium.UnhandledPromptBehavior.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.UsePerProcessProxy">
+            <summary>
+            Gets or sets a value indicating whether to use the supplied OpenQA.Selenium.Proxy settings on a per-process basis, not updating the system installed proxy setting. This property is only valid when setting a OpenQA.Selenium.Proxy, where the OpenQA.Selenium.Proxy.Kind property is either OpenQA.Selenium.ProxyKind.Direct, OpenQA.Selenium.ProxyKind.System, or OpenQA.Selenium.ProxyKind.Manual, and is otherwise ignored. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.Host">
+            <summary>
+            Gets or sets the value of the host adapter on which the IEDriverServer should listen for connections.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.LibraryExtractionPath">
+            <summary>
+            Gets or sets the path to which the supporting library of the IEDriverServer.exe is extracted. Defaults to the temp directory if this property is not set.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.LogFile">
+            <summary>
+            Gets or sets the location of the log file written to by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.LoggingLevel">
+            <summary>
+            Gets or sets the logging level used by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is suppressed when starting the driver server executable. Defaults to false, meaning diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.WhitelistedIPAddresses">
+            <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to connect to this instance of the IEDriverServer. Defaults to an empty string, which means only the local loopback address can connect.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.FtpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the FTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.HttpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the HTTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.IsAutoDetect">
+            <summary>
+            Gets or sets a value indicating whether the proxy uses automatic detection.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.ProxyKind">
+            <summary>
+            Gets or sets the type of proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.NoProxy">
+            <summary>
+            Gets or sets the value for bypass proxy addresses.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.ProxyAutoConfigUrl">
+            <summary>
+            Gets or sets the URL used for proxy automatic configuration.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.SocksPassword">
+            <summary>
+            Gets or sets the value of password for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.SocksProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SOCKS protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.SocksUserName">
+            <summary>
+            Gets or sets the value of username for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.SslProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SSL protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorer.FileUploadTimeout">
+            <summary>
+            Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Opera">
             <summary>
             Preferences for the Opera Driver
@@ -3729,6 +3850,21 @@
         <member name="P:Liberator.Driver.Preferences.Opera.UrlPathPrefix">
             <summary>
             Gets or sets the base URL path prefix for commands (e.g., "wd/url").
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.Remote">
+            <summary>
+            Preferences for Remote Drivers
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Remote.DefaultRemoteAddress">
+            <summary>
+            Default address for the Web Driver
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.Remote.DesiredCapabilities">
+            <summary>
+            Capabilities of the browser that you are going to use
             </summary>
         </member>
         <member name="T:Liberator.Driver.RatClock">
