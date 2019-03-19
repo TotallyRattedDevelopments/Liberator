@@ -131,7 +131,7 @@ namespace Liberator.Driver.Preferences
         }
 #endif
 
-#if RELEASE
+#if (!DEBUG)
         static private void FindDrivers()
         {
             ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\", "chromedriver.exe");
