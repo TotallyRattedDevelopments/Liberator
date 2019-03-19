@@ -25,7 +25,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout)
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .ElementToBeClickable(element));
             }
@@ -48,7 +48,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(_driver.FindElement(locator)));
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Driver.FindElement(locator)));
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Liberator.Driver
             try
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(_driver, timeSpan)
+                var wait = new WebDriverWait(Driver, timeSpan)
                     .Until(ExpectedConditions
                     .ElementToBeClickable(element));
             }
@@ -96,9 +96,9 @@ namespace Liberator.Driver
             try
             {
                 TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(this._driver, timeSpan)
+                var wait = new WebDriverWait(this.Driver, timeSpan)
                     .Until(ExpectedConditions
-                    .ElementToBeClickable(_driver.FindElement(locator)));
+                    .ElementToBeClickable(Driver.FindElement(locator)));
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(_driver, _timeout)
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementLocated(locator));
                 if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
@@ -144,7 +144,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                bool wait = new WebDriverWait(_driver, _timeout)
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementWithText(locator, text));
                 if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
@@ -241,7 +241,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 Element.Click();
             }
@@ -250,7 +250,7 @@ namespace Liberator.Driver
                 try
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
-                    _driver.FindElement(locator).SendKeys(Keys.Enter);
+                    Driver.FindElement(locator).SendKeys(Keys.Enter);
                 }
                 catch (Exception)
                 {
@@ -278,7 +278,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver))
                 {
@@ -321,7 +321,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                _lastPage = _driver.FindElement(By.TagName("html"));
+                LastPage = Driver.FindElement(By.TagName("html"));
                 if(waitForTarget) { WaitForElementToBeClickable(element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
                 {
@@ -332,7 +332,7 @@ namespace Liberator.Driver
                     //TODO: IE & Opera currently not reporting staleness. To be investigated.
                     Element.SendKeys(Keys.Enter);
                     //Element.Click();
-                    WaitForPageToLoad(_lastPage);
+                    WaitForPageToLoad(LastPage);
                 }
             }
             catch (Exception ex)
@@ -352,10 +352,10 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                _lastPage = _driver.FindElement(By.TagName("html"));
+                LastPage = Driver.FindElement(By.TagName("html"));
                 if (wait) { WaitForPageToLoad(Element); }
                 Element.Click();
-                WaitForPageToLoad(_lastPage);
+                WaitForPageToLoad(LastPage);
             }
             catch (Exception ex)
             {
@@ -420,7 +420,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToExist(locator); }
                 return Element.GetAttribute("innerText");
             }
@@ -444,7 +444,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToExist(locator); }
                 return Element.GetAttribute("innerText");
             }
@@ -486,7 +486,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 return true;
             }
             catch (Exception)
@@ -556,7 +556,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
@@ -582,7 +582,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
@@ -606,7 +606,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
-                IWebElement element = _driver.FindElement(By.CssSelector(cssSelector));
+                IWebElement element = Driver.FindElement(By.CssSelector(cssSelector));
                 Element = element;
                 return element;
             }
@@ -630,7 +630,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.CssSelector(cssSelector));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
                 return collection;
             }
@@ -684,7 +684,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
                 return collection;
@@ -709,7 +709,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
-                IWebElement element = _driver.FindElement(By.ClassName(className));
+                IWebElement element = Driver.FindElement(By.ClassName(className));
                 Element = element;
                 return element;
             }
@@ -732,7 +732,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.ClassName(className));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.ClassName(className));
                 Elements = collection;
                 return collection;
             }
@@ -786,7 +786,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
                 Elements = collection;
                 return collection;
@@ -811,7 +811,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.Id(id)); }
-                IWebElement element = _driver.FindElement(By.Id(id));
+                IWebElement element = Driver.FindElement(By.Id(id));
                 Element = element;
                 return element;
             }
@@ -835,7 +835,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
-                IWebElement element = _driver.FindElement(By.LinkText(linkText));
+                IWebElement element = Driver.FindElement(By.LinkText(linkText));
                 Element = element;
                 return element;
             }
@@ -859,7 +859,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.LinkText(linkText));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.LinkText(linkText));
                 Elements = collection;
                 return collection;
             }
@@ -913,7 +913,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.LinkText(linkText));
                 Elements = collection;
                 return collection;
@@ -938,7 +938,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
-                IWebElement element = _driver.FindElement(By.Name(name));
+                IWebElement element = Driver.FindElement(By.Name(name));
                 Element = element;
                 return element;
             }
@@ -962,7 +962,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.Name(name));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.Name(name));
                 Elements = collection;
                 return collection;
             }
@@ -1016,7 +1016,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
                 Elements = collection;
                 return collection;
@@ -1041,7 +1041,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
-                IWebElement element = _driver.FindElement(By.PartialLinkText(linkText));
+                IWebElement element = Driver.FindElement(By.PartialLinkText(linkText));
                 Element = element;
                 return element;
             }
@@ -1065,7 +1065,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.PartialLinkText(linkText));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
                 return collection;
             }
@@ -1119,7 +1119,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
                 return collection;
@@ -1144,7 +1144,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.TagName(tagName)); }
-                IWebElement element = _driver.FindElement(By.TagName(tagName));
+                IWebElement element = Driver.FindElement(By.TagName(tagName));
                 Element = element;
                 return element;
             }
@@ -1168,7 +1168,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.TagName(tagName)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.TagName(tagName));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.TagName(tagName));
                 Elements = collection;
                 return collection;
             }
@@ -1220,7 +1220,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.TagName(tagName));
                 Elements = collection;
                 return collection;
@@ -1245,7 +1245,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
-                IWebElement element = _driver.FindElement(By.XPath(xpath));
+                IWebElement element = Driver.FindElement(By.XPath(xpath));
                 Element = element;
                 return element;
             }
@@ -1269,7 +1269,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
-                IEnumerable<IWebElement> collection = _driver.FindElements(By.XPath(xpath));
+                IEnumerable<IWebElement> collection = Driver.FindElements(By.XPath(xpath));
                 Elements = collection;
                 return collection;
             }
@@ -1323,7 +1323,7 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.XPath(xpath));
                 Elements = collection;
                 return collection;
@@ -1378,7 +1378,7 @@ namespace Liberator.Driver
             Locator = parentLocator;
             try
             {
-                Element = _driver.FindElement(parentLocator);
+                Element = Driver.FindElement(parentLocator);
                 if (wait) { WaitForElementToBeVisible(parentLocator); }
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
@@ -1403,10 +1403,10 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
-            _element = wait.Until(ExpectedConditions
+            WebDriverWait wait = new WebDriverWait(Driver, Preferences.BaseSettings.MenuHoverTime);
+            Element = wait.Until(ExpectedConditions
                 .ElementIsVisible(locator));
-            return new Actions(_driver);
+            return new Actions(Driver);
         }
 
         /// <summary>
@@ -1416,9 +1416,9 @@ namespace Liberator.Driver
         /// <returns>An action</returns>
         private Actions HoverAction(IWebElement element)
         {
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Convert.ToDouble(Preferences.Preferences.KVList["MenuHoverTime"].Value)));
-            _element = wait.Until(ExpectedConditions.ElementToBeClickable(element));
-            return new Actions(_driver);
+            WebDriverWait wait = new WebDriverWait(Driver, Preferences.BaseSettings.MenuHoverTime);
+            Element = wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            return new Actions(Driver);
         }
 
         private void GetCollectionOfElements(EnumLocatorType type, string locator)

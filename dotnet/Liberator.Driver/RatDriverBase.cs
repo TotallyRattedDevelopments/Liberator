@@ -5,12 +5,12 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Opera;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using OpenQA.Selenium.Support.UI;
 
 namespace Liberator.Driver
 {
@@ -23,9 +23,6 @@ namespace Liberator.Driver
     {
         #region Internal Variables
 
-        TimeSpan _timeout;
-        TimeSpan _sleepInterval;
-        String _driverpath;
         Actions _action;
 
         List<int> _originalPids;
@@ -47,7 +44,22 @@ namespace Liberator.Driver
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
             
-            GetPidsOfExistingBrowsersAndDrivesr(driverType);
+            GetPidsOfExistingBrowsersAndDrivers(driverType);
+            string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
+            IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
+            Driver = (TWebDriver)controller.StartDriver();
+            WaitForPageToLoad(null);
+            Console.WriteLine("Boop");
+            WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+            ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
+        }
+
+        public RatDriver(string driverPath)
+        {
+            EstablishDriverSettings();
+            string driverType = typeof(TWebDriver).Name;
+            Preferences.BaseSettings.ChromeDriverLocation = driverPath;
+            GetPidsOfExistingBrowsersAndDrivers(driverType);
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
@@ -59,8 +71,9 @@ namespace Liberator.Driver
         /// <summary>
         /// Creates an anstance of Firefox with a specified profile
         /// </summary>
+        /// <param name="enumDriverType"></param>
         /// <param name="profileName">The name of the profile to load</param>
-        public RatDriver(string profileName)
+        public RatDriver(EnumDriverType enumDriverType, string profileName)
         {
             string driverType = typeof(TWebDriver).Name;
 
@@ -156,23 +169,7 @@ namespace Liberator.Driver
 
         private void GetWebDriverSettings()
         {
-            var si = Preferences.Preferences.KVList["Sleep"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-            _sleepInterval = new TimeSpan(Convert.ToInt32(si[0]),
-                                                    Convert.ToInt32(si[1]),
-                                                    Convert.ToInt32(si[2]),
-                                                    Convert.ToInt32(si[3]),
-                                                    Convert.ToInt32(si[4]));
-
-            var to = Preferences.Preferences.KVList["Timeout"].Value.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-            _timeout = new TimeSpan(Convert.ToInt32(to[0]),
-                                                    Convert.ToInt32(to[1]),
-                                                    Convert.ToInt32(to[2]),
-                                                    Convert.ToInt32(to[3]),
-                                                    Convert.ToInt32(to[4]));
-
-            _driverpath = Preferences.Preferences.KVList["DriverPath"].Value;
         }
 
         #endregion
@@ -187,12 +184,12 @@ namespace Liberator.Driver
         {
             if (element == null)
             {
-                var load = new WebDriverWait(Driver, _timeout)
+                var load = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
-                var wait = new WebDriverWait(Driver, _timeout)
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(
                     Liberator.ExpectedConditions.StalenessOf(element));
             }
@@ -210,7 +207,7 @@ namespace Liberator.Driver
         /// 
         /// </summary>
         /// <param name="driverType"></param>
-        public void GetPidsOfExistingBrowsersAndDrivesr(string driverType)
+        public void GetPidsOfExistingBrowsersAndDrivers(string driverType)
         {
             GetProcessIds(out _originalPids);
         }
@@ -233,7 +230,6 @@ namespace Liberator.Driver
 
         private void EstablishDriverSettings()
         {
-            Preferences.Preferences.GetPreferences();
             Id = Guid.NewGuid();
             WindowHandles = new Dictionary<string, string>();
             GetWebDriverSettings();
@@ -257,8 +253,7 @@ namespace Liberator.Driver
                     return "iexplorer";
                 case "operadriver":
                     return "opera";
-                case "phantomjsdriver":
-                    return "phantomjs";
+
             }
             return null;
         }
@@ -281,8 +276,6 @@ namespace Liberator.Driver
                     return "iedriver";
                 case "operadriver":
                     return "operadriver";
-                case "phantomjsdriver":
-                    return "phantomjsdriver";
             }
             return null;
         }
