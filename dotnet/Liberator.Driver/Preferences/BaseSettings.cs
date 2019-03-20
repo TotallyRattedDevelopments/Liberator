@@ -119,7 +119,7 @@ namespace Liberator.Driver.Preferences
             InternalTimers = true;
         }
 
-#if DEBUG
+#if NET461 || NET462 || NET47 || NET471 || NET472
         static private void FindDrivers()
         {
             string grandfatherDirectory = GetGrandfatherDirectory();
@@ -131,7 +131,7 @@ namespace Liberator.Driver.Preferences
         }
 #endif
 
-#if (!DEBUG)
+#if  NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETSTANDARD2_0
         static private void FindDrivers()
         {
             ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\", "chromedriver.exe");
@@ -173,7 +173,6 @@ namespace Liberator.Driver.Preferences
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine(pathToSearch);
                 return null;
             }
         }
