@@ -49,7 +49,6 @@ namespace Liberator.Driver
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
             WaitForPageToLoad(null);
-            Console.WriteLine("Boop");
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
             ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
         }
