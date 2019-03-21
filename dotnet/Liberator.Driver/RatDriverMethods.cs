@@ -347,7 +347,6 @@ namespace Liberator.Driver
             try
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if (wait) { WaitForPageToLoad(Element); }
                 ClickLink(locator, true);
                 WaitForPageToLoad(LastPage);
             }
@@ -370,7 +369,6 @@ namespace Liberator.Driver
             try
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if (waitForTarget) { WaitForElementToBeClickable(element); }
                 ClickLink(element, true);
                 WaitForUrlToContain(url);
             }
@@ -393,7 +391,6 @@ namespace Liberator.Driver
             try
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if (wait) { WaitForPageToLoad(Element); }
                 ClickLink(locator, true);
                 WaitForUrlToContain(url);
             }
