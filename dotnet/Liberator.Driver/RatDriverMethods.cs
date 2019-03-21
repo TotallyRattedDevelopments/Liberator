@@ -122,7 +122,7 @@ namespace Liberator.Driver
                 bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementLocated(locator));
-                if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
+                if (wait) { throw new TimeoutException("Item has not disappeared as required by the test code."); }
             }
             catch (Exception ex)
             {
@@ -242,7 +242,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 Element.Click();
             }
             catch (Exception ex)
@@ -279,7 +279,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver))
                 {
                     Element.SendKeys(Keys.Enter);
@@ -322,7 +322,7 @@ namespace Liberator.Driver
             try
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if(waitForTarget) { WaitForElementToBeClickable(element); }
+                if (waitForTarget) { WaitForElementToBeClickable(element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
                 {
                     Element.SendKeys(Keys.Enter);
@@ -377,17 +377,8 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (waitForTarget) { WaitForElementToBeClickable(element); }
-                if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
-                {
-                    Element.SendKeys(Keys.Enter);
-                    WaitForUrlToContain(url);
-                }
-                else
-                {
-                    //TODO: IE & Opera currently not reporting staleness. To be investigated.
-                    Element.SendKeys(Keys.Enter);
-                    WaitForUrlToContain(url);
-                }
+                Element.Click();
+                WaitForUrlToContain(url);
             }
             catch (Exception ex)
             {
@@ -430,7 +421,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -453,7 +444,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -476,7 +467,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToExist(locator); }
+                if (wait) { WaitForElementToExist(locator); }
                 return Element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -563,7 +554,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -587,7 +578,7 @@ namespace Liberator.Driver
         {
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -612,7 +603,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -638,7 +629,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
             catch (Exception ex)
