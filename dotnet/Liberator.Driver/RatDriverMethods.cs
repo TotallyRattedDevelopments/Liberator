@@ -365,6 +365,61 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="element">The element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        public void ClickLinkAndWaitForUrl(IWebElement element, string url, [Optional, DefaultParameterValue(true)] bool waitForTarget)
+        {
+            Element = element;
+            try
+            {
+                LastPage = Driver.FindElement(By.TagName("html"));
+                if (waitForTarget) { WaitForElementToBeClickable(element); }
+                if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
+                {
+                    Element.SendKeys(Keys.Enter);
+                    WaitForUrlToContain(url);
+                }
+                else
+                {
+                    //TODO: IE & Opera currently not reporting staleness. To be investigated.
+                    Element.SendKeys(Keys.Enter);
+                    WaitForUrlToContain(url);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="locator">The locator for the element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        public void ClickLinkAndWaitForUrl(By locator, string url, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                LastPage = Driver.FindElement(By.TagName("html"));
+                if (wait) { WaitForPageToLoad(Element); }
+                Element.Click();
+                WaitForUrlToContain(url);
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
         /// Gets the text of a WebElement
         /// </summary>
         /// <param name="element">The WebElement from which to retrieve text</param>
