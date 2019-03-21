@@ -4609,6 +4609,22 @@
             <param name="locator">The element on which to click</param>
             <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="element">The element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
+            <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.By,System.String,System.Boolean)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="locator">The locator for the element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
+            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementText(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Gets the text of a WebElement

@@ -96,6 +96,77 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
+
+        [Test]
+        [Category("Firefox")]
+        public void Firefox_ClickLinkAndWaitForPage()
+        {
+            RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
+            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.IsTrue(ratDriver.ElementExists(devLink));
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+
+        [Test]
+        [Category("Chrome")]
+        public void Chrome_ClickLinkAndWaitForPage()
+        {
+            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
+            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.IsTrue(ratDriver.ElementExists(devLink));
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+
+        [Test]
+        [Category("Edge")]
+        public void Edge_ClickLinkAndWaitForPage()
+        {
+            RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
+            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.IsTrue(ratDriver.ElementExists(devLink));
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+
+        [Test]
+        [Category("InternetExplorer")]
+        public void InternetExplorer_ClickLinkAndWaitForPage()
+        {
+            RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
+            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.IsTrue(ratDriver.ElementExists(devLink));
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+
+        [Test]
+        [Category("Opera")]
+        public void Opera_ClickLinkAndWaitForPage()
+        {
+            RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
+            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.IsTrue(ratDriver.ElementExists(devLink));
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+
         [Test]
         [Category("Firefox")]
         public void Firefox_ClickLinkWithClockBy()
