@@ -315,15 +315,13 @@ namespace Liberator.Driver
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="element">The element on which to click</param>
-        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
-        public void ClickLinkAndWait(IWebElement element, [Optional, DefaultParameterValue(true)] bool waitForTarget)
+        public void ClickLinkAndWait(IWebElement element)
         {
             Element = element;
             try
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if (waitForTarget) { WaitForElementToBeClickable(element); }
-                    ClickLink(element, true);
+                ClickLink(element, true);
                 if (typeof(TWebDriver) != typeof(OperaDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
                     WaitForPageToLoad(LastPage);
@@ -340,8 +338,7 @@ namespace Liberator.Driver
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="locator">The element on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
-        public void ClickLinkAndWait(By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        public void ClickLinkAndWait(By locator)
         {
             Locator = locator;
             try
@@ -362,8 +359,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The element on which to click</param>
         /// <param name="url">The partial URL to be waited for</param>
-        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
-        public void ClickLinkAndWaitForUrl(IWebElement element, string url, [Optional, DefaultParameterValue(true)] bool waitForTarget)
+        public void ClickLinkAndWaitForUrl(IWebElement element, string url)
         {
             Element = element;
             try
@@ -384,8 +380,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the element on which to click</param>
         /// <param name="url">The partial URL to be waited for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the target element</param>
-        public void ClickLinkAndWaitForUrl(By locator, string url, [Optional, DefaultParameterValue(true)] bool wait)
+        public void ClickLinkAndWaitForUrl(By locator, string url)
         {
             Locator = locator;
             try
