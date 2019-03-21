@@ -323,15 +323,9 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (waitForTarget) { WaitForElementToBeClickable(element); }
-                if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
+                    ClickLink(element, true);
+                if (typeof(TWebDriver) != typeof(OperaDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
-                    Element.SendKeys(Keys.Enter);
-                }
-                else
-                {
-                    //TODO: IE & Opera currently not reporting staleness. To be investigated.
-                    Element.SendKeys(Keys.Enter);
-                    //Element.Click();
                     WaitForPageToLoad(LastPage);
                 }
             }
@@ -354,7 +348,7 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (wait) { WaitForPageToLoad(Element); }
-                Element.Click();
+                ClickLink(locator, true);
                 WaitForPageToLoad(LastPage);
             }
             catch (Exception ex)
@@ -377,7 +371,7 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (waitForTarget) { WaitForElementToBeClickable(element); }
-                Element.Click();
+                ClickLink(element, true);
                 WaitForUrlToContain(url);
             }
             catch (Exception ex)
@@ -400,7 +394,7 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (wait) { WaitForPageToLoad(Element); }
-                Element.Click();
+                ClickLink(locator, true);
                 WaitForUrlToContain(url);
             }
             catch (Exception ex)
