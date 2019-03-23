@@ -123,7 +123,7 @@ namespace Liberator.Driver
                 bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions
                     .InvisibilityOfElementLocated(locator));
-                if (wait){ throw new TimeoutException("Item has not disappeared as required by the test code."); }
+                if (wait) { throw new TimeoutException("Item has not disappeared as required by the test code."); }
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 Element.Click();
             }
             catch (Exception ex)
@@ -280,7 +280,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver))
                 {
                     Element.SendKeys(Keys.Enter);
@@ -316,8 +316,7 @@ namespace Liberator.Driver
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="element">The element on which to click</param>
-        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
-        public void ClickLinkAndWait(IWebElement element, [Optional, DefaultParameterValue(true)] bool waitForTarget)
+        public void ClickLinkAndWait(IWebElement element)
         {
             Element = element;
             try
@@ -325,16 +324,9 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if(waitForTarget) { WaitForElementToBeClickable(element); }
-                if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
+                ClickLink(element, true);
+                if (typeof(TWebDriver) != typeof(OperaDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
-                    Element.SendKeys(Keys.Enter);
-                }
-                else
-                {
-                    //TODO: IE & Opera currently not reporting staleness. To be investigated.
-                    Element.SendKeys(Keys.Enter);
-                    //Element.Click();
                     WaitForPageToLoad(LastPage);
                 }
 
@@ -351,8 +343,7 @@ namespace Liberator.Driver
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="locator">The element on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
-        public void ClickLinkAndWait(By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        public void ClickLinkAndWait(By locator)
         {
             Locator = locator;
             try
@@ -360,11 +351,52 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
-                if (wait) { WaitForPageToLoad(Element); }
-                Element.Click();
+                ClickLink(locator, true);
                 WaitForPageToLoad(LastPage);
 
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="element">The element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        public void ClickLinkAndWaitForUrl(IWebElement element, string url)
+        {
+            Element = element;
+            try
+            {
+                LastPage = Driver.FindElement(By.TagName("html"));
+                ClickLink(element, true);
+                WaitForUrlToContain(url);
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="locator">The locator for the element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        public void ClickLinkAndWaitForUrl(By locator, string url)
+        {
+            Locator = locator;
+            try
+            {
+                LastPage = Driver.FindElement(By.TagName("html"));
+                ClickLink(locator, true);
+                WaitForUrlToContain(url);
             }
             catch (Exception ex)
             {
@@ -384,7 +416,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -407,7 +439,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -430,7 +462,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToExist(locator); }
+                if (wait) { WaitForElementToExist(locator); }
                 return Element.GetAttribute("innerText");
             }
             catch (Exception ex)
@@ -517,7 +549,7 @@ namespace Liberator.Driver
             Element = element;
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -541,7 +573,7 @@ namespace Liberator.Driver
         {
             try
             {
-                if(wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeClickable(element); }
                 return element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -566,7 +598,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
             catch (Exception ex)
@@ -592,7 +624,7 @@ namespace Liberator.Driver
             try
             {
                 Element = Driver.FindElement(locator);
-                if(wait) { WaitForElementToBeClickable(Element); }
+                if (wait) { WaitForElementToBeClickable(Element); }
                 return Element.GetAttribute(attribute);
             }
             catch (Exception ex)
