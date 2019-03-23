@@ -864,15 +864,27 @@ namespace Liberator.Driver
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="element">The element on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
-        void ClickLinkAndWait(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+        void ClickLinkAndWait(IWebElement element);
 
         /// <summary>
         /// Clicks on a link and waits for a new page to be loaded
         /// </summary>
         /// <param name="locator">The element on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
-        void ClickLinkAndWait(By locator, [Optional, DefaultParameterValue(true)] bool wait);
+        void ClickLinkAndWait(By locator);
+
+        /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="element">The element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        void ClickLinkAndWaitForUrl(IWebElement element, string url);
+
+        /// <summary>
+        /// Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+        /// </summary>
+        /// <param name="locator">The locator for the element on which to click</param>
+        /// <param name="url">The partial URL to be waited for</param>
+        void ClickLinkAndWaitForUrl(By locator, string url);
 
         /// <summary>
         /// Gets the text of a WebElement

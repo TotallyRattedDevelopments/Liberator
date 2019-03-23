@@ -1429,19 +1429,31 @@
             <param name="clock">A clock that may be used to set custom timeouts</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         </member>
-        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWait(OpenQA.Selenium.IWebElement,System.Boolean)">
+        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWait(OpenQA.Selenium.IWebElement)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="element">The element on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         </member>
-        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWait(OpenQA.Selenium.By,System.Boolean)">
+        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWait(OpenQA.Selenium.By)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="locator">The element on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="element">The element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="locator">The locator for the element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.GetElementText(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
@@ -2522,19 +2534,31 @@
             <param name="clock">A clock that may be used to set custom timeouts</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         </member>
-        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWait(OpenQA.Selenium.IWebElement,System.Boolean)">
+        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWait(OpenQA.Selenium.IWebElement)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="element">The element on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         </member>
-        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWait(OpenQA.Selenium.By,System.Boolean)">
+        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWait(OpenQA.Selenium.By)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="locator">The element on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWaitForUrl(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="element">The element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ClickLinkAndWaitForUrl(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
+            </summary>
+            <param name="locator">The locator for the element on which to click</param>
+            <param name="url">The partial URL to be waited for</param>
         </member>
         <member name="M:Liberator.Driver.IRodent.GetElementText(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
@@ -2953,6 +2977,11 @@
         <member name="F:Liberator.Driver.Performance.EnumTiming.PageLoad">
             <summary>
             Page load timing point
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Performance.EnumTiming.ElementFindTime">
+            <summary>
+            Timing point for elements to be found
             </summary>
         </member>
         <member name="T:Liberator.Driver.Performance.ITimer">
@@ -4623,35 +4652,31 @@
             <param name="clock">A clock that may be used to set custom timeouts</param>
             <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWait(OpenQA.Selenium.IWebElement,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWait(OpenQA.Selenium.IWebElement)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="element">The element on which to click</param>
-            <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWait(OpenQA.Selenium.By,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWait(OpenQA.Selenium.By)">
             <summary>
             Clicks on a link and waits for a new page to be loaded
             </summary>
             <param name="locator">The element on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.IWebElement,System.String)">
             <summary>
             Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
             </summary>
             <param name="element">The element on which to click</param>
             <param name="url">The partial URL to be waited for</param>
-            <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.By,System.String,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWaitForUrl(OpenQA.Selenium.By,System.String)">
             <summary>
             Clicks on a link and waits for a new page to be loaded that contains a specified URL or part URL
             </summary>
             <param name="locator">The locator for the element on which to click</param>
             <param name="url">The partial URL to be waited for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the target element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementText(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>

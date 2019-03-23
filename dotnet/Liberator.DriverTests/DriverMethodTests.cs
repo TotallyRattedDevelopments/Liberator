@@ -106,7 +106,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -120,7 +120,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -134,7 +134,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -148,7 +148,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -162,7 +162,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
