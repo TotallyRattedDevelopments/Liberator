@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Performance;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
@@ -321,6 +322,8 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if(waitForTarget) { WaitForElementToBeClickable(element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver) || typeof(TWebDriver) == typeof(InternetExplorerDriver))
@@ -334,6 +337,8 @@ namespace Liberator.Driver
                     //Element.Click();
                     WaitForPageToLoad(LastPage);
                 }
+
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
             }
             catch (Exception ex)
             {
@@ -352,10 +357,14 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+
                 LastPage = Driver.FindElement(By.TagName("html"));
                 if (wait) { WaitForPageToLoad(Element); }
                 Element.Click();
                 WaitForPageToLoad(LastPage);
+
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
             }
             catch (Exception ex)
             {
