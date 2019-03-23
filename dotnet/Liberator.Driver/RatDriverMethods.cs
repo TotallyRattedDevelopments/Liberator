@@ -650,9 +650,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
                 IWebElement element = Driver.FindElement(By.CssSelector(cssSelector));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -674,9 +676,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -700,10 +704,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -727,11 +733,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -753,9 +761,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
                 IWebElement element = Driver.FindElement(By.ClassName(className));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -776,9 +786,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.ClassName(className));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -802,10 +814,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.ClassName(className));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -829,11 +843,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -855,9 +871,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.Id(id)); }
                 IWebElement element = Driver.FindElement(By.Id(id));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -879,9 +897,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
                 IWebElement element = Driver.FindElement(By.LinkText(linkText));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -903,9 +923,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.LinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -929,10 +951,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.LinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -956,11 +980,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.LinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -982,9 +1008,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
                 IWebElement element = Driver.FindElement(By.Name(name));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -1006,9 +1034,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.Name(name));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1032,10 +1062,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
                 IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1059,11 +1091,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.Name(name)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1085,9 +1119,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
                 IWebElement element = Driver.FindElement(By.PartialLinkText(linkText));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -1109,9 +1145,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1135,10 +1173,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1162,11 +1202,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1188,9 +1230,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.TagName(tagName)); }
                 IWebElement element = Driver.FindElement(By.TagName(tagName));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -1212,9 +1256,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.TagName(tagName)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.TagName(tagName));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1238,9 +1284,11 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.TagName(tagName));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1264,10 +1312,12 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.TagName(tagName));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1289,9 +1339,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
                 IWebElement element = Driver.FindElement(By.XPath(xpath));
                 Element = element;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return element;
             }
             catch (Exception ex)
@@ -1313,9 +1365,11 @@ namespace Liberator.Driver
         {
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.XPath(xpath));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1339,10 +1393,12 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.XPath(xpath));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1366,11 +1422,13 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
                 if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.XPath(xpath));
                 Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return collection;
             }
             catch (Exception ex)
@@ -1395,9 +1453,11 @@ namespace Liberator.Driver
             Element = parentElement;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(parentElement); }
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return Element;
             }
             catch (Exception ex)
@@ -1423,10 +1483,12 @@ namespace Liberator.Driver
             Locator = parentLocator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 Element = Driver.FindElement(parentLocator);
                 if (wait) { WaitForElementToBeVisible(parentLocator); }
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 return Element;
             }
             catch (Exception ex)
