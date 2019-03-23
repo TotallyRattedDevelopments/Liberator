@@ -4235,9 +4235,26 @@
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetPidsOfExistingBrowsersAndDrivers(System.String)">
             <summary>
-            
+            Gets the Process IDs for existing browsers and web drivers
             </summary>
-            <param name="driverType"></param>
+            <param name="driverType">Type of driver being used.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExtractProcessIdsForCurrentBrowserAndDriver(System.String)">
+            <summary>
+            Extracts the Process IDs for the current browser and web driver.
+            </summary>
+            <param name="driverType">Type of driver being used.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetProcessIds(System.Collections.Generic.List{System.Int32}@)">
+            <summary>
+            Gets the Process IDs for all running executables.
+            </summary>
+            <param name="pids">A list of Process IDs</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.EstablishDriverSettings">
+            <summary>
+            Initialises driver settings.
+            </summary>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.BrowserProcessName(System.String)">
             <summary>
