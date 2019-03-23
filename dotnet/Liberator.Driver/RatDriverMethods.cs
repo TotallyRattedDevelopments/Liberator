@@ -373,9 +373,11 @@ namespace Liberator.Driver
             Element = element;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
                 ClickLink(element, true);
                 WaitForUrlToContain(url);
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
             }
             catch (Exception ex)
             {
@@ -394,9 +396,11 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
                 ClickLink(locator, true);
                 WaitForUrlToContain(url);
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
             }
             catch (Exception ex)
             {
