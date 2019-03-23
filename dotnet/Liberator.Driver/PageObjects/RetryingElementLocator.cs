@@ -23,7 +23,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// A locator for elements for use with the <see cref="PageFactory"/> that retries locating

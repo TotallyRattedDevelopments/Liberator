@@ -21,7 +21,7 @@ using System.Globalization;
 using System.Reflection;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Provides instances of the <see cref="By"/> object to the attributes.

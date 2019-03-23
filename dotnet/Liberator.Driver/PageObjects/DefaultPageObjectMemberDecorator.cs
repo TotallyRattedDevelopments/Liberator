@@ -25,7 +25,7 @@ using System.Reflection.Emit;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Default decorator determining how members of a class which represent elements in a Page Object

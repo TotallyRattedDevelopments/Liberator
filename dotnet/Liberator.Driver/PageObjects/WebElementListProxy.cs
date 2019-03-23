@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Represents a proxy class for a list of elements to be used with the PageFactory.
