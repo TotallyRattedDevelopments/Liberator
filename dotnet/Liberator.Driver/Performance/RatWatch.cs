@@ -13,14 +13,14 @@ namespace Liberator.Driver.Performance
         /// <summary>
         /// Contains the timings for the current analysis cycle
         /// </summary>
-        public Dictionary<EnumTiming, RatTimer> Timings { get; set; }
+        public List<Tuple<EnumTiming, RatTimer>> Timings { get; set; }
 
         /// <summary>
         /// The timer currently being used
         /// </summary>
         public RatTimer CurrentTimer { get; set; }
 
-        private Dictionary<EnumTiming, RatTimer>.ValueCollection _values;
+        private List<Tuple<EnumTiming, RatTimer>> _values;
         private IEnumerable<double> _valueList;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Liberator.Driver.Performance
         /// </summary>
         public RatWatch()
         {
-            Timings = new Dictionary<EnumTiming, RatTimer>();
+            Timings = new List<Tuple<EnumTiming, RatTimer>>();
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Liberator.Driver.Performance
             try
             {
                 CurrentTimer.Stop();
-                Timings.Add(EnumTiming.NotSpecified, CurrentTimer);
+                Timings.Add(new Tuple<EnumTiming, RatTimer>(EnumTiming.NotSpecified, CurrentTimer));
                 return CurrentTimer.Duration;
             }
             catch (Exception ex)
@@ -78,9 +78,10 @@ namespace Liberator.Driver.Performance
             try
             {
                 CurrentTimer.Stop();
-                Timings.Add(timerType, CurrentTimer);
-                _values = Timings.Values;
-                _valueList = _values.Where(v => true).DefaultIfEmpty().Select(v => v.Duration.TotalMilliseconds);
+                Timings.Add(new Tuple<EnumTiming, RatTimer>(timerType, CurrentTimer));
+                _values = Timings;
+
+                _valueList = _values.Where(v => true).DefaultIfEmpty().Select(v => v.Item2.Duration.TotalMilliseconds);
                 return CurrentTimer.Duration;
             }
             catch (Exception ex)

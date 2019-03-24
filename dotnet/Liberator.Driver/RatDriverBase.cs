@@ -51,11 +51,12 @@ namespace Liberator.Driver
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
+
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
+
             WaitForPageToLoad(null);
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
             ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
-
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
