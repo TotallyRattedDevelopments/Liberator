@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver;
+using Liberator.Driver.Enums;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,7 +10,6 @@ using OpenQA.Selenium.Opera;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Liberator.Driver.Enums;
 
 namespace Liberator.DriverTests
 {
