@@ -18,7 +18,7 @@
 
 using System;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Marks elements to indicate that found elements should match the criteria of

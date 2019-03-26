@@ -22,7 +22,7 @@ using System.Globalization;
 using System.Text;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Mechanism used to locate elements within a document using a series of other lookups.  This class

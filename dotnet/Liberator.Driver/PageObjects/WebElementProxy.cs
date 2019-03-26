@@ -24,7 +24,7 @@ using System.Runtime.Remoting.Messaging;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Intercepts the request to a single <see cref="IWebElement"/>

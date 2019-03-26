@@ -18,7 +18,7 @@
 
 using System;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Marks elements to indicate that each <see cref="FindsByAttribute"/> on the field or

@@ -16,7 +16,7 @@
 // limitations under the License.
 // </copyright>
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Provides the lookup methods for the FindsBy attribute (for using in PageObjects)
