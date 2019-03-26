@@ -43,6 +43,7 @@ namespace Liberator.Driver
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         public RatDriver([Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
             EstablishDriverSettings();
@@ -66,6 +67,7 @@ namespace Liberator.Driver
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         public RatDriver(string profileName, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
             string driverType = typeof(TWebDriver).Name;
@@ -94,6 +96,7 @@ namespace Liberator.Driver
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         public RatDriver(string profileDirectory, bool cleanDirectory, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
             string driverType = typeof(TWebDriver).Name;
@@ -122,6 +125,7 @@ namespace Liberator.Driver
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         public RatDriver(EnumPhoneType type, [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
             string driverType = typeof(TWebDriver).Name;
@@ -154,6 +158,7 @@ namespace Liberator.Driver
         public RatDriver(Int64 height, Int64 width, string userAgent, double pixelRatio,
             [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
             string driverType = typeof(TWebDriver).Name;
