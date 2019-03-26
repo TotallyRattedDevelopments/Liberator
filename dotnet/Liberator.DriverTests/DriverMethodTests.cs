@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver;
+using Liberator.Driver.Enums;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,7 +10,6 @@ using OpenQA.Selenium.Opera;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Liberator.Driver.Enums;
 
 namespace Liberator.DriverTests
 {
@@ -106,7 +106,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -120,7 +120,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -134,7 +134,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -148,7 +148,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -162,7 +162,7 @@ namespace Liberator.DriverTests
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments", true);
+            ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
             ratDriver.ClosePagesAndQuitDriver();
         }
 

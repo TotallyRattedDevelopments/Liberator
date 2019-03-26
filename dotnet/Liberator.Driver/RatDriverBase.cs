@@ -1,5 +1,6 @@
 ﻿using Liberator.Driver.BrowserControl;
 using Liberator.Driver.Enums;
+using Liberator.Driver.Performance;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -39,15 +40,21 @@ namespace Liberator.Driver
         /// <summary>
         /// Base constructor for RatDriver
         /// </summary>
-        public RatDriver()
+        /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
+        public RatDriver([Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
+            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
-            
             GetPidsOfExistingBrowsersAndDrivers(driverType);
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
+
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
+
             WaitForPageToLoad(null);
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
             ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
@@ -57,8 +64,12 @@ namespace Liberator.Driver
         /// Creates an anstance of Firefox with a specified profile
         /// </summary>
         /// <param name="profileName">The name of the profile to load</param>
-        public RatDriver(string profileName)
+        /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
+        public RatDriver(string profileName, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
+            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+
             string driverType = typeof(TWebDriver).Name;
 
             if (typeof(TWebDriver) == typeof(FirefoxDriver))
@@ -73,6 +84,8 @@ namespace Liberator.Driver
                 Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
                 Console.WriteLine("Please switch to Firefox if named profile loading is required");
             }
+            
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -80,8 +93,12 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="profileDirectory">The path of the profile directory</param>
         /// <param name="cleanDirectory">Whether to clean the directory</param>
-        public RatDriver(string profileDirectory, bool cleanDirectory)
+        /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
+        public RatDriver(string profileDirectory, bool cleanDirectory, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
+            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+
             string driverType = typeof(TWebDriver).Name;
 
             if (typeof(TWebDriver) == typeof(FirefoxDriver))
@@ -96,6 +113,8 @@ namespace Liberator.Driver
                 Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
                 Console.WriteLine("Please switch to Firefox if named profile loading is required");
             }
+
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -103,8 +122,12 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="type">Which type of phone to emulate</param>
         /// <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
-        public RatDriver(EnumPhoneType type, [Optional, DefaultParameterValue(false)] bool touch)
+        /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
+        public RatDriver(EnumPhoneType type, [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
+            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+
             string driverType = typeof(TWebDriver).Name;
 
             if (typeof(TWebDriver) == typeof(ChromeDriver))
@@ -119,6 +142,8 @@ namespace Liberator.Driver
                 Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
                 Console.WriteLine("Please switch to Chrome if mobile emulation is required");
             }
+
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -129,8 +154,13 @@ namespace Liberator.Driver
         /// <param name="userAgent">The user agent returned by the device</param>
         /// <param name="pixelRatio">The pixel ratio of the screen</param>
         /// <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
-        public RatDriver(Int64 height, Int64 width, string userAgent, double pixelRatio, [Optional, DefaultParameterValue(false)] bool touch)
+        /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
+        public RatDriver(Int64 height, Int64 width, string userAgent, double pixelRatio,
+            [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
+            RecordPerformance = performanceTimings;
+            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+
             string driverType = typeof(TWebDriver).Name;
 
             if (typeof(TWebDriver) == typeof(ChromeDriver))
@@ -145,6 +175,8 @@ namespace Liberator.Driver
                 Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
                 Console.WriteLine("Please switch to Chrome if mobile emulation is required");
             }
+
+            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         #endregion
@@ -166,6 +198,8 @@ namespace Liberator.Driver
         /// <param name="element">An element from the previous page. If omitted, the code will wait for the body of the page to be viosible</param>
         public void WaitForPageToLoad(IWebElement element)
         {
+            if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+
             if (element == null)
             {
                 var load = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
@@ -182,21 +216,26 @@ namespace Liberator.Driver
                 //TODO: Investigate the Opera Driver with respect to DOM staleness
                 Console.WriteLine("Opera does not currently seem to report staleness of the DOM. Under investigation");
             }
+
+            if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
         }
         #endregion
 
 
 
         /// <summary>
-        /// 
+        /// Gets the Process IDs for existing browsers and web drivers
         /// </summary>
-        /// <param name="driverType"></param>
+        /// <param name="driverType">Type of driver being used.</param>
         public void GetPidsOfExistingBrowsersAndDrivers(string driverType)
         {
             GetProcessIds(out _originalPids);
         }
 
-
+        /// <summary>
+        /// Extracts the Process IDs for the current browser and web driver.
+        /// </summary>
+        /// <param name="driverType">Type of driver being used.</param>
         private void ExtractProcessIdsForCurrentBrowserAndDriver(string driverType)
         {
             GetProcessIds(out _postTestPids);
@@ -205,13 +244,19 @@ namespace Liberator.Driver
             var driverName = DriverProcessName(driverType);
         }
 
-
+        /// <summary>
+        /// Gets the Process IDs for all running executables.
+        /// </summary>
+        /// <param name="pids">A list of Process IDs</param>
         private void GetProcessIds(out List<int> pids)
         {
             Process[] _processes = Process.GetProcesses();
             pids = _processes.Select(d => d.Id).ToList();
         }
 
+        /// <summary>
+        /// Initialises driver settings.
+        /// </summary>
         private void EstablishDriverSettings()
         {
             Id = Guid.NewGuid();
@@ -263,6 +308,17 @@ namespace Liberator.Driver
             }
             return null;
         }
-        
+
+        /// <summary>
+        /// Initialises the RatWatch for performance gathering
+        /// </summary>
+        /// <param name="performanceTimings">Whether to collect timings</param>
+        private void InitialiseRatWatch(bool performanceTimings)
+        {
+            RatTimerCollection = new RatWatch();
+            RatTimerCollection.StartTimer();
+            RecordPerformance = performanceTimings;
+        }
+
     }
 }
