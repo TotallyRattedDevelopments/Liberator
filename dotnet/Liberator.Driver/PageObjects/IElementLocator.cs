@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Interface describing how elements are to be located by a <see cref="PageFactory"/>.

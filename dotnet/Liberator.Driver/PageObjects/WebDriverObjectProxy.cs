@@ -24,7 +24,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Represents a base proxy class for objects used with the PageFactory.

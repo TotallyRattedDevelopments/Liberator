@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Provides the ability to produce Page Objects modeling a page. This class cannot be inherited.

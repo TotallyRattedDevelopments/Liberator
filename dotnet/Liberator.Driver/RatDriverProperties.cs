@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Performance;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using System;
@@ -78,8 +79,15 @@ namespace Liberator.Driver
         /// </summary>
         public IntPtr HWindow { get; set; }
 
+        /// <summary>
+        /// Contains timers for
+        /// </summary>
+        public RatWatch RatTimerCollection { get; set; }
 
-
+        /// <summary>
+        /// Whether to record performance statistics
+        /// </summary>
+        public bool RecordPerformance { get; set; } = false;
 
         #endregion
     }

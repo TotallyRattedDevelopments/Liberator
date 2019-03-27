@@ -20,7 +20,7 @@ using System;
 using System.ComponentModel;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Marks program elements with methods by which to find a corresponding element on the page. Used

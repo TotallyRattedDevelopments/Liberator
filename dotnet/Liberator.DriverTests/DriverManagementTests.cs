@@ -49,18 +49,6 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
-        //[Test]
-        //[Category("Chrome")]
-        //public void Testing()
-        //{
-        //    RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-        //    ratDriver.NavigateToPage("http://www.google.com");
-        //    ratDriver.SendValueToField(By.Name("q"), "monkey");
-        //    ratDriver.ClickLink(By.Name("btnK"));
-        //    ratDriver.FindElementByCssSelector(".LC20lb");
-        //    ratDriver.ClosePagesAndQuitDriver();
-        //}
-
         [Test]
         [Category("Edge")]
         public void InstantiateEdgeDriver()
@@ -1351,6 +1339,84 @@ namespace Liberator.DriverTests
             string userAgent = "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(360, 640, userAgent, 3.0d, true);
             ratDriver.NavigateToPage("http://www.totallyratted.com");
+        }
+
+
+
+
+        [Test]
+        [Category("Firefox")]
+        public void Firefox_NavigateUsingUriWithPerformance()
+        {
+            RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>(true);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
+            Uri url = new Uri("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(url);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 4, Is.True);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+        [Test]
+        [Category("Chrome")]
+        public void Chrome_NavigateUsingUriWithPerformance()
+        {
+            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(true);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
+            Uri url = new Uri("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(url);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 4, Is.True);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+        [Test]
+        [Category("Edge")]
+        public void Edge_NavigateUsingUriWithPerformance()
+        {
+            RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>(true);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
+            Uri url = new Uri("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(url);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 4, Is.True);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+        [Test]
+        [Category("InternetExplorer")]
+        public void InternetExplorer_NavigateUsingUriWithPerformance()
+        {
+            RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>(true);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
+            Uri url = new Uri("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(url);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 4, Is.True);
+            ratDriver.ClosePagesAndQuitDriver();
+        }
+
+        [Test]
+        [Category("Opera")]
+        public void Opera_NavigateUsingUriWithPerformance()
+        {
+            RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>(true);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
+            Uri url = new Uri("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(url);
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
+            ratDriver.MaximiseView();
+            var devLink = ratDriver.FindElementByLinkText("Developments");
+            Assert.That(ratDriver.RatTimerCollection.Timings.Count == 4, Is.True);
+            ratDriver.ClosePagesAndQuitDriver();
         }
     }
 }

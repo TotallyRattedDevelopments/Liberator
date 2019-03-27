@@ -23,6 +23,11 @@
         /// <summary>
         /// Page load timing point
         /// </summary>
-        PageLoad = 3
+        PageLoad = 3,
+
+        /// <summary>
+        /// Timing point for elements to be found
+        /// </summary>
+        ElementFindTime = 4
     }
 }

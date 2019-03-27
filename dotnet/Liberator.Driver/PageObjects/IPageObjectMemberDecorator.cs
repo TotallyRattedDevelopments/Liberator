@@ -18,7 +18,7 @@
 
 using System.Reflection;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Interface describing how members of a class which represent elements in a Page Object

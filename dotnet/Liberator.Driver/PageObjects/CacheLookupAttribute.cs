@@ -18,7 +18,7 @@
 
 using System;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Marks the element so that lookups to the browser page are cached. This class cannot be inherited.

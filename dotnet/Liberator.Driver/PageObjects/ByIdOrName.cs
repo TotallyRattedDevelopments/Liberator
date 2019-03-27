@@ -22,7 +22,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using OpenQA.Selenium;
 
-namespace SeleniumExtras.PageObjects
+namespace Liberator.Driver.PageObjects
 {
     /// <summary>
     /// Finds element when the id or the name attribute has the specified value.
