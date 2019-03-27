@@ -17,7 +17,7 @@ namespace Liberator.Driver
         /// <param name="ex">Exception which caused the method to be called</param>
         protected internal void HandleErrors(Exception ex)
         {
-            Enum.TryParse(Preferences.Preferences.KVList["ConsoleDebugLevel"].Value, out _debugLevel);
+            Enum.TryParse(Preferences.BaseSettings.DebugLevel.ToString(), out _debugLevel);
 
             if (_debugLevel == EnumConsoleDebugLevel.Message || _debugLevel == EnumConsoleDebugLevel.StackTrace) { Console.WriteLine(ex.Message); }
             if (_debugLevel == EnumConsoleDebugLevel.StackTrace) { Console.WriteLine(ex.StackTrace); }
@@ -35,13 +35,13 @@ namespace Liberator.Driver
             }
             if (ex.GetType() == typeof(DriverServiceNotFoundException))
             {
-                if (EqualityComparer<TWebDriver>.Default.Equals(_driver, default(TWebDriver))) { HandleNullDriverException(ex); }
-                if (_driver != null) { HandleDriverServiceException(ex); }
+                if (EqualityComparer<TWebDriver>.Default.Equals(Driver, default(TWebDriver))) { HandleNullDriverException(ex); }
+                if (Driver != null) { HandleDriverServiceException(ex); }
             }
             if (ex.GetType() == typeof(WebDriverException))
             {
-                if (EqualityComparer<TWebDriver>.Default.Equals(_driver, default(TWebDriver))) { HandleNullDriverException(ex); }
-                if (_driver != null) { HandleGenericDriverException(ex); }
+                if (EqualityComparer<TWebDriver>.Default.Equals(Driver, default(TWebDriver))) { HandleNullDriverException(ex); }
+                if (Driver != null) { HandleGenericDriverException(ex); }
             }
         }
 
@@ -134,8 +134,8 @@ namespace Liberator.Driver
         private void HandleAlertException(Exception ex)
         {
             KillDrivers();
-            bool alertHandling = Convert.ToBoolean(Preferences.Preferences.KVList["RatDriverAlertHandling"].Value);
-            Console.WriteLine("An unanticipated alert has been displayed by the browser, {0}", _driver.GetType().ToString());
+            bool alertHandling = Preferences.BaseSettings.AlertHandling;
+            Console.WriteLine("An unanticipated alert has been displayed by the browser, {0}", Driver.GetType().ToString());
             Console.WriteLine("Current configuration settings indicate that Alert Handling is set to {0}", alertHandling.ToString());
             if (alertHandling)
             {

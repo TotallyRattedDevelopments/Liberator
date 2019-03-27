@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace Liberator.Driver.BrowserControl
 {
@@ -54,23 +55,6 @@ namespace Liberator.Driver.BrowserControl
         /// </summary>
         public InternetExplorerDriverControl()
         {
-
-            string timeout = Preferences.Preferences.GetPreferenceSetting("Timeout");
-            if (!timeout.Contains(",")) { timeout = "0,0,0,10,0"; }
-            var to = timeout.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            CommandTimeout = new TimeSpan(Convert.ToInt32(to[0]), Convert.ToInt32(to[1]), Convert.ToInt32(to[2]), Convert.ToInt32(to[3]), Convert.ToInt32(to[4]));
-
-
-            var sleepInterval = Preferences.Preferences.GetPreferenceSetting("Sleep");
-            if (!sleepInterval.Contains(@"\")) { sleepInterval = "0,0,0,10,0"; }
-            var si = sleepInterval.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            SleepInterval = new TimeSpan(Convert.ToInt32(si[0]), Convert.ToInt32(si[1]), Convert.ToInt32(si[2]), Convert.ToInt32(si[3]), Convert.ToInt32(si[4]));
-
-            var browserTime = Preferences.Preferences.GetPreferenceSetting("Timeout");
-            if (!sleepInterval.Contains(@"\")) { sleepInterval = "0,0,0,10,0"; }
-            var bto = browserTime.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            BrowserTimeout = new TimeSpan(Convert.ToInt32(bto[0]), Convert.ToInt32(bto[1]), Convert.ToInt32(bto[2]), Convert.ToInt32(bto[3]), Convert.ToInt32(bto[4]));
-
             //SetInternetExplorerProxy();
             SetInternetExplorerOptions();
             SetInternetExplorerDriverService();
@@ -93,12 +77,13 @@ namespace Liberator.Driver.BrowserControl
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
-                Driver = new InternetExplorerDriver(Service, Options, CommandTimeout);
+                Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
+                //Driver = new InternetExplorerDriver(Service);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start internet explorer driver.");
@@ -130,39 +115,39 @@ namespace Liberator.Driver.BrowserControl
             {
 
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
-                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ScrollBehavior"), out scroll);
+                Enum.TryParse(Preferences.InternetExplorer.ScrollBehavior, out scroll);
 
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableFullPageScreenshot"), out bool screenshot);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnableNativeEvents"), out bool native);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnablePersistentHover"), out bool hover);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_EnsureCleanSession"), out bool cleanSession);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceCreateProcessApi"), out bool forceCreate);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_ForceShellWindowsApi"), out bool forceShell);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IgnoreZoomLevel"), out bool ignoreZoom);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_IntroduceInstability"), out bool instability);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_RequireWindowFocus"), out bool requireFocus);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_UsePerProcessProxy"), out bool perProcess);
+                Boolean.TryParse(Preferences.InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
+                Boolean.TryParse(Preferences.InternetExplorer.EnableNativeEvents, out bool native);
+                Boolean.TryParse(Preferences.InternetExplorer.EnablePersistentHover, out bool hover);
+                Boolean.TryParse(Preferences.InternetExplorer.EnsureCleanSession, out bool cleanSession);
+                Boolean.TryParse(Preferences.InternetExplorer.ForceCreateProcessApi, out bool forceCreate);
+                Boolean.TryParse(Preferences.InternetExplorer.ForceShellWindowsApi, out bool forceShell);
+                Boolean.TryParse(Preferences.InternetExplorer.IgnoreZoomLevel, out bool ignoreZoom);
+                Boolean.TryParse(Preferences.InternetExplorer.IntroduceInstability, out bool instability);
+                Boolean.TryParse(Preferences.InternetExplorer.RequireWindowFocus, out bool requireFocus);
+                Boolean.TryParse(Preferences.InternetExplorer.UsePerProcessProxy, out bool perProcess);
 
-                string cmdLine = Preferences.Preferences.GetPreferenceSetting("IE_CommandLineArguments");
-                string url = Preferences.Preferences.GetPreferenceSetting("IE_InitialBrowserUrl");
+                string cmdLine = Preferences.InternetExplorer.CommandLineArguments;
+                string url = Preferences.InternetExplorer.InitialBrowserUrl;
 
                 InternetExplorerOptions options = new InternetExplorerOptions
                 {
-                    BrowserAttachTimeout = BrowserTimeout
+                    BrowserAttachTimeout = Preferences.BaseSettings.Timeout
                 };
 
-                if (cmdLine.Length > 1) { options.BrowserCommandLineArguments = cmdLine; }
+                options.BrowserCommandLineArguments = cmdLine ?? null;
 
                 options.ElementScrollBehavior = scroll;
 //              options.EnableFullPageScreenshot = screenshot;
                 options.EnableNativeEvents = native;
                 options.EnablePersistentHover = hover;
                 options.EnsureCleanSession = cleanSession;
-                options.FileUploadDialogTimeout = BrowserTimeout;
+                options.FileUploadDialogTimeout = Preferences.InternetExplorer.FileUploadTimeout;
                 options.ForceCreateProcessApi = forceCreate;
                 options.ForceShellWindowsApi = forceShell;
                 options.IgnoreZoomLevel = ignoreZoom;
-                if (url.Contains(@"/")) { options.InitialBrowserUrl = url; }
+                options.InitialBrowserUrl = url;
                 options.IntroduceInstabilityByIgnoringProtectedModeSettings = instability;
 //              options.Proxy = IEProxy;
                 options.RequireWindowFocus = requireFocus;
@@ -173,7 +158,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not set the internet explorer driver options settings.");
@@ -199,31 +184,31 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 InternetExplorerDriverLogLevel logLevel = InternetExplorerDriverLogLevel.Debug;
-                Enum.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_LoggingLevel"), out logLevel);
+                Enum.TryParse(Preferences.InternetExplorer.LoggingLevel, out logLevel);
 
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_HideCommandPromptWindow"), out bool hidePrompt);
-                Int32.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_Port"), out int port);
-                Boolean.TryParse(Preferences.Preferences.GetPreferenceSetting("IE_SuppressInitialDiagnosticInformation"), out bool sidi);
+                bool.TryParse(Preferences.InternetExplorer.HideCommandPromptWindow, out bool hidePrompt);
+                int.TryParse(Preferences.InternetExplorer.Port, out int port);
+                bool.TryParse(Preferences.InternetExplorer.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                string ieHost = Preferences.Preferences.GetPreferenceSetting("IE_Host");
-                string extract = Preferences.Preferences.GetPreferenceSetting("IE_LibraryExtractionPath");
-                string log = Preferences.Preferences.GetPreferenceSetting("IE_LogFile");
-                string whitelist = Preferences.Preferences.GetPreferenceSetting("IE_WhitelistedIPAddresses");
+                string ieHost = Preferences.InternetExplorer.Host;
+                string extract = Preferences.InternetExplorer.LibraryExtractionPath;
+                string log = Preferences.InternetExplorer.LibraryExtractionPath;
+                string whitelist = Preferences.InternetExplorer.WhitelistedIPAddresses;
 
-                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Preferences.Preferences.DriverPath);
+                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Directory.GetParent(Preferences.BaseSettings.InternetExplorerDriverLocation).FullName);
                 service.HideCommandPromptWindow = hidePrompt;
-                if (ieHost.Length > 1) { service.Host = ieHost; }
-                if (extract.Length > 1) { service.LibraryExtractionPath = extract; }
-                if (log.Length > 1) { service.LogFile = log; }
+                service.Host = ieHost ?? null;
+                service.LibraryExtractionPath = extract ?? null;
+                service.LogFile = log ?? null;
                 service.LoggingLevel = logLevel;
                 service.Port = port;
                 service.SuppressInitialDiagnosticInformation = sidi;
-                if (whitelist.Length > 1) { service.WhitelistedIPAddresses = whitelist; }
+                service.WhitelistedIPAddresses = whitelist ?? null;
                 Service = service;
             }
             catch (Exception ex)
             {
-                switch (Preferences.Preferences.DebugLevel)
+                switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not set the internet explorer driver service settings.");

@@ -89,7 +89,7 @@ namespace Liberator.DynamicPageEngineTests
         [Category("XML Writer")]
         public void XmlWriter_OutputFile()
         {
-            XmlWriter.OuputDocument(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "XmlWriter_TestOutput.xml"));
+            XmlWriter.OuputDocument(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "XmlWriter_TestOutput");
             if (File.Exists(FilePath))
                 Assert.Pass("File saved.");
             else
