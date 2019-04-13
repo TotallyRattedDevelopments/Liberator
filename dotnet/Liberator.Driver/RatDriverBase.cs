@@ -48,7 +48,7 @@ namespace Liberator.Driver
 
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
-            GetPidsOfExistingBrowsersAndDrivers(driverType);
+
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
@@ -57,7 +57,7 @@ namespace Liberator.Driver
 
             WaitForPageToLoad(null);
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
-            ExtractProcessIdsForCurrentBrowserAndDriver(driverType);
+
         }
 
         /// <summary>
@@ -220,39 +220,7 @@ namespace Liberator.Driver
             if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
         }
         #endregion
-
-
-
-        /// <summary>
-        /// Gets the Process IDs for existing browsers and web drivers
-        /// </summary>
-        /// <param name="driverType">Type of driver being used.</param>
-        public void GetPidsOfExistingBrowsersAndDrivers(string driverType)
-        {
-            GetProcessIds(out _originalPids);
-        }
-
-        /// <summary>
-        /// Extracts the Process IDs for the current browser and web driver.
-        /// </summary>
-        /// <param name="driverType">Type of driver being used.</param>
-        private void ExtractProcessIdsForCurrentBrowserAndDriver(string driverType)
-        {
-            GetProcessIds(out _postTestPids);
-            _browserDriverPids = _postTestPids.Except(_originalPids).ToList();
-            var browserName = BrowserProcessName(driverType);
-            var driverName = DriverProcessName(driverType);
-        }
-
-        /// <summary>
-        /// Gets the Process IDs for all running executables.
-        /// </summary>
-        /// <param name="pids">A list of Process IDs</param>
-        private void GetProcessIds(out List<int> pids)
-        {
-            Process[] _processes = Process.GetProcesses();
-            pids = _processes.Select(d => d.Id).ToList();
-        }
+        
 
         /// <summary>
         /// Initialises driver settings.
