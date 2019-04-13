@@ -14,22 +14,7 @@ namespace Liberator.DriverTests
         [TearDown]
         public void TearDown()
         {
-            Process[] processList = Process.GetProcesses();
-            foreach (Process item in processList)
-            {
-                if (item.ProcessName.Contains("geckodriver") ||
-                    item.ProcessName.Contains("chromedriver") ||
-                    item.ProcessName.Contains("MicrosoftWebDriver") ||
-                    item.ProcessName.Contains("opera") ||
-                    item.ProcessName.Contains("phantomjs") ||
-                    item.ProcessName.Contains("IEDriverServer") ||
-                    item.ProcessName.Contains("iexplore.exe"))
-                {
-                    item.Kill();
-                }
-            }
-
-            Thread.Sleep(500);
+            
         }
     }
 }

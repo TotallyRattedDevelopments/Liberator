@@ -57,8 +57,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] chromedrivers = Process.GetProcessesByName("operadriver");
-                foreach (Process driver in chromedrivers) { driver.Kill(); }
                 SetOperaOptions();
                 //SetOperaDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();

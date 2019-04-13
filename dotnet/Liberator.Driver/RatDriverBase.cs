@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Liberator.Driver
 {
@@ -26,12 +27,12 @@ namespace Liberator.Driver
 
         Actions _action;
 
-        List<int> _originalPids;
-        List<int> _postTestPids;
-        List<int> _browserDriverPids;
+        List<RatProcess> startingProcesses;
+        List<RatProcess> testProcesses;
 
         int _browserPid = 0;
         int _driverPid = 0;
+        private object proc;
 
         #endregion
 
@@ -49,6 +50,8 @@ namespace Liberator.Driver
             EstablishDriverSettings();
             string driverType = typeof(TWebDriver).Name;
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
             string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
             IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
             Driver = (TWebDriver)controller.StartDriver();
@@ -58,6 +61,7 @@ namespace Liberator.Driver
             WaitForPageToLoad(null);
             WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
         }
 
         /// <summary>
@@ -72,19 +76,23 @@ namespace Liberator.Driver
 
             string driverType = typeof(TWebDriver).Name;
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
             if (typeof(TWebDriver) == typeof(FirefoxDriver))
             {
                 EstablishDriverSettings();
                 FirefoxDriverControl controller = new FirefoxDriverControl();
                 Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
             }
             else
             {
                 Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
                 Console.WriteLine("Please switch to Firefox if named profile loading is required");
             }
-            
+
             if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
@@ -101,12 +109,16 @@ namespace Liberator.Driver
 
             string driverType = typeof(TWebDriver).Name;
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
             if (typeof(TWebDriver) == typeof(FirefoxDriver))
             {
                 EstablishDriverSettings();
                 FirefoxDriverControl controller = new FirefoxDriverControl();
                 Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
             }
             else
             {
@@ -130,12 +142,16 @@ namespace Liberator.Driver
 
             string driverType = typeof(TWebDriver).Name;
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
             if (typeof(TWebDriver) == typeof(ChromeDriver))
             {
                 EstablishDriverSettings();
                 ChromeDriverControl controller = new ChromeDriverControl();
                 Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
             }
             else
             {
@@ -163,12 +179,16 @@ namespace Liberator.Driver
 
             string driverType = typeof(TWebDriver).Name;
 
+            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
             if (typeof(TWebDriver) == typeof(ChromeDriver))
             {
                 EstablishDriverSettings();
                 ChromeDriverControl controller = new ChromeDriverControl();
                 Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
             }
             else
             {
@@ -220,7 +240,8 @@ namespace Liberator.Driver
             if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
         }
         #endregion
-        
+
+        #region Private Methods
 
         /// <summary>
         /// Initialises driver settings.
@@ -243,11 +264,11 @@ namespace Liberator.Driver
                 case "chromedriver":
                     return "chrome";
                 case "edgedriver":
-                    return "microsoftedge";
+                    return "MicrosoftEdge";
                 case "firefoxdriver":
                     return "firefox";
                 case "internetexplorerdriver":
-                    return "iexplorer";
+                    return "iexplore";
                 case "operadriver":
                     return "opera";
 
@@ -270,7 +291,7 @@ namespace Liberator.Driver
                 case "firefoxdriver":
                     return "geckodriver";
                 case "internetexplorerdriver":
-                    return "iedriver";
+                    return "IEDriverServer";
                 case "operadriver":
                     return "operadriver";
             }
@@ -288,5 +309,84 @@ namespace Liberator.Driver
             RecordPerformance = performanceTimings;
         }
 
+        /// <summary>
+        /// Isolates the processes used in the test
+        /// </summary>
+        /// <param name="driverType">The name ofn the driver type</param>
+        /// <param name="processCollectionTime">The time in the initialisation at which the collection occurs.</param>
+        private void GetProcesses(string driverType, ProcessCollectionTime processCollectionTime)
+        {
+            List<RatProcess> processList = new List<RatProcess>();
+            Process[] _processes = Process.GetProcesses();
+
+            foreach (Process process in _processes)
+            {
+                if (process.ProcessName.Equals(BrowserProcessName(driverType))
+                    || process.ProcessName.Equals(DriverProcessName(driverType)))
+                {
+                    processList.Add(new RatProcess() { Id = process.Id, Name = process.ProcessName });
+                }
+            }
+
+            switch (processCollectionTime)
+            {
+                case ProcessCollectionTime.InitialisationStart:
+                    startingProcesses = processList;
+                    break;
+                case ProcessCollectionTime.InitialisationEnd:
+                    testProcesses = processList.Except(startingProcesses).ToList();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void KillTestProcesses()
+        {
+            foreach (RatProcess process in testProcesses)
+            {
+                var processObject = Process.GetProcessById(process.Id);
+                processObject.Kill();
+                processObject.WaitForExit();
+            }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Process object for PID handling
+    /// </summary>
+    internal class RatProcess : IEquatable<RatProcess>
+    {
+        internal int Id { get; set; }
+
+        internal string Name { get; set; }
+
+        public override bool Equals(object o)
+        {
+            RatProcess other = o as RatProcess;
+            return Equals(other);
+        }
+
+        public bool Equals(RatProcess other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Id.Equals(other.Id) && Name.Equals(other.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashName = Name == null ? 0 : Name.GetHashCode();
+            int hashId = Id.GetHashCode();
+            return hashId ^ hashName;
+        }
+    }
+
+    internal enum ProcessCollectionTime
+    {
+        InitialisationStart,
+        InitialisationEnd
     }
 }

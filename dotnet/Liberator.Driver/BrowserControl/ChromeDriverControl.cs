@@ -63,8 +63,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] chromedrivers = Process.GetProcessesByName("chromedriver");
-                foreach (Process driver in chromedrivers) { driver.Kill(); }
                 SetOptions();
                 SetDriverService();
                 AddAdditionalCapabilities();

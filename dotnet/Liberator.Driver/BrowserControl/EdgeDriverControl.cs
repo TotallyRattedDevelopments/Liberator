@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -51,8 +50,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] webdrivers = Process.GetProcessesByName("MicrosoftWebDriver");
-                foreach (Process driver in webdrivers) { driver.Kill(); }
                 SetEdgeDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Driver = new EdgeDriver(Directory.GetParent(Preferences.BaseSettings.EdgeDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);

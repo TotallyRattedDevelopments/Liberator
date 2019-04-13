@@ -4299,6 +4299,13 @@
             </summary>
             <param name="performanceTimings">Whether to collect timings</param>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetProcesses(System.String,Liberator.Driver.ProcessCollectionTime)">
+            <summary>
+            Isolates the processes used in the test
+            </summary>
+            <param name="driverType">The name ofn the driver type</param>
+            <param name="processCollectionTime">The time in the initialisation at which the collection occurs.</param>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.HandleErrors(System.Exception)">
             <summary>
             Handles all caught exceptions
@@ -5178,6 +5185,11 @@
         <member name="M:Liberator.Driver.RatDriver`1.TerminateDriverProcess">
             <summary>
             Terminates the driver process attached to the current web driver
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.RatProcess">
+            <summary>
+            Process object for PID handling
             </summary>
         </member>
         <member name="T:Liberator.ExpectedConditions">

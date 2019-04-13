@@ -72,8 +72,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] iedrivers = Process.GetProcessesByName("IEDriverServer");
-                foreach (Process driver in iedrivers) { driver.Kill(); }
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
