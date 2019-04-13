@@ -265,7 +265,7 @@ namespace Liberator.Driver
         }
 
         /// <summary>
-        /// Returne the name of the process used by the prowser
+        /// Return the name of the process used by the browser
         /// </summary>
         /// <returns>The name of the browser process</returns>
         private string BrowserProcessName(string driverType)
