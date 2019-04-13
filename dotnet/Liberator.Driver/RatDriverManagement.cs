@@ -53,12 +53,12 @@ namespace Liberator.Driver
             {
                 if (typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
-                    _driver.Manage().Cookies.AddCookie(new Cookie(name, value));
+                    Driver.Manage().Cookies.AddCookie(new Cookie(name, value));
                 }
                 else if (typeof(TWebDriver) == typeof(InternetExplorerDriver))
                 {
                     string script = "document.cookie='" + name + "=" + value + "'";
-                    _driver.ExecuteJavaScript(script);
+                    Driver.ExecuteJavaScript(script);
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.AddCookie(new Cookie(name, value, path));
+                Driver.Manage().Cookies.AddCookie(new Cookie(name, value, path));
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.AddCookie(new Cookie(name, value, path, expiry));
+                Driver.Manage().Cookies.AddCookie(new Cookie(name, value, path, expiry));
             }
             catch (Exception ex)
             {
@@ -136,7 +136,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.AddCookie(new Cookie(name, value, domain, path, expiry));
+                Driver.Manage().Cookies.AddCookie(new Cookie(name, value, domain, path, expiry));
             }
             catch (Exception ex)
             {
@@ -161,7 +161,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.AddCookie(cookie);
+                Driver.Manage().Cookies.AddCookie(cookie);
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.Manage().Cookies.AllCookies;
+                return Driver.Manage().Cookies.AllCookies;
             }
             catch (Exception ex)
             {
@@ -203,7 +203,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.DeleteAllCookies();
+                Driver.Manage().Cookies.DeleteAllCookies();
             }
             catch (Exception ex)
             {
@@ -220,7 +220,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.DeleteCookie(cookie);
+                Driver.Manage().Cookies.DeleteCookie(cookie);
             }
             catch (Exception ex)
             {
@@ -237,7 +237,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Cookies.DeleteCookieNamed(cookie);
+                Driver.Manage().Cookies.DeleteCookieNamed(cookie);
             }
             catch (Exception ex)
             {
@@ -256,7 +256,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.Manage().Cookies.GetCookieNamed(cookie);
+                return Driver.Manage().Cookies.GetCookieNamed(cookie);
             }
             catch (Exception ex)
             {
@@ -381,7 +381,7 @@ namespace Liberator.Driver
                     Console.WriteLine("Logs are not currently available for Firefox, IE or Edge");
                     return null;
                 }
-                return _driver.Manage().Logs.AvailableLogTypes;
+                return Driver.Manage().Logs.AvailableLogTypes;
             }
             catch (Exception ex)
             {
@@ -400,7 +400,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.Manage().Logs.GetLog(logKind);
+                return Driver.Manage().Logs.GetLog(logKind);
             }
             catch (Exception ex)
             {
@@ -420,7 +420,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -439,7 +439,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -458,7 +458,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Timeouts().AsynchronousJavaScript = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Driver.Manage().Timeouts().AsynchronousJavaScript = new TimeSpan(0, 0, minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -474,7 +474,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Manage().Window.Maximize();
+                Driver.Manage().Window.Maximize();
             }
             catch (Exception ex)
             {
@@ -485,7 +485,7 @@ namespace Liberator.Driver
                 else
                 {
                     Console.WriteLine("Unable to Maximise Window.");
-                    if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                    if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                     HandleErrors(ex);
                 }
             }
@@ -499,14 +499,14 @@ namespace Liberator.Driver
         {
             try
             {
-                int x = _driver.Manage().Window.Position.X;
-                int y = _driver.Manage().Window.Position.Y;
+                int x = Driver.Manage().Window.Position.X;
+                int y = Driver.Manage().Window.Position.Y;
                 return new Tuple<int, int>(x, y);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to get current window position.");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -520,14 +520,14 @@ namespace Liberator.Driver
         {
             try
             {
-                int x = _driver.Manage().Window.Size.Width;
-                int y = _driver.Manage().Window.Size.Height;
+                int x = Driver.Manage().Window.Size.Width;
+                int y = Driver.Manage().Window.Size.Height;
                 return new Tuple<int, int>(x, y);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to get current window size.");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -547,7 +547,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to get set the current window size.");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
             }
         }
@@ -559,9 +559,9 @@ namespace Liberator.Driver
         {
             try
             {
-                _lastPage = _driver.FindElement(By.TagName("html"));
-                _driver.Navigate().Back();
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
+                LastPage = Driver.FindElement(By.TagName("html"));
+                Driver.Navigate().Back();
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
             }
             catch (Exception ex)
             {
@@ -577,9 +577,9 @@ namespace Liberator.Driver
         {
             try
             {
-                _lastPage = _driver.FindElement(By.TagName("html"));
-                _driver.Navigate().Forward();
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.StalenessOf(_lastPage));
+                LastPage = Driver.FindElement(By.TagName("html"));
+                Driver.Navigate().Forward();
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
             }
             catch (Exception ex)
             {
@@ -597,7 +597,7 @@ namespace Liberator.Driver
             try
             {
                 IWebElement currentPage = Driver.FindElement(By.TagName("html"));
-                _driver.Navigate().GoToUrl(url);
+                Driver.Navigate().GoToUrl(url);
                 WaitForPageToLoad(currentPage);
             }
             catch (Exception ex)
@@ -616,7 +616,7 @@ namespace Liberator.Driver
             try
             {
                 IWebElement currentPage = Driver.FindElement(By.TagName("html"));
-                _driver.Navigate().GoToUrl(url);
+                Driver.Navigate().GoToUrl(url);
                 WaitForPageToLoad(currentPage);
             }
             catch (Exception ex)
@@ -633,7 +633,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.Navigate().Refresh();
+                Driver.Navigate().Refresh();
             }
             catch (Exception ex)
             {
@@ -651,7 +651,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.PageSource.Contains(text);
+                return Driver.PageSource.Contains(text);
             }
             catch (Exception ex)
             {
@@ -669,7 +669,7 @@ namespace Liberator.Driver
         {
             try
             {
-                return _driver.PageSource;
+                return Driver.PageSource;
             }
             catch (Exception ex)
             {
@@ -690,11 +690,11 @@ namespace Liberator.Driver
                 {
                     foreach (string handle in Driver.WindowHandles)
                     {
-                        _driver.SwitchTo().Window(handle);
-                        _driver.Close();
+                        Driver.SwitchTo().Window(handle);
+                        Driver.Close();
                     } 
                 }
-                _driver.Quit();
+                Driver.Quit();
                 KillDrivers();
             }
             catch (Exception ex)
@@ -736,12 +736,12 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().ActiveElement();
+                Driver.SwitchTo().ActiveElement();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to switch to the active element");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
             }
         }
@@ -753,7 +753,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().Alert();
+                Driver.SwitchTo().Alert();
             }
             catch (Exception ex)
             {
@@ -761,7 +761,7 @@ namespace Liberator.Driver
                 {
                     Console.WriteLine("Unable to switch to an alert dialog as one is not present on on the current page.");
                 }
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
             }
         }
@@ -773,12 +773,12 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().DefaultContent();
+                Driver.SwitchTo().DefaultContent();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Unable to switch the focus of the driver back to the default content.");
-                if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
             }
         }
@@ -791,14 +791,14 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().Frame(frameIndex);
+                Driver.SwitchTo().Frame(frameIndex);
             }
             catch (Exception ex)
             {
                 if (ex.GetType() == typeof(NoSuchFrameException))
                 {
                     Console.WriteLine("Unable to switch to the requested frame, as there is no frame with an index of {0}", frameIndex);
-                    if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                    if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 }
                 HandleErrors(ex);
             }
@@ -813,14 +813,14 @@ namespace Liberator.Driver
             Element = frameElement;
             try
             {
-                _driver.SwitchTo().Frame(Element);
+                Driver.SwitchTo().Frame(Element);
             }
             catch (Exception ex)
             {
                 if (ex.GetType() == typeof(NoSuchFrameException))
                 {
                     Console.WriteLine("Unable to switch to the requested frame, as there is no frame with the passed description");
-                    if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                    if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 }
                 HandleErrors(ex);
             }
@@ -835,16 +835,16 @@ namespace Liberator.Driver
             Locator = frameLocator;
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
-                Element = _driver.FindElement(frameLocator);
-                _driver.SwitchTo().Frame(Element);
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameLocator));
+                Element = Driver.FindElement(frameLocator);
+                Driver.SwitchTo().Frame(Element);
             }
             catch (Exception ex)
             {
                 if (ex.GetType() == typeof(NoSuchFrameException))
                 {
                     Console.WriteLine("Unable to switch to the requested frame, as there is no frame with the description {0}", frameLocator);
-                    if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                    if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 }
                 HandleErrors(ex);
             }
@@ -858,16 +858,16 @@ namespace Liberator.Driver
         {
             try
             {
-                var wait = new WebDriverWait(_driver, _timeout)
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Name(frameName)));
-                _driver.SwitchTo().Frame(frameName);
+                Driver.SwitchTo().Frame(frameName);
             }
             catch (Exception ex)
             {
                 if (ex.GetType() == typeof(NoSuchFrameException))
                 {
                     Console.WriteLine("Unable to switch to the requested frame, as there is no frame with the name {0}", frameName);
-                    if (_driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                    if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
                 }
                 HandleErrors(ex);
             }
@@ -880,7 +880,7 @@ namespace Liberator.Driver
         {
             try
             {
-                _driver.SwitchTo().ParentFrame();
+                Driver.SwitchTo().ParentFrame();
             }
             catch (Exception ex)
             {

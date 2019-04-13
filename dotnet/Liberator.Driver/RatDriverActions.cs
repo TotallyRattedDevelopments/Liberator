@@ -43,7 +43,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Build().Perform();
@@ -86,7 +86,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Click().Build().Perform();
@@ -130,7 +130,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ClickAndHold().Build().Perform();
@@ -174,7 +174,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ContextClick().Build().Perform();
@@ -219,7 +219,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DoubleClick().Build().Perform();
@@ -242,9 +242,11 @@ namespace Liberator.Driver
         public void DragAndDrop(IWebElement source, IWebElement target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Element = source;
-            var list = new List<IWebElement>();
-            list.Add(source);
-            list.Add(target);
+            var list = new List<IWebElement>
+            {
+                source,
+                target
+            };
             Elements = list;
 
             try
@@ -252,7 +254,7 @@ namespace Liberator.Driver
                 if (waitForSource) { WaitForElementToBeClickable(source); }
                 if (waitForTarget) { WaitForElementToBeClickable(target); }
                 _action = HoverAction(source);
-                _action.MoveToElement(_element).DragAndDrop(source, target).Build().Perform();
+                _action.MoveToElement(Element).DragAndDrop(source, target).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -271,16 +273,20 @@ namespace Liberator.Driver
         public void DragAndDrop(By source, By target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Locator = source;
-            Locators = new List<By>();
-            Locators.Add(source);
-            Locators.Add(target);
+            Locators = new List<By>
+            {
+                source,
+                target
+            };
             try
             {
-                Element = _driver.FindElement(source);
-                var _target = _driver.FindElement(target);
-                var list = new List<IWebElement>();
-                list.Add(Element);
-                list.Add(_target);
+                Element = Driver.FindElement(source);
+                var _target = Driver.FindElement(target);
+                var list = new List<IWebElement>
+                {
+                    Element,
+                    _target
+                };
 
                 Elements = (IEnumerable<IWebElement>)list;
 
@@ -288,7 +294,7 @@ namespace Liberator.Driver
                 if (waitForTarget) { WaitForElementToBeClickable(target); }
 
                 _action = HoverAction(source);
-                _action.MoveToElement(_element).DragAndDrop(Element, _target).Build().Perform();
+                _action.MoveToElement(Element).DragAndDrop(Element, _target).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -333,7 +339,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DragAndDropToOffset(Element, xOffset, yOffset).Build().Perform();
@@ -379,10 +385,10 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
-                _action.MoveToElement(_driver.FindElement(locator)).KeyDown(Element, key).Build().Perform();
+                _action.MoveToElement(Driver.FindElement(locator)).KeyDown(Element, key).Build().Perform();
             }
             catch (Exception ex)
             {
@@ -424,7 +430,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).KeyUp(Element, key).Build().Perform();
@@ -471,7 +477,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveByOffset(xOffset, yOffset).Build().Perform();
@@ -518,7 +524,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveToElement(Element, xOffset, yOffset).Build().Perform();
@@ -561,7 +567,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Release().Build().Perform();
@@ -607,7 +613,7 @@ namespace Liberator.Driver
             Locator = locator;
             try
             {
-                Element = _driver.FindElement(locator);
+                Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); } ;
                 Element.Click();
                 Element.Clear();
@@ -768,7 +774,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.DoubleTap(element).Build().Perform();
         //    }
@@ -789,7 +795,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.DoubleTap(Element).Build().Perform();
         //    }
@@ -811,7 +817,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Down(x, y).Build().Perform();
         //    }
@@ -834,7 +840,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Down(x, y).Build().Perform();
         //    }
@@ -857,7 +863,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(element, x, y, speed).Build().Perform();
         //    }
@@ -881,7 +887,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(Element, x, y, speed).Build().Perform();
         //    }
@@ -903,7 +909,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(speedX, speedY).Build().Perform();
         //    }
@@ -926,7 +932,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Flick(speedX, speedY).Build().Perform();
         //    }
@@ -946,7 +952,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.LongPress(element).Build().Perform();
         //    }
@@ -967,7 +973,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.LongPress(Element).Build().Perform();
         //    }
@@ -989,7 +995,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Move(x, y).Build().Perform();
         //    }
@@ -1012,7 +1018,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Move(x, y).Build().Perform();
         //    }
@@ -1034,7 +1040,7 @@ namespace Liberator.Driver
         //    Element = _element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(x, y).Build().Perform();
         //    }
@@ -1057,7 +1063,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(x, y).Build().Perform();
         //    }
@@ -1079,7 +1085,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(element, x, y).Build().Perform();
         //    }
@@ -1102,7 +1108,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Scroll(Element, x, y).Build().Perform();
         //    }
@@ -1122,7 +1128,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.SingleTap(element).Build().Perform();
         //    }
@@ -1143,7 +1149,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.SingleTap(Element).Build().Perform();
         //    }
@@ -1165,7 +1171,7 @@ namespace Liberator.Driver
         //    Element = element;
         //    try
         //    {
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Up(x, y).Build().Perform();
         //    }
@@ -1188,7 +1194,7 @@ namespace Liberator.Driver
         //    try
         //    {
         //        Element = _driver.FindElement(locator);
-        //        var wait = new WebDriverWait(_driver, _timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
+        //        var wait = new WebDriverWait(_driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Element));
         //        Touch = new TouchActions(_driver);
         //        Touch.Up(x, y).Build().Perform();
         //    }
@@ -1216,7 +1222,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not take a screenshot.");
                 }
@@ -1238,7 +1244,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not return the JavaScript Executor.");
                 }
@@ -1260,7 +1266,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed JavaScript.");
                 }
@@ -1282,7 +1288,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed JavaScript with the specified parameters.");
                 }
@@ -1303,7 +1309,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }
@@ -1325,7 +1331,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (Preferences.Preferences.DebugLevel == EnumConsoleDebugLevel.Human)
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
                     Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }

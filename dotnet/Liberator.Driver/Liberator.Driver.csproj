@@ -1,108 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D7E3C7B-5470-406A-83FB-3D6CAA4FFC16}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Liberator.Driver</PackageId>
+    <Version>0.8.1</Version>
+    <Authors>LiberatorTestTools</Authors>
+    <Product>Liberator.Driver</Product>
+    <Copyright>2015-2019, Liberator Test Tools</Copyright>
+    <PackageTags>Selenium QA Automation</PackageTags>
+    <AssemblyVersion>0.8.1.0</AssemblyVersion>
+    <FileVersion>0.8.1.0</FileVersion>
+    <PackageReleaseNotes>Performance timings for UI  actions, including instantiation times, page loads and test durations.</PackageReleaseNotes>
+    <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
+
+Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality tofine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     <RootNamespace>Liberator.Driver</RootNamespace>
     <AssemblyName>Liberator.Driver</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\Liberator.Driver.xml</DocumentationFile>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
+    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BrowserControl\ChromeDriverControl.cs" />
-    <Compile Include="BrowserControl\EdgeDriverControl.cs" />
-    <Compile Include="BrowserControl\FirefoxDriverControl.cs" />
-    <Compile Include="BrowserControl\IBrowserControl.cs" />
-    <Compile Include="BrowserControl\InternetExplorerDriverControl.cs" />
-    <Compile Include="BrowserControl\OperaDriverControl.cs" />
-    <Compile Include="BrowserControl\RemoteDriverControl.cs" />
-    <Compile Include="Enums\EnumConsoleDebugLevel.cs" />
-    <Compile Include="Enums\EnumDriverType.cs" />
-    <Compile Include="Enums\EnumLocatorType.cs" />
-    <Compile Include="Enums\EnumPhoneType.cs" />
-    <Compile Include="Helpers.cs" />
-    <Compile Include="IRatDriver.cs" />
-    <Compile Include="IRodent.cs" />
-    <Compile Include="Performance\EnumTiming.cs" />
-    <Compile Include="Performance\ITimer.cs" />
-    <Compile Include="Performance\RatTimer.cs" />
-    <Compile Include="Performance\RatWatch.cs" />
-    <Compile Include="Performance\RatWatchDriver.cs" />
-    <Compile Include="Preferences\Preferences.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatClock.cs" />
-    <Compile Include="RatDriverActions.cs" />
-    <Compile Include="RatDriverBase.cs" />
-    <Compile Include="RatDriverManagement.cs" />
-    <Compile Include="RatDriverMethods.cs" />
-    <Compile Include="RatDriverProperties.cs" />
-    <Compile Include="Preferences\ConfigReader.cs" />
-    <Compile Include="RatDriverErrorHandling.cs" />
-    <Compile Include="RatDriverWaits.cs" />
-    <Compile Include="RatDriverWindowHandling.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MathNet.Numerics">
-      <Version>4.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="NUnit">
-      <Version>3.11.0</Version>
-    </PackageReference>
-    <PackageReference Include="Selenium.Support">
-      <Version>3.141.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Buffers">
-      <Version>4.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation">
-      <Version>4.3.0</Version>
-    </PackageReference>
+    <None Remove="BrowserDrivers\chromedriver.exe" />
+    <None Remove="BrowserDrivers\geckodriver.exe" />
+    <None Remove="BrowserDrivers\IEDriverServer.exe" />
+    <None Remove="BrowserDrivers\MicrosoftWebDriver.exe" />
+    <None Remove="BrowserDrivers\operadriver.exe" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BrowserDrivers\chromedriver.exe">
@@ -114,22 +44,23 @@
     <Content Include="BrowserDrivers\IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="BrowserDrivers\MicrosoftWebDriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="BrowserDrivers\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Liberator\Liberator.csproj">
-      <Project>{e02bde49-929d-4155-8541-359bc9a9007a}</Project>
-      <Name>Liberator</Name>
-    </ProjectReference>
+    <PackageReference Include="MathNet.Numerics" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="System.Buffers" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>
