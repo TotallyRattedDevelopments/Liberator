@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Remote;
@@ -43,6 +44,28 @@ namespace Liberator.Driver.BrowserControl
         public OperaDriverControl()
         {
 
+        }
+
+        /// <summary>
+        /// Allows the specification of Opera Driver settings
+        /// </summary>
+        /// <param name="operaSettings">The settings file to be used.</param>
+        public OperaDriverControl(OperaSettings operaSettings)
+        {
+            if (operaSettings != null)
+            {
+                Opera.AndroidDebugBridgePort = operaSettings.AndroidDebugBridgePort;
+                Opera.DebuggerAddress = operaSettings.DebuggerAddress;
+                Opera.EnableVerboseLogging = operaSettings.EnableVerboseLogging;
+                Opera.HideCommandPromptWindow = operaSettings.HideCommandPromptWindow;
+                Opera.LeaveBrowserRunning = operaSettings.LeaveBrowserRunning;
+                Opera.LogPath = operaSettings.LogPath;
+                Opera.MinidumpPath = operaSettings.MinidumpPath;
+                Opera.Port = operaSettings.Port;
+                Opera.PortServerAddress = operaSettings.PortServerAddress;
+                Opera.SuppressInitialDiagnosticInformation = operaSettings.SuppressInitialDiagnosticInformation;
+                Opera.UrlPathPrefix = operaSettings.UrlPathPrefix;
+            }
         }
 
         #endregion
