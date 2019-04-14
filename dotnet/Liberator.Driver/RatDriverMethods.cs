@@ -762,7 +762,7 @@ namespace Liberator.Driver
             try
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IWebElement element = Driver.FindElement(By.ClassName(className));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -787,7 +787,7 @@ namespace Liberator.Driver
             try
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -816,7 +816,7 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -845,7 +845,7 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
                 Elements = collection;
