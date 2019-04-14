@@ -170,9 +170,9 @@ namespace Liberator.Driver.Preferences
             {
                 return Directory.GetFiles(pathToSearch, fileToFind, SearchOption.AllDirectories)[0];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("No executable found for: {0}", fileToFind);
                 return null;
             }
         }
