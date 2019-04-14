@@ -19,6 +19,7 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     <RootNamespace>Liberator.Driver</RootNamespace>
     <AssemblyName>Liberator.Driver</AssemblyName>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
