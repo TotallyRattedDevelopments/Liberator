@@ -119,7 +119,7 @@
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class FirefoxSettings
+    public class FirefoxSettings : IDriverSettings
     {
         /// <summary>
         /// Contructor with default settings

@@ -171,7 +171,7 @@
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class ChromeSettings
+    public class ChromeSettings : IDriverSettings
     {
         /// <summary>
         /// Contructor with default settings

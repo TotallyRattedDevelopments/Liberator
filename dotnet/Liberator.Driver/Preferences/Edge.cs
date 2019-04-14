@@ -49,7 +49,7 @@
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class EdgeSettings
+    public class EdgeSettings : IDriverSettings
     {
         /// <summary>
         /// Contructor with default settings

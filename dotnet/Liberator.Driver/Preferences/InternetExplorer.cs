@@ -206,7 +206,7 @@ namespace Liberator.Driver.Preferences
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class InternetExplorerSettings
+    public class InternetExplorerSettings : IDriverSettings
     {
         /// <summary>
         /// Contructor with default settings

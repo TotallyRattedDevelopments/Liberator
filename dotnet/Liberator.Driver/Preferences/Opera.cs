@@ -82,7 +82,7 @@ namespace Liberator.Driver.Preferences
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class OperaSettings
+    public class OperaSettings : IDriverSettings
     {
         /// <summary>
         /// Contructor with default settings
