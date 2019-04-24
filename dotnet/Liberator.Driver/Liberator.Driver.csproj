@@ -11,10 +11,10 @@
     <PackageTags>Selenium QA Automation</PackageTags>
     <AssemblyVersion>0.8.2.0</AssemblyVersion>
     <FileVersion>0.8.2.0</FileVersion>
-    <PackageReleaseNotes>Performance timings for UI  actions, including instantiation times, page loads and test durations.</PackageReleaseNotes>
+    <PackageReleaseNotes>Removed Selenium PageFactory classes, track PIDs &amp; add preference injection</PackageReleaseNotes>
     <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
 
-Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality tofine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>
+Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality to fine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     <RootNamespace>Liberator.Driver</RootNamespace>

@@ -33,7 +33,6 @@ namespace Liberator.Driver
 
         int _browserPid = 0;
         int _driverPid = 0;
-        private object proc;
 
         #endregion
 
