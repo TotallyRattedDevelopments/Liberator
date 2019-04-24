@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -44,11 +45,49 @@ namespace Liberator.Driver.BrowserControl
         #region Constructor
 
         /// <summary>
-        /// Sets all defaults from specified entries in the app.config file
+        /// Sets all defaults
         /// </summary>
         public ChromeDriverControl()
         {
             Options = new ChromeOptions();
+        }
+
+        /// <summary>
+        /// Allows the specification of Chrome Driver settings
+        /// </summary>
+        /// <param name="chromeSettings">The settings file to be used.</param>
+        public ChromeDriverControl(ChromeSettings chromeSettings)
+        {
+            Options = new ChromeOptions();
+
+            if (chromeSettings != null)
+            {
+                Chrome.AndroidDebugBridgePort = chromeSettings.AndroidDebugBridgePort;
+                Chrome.BinaryLocation = chromeSettings.BinaryLocation;
+                Chrome.BufferUsageReportingInterval = chromeSettings.BufferUsageReportingInterval;
+                Chrome.CapabilityList = chromeSettings.CapabilityList;
+                Chrome.DebuggerAddress = chromeSettings.DebuggerAddress;
+                Chrome.EnableTouchEvents = chromeSettings.EnableTouchEvents;
+                Chrome.EnableVerboseLogging = chromeSettings.EnableVerboseLogging;
+                Chrome.ExtensionsList = chromeSettings.ExtensionsList;
+                Chrome.Height = chromeSettings.Height;
+                Chrome.HideCommandPromptWindow = chromeSettings.HideCommandPromptWindow;
+                Chrome.IsCollectingNetworkEvents = chromeSettings.IsCollectingNetworkEvents;
+                Chrome.IsCollectingPageEvents = chromeSettings.IsCollectingPageEvents;
+                Chrome.LeaveBrowserRunning = chromeSettings.LeaveBrowserRunning;
+                Chrome.LocalStatePreferences = chromeSettings.LocalStatePreferences;
+                Chrome.LogPath = chromeSettings.LogPath;
+                Chrome.MinidumpPath = chromeSettings.MinidumpPath;
+                Chrome.PixelRatio = chromeSettings.PixelRatio;
+                Chrome.Port = chromeSettings.Port;
+                Chrome.PortServerAddress = chromeSettings.PortServerAddress;
+                Chrome.SuppressInitialDiagnosticInformation = chromeSettings.SuppressInitialDiagnosticInformation;
+                Chrome.TracingCategories = chromeSettings.TracingCategories;
+                Chrome.UserAgent = chromeSettings.UserAgent;
+                Chrome.UserProfilePreferences = chromeSettings.UserProfilePreferences;
+                Chrome.WhitelistedIPAddresses = chromeSettings.WhitelistedIPAddresses;
+                Chrome.Width = chromeSettings.Width; 
+            }
         }
 
         #endregion

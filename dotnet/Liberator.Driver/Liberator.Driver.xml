@@ -31,8 +31,14 @@
         </member>
         <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.#ctor">
             <summary>
-            Sets all defaults from specified entries in the app.config file
+            Sets all defaults
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.#ctor(Liberator.Driver.Preferences.ChromeSettings)">
+            <summary>
+            Allows the specification of Chrome Driver settings
+            </summary>
+            <param name="chromeSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.StartDriver">
             <summary>
@@ -150,6 +156,12 @@
             Loads preset values for the driver and service from the app.config file
             </summary>
         </member>
+        <member name="M:Liberator.Driver.BrowserControl.EdgeDriverControl.#ctor(Liberator.Driver.Preferences.EdgeSettings)">
+            <summary>
+            Allows the specification of Edge Driver settings
+            </summary>
+            <param name="edgeSettings">The settings file to be used.</param>
+        </member>
         <member name="M:Liberator.Driver.BrowserControl.EdgeDriverControl.StartDriver">
             <summary>
             Starts the Edge Driver with the preset values from app.config
@@ -208,8 +220,14 @@
         </member>
         <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.#ctor">
             <summary>
-            Loads all settings into memory for the Firefox Driver from the app.config file
+            Default constructor
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.#ctor(Liberator.Driver.Preferences.FirefoxSettings)">
+            <summary>
+            Allows the specification of Firefox Driver settings
+            </summary>
+            <param name="firefoxSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.StartDriver">
             <summary>
@@ -320,6 +338,12 @@
             Loads the settings from the app.config file
             </summary>
         </member>
+        <member name="M:Liberator.Driver.BrowserControl.InternetExplorerDriverControl.#ctor(Liberator.Driver.Preferences.InternetExplorerSettings)">
+            <summary>
+            Allows the specification of Internet Explorer Driver settings
+            </summary>
+            <param name="internetExplorerSettings">The settings file to be used.</param>
+        </member>
         <member name="M:Liberator.Driver.BrowserControl.InternetExplorerDriverControl.StartDriver">
             <summary>
              Starts the Internet Explorer Driver with the preset values from app.config
@@ -360,6 +384,12 @@
             <summary>
             Loads the settings from the app.config file
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.OperaDriverControl.#ctor(Liberator.Driver.Preferences.OperaSettings)">
+            <summary>
+            Allows the specification of Opera Driver settings
+            </summary>
+            <param name="operaSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.OperaDriverControl.StartDriver">
             <summary>
@@ -3525,6 +3555,145 @@
             Gets or sets the width in pixels to be used by the browser when emulating a mobile device.
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.ChromeSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.ChromeSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.BinaryLocation">
+            <summary>
+            Gets or sets the location of the Chrome browser's binary executable file.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.DebuggerAddress">
+            <summary>
+            Gets or sets the address of a Chrome debugger server to connect to. Should be of the form "{hostname|IP address}:port".
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LeaveBrowserRunning">
+            <summary>
+            Gets or sets a value indicating whether Chrome should be left running after the ChromeDriver instance is exited. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.MinidumpPath">
+            <summary>
+            Gets or sets the directory in which to store minidump files.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.BufferUsageReportingInterval">
+            <summary>
+            Gets or sets the interval between Chrome DevTools trace buffer usage events. Defaults to 1000 milliseconds.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.IsCollectingNetworkEvents">
+            <summary>
+            Gets or sets a value indicating whether Chrome will collect events from the Network domain. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.IsCollectingPageEvents">
+            <summary>
+            Gets or sets a value indicating whether Chrome will collect events from the Page domain. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.CapabilityList">
+            <summary>
+            List of browser capabilities in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.TracingCategories">
+            <summary>
+            Gets a comma-separated list of the categories for which tracing is enabled.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.ExtensionsList">
+            <summary>
+            Comma separated list of extension locations
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LocalStatePreferences">
+            <summary>
+            Comma separated list of local state preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.UserProfilePreferences">
+            <summary>
+            Comma separated list of user profile preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.AndroidDebugBridgePort">
+            <summary>
+            Gets or sets the port on which the Android Debug Bridge is listening for commands.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.EnableVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the ChromeDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LogPath">
+            <summary>
+            Gets or sets the location of the log file written to by the ChromeDriver executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.PortServerAddress">
+            <summary>
+            Gets or sets the address of a server to contact for reserving a port.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.WhitelistedIPAddresses">
+            <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to connect
+            to this instance of the Chrome driver. Defaults to an empty string, which means
+            only the local loopback address can connect.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.EnableTouchEvents">
+            <summary>
+            Gets or sets a value indicating whether touch events should be enabled by the browser when emulating a mobile device. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Height">
+            <summary>
+            Gets or sets the height in pixels to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.PixelRatio">
+            <summary>
+            Gets or sets the pixel ratio to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.UserAgent">
+            <summary>
+            Gets or sets the user agent string to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Width">
+            <summary>
+            Gets or sets the width in pixels to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Edge">
             <summary>
             Preferences for EdgeDriver
@@ -3558,6 +3727,48 @@
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.Edge.Package">
+            <summary>
+            Gets or sets the value of the package the Edge driver service will launch and automate.
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.EdgeSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.EdgeSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.UseVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the ChromeDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Host">
+            <summary>
+            Gets or sets the value of the host adapter on which the Edge driver service should listen for connections
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Package">
             <summary>
             Gets or sets the value of the package the Edge driver service will launch and automate.
             </summary>
@@ -3656,6 +3867,112 @@
         <member name="P:Liberator.Driver.Preferences.Firefox.Preferences">
             <summary>
             Comma separated list of preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.FirefoxSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.FirefoxSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.LogLevel">
+            <summary>
+            Gets or sets the logging level of the Firefox driver.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ProfileDirectory">
+            <summary>
+            Gets the directory containing the profile.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.CleanProfile">
+            <summary>
+            Cleans this Firefox profile.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.UseLegacyImplementation">
+            <summary>
+            Gets or sets a value indicating whether to use the legacy driver implementation.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AcceptUntrustedCertificates">
+            <summary>
+            Gets or sets a value indicating whether Firefox should accept SSL certificates
+            which have expired, signed by an unknown authority or are generally untrusted.
+            Set to true by default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AlwaysLoadNoFocusLibrary">
+            <summary>
+            Gets or sets a value indicating whether to always load the library for allowing
+            Firefox to execute commands without its window having focus.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AssumeUntrustedCertificateIssuer">
+            <summary>
+            Gets or sets a value indicating whether Firefox assume untrusted SSL certificates
+            come from an untrusted issuer or are self-signed. Set to true by default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.DeleteAfterUse">
+            <summary>
+            Gets or sets a value indicating whether to delete this profile after use with the OpenQA.Selenium.Firefox.FirefoxDriver.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.EnableNativeEvents">
+            <summary>
+            Gets or sets a value indicating whether native events are enabled.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Port">
+            <summary>
+            Gets or sets the port on which the profile connects to the WebDriver extension.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ProxyPreferences">
+            <summary>
+            Comma separated list of proxy preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.CommunicationPort">
+            <summary>
+            Gets or sets the port used by the driver executable to communicate with the browser.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ConnectToRunningBrowser">
+            <summary>
+            Gets or sets a value indicating whether to connect to an already-running instance of Firefox.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Host">
+            <summary>
+            Gets or sets the value of the IP address of the host adapter on which the service should listen for connections.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Preferences">
+            <summary>
+            Comma separated list of preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.IDriverSettings">
+            <summary>
+            Base class for preference injection
             </summary>
         </member>
         <member name="T:Liberator.Driver.Preferences.InternetExplorer">
@@ -3833,6 +4150,186 @@
             Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.InternetExplorerSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.InternetExplorerSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.CommandLineArguments">
+            <summary>
+            Gets or sets the command line arguments used in launching Internet Explorer when the Windows CreateProcess API is used. This property only has an effect when the OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi is true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ScrollBehavior">
+            <summary>
+            Gets or sets the value for describing how elements are scrolled into view in the IE driver. Defaults to scrolling the element to the top of the viewport.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnableFullPageScreenshot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnableNativeEvents">
+            <summary>
+            Gets or sets a value indicating whether to use native events in interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnablePersistentHover">
+            <summary>
+            Gets or sets a value indicating whether to enable persistently sending WM_MOUSEMOVE messages to the IE window during a mouse hover.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnsureCleanSession">
+            <summary>
+            Gets or sets a value indicating whether to clear the Internet Explorer cache before launching the browser. When set to true, clears the system cache for all instances of Internet Explorer, even those already running when the driven instance is launched. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ForceCreateProcessApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows CreateProcess API when launching Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ForceShellWindowsApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows ShellWindows API when attaching to Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IgnoreZoomLevel">
+            <summary>
+            Gets or sets a value indicating whether to ignore the zoom level of Internet Explorer .
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.InitialBrowserUrl">
+            <summary>
+            Gets or sets the initial URL displayed when IE is launched. If not set, the browser launches with the internal startup page for the WebDriver server.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IntroduceInstability">
+            <summary>
+            Gets or sets a value indicating whether to ignore the settings of the Internet Explorer Protected Mode.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.PageLoadStrategy">
+            <summary>
+            Gets or sets the value for describing how the browser is to wait for pages to load in the browser. Defaults to OpenQA.Selenium.PageLoadStrategy.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.RequireWindowFocus">
+            <summary>
+            Gets or sets a value indicating whether to require the browser window to have focus before interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.UnexpectedAlertBehavior">
+            <summary>
+            Gets or sets the value for describing how unexpected alerts are to be handled in the browser. Defaults to OpenQA.Selenium.UnhandledPromptBehavior.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.UsePerProcessProxy">
+            <summary>
+            Gets or sets a value indicating whether to use the supplied OpenQA.Selenium.Proxy settings on a per-process basis, not updating the system installed proxy setting. This property is only valid when setting a OpenQA.Selenium.Proxy, where the OpenQA.Selenium.Proxy.Kind property is either OpenQA.Selenium.ProxyKind.Direct, OpenQA.Selenium.ProxyKind.System, or OpenQA.Selenium.ProxyKind.Manual, and is otherwise ignored. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.Host">
+            <summary>
+            Gets or sets the value of the host adapter on which the IEDriverServer should listen for connections.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LibraryExtractionPath">
+            <summary>
+            Gets or sets the path to which the supporting library of the IEDriverServer.exe is extracted. Defaults to the temp directory if this property is not set.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LogFile">
+            <summary>
+            Gets or sets the location of the log file written to by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LoggingLevel">
+            <summary>
+            Gets or sets the logging level used by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is suppressed when starting the driver server executable. Defaults to false, meaning diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.WhitelistedIPAddresses">
+            <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to connect to this instance of the IEDriverServer. Defaults to an empty string, which means only the local loopback address can connect.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.FtpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the FTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.HttpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the HTTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IsAutoDetect">
+            <summary>
+            Gets or sets a value indicating whether the proxy uses automatic detection.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ProxyKind">
+            <summary>
+            Gets or sets the type of proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.NoProxy">
+            <summary>
+            Gets or sets the value for bypass proxy addresses.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ProxyAutoConfigUrl">
+            <summary>
+            Gets or sets the URL used for proxy automatic configuration.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksPassword">
+            <summary>
+            Gets or sets the value of password for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SOCKS protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksUserName">
+            <summary>
+            Gets or sets the value of username for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SslProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SSL protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.FileUploadTimeout">
+            <summary>
+            Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Opera">
             <summary>
             Preferences for the Opera Driver
@@ -3895,6 +4392,73 @@
             Gets or sets the base URL path prefix for commands (e.g., "wd/url").
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.OperaSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.OperaSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.DebuggerAddress">
+            <summary>
+            Gets or sets the address of a Opera debugger server to connect to. Should be of the form "{hostname|IP address}:port".
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.LeaveBrowserRunning">
+            <summary>
+            Gets or sets a value indicating whether Opera should be left running after the OperaDriver instance is exited. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.MinidumpPath">
+            <summary>
+            Gets or sets the directory in which to store minidump files.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.AndroidDebugBridgePort">
+            <summary>
+            Gets or sets the port on which the Android Debug Bridge is listening for commands.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.EnableVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the OperaDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.LogPath">
+            <summary>
+            Gets or sets the location of the log file written to by the OperaDriver executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.PortServerAddress">
+            <summary>
+            Gets or sets the address of a server to contact for reserving a port.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.UrlPathPrefix">
+            <summary>
+            Gets or sets the base URL path prefix for commands (e.g., "wd/url").
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Remote">
             <summary>
             Preferences for Remote Drivers
@@ -3906,6 +4470,21 @@
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.Remote.DesiredCapabilities">
+            <summary>
+            Capabilities of the browser that you are going to use
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.RemoteSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.RemoteSettings.DefaultRemoteAddress">
+            <summary>
+            Default address for the Web Driver
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.RemoteSettings.DesiredCapabilities">
             <summary>
             Capabilities of the browser that you are going to use
             </summary>
@@ -4230,36 +4809,40 @@
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Preferences.IDriverSettings,System.Boolean)">
             <summary>
             Base constructor for RatDriver
             </summary>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,Liberator.Driver.Preferences.FirefoxSettings,System.Boolean)">
             <summary>
             Creates an anstance of Firefox with a specified profile
             </summary>
             <param name="profileName">The name of the profile to load</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean,Liberator.Driver.Preferences.FirefoxSettings,System.Boolean)">
             <summary>
             Creates a firefox instance using a profile directory path
             </summary>
             <param name="profileDirectory">The path of the profile directory</param>
             <param name="cleanDirectory">Whether to clean the directory</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Enums.EnumPhoneType,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Enums.EnumPhoneType,System.Boolean,Liberator.Driver.Preferences.ChromeSettings,System.Boolean)">
             <summary>
             Creates a chrome driver instance in modile emulation mode
             </summary>
             <param name="type">Which type of phone to emulate</param>
             <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Int64,System.Int64,System.String,System.Double,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Int64,System.Int64,System.String,System.Double,System.Boolean,Liberator.Driver.Preferences.ChromeSettings,System.Boolean)">
             <summary>
             Creates a chrome driver instance in modile emulation mode
             </summary>
@@ -4268,6 +4851,7 @@
             <param name="userAgent">The user agent returned by the device</param>
             <param name="pixelRatio">The pixel ratio of the screen</param>
             <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.WaitForPageToLoad(OpenQA.Selenium.IWebElement)">

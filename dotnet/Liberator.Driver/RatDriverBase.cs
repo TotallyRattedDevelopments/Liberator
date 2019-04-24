@@ -1,6 +1,7 @@
 ﻿using Liberator.Driver.BrowserControl;
 using Liberator.Driver.Enums;
 using Liberator.Driver.Performance;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -41,8 +42,10 @@ namespace Liberator.Driver
         /// <summary>
         /// Base constructor for RatDriver
         /// </summary>
+        /// <param name="driverSettings">Settings file for the Driver being instantiated.</param>
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
-        public RatDriver([Optional, DefaultParameterValue(false)]bool performanceTimings)
+        public RatDriver([Optional, DefaultParameterValue(null)]IDriverSettings driverSettings,
+            [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
             RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
@@ -68,8 +71,10 @@ namespace Liberator.Driver
         /// Creates an anstance of Firefox with a specified profile
         /// </summary>
         /// <param name="profileName">The name of the profile to load</param>
+        /// <param name="driverSettings">Settings file for the Driver being instantiated.</param>
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
-        public RatDriver(string profileName, [Optional, DefaultParameterValue(false)]bool performanceTimings)
+        public RatDriver(string profileName, [Optional, DefaultParameterValue(null)]FirefoxSettings driverSettings,
+            [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
             RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
@@ -101,8 +106,11 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="profileDirectory">The path of the profile directory</param>
         /// <param name="cleanDirectory">Whether to clean the directory</param>
+        /// <param name="driverSettings">Settings file for the Driver being instantiated.</param>
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
-        public RatDriver(string profileDirectory, bool cleanDirectory, [Optional, DefaultParameterValue(false)]bool performanceTimings)
+        public RatDriver(string profileDirectory, bool cleanDirectory,
+            [Optional, DefaultParameterValue(null)]FirefoxSettings driverSettings,
+             [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
             RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
@@ -134,8 +142,11 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="type">Which type of phone to emulate</param>
         /// <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+        /// <param name="driverSettings">Settings file for the Driver being instantiated.</param>
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
-        public RatDriver(EnumPhoneType type, [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
+        public RatDriver(EnumPhoneType type, [Optional, DefaultParameterValue(false)] bool touch,
+            [Optional, DefaultParameterValue(null)]ChromeSettings driverSettings,
+            [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
             RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
@@ -170,9 +181,12 @@ namespace Liberator.Driver
         /// <param name="userAgent">The user agent returned by the device</param>
         /// <param name="pixelRatio">The pixel ratio of the screen</param>
         /// <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+        /// <param name="driverSettings">Settings file for the Driver being instantiated.</param>
         /// <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
-        public RatDriver(Int64 height, Int64 width, string userAgent, double pixelRatio,
-            [Optional, DefaultParameterValue(false)] bool touch, [Optional, DefaultParameterValue(false)]bool performanceTimings)
+        public RatDriver(long height, long width, string userAgent, double pixelRatio,
+            [Optional, DefaultParameterValue(false)] bool touch,
+            [Optional, DefaultParameterValue(null)]ChromeSettings driverSettings,
+            [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
             RecordPerformance = performanceTimings;
             if (performanceTimings) { InitialiseRatWatch(performanceTimings); }

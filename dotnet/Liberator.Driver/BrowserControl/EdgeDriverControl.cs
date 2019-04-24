@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using System;
@@ -36,6 +37,25 @@ namespace Liberator.Driver.BrowserControl
         public EdgeDriverControl()
         {
             Options = new EdgeOptions();
+        }
+
+        /// <summary>
+        /// Allows the specification of Edge Driver settings
+        /// </summary>
+        /// <param name="edgeSettings">The settings file to be used.</param>
+        public EdgeDriverControl(EdgeSettings edgeSettings)
+        {
+            Options = new EdgeOptions();
+
+            if (edgeSettings != null)
+            {
+                Edge.HideCommandPromptWindow = edgeSettings.HideCommandPromptWindow;
+                Edge.Host = edgeSettings.Host;
+                Edge.Package = edgeSettings.Package;
+                Edge.Port = edgeSettings.Port;
+                Edge.SuppressInitialDiagnosticInformation = edgeSettings.SuppressInitialDiagnosticInformation;
+                Edge.UseVerboseLogging = edgeSettings.UseVerboseLogging;
+            }
         }
 
         #endregion

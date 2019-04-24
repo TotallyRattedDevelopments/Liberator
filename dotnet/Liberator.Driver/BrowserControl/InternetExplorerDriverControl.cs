@@ -4,6 +4,7 @@ using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
 using System.IO;
+using Liberator.Driver.Preferences;
 
 namespace Liberator.Driver.BrowserControl
 {
@@ -58,6 +59,55 @@ namespace Liberator.Driver.BrowserControl
             //SetInternetExplorerProxy();
             SetInternetExplorerOptions();
             SetInternetExplorerDriverService();
+        }
+
+        /// <summary>
+        /// Allows the specification of Internet Explorer Driver settings
+        /// </summary>
+        /// <param name="internetExplorerSettings">The settings file to be used.</param>
+        public InternetExplorerDriverControl(InternetExplorerSettings internetExplorerSettings)
+        {
+            //SetInternetExplorerProxy();
+            SetInternetExplorerOptions();
+            SetInternetExplorerDriverService();
+
+            if (internetExplorerSettings != null)
+            {
+                InternetExplorer.CommandLineArguments = internetExplorerSettings.CommandLineArguments;
+                InternetExplorer.EnableFullPageScreenshot = internetExplorerSettings.EnableFullPageScreenshot;
+                InternetExplorer.EnableNativeEvents = internetExplorerSettings.EnableNativeEvents;
+                InternetExplorer.EnablePersistentHover = internetExplorerSettings.EnablePersistentHover;
+                InternetExplorer.EnsureCleanSession = internetExplorerSettings.EnsureCleanSession;
+                InternetExplorer.FileUploadTimeout = internetExplorerSettings.FileUploadTimeout;
+                InternetExplorer.ForceCreateProcessApi = internetExplorerSettings.ForceCreateProcessApi;
+                InternetExplorer.ForceShellWindowsApi = internetExplorerSettings.ForceShellWindowsApi;
+                InternetExplorer.FtpProxy = internetExplorerSettings.FtpProxy;
+                InternetExplorer.HideCommandPromptWindow = internetExplorerSettings.HideCommandPromptWindow;
+                InternetExplorer.Host = internetExplorerSettings.Host;
+                InternetExplorer.HttpProxy = internetExplorerSettings.HttpProxy;
+                InternetExplorer.IgnoreZoomLevel = internetExplorerSettings.IgnoreZoomLevel;
+                InternetExplorer.InitialBrowserUrl = internetExplorerSettings.InitialBrowserUrl;
+                InternetExplorer.IntroduceInstability = internetExplorerSettings.IntroduceInstability;
+                InternetExplorer.IsAutoDetect = internetExplorerSettings.IsAutoDetect;
+                InternetExplorer.LibraryExtractionPath = internetExplorerSettings.LibraryExtractionPath;
+                InternetExplorer.LogFile = internetExplorerSettings.LogFile;
+                InternetExplorer.LoggingLevel = internetExplorerSettings.LoggingLevel;
+                InternetExplorer.NoProxy = internetExplorerSettings.NoProxy;
+                InternetExplorer.PageLoadStrategy = internetExplorerSettings.PageLoadStrategy;
+                InternetExplorer.Port = internetExplorerSettings.Port;
+                InternetExplorer.ProxyAutoConfigUrl = internetExplorerSettings.ProxyAutoConfigUrl;
+                InternetExplorer.ProxyKind = internetExplorerSettings.ProxyKind;
+                InternetExplorer.RequireWindowFocus = internetExplorerSettings.RequireWindowFocus;
+                InternetExplorer.ScrollBehavior = internetExplorerSettings.ScrollBehavior;
+                InternetExplorer.SocksPassword = internetExplorerSettings.SocksPassword;
+                InternetExplorer.SocksProxy = internetExplorerSettings.SocksProxy;
+                InternetExplorer.SocksUserName = internetExplorerSettings.SocksUserName;
+                InternetExplorer.SslProxy = internetExplorerSettings.SslProxy;
+                InternetExplorer.SuppressInitialDiagnosticInformation = internetExplorerSettings.SuppressInitialDiagnosticInformation;
+                InternetExplorer.UnexpectedAlertBehavior = internetExplorerSettings.UnexpectedAlertBehavior;
+                InternetExplorer.UsePerProcessProxy = internetExplorerSettings.UsePerProcessProxy;
+                InternetExplorer.WhitelistedIPAddresses = internetExplorerSettings.WhitelistedIPAddresses;
+            }
         }
 
         #endregion

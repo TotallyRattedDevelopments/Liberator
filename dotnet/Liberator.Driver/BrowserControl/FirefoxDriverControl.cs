@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
@@ -68,10 +69,38 @@ namespace Liberator.Driver.BrowserControl
         #region Constructor
 
         /// <summary>
-        /// Loads all settings into memory for the Firefox Driver from the app.config file
+        /// Default constructor
         /// </summary>
         public FirefoxDriverControl()
         {
+        }
+
+        /// <summary>
+        /// Allows the specification of Firefox Driver settings
+        /// </summary>
+        /// <param name="firefoxSettings">The settings file to be used.</param>
+        public FirefoxDriverControl(FirefoxSettings firefoxSettings)
+        {
+            if (firefoxSettings != null)
+            {
+                Firefox.AcceptUntrustedCertificates = firefoxSettings.AcceptUntrustedCertificates;
+                Firefox.AlwaysLoadNoFocusLibrary = firefoxSettings.AlwaysLoadNoFocusLibrary;
+                Firefox.AssumeUntrustedCertificateIssuer = firefoxSettings.AssumeUntrustedCertificateIssuer;
+                Firefox.CleanProfile = firefoxSettings.CleanProfile;
+                Firefox.CommunicationPort = firefoxSettings.ConnectToRunningBrowser;
+                Firefox.ConnectToRunningBrowser = firefoxSettings.ConnectToRunningBrowser;
+                Firefox.DeleteAfterUse = firefoxSettings.DeleteAfterUse;
+                Firefox.EnableNativeEvents = firefoxSettings.EnableNativeEvents;
+                Firefox.HideCommandPromptWindow = firefoxSettings.HideCommandPromptWindow;
+                Firefox.Host = firefoxSettings.Host;
+                Firefox.LogLevel = firefoxSettings.LogLevel;
+                Firefox.Port = firefoxSettings.Port;
+                Firefox.Preferences = firefoxSettings.Preferences;
+                Firefox.ProfileDirectory = firefoxSettings.ProfileDirectory;
+                Firefox.ProxyPreferences = firefoxSettings.ProxyPreferences;
+                Firefox.SuppressInitialDiagnosticInformation = firefoxSettings.SuppressInitialDiagnosticInformation;
+                Firefox.UseLegacyImplementation = firefoxSettings.UseLegacyImplementation;
+            }
         }
 
         #endregion
