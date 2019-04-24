@@ -115,8 +115,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] chromedrivers = Process.GetProcessesByName("geckodriver");
-                foreach (Process driver in chromedrivers) { driver.Kill(); }
                 SetOptions();
                 SetDriverService();
                 CreateBasicProfile();

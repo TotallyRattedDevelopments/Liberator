@@ -695,7 +695,7 @@ namespace Liberator.Driver
                     } 
                 }
                 Driver.Quit();
-                KillDrivers();
+                KillTestProcesses();
             }
             catch (Exception ex)
             {
@@ -889,26 +889,6 @@ namespace Liberator.Driver
                     Console.WriteLine("Cannot switch to a parent frame as the current frame does not have a parent");
                 }
                 HandleErrors(ex);
-            }
-        }
-
-
-
-        private void KillDrivers()
-        {
-            Process[] processList = Process.GetProcesses();
-            foreach (Process item in processList)
-            {
-                if (item.ProcessName.Contains("geckodriver") ||
-                    item.ProcessName.Contains("chromedriver") ||
-                    item.ProcessName.Contains("MicrosoftWebDriver") ||
-                    item.ProcessName.Contains("opera") ||
-                    item.ProcessName.Contains("phantomjs") ||
-                    item.ProcessName.Contains("IEDriverServer") ||
-                    item.ProcessName.Contains("iexplore.exe"))
-                {
-                    item.Kill();
-                }
             }
         }
     }
