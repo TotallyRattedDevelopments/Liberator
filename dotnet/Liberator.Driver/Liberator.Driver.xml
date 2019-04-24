@@ -4276,24 +4276,6 @@
             </summary>
             <param name="element">An element from the previous page. If omitted, the code will wait for the body of the page to be viosible</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.GetPidsOfExistingBrowsersAndDrivers(System.String)">
-            <summary>
-            Gets the Process IDs for existing browsers and web drivers
-            </summary>
-            <param name="driverType">Type of driver being used.</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExtractProcessIdsForCurrentBrowserAndDriver(System.String)">
-            <summary>
-            Extracts the Process IDs for the current browser and web driver.
-            </summary>
-            <param name="driverType">Type of driver being used.</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.GetProcessIds(System.Collections.Generic.List{System.Int32}@)">
-            <summary>
-            Gets the Process IDs for all running executables.
-            </summary>
-            <param name="pids">A list of Process IDs</param>
-        </member>
         <member name="M:Liberator.Driver.RatDriver`1.EstablishDriverSettings">
             <summary>
             Initialises driver settings.
@@ -4301,7 +4283,7 @@
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.BrowserProcessName(System.String)">
             <summary>
-            Returne the name of the process used by the prowser
+            Return the name of the process used by the browser
             </summary>
             <returns>The name of the browser process</returns>
         </member>
@@ -4316,6 +4298,13 @@
             Initialises the RatWatch for performance gathering
             </summary>
             <param name="performanceTimings">Whether to collect timings</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetProcesses(System.String,Liberator.Driver.ProcessCollectionTime)">
+            <summary>
+            Isolates the processes used in the test
+            </summary>
+            <param name="driverType">The name ofn the driver type</param>
+            <param name="processCollectionTime">The time in the initialisation at which the collection occurs.</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.HandleErrors(System.Exception)">
             <summary>
@@ -5196,6 +5185,11 @@
         <member name="M:Liberator.Driver.RatDriver`1.TerminateDriverProcess">
             <summary>
             Terminates the driver process attached to the current web driver
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.RatProcess">
+            <summary>
+            Process object for PID handling
             </summary>
         </member>
         <member name="T:Liberator.ExpectedConditions">
