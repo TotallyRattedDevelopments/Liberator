@@ -358,9 +358,17 @@ namespace Liberator.Driver
         {
             foreach (RatProcess process in testProcesses)
             {
-                var processObject = Process.GetProcessById(process.Id);
-                processObject.Kill();
-                processObject.WaitForExit();
+                try
+                {
+                    var processObject = Process.GetProcessById(process.Id);
+
+                    if (!processObject.HasExited)
+                    {
+                        processObject.Kill();
+                        processObject.WaitForExit();
+                    }
+                }
+                catch { } //No need to act, the process is already closed
             }
         }
 

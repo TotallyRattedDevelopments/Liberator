@@ -130,16 +130,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the Firefox driver.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start the Firefox driver.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -172,16 +172,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the Firefox driver with the configured profile.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start the Firefox driver with the configured profile.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -225,16 +225,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the Firefox driver with the configured profile.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start the Firefox driver with the configured profile.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -256,7 +256,7 @@ namespace Liberator.Driver.BrowserControl
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine(ex.Message);
+        //        Console.Out.WriteLine(ex.Message);
         //        return null;
         //    }
         //}
@@ -277,7 +277,7 @@ namespace Liberator.Driver.BrowserControl
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine(ex.Message);
+        //        Console.Out.WriteLine(ex.Message);
         //    }
         //    return response.Status;
         //}
@@ -298,15 +298,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not add the Firefox extension.");
+                        Console.Out.WriteLine("Could not add the Firefox extension.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -334,15 +334,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the Firefox path and timeout settings.");
+                        Console.Out.WriteLine("Could not set the Firefox path and timeout settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -379,15 +379,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the Firefox option settings.");
+                        Console.Out.WriteLine("Could not set the Firefox option settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 Options = null;
@@ -424,15 +424,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not create the Firefox profile specified in the config file.");
+                        Console.Out.WriteLine("Could not create the Firefox profile specified in the config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 Profile = null;
@@ -451,7 +451,7 @@ namespace Liberator.Driver.BrowserControl
 
                 string firfoxPrefs = Preferences.Firefox.ProxyPreferences;
 
-                if (firfoxPrefs.Contains(","))
+                if (firfoxPrefs != null && firfoxPrefs.Contains(","))
                 {
                     string[] proxyPrefs = firfoxPrefs.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -469,15 +469,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the Firefox proxy settings.");
+                        Console.Out.WriteLine("Could not set the Firefox proxy settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 ProxySettings = null;
@@ -518,15 +518,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the Firefox driver service settings.");
+                        Console.Out.WriteLine("Could not set the Firefox driver service settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 Service = null;
@@ -542,7 +542,7 @@ namespace Liberator.Driver.BrowserControl
             {
                 var firefoxPrefs = Preferences.Firefox.Preferences;
 
-                if (firefoxPrefs.Contains(","))
+                if (firefoxPrefs != null && firefoxPrefs.Contains(","))
                 {
                     var list = firefoxPrefs.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -558,16 +558,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not add the listed preferences to Firefox.");
-                        Console.WriteLine("Please reset the config file to its default settings.");
+                        Console.Out.WriteLine("Could not add the listed preferences to Firefox.");
+                        Console.Out.WriteLine("Please reset the config file to its default settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }

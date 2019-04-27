@@ -126,7 +126,6 @@ namespace Liberator.Driver.BrowserControl
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
                 Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
-                //Driver = new InternetExplorerDriver(Service);
                 return Driver;
             }
             catch (Exception ex)
@@ -134,16 +133,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start internet explorer driver.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start internet explorer driver.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -165,16 +164,16 @@ namespace Liberator.Driver.BrowserControl
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
                 Enum.TryParse(Preferences.InternetExplorer.ScrollBehavior, out scroll);
 
-                Boolean.TryParse(Preferences.InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
-                Boolean.TryParse(Preferences.InternetExplorer.EnableNativeEvents, out bool native);
-                Boolean.TryParse(Preferences.InternetExplorer.EnablePersistentHover, out bool hover);
-                Boolean.TryParse(Preferences.InternetExplorer.EnsureCleanSession, out bool cleanSession);
-                Boolean.TryParse(Preferences.InternetExplorer.ForceCreateProcessApi, out bool forceCreate);
-                Boolean.TryParse(Preferences.InternetExplorer.ForceShellWindowsApi, out bool forceShell);
-                Boolean.TryParse(Preferences.InternetExplorer.IgnoreZoomLevel, out bool ignoreZoom);
-                Boolean.TryParse(Preferences.InternetExplorer.IntroduceInstability, out bool instability);
-                Boolean.TryParse(Preferences.InternetExplorer.RequireWindowFocus, out bool requireFocus);
-                Boolean.TryParse(Preferences.InternetExplorer.UsePerProcessProxy, out bool perProcess);
+                bool.TryParse(InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
+                bool.TryParse(InternetExplorer.EnableNativeEvents, out bool native);
+                bool.TryParse(InternetExplorer.EnablePersistentHover, out bool hover);
+                bool.TryParse(InternetExplorer.EnsureCleanSession, out bool cleanSession);
+                bool.TryParse(InternetExplorer.ForceCreateProcessApi, out bool forceCreate);
+                bool.TryParse(InternetExplorer.ForceShellWindowsApi, out bool forceShell);
+                bool.TryParse(InternetExplorer.IgnoreZoomLevel, out bool ignoreZoom);
+                bool.TryParse(InternetExplorer.IntroduceInstability, out bool instability);
+                bool.TryParse(InternetExplorer.RequireWindowFocus, out bool requireFocus);
+                bool.TryParse(InternetExplorer.UsePerProcessProxy, out bool perProcess);
 
                 string cmdLine = Preferences.InternetExplorer.CommandLineArguments;
                 string url = Preferences.InternetExplorer.InitialBrowserUrl;
@@ -209,16 +208,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the internet explorer driver options settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not set the internet explorer driver options settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -259,16 +258,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the internet explorer driver service settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not set the internet explorer driver service settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }

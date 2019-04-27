@@ -7,7 +7,6 @@ using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 
 namespace Liberator.Driver
@@ -692,10 +691,13 @@ namespace Liberator.Driver
                     {
                         Driver.SwitchTo().Window(handle);
                         Driver.Close();
-                    } 
+                    }
                 }
-                Driver.Quit();
-                KillTestProcesses();
+                if (Driver != null)
+                {
+                    Driver.Quit();
+                    KillTestProcesses();
+                }
             }
             catch (Exception ex)
             {

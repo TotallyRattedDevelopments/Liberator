@@ -88,7 +88,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.Out.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -120,16 +120,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the opera diver options.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not set the opera diver options.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -170,16 +170,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the opera driver service.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start the opera driver service.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
