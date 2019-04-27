@@ -4,6 +4,7 @@ using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
 using System.IO;
+using Liberator.Driver.Preferences;
 
 namespace Liberator.Driver.BrowserControl
 {
@@ -60,6 +61,55 @@ namespace Liberator.Driver.BrowserControl
             SetInternetExplorerDriverService();
         }
 
+        /// <summary>
+        /// Allows the specification of Internet Explorer Driver settings
+        /// </summary>
+        /// <param name="internetExplorerSettings">The settings file to be used.</param>
+        public InternetExplorerDriverControl(InternetExplorerSettings internetExplorerSettings)
+        {
+            //SetInternetExplorerProxy();
+            SetInternetExplorerOptions();
+            SetInternetExplorerDriverService();
+
+            if (internetExplorerSettings != null)
+            {
+                InternetExplorer.CommandLineArguments = internetExplorerSettings.CommandLineArguments;
+                InternetExplorer.EnableFullPageScreenshot = internetExplorerSettings.EnableFullPageScreenshot;
+                InternetExplorer.EnableNativeEvents = internetExplorerSettings.EnableNativeEvents;
+                InternetExplorer.EnablePersistentHover = internetExplorerSettings.EnablePersistentHover;
+                InternetExplorer.EnsureCleanSession = internetExplorerSettings.EnsureCleanSession;
+                InternetExplorer.FileUploadTimeout = internetExplorerSettings.FileUploadTimeout;
+                InternetExplorer.ForceCreateProcessApi = internetExplorerSettings.ForceCreateProcessApi;
+                InternetExplorer.ForceShellWindowsApi = internetExplorerSettings.ForceShellWindowsApi;
+                InternetExplorer.FtpProxy = internetExplorerSettings.FtpProxy;
+                InternetExplorer.HideCommandPromptWindow = internetExplorerSettings.HideCommandPromptWindow;
+                InternetExplorer.Host = internetExplorerSettings.Host;
+                InternetExplorer.HttpProxy = internetExplorerSettings.HttpProxy;
+                InternetExplorer.IgnoreZoomLevel = internetExplorerSettings.IgnoreZoomLevel;
+                InternetExplorer.InitialBrowserUrl = internetExplorerSettings.InitialBrowserUrl;
+                InternetExplorer.IntroduceInstability = internetExplorerSettings.IntroduceInstability;
+                InternetExplorer.IsAutoDetect = internetExplorerSettings.IsAutoDetect;
+                InternetExplorer.LibraryExtractionPath = internetExplorerSettings.LibraryExtractionPath;
+                InternetExplorer.LogFile = internetExplorerSettings.LogFile;
+                InternetExplorer.LoggingLevel = internetExplorerSettings.LoggingLevel;
+                InternetExplorer.NoProxy = internetExplorerSettings.NoProxy;
+                InternetExplorer.PageLoadStrategy = internetExplorerSettings.PageLoadStrategy;
+                InternetExplorer.Port = internetExplorerSettings.Port;
+                InternetExplorer.ProxyAutoConfigUrl = internetExplorerSettings.ProxyAutoConfigUrl;
+                InternetExplorer.ProxyKind = internetExplorerSettings.ProxyKind;
+                InternetExplorer.RequireWindowFocus = internetExplorerSettings.RequireWindowFocus;
+                InternetExplorer.ScrollBehavior = internetExplorerSettings.ScrollBehavior;
+                InternetExplorer.SocksPassword = internetExplorerSettings.SocksPassword;
+                InternetExplorer.SocksProxy = internetExplorerSettings.SocksProxy;
+                InternetExplorer.SocksUserName = internetExplorerSettings.SocksUserName;
+                InternetExplorer.SslProxy = internetExplorerSettings.SslProxy;
+                InternetExplorer.SuppressInitialDiagnosticInformation = internetExplorerSettings.SuppressInitialDiagnosticInformation;
+                InternetExplorer.UnexpectedAlertBehavior = internetExplorerSettings.UnexpectedAlertBehavior;
+                InternetExplorer.UsePerProcessProxy = internetExplorerSettings.UsePerProcessProxy;
+                InternetExplorer.WhitelistedIPAddresses = internetExplorerSettings.WhitelistedIPAddresses;
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -72,13 +122,10 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] iedrivers = Process.GetProcessesByName("IEDriverServer");
-                foreach (Process driver in iedrivers) { driver.Kill(); }
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
                 Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
-                //Driver = new InternetExplorerDriver(Service);
                 return Driver;
             }
             catch (Exception ex)
@@ -86,16 +133,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start internet explorer driver.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start internet explorer driver.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -117,16 +164,16 @@ namespace Liberator.Driver.BrowserControl
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
                 Enum.TryParse(Preferences.InternetExplorer.ScrollBehavior, out scroll);
 
-                Boolean.TryParse(Preferences.InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
-                Boolean.TryParse(Preferences.InternetExplorer.EnableNativeEvents, out bool native);
-                Boolean.TryParse(Preferences.InternetExplorer.EnablePersistentHover, out bool hover);
-                Boolean.TryParse(Preferences.InternetExplorer.EnsureCleanSession, out bool cleanSession);
-                Boolean.TryParse(Preferences.InternetExplorer.ForceCreateProcessApi, out bool forceCreate);
-                Boolean.TryParse(Preferences.InternetExplorer.ForceShellWindowsApi, out bool forceShell);
-                Boolean.TryParse(Preferences.InternetExplorer.IgnoreZoomLevel, out bool ignoreZoom);
-                Boolean.TryParse(Preferences.InternetExplorer.IntroduceInstability, out bool instability);
-                Boolean.TryParse(Preferences.InternetExplorer.RequireWindowFocus, out bool requireFocus);
-                Boolean.TryParse(Preferences.InternetExplorer.UsePerProcessProxy, out bool perProcess);
+                bool.TryParse(InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
+                bool.TryParse(InternetExplorer.EnableNativeEvents, out bool native);
+                bool.TryParse(InternetExplorer.EnablePersistentHover, out bool hover);
+                bool.TryParse(InternetExplorer.EnsureCleanSession, out bool cleanSession);
+                bool.TryParse(InternetExplorer.ForceCreateProcessApi, out bool forceCreate);
+                bool.TryParse(InternetExplorer.ForceShellWindowsApi, out bool forceShell);
+                bool.TryParse(InternetExplorer.IgnoreZoomLevel, out bool ignoreZoom);
+                bool.TryParse(InternetExplorer.IntroduceInstability, out bool instability);
+                bool.TryParse(InternetExplorer.RequireWindowFocus, out bool requireFocus);
+                bool.TryParse(InternetExplorer.UsePerProcessProxy, out bool perProcess);
 
                 string cmdLine = Preferences.InternetExplorer.CommandLineArguments;
                 string url = Preferences.InternetExplorer.InitialBrowserUrl;
@@ -161,16 +208,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the internet explorer driver options settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not set the internet explorer driver options settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -211,16 +258,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not set the internet explorer driver service settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not set the internet explorer driver service settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
