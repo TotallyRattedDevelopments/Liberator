@@ -34,7 +34,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -55,7 +55,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -80,7 +80,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -105,7 +105,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -129,7 +129,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -154,7 +154,7 @@ namespace Liberator.Driver
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Unable to complete wait for element correctly.");
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
                 }
                 HandleErrors(ex);
             }
@@ -178,18 +178,18 @@ namespace Liberator.Driver
                 try
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                    { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     element.SendKeys(Keys.Enter);
                 }
                 catch (Exception ex)
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     {
-                        Console.WriteLine("Cannot click on the element requested. Both methods fail.");
+                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
                     }
                     if (ex.GetType() == typeof(ElementNotVisibleException))
                     {
-                        Console.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
                     }
                     HandleErrors(ex);
                 }
@@ -214,18 +214,18 @@ namespace Liberator.Driver
             {
                 try
                 {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     element.SendKeys(Keys.Enter);
                 }
                 catch (Exception ex)
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     {
-                        Console.WriteLine("Cannot click on the element requested. Both methods fail.");
+                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
                     }
                     if (ex.GetType() == typeof(ElementNotVisibleException))
                     {
-                        Console.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
                     }
                     HandleErrors(ex);
                 }
@@ -250,18 +250,18 @@ namespace Liberator.Driver
             {
                 try
                 {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     Driver.FindElement(locator).SendKeys(Keys.Enter);
                 }
                 catch (Exception)
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     {
-                        Console.WriteLine("Cannot click on the element requested. Both methods fail.");
+                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
                     }
                     if (ex.GetType() == typeof(ElementNotVisibleException))
                     {
-                        Console.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
                     }
                     HandleErrors(ex);
                 }
@@ -294,18 +294,18 @@ namespace Liberator.Driver
             {
                 try
                 {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     Element.SendKeys(Keys.Enter);
                 }
                 catch (Exception)
                 {
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     {
-                        Console.WriteLine("Cannot click on the element requested. Both methods fail.");
+                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
                     }
                     if (ex.GetType() == typeof(ElementNotVisibleException))
                     {
-                        Console.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
                     }
                     HandleErrors(ex);
                 }
@@ -334,7 +334,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failure during attempt to click a link which opens a page."); }
                 HandleErrors(ex);
             }
         }
@@ -358,7 +358,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failure during attempt to click a link which opens a page."); }
                 HandleErrors(ex);
             }
         }
@@ -381,7 +381,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failure during attempt to click a link which opens a page."); }
                 HandleErrors(ex);
             }
         }
@@ -404,7 +404,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failure during attempt to click a link which opens a page."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failure during attempt to click a link which opens a page."); }
                 HandleErrors(ex);
             }
         }
@@ -425,7 +425,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not get the text of the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not get the text of the specified element."); }
                 HandleErrors(ex);
             }
             return null;
@@ -448,7 +448,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not get the text of the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not get the text of the specified element."); }
                 HandleErrors(ex);
             }
             return null;
@@ -471,7 +471,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not get the text of the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not get the text of the specified element."); }
                 HandleErrors(ex);
             }
             return null;
@@ -495,7 +495,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not get the text of the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not get the text of the specified element."); }
                 HandleErrors(ex);
             }
             return null;
@@ -516,7 +516,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not confirm whether the specified element exists."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not confirm whether the specified element exists."); }
                 return false;
             }
         }
@@ -536,7 +536,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could not confirm whether the specified element exists."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not confirm whether the specified element exists."); }
                 return false;
             }
         }
@@ -559,7 +559,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
+                { Console.Out.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
                 HandleErrors(ex);
             }
             return null;
@@ -583,7 +583,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
+                { Console.Out.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
                 HandleErrors(ex);
             }
             return null;
@@ -608,7 +608,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
+                { Console.Out.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
                 HandleErrors(ex);
             }
             return null;
@@ -634,7 +634,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
+                { Console.Out.WriteLine("Failed to get the {0} attribute from the specified element.", attribute); }
                 HandleErrors(ex);
             }
             return null;
@@ -660,7 +660,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the CSS Selector: {0}.", cssSelector); }
+                { Console.Out.WriteLine("Could not find an element using the CSS Selector: {0}.", cssSelector); }
                 HandleErrors(ex);
             }
             return null;
@@ -686,7 +686,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the CSS Selector: {0}.", cssSelector); }
+                { Console.Out.WriteLine("Could not find an element using the CSS Selector: {0}.", cssSelector); }
                 HandleErrors(ex);
             }
             return null;
@@ -715,7 +715,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find subelements using the CSS Selector: {0}.", cssSelector); }
+                { Console.Out.WriteLine("Could not find subelements using the CSS Selector: {0}.", cssSelector); }
                 HandleErrors(ex);
             }
             return null;
@@ -745,7 +745,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the CSS Selector: {0}.", cssSelector); }
+                { Console.Out.WriteLine("Could not find a subelement using the CSS Selector: {0}.", cssSelector); }
                 HandleErrors(ex);
             }
             return null;
@@ -762,7 +762,7 @@ namespace Liberator.Driver
             try
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IWebElement element = Driver.FindElement(By.ClassName(className));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -771,7 +771,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the Class Name: {0}.", className); }
+                { Console.Out.WriteLine("Could not find an element using the Class Name: {0}.", className); }
                 HandleErrors(ex);
             }
             return null;
@@ -787,7 +787,7 @@ namespace Liberator.Driver
             try
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -796,7 +796,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the Class Name: {0}.", className); }
+                { Console.Out.WriteLine("Could not find an element using the Class Name: {0}.", className); }
                 HandleErrors(ex);
             }
             return null;
@@ -816,7 +816,7 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeClickable(element); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 IEnumerable<IWebElement> collection = element.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
@@ -825,7 +825,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
+                { Console.Out.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
                 HandleErrors(ex);
             }
             return null;
@@ -845,7 +845,7 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 if (wait) { WaitForElementToBeVisible(locator); }
-                if (wait) { WaitForElementToBeVisible(By.CssSelector(className)); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
                 Element = Driver.FindElement(locator);
                 IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
                 Elements = collection;
@@ -855,7 +855,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
+                { Console.Out.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
                 HandleErrors(ex);
             }
             return null;
@@ -881,7 +881,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the ID: {0}.", id); }
+                { Console.Out.WriteLine("Could not find an element using the ID: {0}.", id); }
                 HandleErrors(ex);
             }
             return null;
@@ -907,7 +907,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find an element using the link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -933,7 +933,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find an element using the link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -962,7 +962,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -992,7 +992,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -1018,7 +1018,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the name: {0}.", name); }
+                { Console.Out.WriteLine("Could not find an element using the name: {0}.", name); }
                 HandleErrors(ex);
             }
             return null;
@@ -1044,7 +1044,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the name: {0}.", name); }
+                { Console.Out.WriteLine("Could not find an element using the name: {0}.", name); }
                 HandleErrors(ex);
             }
             return null;
@@ -1073,7 +1073,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the name: {0}.", name); }
+                { Console.Out.WriteLine("Could not find a subelement using the name: {0}.", name); }
                 HandleErrors(ex);
             }
             return null;
@@ -1103,7 +1103,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the name: {0}.", name); }
+                { Console.Out.WriteLine("Could not find a subelement using the name: {0}.", name); }
                 HandleErrors(ex);
             }
             return null;
@@ -1129,7 +1129,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the partial link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find an element using the partial link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -1155,7 +1155,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the partial link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find an element using the partial link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -1184,7 +1184,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -1214,7 +1214,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
+                { Console.Out.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
                 HandleErrors(ex);
             }
             return null;
@@ -1240,7 +1240,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the tag name: {0}.", tagName); }
+                { Console.Out.WriteLine("Could not find an element using the tag name: {0}.", tagName); }
                 HandleErrors(ex);
             }
             return null;
@@ -1266,7 +1266,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the tag name: {0}.", tagName); }
+                { Console.Out.WriteLine("Could not find an element using the tag name: {0}.", tagName); }
                 HandleErrors(ex);
             }
             return null;
@@ -1294,7 +1294,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
+                { Console.Out.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
                 HandleErrors(ex);
             }
             return null;
@@ -1323,7 +1323,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
+                { Console.Out.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
                 HandleErrors(ex);
             }
             return null;
@@ -1349,7 +1349,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
+                { Console.Out.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
                 HandleErrors(ex);
             }
             return null;
@@ -1375,7 +1375,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
+                { Console.Out.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
                 HandleErrors(ex);
             }
             return null;
@@ -1404,7 +1404,7 @@ namespace Liberator.Driver
             catch (Exception ex)
             {
                 if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
-                { Console.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
+                { Console.Out.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
                 HandleErrors(ex);
             }
             return null;
@@ -1462,7 +1462,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to extract the element required with defined parameters.");
+                Console.Out.WriteLine("Unable to extract the element required with defined parameters.");
                 HandleErrors(ex);
             }
             return null;
@@ -1493,7 +1493,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to extract the element required with defined parameters.");
+                Console.Out.WriteLine("Unable to extract the element required with defined parameters.");
                 HandleErrors(ex);
             }
             return null;
@@ -1582,7 +1582,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to retrieve the css value required with defined parameters.");
+                Console.Out.WriteLine("Unable to retrieve the css value required with defined parameters.");
                 HandleErrors(ex);
                 return null;
             }
@@ -1605,7 +1605,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to retrieve the css value required with defined parameters.");
+                Console.Out.WriteLine("Unable to retrieve the css value required with defined parameters.");
                 HandleErrors(ex);
                 return null;
             }
