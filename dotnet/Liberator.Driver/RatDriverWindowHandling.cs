@@ -25,7 +25,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Cannot retrieve current window handle.");
+                Console.Out.WriteLine("Cannot retrieve current window handle.");
                 HandleErrors(ex);
                 return null;
             }
@@ -43,10 +43,10 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.Out.WriteLine(ex.Message);
                 if (ex.GetType() == typeof(NoSuchWindowException))
                 {
-                    Console.WriteLine("Cannot switch to a window named {0}, as none are currently loaded with that name.", windowName);
+                    Console.Out.WriteLine("Cannot switch to a window named {0}, as none are currently loaded with that name.", windowName);
                 }
                 HandleErrors(ex);
             }
@@ -64,9 +64,9 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Unable to get the title of the browser that is in focus");
-                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                Console.Out.WriteLine(ex.Message);
+                Console.Out.WriteLine("Unable to get the title of the browser that is in focus");
+                if (Driver.WindowHandles.Count == 0) { Console.Out.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -84,7 +84,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.Out.WriteLine(ex.Message);
                 HandleErrors(ex);
                 return null;
             }
@@ -102,9 +102,9 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("Unable to get the title of the browser that is in focus");
-                if (Driver.WindowHandles.Count == 0) { Console.WriteLine("No window is currently attached to the driver."); }
+                Console.Out.WriteLine(ex.Message);
+                Console.Out.WriteLine("Unable to get the title of the browser that is in focus");
+                if (Driver.WindowHandles.Count == 0) { Console.Out.WriteLine("No window is currently attached to the driver."); }
                 HandleErrors(ex);
                 return null;
             }
@@ -128,7 +128,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to open a new window.");
+                Console.Out.WriteLine("Unable to open a new window.");
                 HandleErrors(ex);
             }
         }
@@ -148,7 +148,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to close the current window.");
+                Console.Out.WriteLine("Unable to close the current window.");
                 HandleErrors(ex);
             }
         }
@@ -164,7 +164,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                Console.WriteLine("Error encountered when terminating the browser process.");
+                Console.Out.WriteLine("Error encountered when terminating the browser process.");
             }
         }
 
@@ -179,7 +179,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                Console.WriteLine("Error encountered when terminating the driver process.");
+                Console.Out.WriteLine("Error encountered when terminating the driver process.");
             }
         }
 

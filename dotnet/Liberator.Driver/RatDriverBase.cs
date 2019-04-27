@@ -93,8 +93,8 @@ namespace Liberator.Driver
             }
             else
             {
-                Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.WriteLine("Please switch to Firefox if named profile loading is required");
+                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
             }
 
             if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -129,8 +129,8 @@ namespace Liberator.Driver
             }
             else
             {
-                Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.WriteLine("Please switch to Firefox if named profile loading is required");
+                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
             }
 
             if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -165,8 +165,8 @@ namespace Liberator.Driver
             }
             else
             {
-                Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.WriteLine("Please switch to Chrome if mobile emulation is required");
+                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
             }
 
             if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -205,8 +205,8 @@ namespace Liberator.Driver
             }
             else
             {
-                Console.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.WriteLine("Please switch to Chrome if mobile emulation is required");
+                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
             }
 
             if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -247,7 +247,7 @@ namespace Liberator.Driver
             else
             {
                 //TODO: Investigate the Opera Driver with respect to DOM staleness
-                Console.WriteLine("Opera does not currently seem to report staleness of the DOM. Under investigation");
+                Console.Out.WriteLine("Opera does not currently seem to report staleness of the DOM. Under investigation");
             }
 
             if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
