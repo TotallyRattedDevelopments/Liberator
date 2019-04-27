@@ -1,8 +1,8 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -39,6 +39,25 @@ namespace Liberator.Driver.BrowserControl
             Options = new EdgeOptions();
         }
 
+        /// <summary>
+        /// Allows the specification of Edge Driver settings
+        /// </summary>
+        /// <param name="edgeSettings">The settings file to be used.</param>
+        public EdgeDriverControl(EdgeSettings edgeSettings)
+        {
+            Options = new EdgeOptions();
+
+            if (edgeSettings != null)
+            {
+                Edge.HideCommandPromptWindow = edgeSettings.HideCommandPromptWindow;
+                Edge.Host = edgeSettings.Host;
+                Edge.Package = edgeSettings.Package;
+                Edge.Port = edgeSettings.Port;
+                Edge.SuppressInitialDiagnosticInformation = edgeSettings.SuppressInitialDiagnosticInformation;
+                Edge.UseVerboseLogging = edgeSettings.UseVerboseLogging;
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -51,8 +70,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] webdrivers = Process.GetProcessesByName("MicrosoftWebDriver");
-                foreach (Process driver in webdrivers) { driver.Kill(); }
                 SetEdgeDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Driver = new EdgeDriver(Directory.GetParent(Preferences.BaseSettings.EdgeDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);
@@ -63,16 +80,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start Edge driver.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start Edge driver.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -116,15 +133,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not configure the Edge Driver Service settings.");
+                        Console.Out.WriteLine("Could not configure the Edge Driver Service settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }

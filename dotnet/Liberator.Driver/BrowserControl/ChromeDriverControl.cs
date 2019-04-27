@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -44,11 +45,49 @@ namespace Liberator.Driver.BrowserControl
         #region Constructor
 
         /// <summary>
-        /// Sets all defaults from specified entries in the app.config file
+        /// Sets all defaults
         /// </summary>
         public ChromeDriverControl()
         {
             Options = new ChromeOptions();
+        }
+
+        /// <summary>
+        /// Allows the specification of Chrome Driver settings
+        /// </summary>
+        /// <param name="chromeSettings">The settings file to be used.</param>
+        public ChromeDriverControl(ChromeSettings chromeSettings)
+        {
+            Options = new ChromeOptions();
+
+            if (chromeSettings != null)
+            {
+                Chrome.AndroidDebugBridgePort = chromeSettings.AndroidDebugBridgePort;
+                Chrome.BinaryLocation = chromeSettings.BinaryLocation;
+                Chrome.BufferUsageReportingInterval = chromeSettings.BufferUsageReportingInterval;
+                Chrome.CapabilityList = chromeSettings.CapabilityList;
+                Chrome.DebuggerAddress = chromeSettings.DebuggerAddress;
+                Chrome.EnableTouchEvents = chromeSettings.EnableTouchEvents;
+                Chrome.EnableVerboseLogging = chromeSettings.EnableVerboseLogging;
+                Chrome.ExtensionsList = chromeSettings.ExtensionsList;
+                Chrome.Height = chromeSettings.Height;
+                Chrome.HideCommandPromptWindow = chromeSettings.HideCommandPromptWindow;
+                Chrome.IsCollectingNetworkEvents = chromeSettings.IsCollectingNetworkEvents;
+                Chrome.IsCollectingPageEvents = chromeSettings.IsCollectingPageEvents;
+                Chrome.LeaveBrowserRunning = chromeSettings.LeaveBrowserRunning;
+                Chrome.LocalStatePreferences = chromeSettings.LocalStatePreferences;
+                Chrome.LogPath = chromeSettings.LogPath;
+                Chrome.MinidumpPath = chromeSettings.MinidumpPath;
+                Chrome.PixelRatio = chromeSettings.PixelRatio;
+                Chrome.Port = chromeSettings.Port;
+                Chrome.PortServerAddress = chromeSettings.PortServerAddress;
+                Chrome.SuppressInitialDiagnosticInformation = chromeSettings.SuppressInitialDiagnosticInformation;
+                Chrome.TracingCategories = chromeSettings.TracingCategories;
+                Chrome.UserAgent = chromeSettings.UserAgent;
+                Chrome.UserProfilePreferences = chromeSettings.UserProfilePreferences;
+                Chrome.WhitelistedIPAddresses = chromeSettings.WhitelistedIPAddresses;
+                Chrome.Width = chromeSettings.Width; 
+            }
         }
 
         #endregion
@@ -63,8 +102,6 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                Process[] chromedrivers = Process.GetProcessesByName("chromedriver");
-                foreach (Process driver in chromedrivers) { driver.Kill(); }
                 SetOptions();
                 SetDriverService();
                 AddAdditionalCapabilities();
@@ -78,16 +115,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start chrome driver.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start chrome driver.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -117,16 +154,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -158,16 +195,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
-                        Console.WriteLine("Please investigate the vales you have passed to the method.");
+                        Console.Out.WriteLine("Could not start the chrome driver's mobile emulation functionality.");
+                        Console.Out.WriteLine("Please investigate the vales you have passed to the method.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -202,15 +239,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to add the capability {0} | Value: {1}", name, value);
+                        Console.Out.WriteLine("Unable to add the capability {0} | Value: {1}", name, value);
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -234,15 +271,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to add the extension {0}", extensionPath);
+                        Console.Out.WriteLine("Unable to add the extension {0}", extensionPath);
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;
@@ -262,7 +299,7 @@ namespace Liberator.Driver.BrowserControl
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine(ex.Message);
+        //        Console.Out.WriteLine(ex.Message);
         //    }
         //}
 
@@ -287,9 +324,9 @@ namespace Liberator.Driver.BrowserControl
                 {
                     BinaryLocation = Preferences.BaseSettings.ChromeLocation
                 };
-                if (debug.Contains(@"\")) { options.DebuggerAddress = Preferences.Chrome.DebuggerAddress; }
+                if (debug != null && debug.Contains(@"\")) { options.DebuggerAddress = Preferences.Chrome.DebuggerAddress; }
                 options.LeaveBrowserRunning = leaveRunning;
-                if (minidump.Contains(@"\")) { options.MinidumpPath = minidump; }
+                if (minidump != null && minidump.Contains(@"\")) { options.MinidumpPath = minidump; }
                 //options.PerformanceLoggingPreferences = LoggingPreferences
 
                 AddAdditionalCapabilities();
@@ -303,16 +340,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to load driver options settings from the config file.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.Out.WriteLine("Unable to load driver options settings from the config file.");
+                        Console.Out.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -341,11 +378,11 @@ namespace Liberator.Driver.BrowserControl
                 service.AndroidDebugBridgePort = android;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = command;
-                if (logPath.Contains(@"\")) { service.LogPath = logPath; }
+                if (logPath != null && logPath.Contains(@"\")) { service.LogPath = logPath; }
                 service.Port = port;
-                if (portServer.Contains(@"\")) { service.PortServerAddress = portServer; }
+                if (portServer != null && portServer.Contains(@"\")) { service.PortServerAddress = portServer; }
                 service.SuppressInitialDiagnosticInformation = sidi;
-                if (whitelist.Contains(".")) { service.WhitelistedIPAddresses = whitelist; }
+                if (whitelist != null && whitelist.Contains(".")) { service.WhitelistedIPAddresses = whitelist; }
                 Service = service;
             }
             catch (Exception ex)
@@ -353,16 +390,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Driver was unable to load the settings for the mobile driver service.");
-                        Console.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
+                        Console.Out.WriteLine("Driver was unable to load the settings for the mobile driver service.");
+                        Console.Out.WriteLine("Please reset Liberator.Driver.Dll.Config to its default settings.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -403,16 +440,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Driver was unable to load the settings for the mobile driver service.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Driver was unable to load the settings for the mobile driver service.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -426,7 +463,7 @@ namespace Liberator.Driver.BrowserControl
             {
                 var capabilityList = Preferences.Chrome.CapabilityList;
 
-                if (capabilityList.Contains(","))
+                if (capabilityList != null && capabilityList.Contains(","))
                 {
                     var list = capabilityList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -445,16 +482,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Driver was unable to load the capabilities from the config file.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Driver was unable to load the capabilities from the config file.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -486,7 +523,7 @@ namespace Liberator.Driver.BrowserControl
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine(ex.Message);
+        //        Console.Out.WriteLine(ex.Message);
         //    }
         //}
 
@@ -514,16 +551,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Driver was unable to load the mobile emulation settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Driver was unable to load the mobile emulation settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -538,7 +575,7 @@ namespace Liberator.Driver.BrowserControl
             {
                 var extensionList = Preferences.Chrome.ExtensionsList;
 
-                if (extensionList.Contains(","))
+                if (extensionList != null && extensionList.Contains(","))
                 {
                     var list = extensionList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                     Options.AddExtensions(list);
@@ -549,15 +586,15 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to add the extensions specified in the config file");
+                        Console.Out.WriteLine("Unable to add the extensions specified in the config file");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -576,7 +613,7 @@ namespace Liberator.Driver.BrowserControl
                 var preferenceList = Preferences.Chrome.LocalStatePreferences;
 
 
-                if (preferenceList.Contains(","))
+                if (preferenceList != null && preferenceList.Contains(","))
                 {
                     var list = preferenceList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -595,16 +632,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to add the local state settings specified in the config file");
-                        Console.WriteLine("Setting: {0} | Value: {1}", name, objValue.ToString());
+                        Console.Out.WriteLine("Unable to add the local state settings specified in the config file");
+                        Console.Out.WriteLine("Setting: {0} | Value: {1}", name, objValue.ToString());
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -621,7 +658,7 @@ namespace Liberator.Driver.BrowserControl
             {
                 var preferenceList = Preferences.Chrome.UserProfilePreferences;
 
-                if (preferenceList.Contains(","))
+                if (preferenceList != null && preferenceList.Contains(","))
                 {
                     var list = preferenceList.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -640,16 +677,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to add the user profile settings specified in the config file");
-                        Console.WriteLine("Setting: {0} | Value: {1}", name, objValue.ToString());
+                        Console.Out.WriteLine("Unable to add the user profile settings specified in the config file");
+                        Console.Out.WriteLine("Setting: {0} | Value: {1}", name, objValue.ToString());
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
             }
@@ -688,16 +725,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Driver was unable to load the mobile emulation settings.");
-                        Console.WriteLine("Please investigate the changes you have made to your config file.");
+                        Console.Out.WriteLine("Driver was unable to load the mobile emulation settings.");
+                        Console.Out.WriteLine("Please investigate the changes you have made to your config file.");
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 };
                 return null;
@@ -726,16 +763,16 @@ namespace Liberator.Driver.BrowserControl
                 switch (Preferences.BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
-                        Console.WriteLine("Unable to set Chrome Mobile Emulation settings.");
-                        Console.WriteLine("Device Type: " + phoneType.ToString() + "| Touch Events: " + touchEvents.ToString());
+                        Console.Out.WriteLine("Unable to set Chrome Mobile Emulation settings.");
+                        Console.Out.WriteLine("Device Type: " + phoneType.ToString() + "| Touch Events: " + touchEvents.ToString());
                         break;
                     case EnumConsoleDebugLevel.NotSpecified:
                     case EnumConsoleDebugLevel.Message:
-                        Console.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.Message);
                         break;
                     case EnumConsoleDebugLevel.StackTrace:
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
+                        Console.Out.WriteLine(ex.Message);
+                        Console.Out.WriteLine(ex.StackTrace);
                         break;
                 }
                 return null;

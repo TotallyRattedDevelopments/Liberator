@@ -28,7 +28,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the hover command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the hover command."); }
                 HandleErrors(ex);
             }
         }
@@ -50,7 +50,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the hover command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the hover command."); }
                 HandleErrors(ex);
             }
         }
@@ -71,7 +71,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the click and hover command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the click and hover command."); }
                 HandleErrors(ex);
             }
         }
@@ -93,7 +93,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the click and hover command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the click and hover command."); }
                 HandleErrors(ex);
             }
         }
@@ -111,11 +111,10 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).ClickAndHold().Build().Perform();
-
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the click and hold command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the click and hold command."); }
                 HandleErrors(ex);
             }
         }
@@ -134,11 +133,10 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ClickAndHold().Build().Perform();
-
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute the click and hold command."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute the click and hold command."); }
                 HandleErrors(ex);
             }
         }
@@ -159,7 +157,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute a contextual click on the given element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute a contextual click on the given element."); }
                 HandleErrors(ex);
             }
         }
@@ -178,11 +176,10 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ContextClick().Build().Perform();
-
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute a contextual click on the given element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute a contextual click on the given element."); }
                 HandleErrors(ex);
             }
         }
@@ -200,11 +197,10 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).DoubleClick().Build().Perform();
-
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute a double click on the given element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute a double click on the given element."); }
                 HandleErrors(ex);
             }
         }
@@ -223,11 +219,10 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DoubleClick().Build().Perform();
-
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to execute a double click on the given element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to execute a double click on the given element."); }
                 HandleErrors(ex);
             }
         }
@@ -258,7 +253,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to drag and drop the given element to the given target."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to drag and drop the given element to the given target."); }
                 HandleErrors(ex);
             }
         }
@@ -298,7 +293,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to drag and drop the given element to the given target."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to drag and drop the given element to the given target."); }
                 HandleErrors(ex);
             }
         }
@@ -322,7 +317,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to drag and drop the given element to the given target."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to drag and drop the given element to the given target."); }
                 HandleErrors(ex);
             }
         }
@@ -347,7 +342,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Failed to drag and drop the given element to the given target."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Failed to drag and drop the given element to the given target."); }
                 HandleErrors(ex);
             }
         }
@@ -369,7 +364,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to complete the key depression on the given element"); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to complete the key depression on the given element"); }
                 HandleErrors(ex);
             }
         }
@@ -392,7 +387,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to complete the key depression on the given element"); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to complete the key depression on the given element"); }
                 HandleErrors(ex);
             }
         }
@@ -414,7 +409,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to complete the key release on the given element"); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to complete the key release on the given element"); }
                 HandleErrors(ex);
             }
         }
@@ -437,7 +432,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to complete the key release on the given element"); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to complete the key release on the given element"); }
                 HandleErrors(ex);
             }
         }
@@ -460,7 +455,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to move the cursor to the specified point."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to move the cursor to the specified point."); }
                 HandleErrors(ex);
             }
         }
@@ -484,7 +479,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to move the cursor to the specified point."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to move the cursor to the specified point."); }
                 HandleErrors(ex);
             }
         }
@@ -507,7 +502,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to move the cursor to the specified point."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to move the cursor to the specified point."); }
                 HandleErrors(ex);
             }
         }
@@ -531,7 +526,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to move the cursor to the specified point."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to move the cursor to the specified point."); }
                 HandleErrors(ex);
             }
         }
@@ -552,7 +547,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to release the mouse button at the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to release the mouse button at the specified element."); }
                 HandleErrors(ex);
             }
         }
@@ -574,7 +569,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Unable to release the mouse button at the specified element."); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Unable to release the mouse button at the specified element."); }
                 HandleErrors(ex);
             }
         }
@@ -597,7 +592,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", text); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", text); }
                 HandleErrors(ex);
             }
         }
@@ -621,7 +616,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", text); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", text); }
                 HandleErrors(ex);
             }
         }
@@ -643,7 +638,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", item); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", item); }
                 HandleErrors(ex);
             }
         }
@@ -666,7 +661,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", item); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", item); }
                 HandleErrors(ex);
             }
         }
@@ -688,7 +683,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", row.ToString()); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", row.ToString()); }
                 HandleErrors(ex);
             }
         }
@@ -711,7 +706,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", row.ToString()); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", row.ToString()); }
                 HandleErrors(ex);
             }
         }
@@ -733,7 +728,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", value); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", value); }
                 HandleErrors(ex);
             }
         }
@@ -756,7 +751,7 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.WriteLine("Could to send the value {0} to the specified field.", value); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to send the value {0} to the specified field.", value); }
                 HandleErrors(ex);
             }
         }
@@ -780,7 +775,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -801,7 +796,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -823,7 +818,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -846,7 +841,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -869,7 +864,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -893,7 +888,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -915,7 +910,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -938,7 +933,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -958,7 +953,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -979,7 +974,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1001,7 +996,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1024,7 +1019,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1046,7 +1041,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1069,7 +1064,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1091,7 +1086,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1114,7 +1109,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1134,7 +1129,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1155,7 +1150,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1177,7 +1172,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1200,7 +1195,7 @@ namespace Liberator.Driver
         //    }
         //    catch (Exception ex)
         //    {
-        //        Console.WriteLine("");
+        //        Console.Out.WriteLine("");
         //        HandleErrors(ex);
         //    }
         //}
@@ -1224,7 +1219,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not take a screenshot.");
+                    Console.Out.WriteLine("Could not take a screenshot.");
                 }
                 HandleErrors(ex);
             }
@@ -1246,7 +1241,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not return the JavaScript Executor.");
+                    Console.Out.WriteLine("Could not return the JavaScript Executor.");
                 }
                 HandleErrors(ex);
                 return null;
@@ -1268,7 +1263,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not execute the passed JavaScript.");
+                    Console.Out.WriteLine("Could not execute the passed JavaScript.");
                 }
                 HandleErrors(ex);
             }
@@ -1290,7 +1285,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not execute the passed JavaScript with the specified parameters.");
+                    Console.Out.WriteLine("Could not execute the passed JavaScript with the specified parameters.");
                 }
                 HandleErrors(ex);
             }
@@ -1311,7 +1306,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
+                    Console.Out.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }
                 HandleErrors(ex);
             }
@@ -1333,7 +1328,7 @@ namespace Liberator.Driver
             {
                 if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
                 {
-                    Console.WriteLine("Could not execute the passed asynchronous JavaScript.");
+                    Console.Out.WriteLine("Could not execute the passed asynchronous JavaScript.");
                 }
                 HandleErrors(ex);
             }
