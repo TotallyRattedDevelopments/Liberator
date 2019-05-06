@@ -34,6 +34,7 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <None Remove="BrowserDrivers\IEDriverServer.exe" />
     <None Remove="BrowserDrivers\MicrosoftWebDriver.exe" />
     <None Remove="BrowserDrivers\operadriver.exe" />
+    <None Remove="Liberator.Driver.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BrowserDrivers\chromedriver.exe">
@@ -49,6 +50,9 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="BrowserDrivers\operadriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Liberator.Driver.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
