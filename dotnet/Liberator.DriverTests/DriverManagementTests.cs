@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver;
+using Liberator.Driver.Preferences;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -354,8 +355,8 @@ namespace Liberator.DriverTests
             ratDriver.ClosePagesAndQuitDriver();
         }
 
-        [Ignore("Currently not allowing a cookie access")]
         [Test]
+        [Ignore("Currently not allowing a cookie access")]
         [Category("Chrome")]
         public void Chrome_CookieTests()
         {
@@ -1348,7 +1349,7 @@ namespace Liberator.DriverTests
         [Category("Firefox")]
         public void Firefox_NavigateUsingUriWithPerformance()
         {
-            RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>(true);
+            RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>(new FirefoxSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
             Uri url = new Uri("http://www.totallyratted.com");
             ratDriver.NavigateToPage(url);
@@ -1363,7 +1364,7 @@ namespace Liberator.DriverTests
         [Category("Chrome")]
         public void Chrome_NavigateUsingUriWithPerformance()
         {
-            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(true);
+            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(new ChromeSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
             Uri url = new Uri("http://www.totallyratted.com");
             ratDriver.NavigateToPage(url);
@@ -1378,7 +1379,7 @@ namespace Liberator.DriverTests
         [Category("Edge")]
         public void Edge_NavigateUsingUriWithPerformance()
         {
-            RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>(true);
+            RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>(new EdgeSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
             Uri url = new Uri("http://www.totallyratted.com");
             ratDriver.NavigateToPage(url);
@@ -1393,7 +1394,7 @@ namespace Liberator.DriverTests
         [Category("InternetExplorer")]
         public void InternetExplorer_NavigateUsingUriWithPerformance()
         {
-            RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>(true);
+            RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>(new InternetExplorerSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
             Uri url = new Uri("http://www.totallyratted.com");
             ratDriver.NavigateToPage(url);
@@ -1408,7 +1409,7 @@ namespace Liberator.DriverTests
         [Category("Opera")]
         public void Opera_NavigateUsingUriWithPerformance()
         {
-            RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>(true);
+            RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>(new OperaSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
             Uri url = new Uri("http://www.totallyratted.com");
             ratDriver.NavigateToPage(url);

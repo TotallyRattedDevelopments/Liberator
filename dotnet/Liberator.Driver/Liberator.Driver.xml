@@ -31,8 +31,14 @@
         </member>
         <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.#ctor">
             <summary>
-            Sets all defaults from specified entries in the app.config file
+            Sets all defaults
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.#ctor(Liberator.Driver.Preferences.ChromeSettings)">
+            <summary>
+            Allows the specification of Chrome Driver settings
+            </summary>
+            <param name="chromeSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.ChromeDriverControl.StartDriver">
             <summary>
@@ -150,6 +156,12 @@
             Loads preset values for the driver and service from the app.config file
             </summary>
         </member>
+        <member name="M:Liberator.Driver.BrowserControl.EdgeDriverControl.#ctor(Liberator.Driver.Preferences.EdgeSettings)">
+            <summary>
+            Allows the specification of Edge Driver settings
+            </summary>
+            <param name="edgeSettings">The settings file to be used.</param>
+        </member>
         <member name="M:Liberator.Driver.BrowserControl.EdgeDriverControl.StartDriver">
             <summary>
             Starts the Edge Driver with the preset values from app.config
@@ -208,8 +220,14 @@
         </member>
         <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.#ctor">
             <summary>
-            Loads all settings into memory for the Firefox Driver from the app.config file
+            Default constructor
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.#ctor(Liberator.Driver.Preferences.FirefoxSettings)">
+            <summary>
+            Allows the specification of Firefox Driver settings
+            </summary>
+            <param name="firefoxSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.FirefoxDriverControl.StartDriver">
             <summary>
@@ -320,6 +338,12 @@
             Loads the settings from the app.config file
             </summary>
         </member>
+        <member name="M:Liberator.Driver.BrowserControl.InternetExplorerDriverControl.#ctor(Liberator.Driver.Preferences.InternetExplorerSettings)">
+            <summary>
+            Allows the specification of Internet Explorer Driver settings
+            </summary>
+            <param name="internetExplorerSettings">The settings file to be used.</param>
+        </member>
         <member name="M:Liberator.Driver.BrowserControl.InternetExplorerDriverControl.StartDriver">
             <summary>
              Starts the Internet Explorer Driver with the preset values from app.config
@@ -360,6 +384,12 @@
             <summary>
             Loads the settings from the app.config file
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.BrowserControl.OperaDriverControl.#ctor(Liberator.Driver.Preferences.OperaSettings)">
+            <summary>
+            Allows the specification of Opera Driver settings
+            </summary>
+            <param name="operaSettings">The settings file to be used.</param>
         </member>
         <member name="M:Liberator.Driver.BrowserControl.OperaDriverControl.StartDriver">
             <summary>
@@ -3069,6 +3099,12 @@
             Constructor for the RatWatch class
             </summary>
         </member>
+        <member name="M:Liberator.Driver.Performance.RatWatch.#ctor(Liberator.Driver.Performance.RatWatch)">
+            <summary>
+            Adds the timings from an existing watch to a new one.
+            </summary>
+            <param name="ratWatch">Existing watch.</param>
+        </member>
         <member name="M:Liberator.Driver.Performance.RatWatch.StartTimer">
             <summary>
             Creates a new timer and starts the count
@@ -3087,52 +3123,60 @@
             <param name="timerType"></param>
             <returns></returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.ArithmeticMean">
+        <member name="M:Liberator.Driver.Performance.RatWatch.ArithmeticMean(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the arithmetic mean for the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The arithmetic mean for the timings list</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.GeometricMean">
+        <member name="M:Liberator.Driver.Performance.RatWatch.GeometricMean(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the geometric mean for the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The geometic mean for the timings list</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.HarmonicMean">
+        <member name="M:Liberator.Driver.Performance.RatWatch.HarmonicMean(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the harmonic mean for the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The harmonic mean for the timings list</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.Median">
+        <member name="M:Liberator.Driver.Performance.RatWatch.Median(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the median value for the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The median time for the entries in the timing list</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.Skewness">
+        <member name="M:Liberator.Driver.Performance.RatWatch.Skewness(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the Skewness of the values in the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The skewness of the timings list away from the mean</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.StandardDeviation">
+        <member name="M:Liberator.Driver.Performance.RatWatch.StandardDeviation(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Caculates the standard deviation of the timings sample
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The standard deviation of the sample</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.UpperQuartile">
+        <member name="M:Liberator.Driver.Performance.RatWatch.UpperQuartile(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             Calculates the boundary for the upper quartile of the timings list
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>The point represneting the 75th percentile</returns>
         </member>
-        <member name="M:Liberator.Driver.Performance.RatWatch.Variance">
+        <member name="M:Liberator.Driver.Performance.RatWatch.Variance(Liberator.Driver.Performance.EnumTiming)">
             <summary>
             The variance of the timings list sample
             </summary>
+            <param name="enumTiming">Type of timing point</param>
             <returns>How far the timings list values are spread out from the mean</returns>
         </member>
         <member name="T:Liberator.Driver.Performance.RatWatchDriver`1">
@@ -3511,6 +3555,145 @@
             Gets or sets the width in pixels to be used by the browser when emulating a mobile device.
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.ChromeSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.ChromeSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.BinaryLocation">
+            <summary>
+            Gets or sets the location of the Chrome browser's binary executable file.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.DebuggerAddress">
+            <summary>
+            Gets or sets the address of a Chrome debugger server to connect to. Should be of the form "{hostname|IP address}:port".
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LeaveBrowserRunning">
+            <summary>
+            Gets or sets a value indicating whether Chrome should be left running after the ChromeDriver instance is exited. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.MinidumpPath">
+            <summary>
+            Gets or sets the directory in which to store minidump files.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.BufferUsageReportingInterval">
+            <summary>
+            Gets or sets the interval between Chrome DevTools trace buffer usage events. Defaults to 1000 milliseconds.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.IsCollectingNetworkEvents">
+            <summary>
+            Gets or sets a value indicating whether Chrome will collect events from the Network domain. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.IsCollectingPageEvents">
+            <summary>
+            Gets or sets a value indicating whether Chrome will collect events from the Page domain. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.CapabilityList">
+            <summary>
+            List of browser capabilities in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.TracingCategories">
+            <summary>
+            Gets a comma-separated list of the categories for which tracing is enabled.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.ExtensionsList">
+            <summary>
+            Comma separated list of extension locations
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LocalStatePreferences">
+            <summary>
+            Comma separated list of local state preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.UserProfilePreferences">
+            <summary>
+            Comma separated list of user profile preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.AndroidDebugBridgePort">
+            <summary>
+            Gets or sets the port on which the Android Debug Bridge is listening for commands.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.EnableVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the ChromeDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.LogPath">
+            <summary>
+            Gets or sets the location of the log file written to by the ChromeDriver executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.PortServerAddress">
+            <summary>
+            Gets or sets the address of a server to contact for reserving a port.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.WhitelistedIPAddresses">
+            <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to connect
+            to this instance of the Chrome driver. Defaults to an empty string, which means
+            only the local loopback address can connect.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.EnableTouchEvents">
+            <summary>
+            Gets or sets a value indicating whether touch events should be enabled by the browser when emulating a mobile device. Defaults to true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Height">
+            <summary>
+            Gets or sets the height in pixels to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.PixelRatio">
+            <summary>
+            Gets or sets the pixel ratio to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.UserAgent">
+            <summary>
+            Gets or sets the user agent string to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.ChromeSettings.Width">
+            <summary>
+            Gets or sets the width in pixels to be used by the browser when emulating a mobile device.
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Edge">
             <summary>
             Preferences for EdgeDriver
@@ -3544,6 +3727,48 @@
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.Edge.Package">
+            <summary>
+            Gets or sets the value of the package the Edge driver service will launch and automate.
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.EdgeSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.EdgeSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.UseVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the ChromeDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Host">
+            <summary>
+            Gets or sets the value of the host adapter on which the Edge driver service should listen for connections
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.EdgeSettings.Package">
             <summary>
             Gets or sets the value of the package the Edge driver service will launch and automate.
             </summary>
@@ -3642,6 +3867,112 @@
         <member name="P:Liberator.Driver.Preferences.Firefox.Preferences">
             <summary>
             Comma separated list of preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.FirefoxSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.FirefoxSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.LogLevel">
+            <summary>
+            Gets or sets the logging level of the Firefox driver.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ProfileDirectory">
+            <summary>
+            Gets the directory containing the profile.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.CleanProfile">
+            <summary>
+            Cleans this Firefox profile.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.UseLegacyImplementation">
+            <summary>
+            Gets or sets a value indicating whether to use the legacy driver implementation.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AcceptUntrustedCertificates">
+            <summary>
+            Gets or sets a value indicating whether Firefox should accept SSL certificates
+            which have expired, signed by an unknown authority or are generally untrusted.
+            Set to true by default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AlwaysLoadNoFocusLibrary">
+            <summary>
+            Gets or sets a value indicating whether to always load the library for allowing
+            Firefox to execute commands without its window having focus.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.AssumeUntrustedCertificateIssuer">
+            <summary>
+            Gets or sets a value indicating whether Firefox assume untrusted SSL certificates
+            come from an untrusted issuer or are self-signed. Set to true by default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.DeleteAfterUse">
+            <summary>
+            Gets or sets a value indicating whether to delete this profile after use with the OpenQA.Selenium.Firefox.FirefoxDriver.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.EnableNativeEvents">
+            <summary>
+            Gets or sets a value indicating whether native events are enabled.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Port">
+            <summary>
+            Gets or sets the port on which the profile connects to the WebDriver extension.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ProxyPreferences">
+            <summary>
+            Comma separated list of proxy preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.CommunicationPort">
+            <summary>
+            Gets or sets the port used by the driver executable to communicate with the browser.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.ConnectToRunningBrowser">
+            <summary>
+            Gets or sets a value indicating whether to connect to an already-running instance of Firefox.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Host">
+            <summary>
+            Gets or sets the value of the IP address of the host adapter on which the service should listen for connections.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.FirefoxSettings.Preferences">
+            <summary>
+            Comma separated list of preferences in the format {name}={value}|{type}
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.IDriverSettings">
+            <summary>
+            Base class for preference injection
             </summary>
         </member>
         <member name="T:Liberator.Driver.Preferences.InternetExplorer">
@@ -3819,6 +4150,186 @@
             Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.InternetExplorerSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.InternetExplorerSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.CommandLineArguments">
+            <summary>
+            Gets or sets the command line arguments used in launching Internet Explorer when the Windows CreateProcess API is used. This property only has an effect when the OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi is true.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ScrollBehavior">
+            <summary>
+            Gets or sets the value for describing how elements are scrolled into view in the IE driver. Defaults to scrolling the element to the top of the viewport.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnableFullPageScreenshot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnableNativeEvents">
+            <summary>
+            Gets or sets a value indicating whether to use native events in interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnablePersistentHover">
+            <summary>
+            Gets or sets a value indicating whether to enable persistently sending WM_MOUSEMOVE messages to the IE window during a mouse hover.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.EnsureCleanSession">
+            <summary>
+            Gets or sets a value indicating whether to clear the Internet Explorer cache before launching the browser. When set to true, clears the system cache for all instances of Internet Explorer, even those already running when the driven instance is launched. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ForceCreateProcessApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows CreateProcess API when launching Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ForceShellWindowsApi">
+            <summary>
+            Gets or sets a value indicating whether to force the use of the Windows ShellWindows API when attaching to Internet Explorer. The default value is false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IgnoreZoomLevel">
+            <summary>
+            Gets or sets a value indicating whether to ignore the zoom level of Internet Explorer .
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.InitialBrowserUrl">
+            <summary>
+            Gets or sets the initial URL displayed when IE is launched. If not set, the browser launches with the internal startup page for the WebDriver server.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IntroduceInstability">
+            <summary>
+            Gets or sets a value indicating whether to ignore the settings of the Internet Explorer Protected Mode.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.PageLoadStrategy">
+            <summary>
+            Gets or sets the value for describing how the browser is to wait for pages to load in the browser. Defaults to OpenQA.Selenium.PageLoadStrategy.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.RequireWindowFocus">
+            <summary>
+            Gets or sets a value indicating whether to require the browser window to have focus before interacting with elements.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.UnexpectedAlertBehavior">
+            <summary>
+            Gets or sets the value for describing how unexpected alerts are to be handled in the browser. Defaults to OpenQA.Selenium.UnhandledPromptBehavior.Default.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.UsePerProcessProxy">
+            <summary>
+            Gets or sets a value indicating whether to use the supplied OpenQA.Selenium.Proxy settings on a per-process basis, not updating the system installed proxy setting. This property is only valid when setting a OpenQA.Selenium.Proxy, where the OpenQA.Selenium.Proxy.Kind property is either OpenQA.Selenium.ProxyKind.Direct, OpenQA.Selenium.ProxyKind.System, or OpenQA.Selenium.ProxyKind.Manual, and is otherwise ignored. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.Host">
+            <summary>
+            Gets or sets the value of the host adapter on which the IEDriverServer should listen for connections.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LibraryExtractionPath">
+            <summary>
+            Gets or sets the path to which the supporting library of the IEDriverServer.exe is extracted. Defaults to the temp directory if this property is not set.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LogFile">
+            <summary>
+            Gets or sets the location of the log file written to by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.LoggingLevel">
+            <summary>
+            Gets or sets the logging level used by the IEDriverServer.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is suppressed when starting the driver server executable. Defaults to false, meaning diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.WhitelistedIPAddresses">
+            <summary>
+            Gets or sets the comma-delimited list of IP addresses that are approved to connect to this instance of the IEDriverServer. Defaults to an empty string, which means only the local loopback address can connect.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.FtpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the FTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.HttpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the HTTP protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.IsAutoDetect">
+            <summary>
+            Gets or sets a value indicating whether the proxy uses automatic detection.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ProxyKind">
+            <summary>
+            Gets or sets the type of proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.NoProxy">
+            <summary>
+            Gets or sets the value for bypass proxy addresses.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.ProxyAutoConfigUrl">
+            <summary>
+            Gets or sets the URL used for proxy automatic configuration.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksPassword">
+            <summary>
+            Gets or sets the value of password for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SOCKS protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SocksUserName">
+            <summary>
+            Gets or sets the value of username for the SOCKS proxy.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.SslProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SSL protocol.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.InternetExplorerSettings.FileUploadTimeout">
+            <summary>
+            Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Opera">
             <summary>
             Preferences for the Opera Driver
@@ -3881,6 +4392,73 @@
             Gets or sets the base URL path prefix for commands (e.g., "wd/url").
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Preferences.OperaSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.OperaSettings.#ctor">
+            <summary>
+            Contructor with default settings
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.DebuggerAddress">
+            <summary>
+            Gets or sets the address of a Opera debugger server to connect to. Should be of the form "{hostname|IP address}:port".
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.LeaveBrowserRunning">
+            <summary>
+            Gets or sets a value indicating whether Opera should be left running after the OperaDriver instance is exited. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.MinidumpPath">
+            <summary>
+            Gets or sets the directory in which to store minidump files.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.AndroidDebugBridgePort">
+            <summary>
+            Gets or sets the port on which the Android Debug Bridge is listening for commands.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.EnableVerboseLogging">
+            <summary>
+            Gets or sets a value indicating whether to enable verbose logging for the OperaDriver executable. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.HideCommandPromptWindow">
+            <summary>
+            Gets or sets a value indicating whether the command prompt window of the service should be hidden.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.LogPath">
+            <summary>
+            Gets or sets the location of the log file written to by the OperaDriver executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.Port">
+            <summary>
+            Gets or sets the port of the service.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.PortServerAddress">
+            <summary>
+            Gets or sets the address of a server to contact for reserving a port.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.SuppressInitialDiagnosticInformation">
+            <summary>
+            Gets or sets a value indicating whether the initial diagnostic information is
+            suppressed when starting the driver server executable. Defaults to false, meaning
+            diagnostic information should be shown by the driver server executable.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.OperaSettings.UrlPathPrefix">
+            <summary>
+            Gets or sets the base URL path prefix for commands (e.g., "wd/url").
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Remote">
             <summary>
             Preferences for Remote Drivers
@@ -3892,6 +4470,21 @@
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.Remote.DesiredCapabilities">
+            <summary>
+            Capabilities of the browser that you are going to use
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Preferences.RemoteSettings">
+            <summary>
+            Settings file for dependency injection
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.RemoteSettings.DefaultRemoteAddress">
+            <summary>
+            Default address for the Web Driver
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.RemoteSettings.DesiredCapabilities">
             <summary>
             Capabilities of the browser that you are going to use
             </summary>
@@ -4216,36 +4809,40 @@
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Preferences.IDriverSettings,System.Boolean)">
             <summary>
             Base constructor for RatDriver
             </summary>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,Liberator.Driver.Preferences.FirefoxSettings,System.Boolean)">
             <summary>
             Creates an anstance of Firefox with a specified profile
             </summary>
             <param name="profileName">The name of the profile to load</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.String,System.Boolean,Liberator.Driver.Preferences.FirefoxSettings,System.Boolean)">
             <summary>
             Creates a firefox instance using a profile directory path
             </summary>
             <param name="profileDirectory">The path of the profile directory</param>
             <param name="cleanDirectory">Whether to clean the directory</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Enums.EnumPhoneType,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Enums.EnumPhoneType,System.Boolean,Liberator.Driver.Preferences.ChromeSettings,System.Boolean)">
             <summary>
             Creates a chrome driver instance in modile emulation mode
             </summary>
             <param name="type">Which type of phone to emulate</param>
             <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Int64,System.Int64,System.String,System.Double,System.Boolean,System.Boolean)">
+        <member name="M:Liberator.Driver.RatDriver`1.#ctor(System.Int64,System.Int64,System.String,System.Double,System.Boolean,Liberator.Driver.Preferences.ChromeSettings,System.Boolean)">
             <summary>
             Creates a chrome driver instance in modile emulation mode
             </summary>
@@ -4254,6 +4851,7 @@
             <param name="userAgent">The user agent returned by the device</param>
             <param name="pixelRatio">The pixel ratio of the screen</param>
             <param name="touch">(Optional Parameter) Whether touch actions are enabled</param>
+            <param name="driverSettings">Settings file for the Driver being instantiated.</param>
             <param name="performanceTimings">Whether to obtain performance timings for the browser.</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.WaitForPageToLoad(OpenQA.Selenium.IWebElement)">
@@ -4262,24 +4860,6 @@
             </summary>
             <param name="element">An element from the previous page. If omitted, the code will wait for the body of the page to be viosible</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.GetPidsOfExistingBrowsersAndDrivers(System.String)">
-            <summary>
-            Gets the Process IDs for existing browsers and web drivers
-            </summary>
-            <param name="driverType">Type of driver being used.</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExtractProcessIdsForCurrentBrowserAndDriver(System.String)">
-            <summary>
-            Extracts the Process IDs for the current browser and web driver.
-            </summary>
-            <param name="driverType">Type of driver being used.</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.GetProcessIds(System.Collections.Generic.List{System.Int32}@)">
-            <summary>
-            Gets the Process IDs for all running executables.
-            </summary>
-            <param name="pids">A list of Process IDs</param>
-        </member>
         <member name="M:Liberator.Driver.RatDriver`1.EstablishDriverSettings">
             <summary>
             Initialises driver settings.
@@ -4287,7 +4867,7 @@
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.BrowserProcessName(System.String)">
             <summary>
-            Returne the name of the process used by the prowser
+            Return the name of the process used by the browser
             </summary>
             <returns>The name of the browser process</returns>
         </member>
@@ -4302,6 +4882,13 @@
             Initialises the RatWatch for performance gathering
             </summary>
             <param name="performanceTimings">Whether to collect timings</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetProcesses(System.String,Liberator.Driver.ProcessCollectionTime)">
+            <summary>
+            Isolates the processes used in the test
+            </summary>
+            <param name="driverType">The name ofn the driver type</param>
+            <param name="processCollectionTime">The time in the initialisation at which the collection occurs.</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.HandleErrors(System.Exception)">
             <summary>
@@ -5184,6 +5771,11 @@
             Terminates the driver process attached to the current web driver
             </summary>
         </member>
+        <member name="T:Liberator.Driver.RatProcess">
+            <summary>
+            Process object for PID handling
+            </summary>
+        </member>
         <member name="T:Liberator.ExpectedConditions">
             <summary>
             Supplies a set of common conditions that can be waited for using WebDriverWait
@@ -5416,755 +6008,6 @@
             </summary>
             <param name="state">A value indicating whether or not an alert should be displayed in order to meet this condition.</param>
             <returns><see langword="true"/> alert is in correct state present or not present; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.ByAll">
-            <summary>
-            Mechanism used to locate elements within a document using a series of lookups. This class will
-            find all DOM elements that matches all of the locators in sequence, e.g.
-            </summary>
-            <example>
-            The following code will find all elements that match by1 and then all elements that also match by2.
-            <code>
-            driver.findElements(new ByAll(by1, by2))
-            </code>
-            This means that the list of elements returned may not be in document order.
-            </example>>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByAll.#ctor(OpenQA.Selenium.By[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.ByAll"/> class with one or more <see cref="T:OpenQA.Selenium.By"/> objects.
-            </summary>
-            <param name="bys">One or more <see cref="T:OpenQA.Selenium.By"/> references</param>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByAll.FindElement(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Find a single element.
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>The element that matches</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByAll.FindElements(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Finds many elements
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>A readonly collection of elements that match.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByAll.ToString">
-            <summary>
-            Writes out a comma separated list of the <see cref="T:OpenQA.Selenium.By"/> objects used in the chain.
-            </summary>
-            <returns>Converts the value of this instance to a <see cref="T:System.String"/></returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.ByChained">
-            <summary>
-            Mechanism used to locate elements within a document using a series of other lookups.  This class
-            will find all DOM elements that matches each of the locators in sequence
-            </summary>
-            <example>
-            The following code will will find all elements that match by2 and appear under an element that matches
-            by1.
-            <code>
-            driver.findElements(new ByChained(by1, by2))
-            </code>
-            </example>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByChained.#ctor(OpenQA.Selenium.By[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.ByChained"/> class with one or more <see cref="T:OpenQA.Selenium.By"/> objects.
-            </summary>
-            <param name="bys">One or more <see cref="T:OpenQA.Selenium.By"/> references</param>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByChained.FindElement(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Find a single element.
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>The element that matches</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByChained.FindElements(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Finds many elements
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>A readonly collection of elements that match.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByChained.ToString">
-            <summary>
-            Writes out a comma separated list of the <see cref="T:OpenQA.Selenium.By"/> objects used in the chain.
-            </summary>
-            <returns>Converts the value of this instance to a <see cref="T:System.String"/></returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.ByFactory">
-            <summary>
-            Provides instances of the <see cref="T:OpenQA.Selenium.By"/> object to the attributes.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByFactory.From(SeleniumExtras.PageObjects.FindsByAttribute)">
-            <summary>
-            Gets an instance of the <see cref="T:OpenQA.Selenium.By"/> class based on the specified attribute.
-            </summary>
-            <param name="attribute">The <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> describing how to find the element.</param>
-            <returns>An instance of the <see cref="T:OpenQA.Selenium.By"/> class.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.ByIdOrName">
-            <summary>
-            Finds element when the id or the name attribute has the specified value.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByIdOrName.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.ByIdOrName"/> class.
-            </summary>
-            <param name="elementIdentifier">The ID or Name to use in finding the element.</param>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByIdOrName.FindElement(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Find a single element.
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>The element that matches</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByIdOrName.FindElements(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Finds many elements
-            </summary>
-            <param name="context">Context used to find the element.</param>
-            <returns>A readonly collection of elements that match.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.ByIdOrName.ToString">
-            <summary>
-            Writes out a description of this By object.
-            </summary>
-            <returns>Converts the value of this instance to a <see cref="T:System.String"/></returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.CacheLookupAttribute">
-            <summary>
-            Marks the element so that lookups to the browser page are cached. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.DefaultElementLocator">
-            <summary>
-            A default locator for elements for use with the <see cref="T:SeleniumExtras.PageObjects.PageFactory"/>. This locator
-            implements no retry logic for elements not being found, nor for elements being stale.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultElementLocator.#ctor(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.DefaultElementLocator"/> class.
-            </summary>
-            <param name="searchContext">The <see cref="T:OpenQA.Selenium.ISearchContext"/> used by this locator
-            to locate elements.</param>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.DefaultElementLocator.SearchContext">
-            <summary>
-            Gets the <see cref="T:OpenQA.Selenium.ISearchContext"/> to be used in locating elements.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultElementLocator.LocateElement(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates an element using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the element.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> which is the first match under the desired criteria.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultElementLocator.LocateElements(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates a list of elements using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <returns>A list of all elements which match the desired criteria.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.DefaultPageObjectMemberDecorator">
-            <summary>
-            Default decorator determining how members of a class which represent elements in a Page Object
-            are detected.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultPageObjectMemberDecorator.Decorate(System.Reflection.MemberInfo,SeleniumExtras.PageObjects.IElementLocator)">
-            <summary>
-            Locates an element or list of elements for a Page Object member, and returns a
-            proxy object for the element or list of elements.
-            </summary>
-            <param name="member">The <see cref="T:System.Reflection.MemberInfo"/> containing information about
-            a class's member.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> used to locate elements.</param>
-            <returns>A transparent proxy to the WebDriver element object.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultPageObjectMemberDecorator.ShouldCacheLookup(System.Reflection.MemberInfo)">
-            <summary>
-            Determines whether lookups on this member should be cached.
-            </summary>
-            <param name="member">The <see cref="T:System.Reflection.MemberInfo"/> containing information about
-            the member of the Page Object class.</param>
-            <returns><see langword="true"/> if lookups are to be cached; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.DefaultPageObjectMemberDecorator.CreateLocatorList(System.Reflection.MemberInfo)">
-            <summary>
-            Creates a list of <see cref="T:OpenQA.Selenium.By"/> locators based on the attributes of this member.
-            </summary>
-            <param name="member">The <see cref="T:System.Reflection.MemberInfo"/> containing information about
-            the member of the Page Object class.</param>
-            <returns>A list of <see cref="T:OpenQA.Selenium.By"/> locators based on the attributes of this member.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.FindsByAllAttribute">
-            <summary>
-            Marks elements to indicate that found elements should match the criteria of
-            all <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> on the field or property.
-            </summary>
-            <remarks>
-            <para>
-            When used with a set of <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/>, all criteria must be
-            matched to be returned. The criteria are used in sequence according to the
-            Priority property. Note that the behavior when setting multiple
-            <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> Priority properties to the same value, or not
-            specifying a Priority value, is undefined.
-            </para>
-            <para>
-            <code>
-            // Will find the element with the tag name "input" that also has an ID
-            // attribute matching "elementId".
-            [FindsByAll]
-            [FindsBy(How = How.TagName, Using = "input", Priority = 0)]
-            [FindsBy(How = How.Id, Using = "elementId", Priority = 1)]
-            public IWebElement thisElement;
-            </code>
-            </para>
-            </remarks>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.FindsByAttribute">
-             <summary>
-             Marks program elements with methods by which to find a corresponding element on the page. Used
-             in conjunction with the <see cref="T:SeleniumExtras.PageObjects.PageFactory"/>, it allows you to quickly create Page Objects.
-             </summary>
-             <remarks>
-             <para>
-             You can use this attribute by specifying the <see cref="P:SeleniumExtras.PageObjects.FindsByAttribute.How"/> and <see cref="P:SeleniumExtras.PageObjects.FindsByAttribute.Using"/> properties
-             to indicate how to find the elements. This attribute can be used to decorate fields and properties
-             in your Page Object classes. The <see cref="T:System.Type"/> of the field or property must be either
-             <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}. Any other type will throw an
-             <see cref="T:System.ArgumentException"/> when <see cref="M:SeleniumExtras.PageObjects.PageFactory.InitElements(OpenQA.Selenium.ISearchContext,System.Object)"/> is called.
-             </para>
-             <para>
-             <code>
-             [FindsBy(How = How.Name, Using = "myElementName")]
-             public IWebElement foundElement;
-            
-             [FindsBy(How = How.TagName, Using = "a")]
-             public IList{IWebElement} allLinks;
-             </code>
-             </para>
-             <para>
-             You can also use multiple instances of this attribute to find an element that may meet
-             one of multiple criteria. When using multiple instances, you can specify the order in
-             which the criteria is matched by using the <see cref="P:SeleniumExtras.PageObjects.FindsByAttribute.Priority"/> property.
-             </para>
-             <para>
-             <code>
-             // Will find the element with the name attribute matching the first of "anElementName"
-             // or "differentElementName".
-             [FindsBy(How = How.Name, Using = "anElementName", Priority = 0)]
-             [FindsBy(How = How.Name, Using = "differentElementName", Priority = 1)]
-             public IWebElement thisElement;
-             </code>
-             </para>
-             </remarks>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.FindsByAttribute.How">
-            <summary>
-            Gets or sets the method used to look up the element
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.FindsByAttribute.Using">
-            <summary>
-            Gets or sets the value to lookup by (i.e. for How.Name, the actual name to look up)
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.FindsByAttribute.Priority">
-            <summary>
-            Gets or sets a value indicating where this attribute should be evaluated relative to other instances
-            of this attribute decorating the same class member.
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.FindsByAttribute.CustomFinderType">
-            <summary>
-            Gets or sets a value indicating the <see cref="T:System.Type"/> of the custom finder. The custom finder must
-            descend from the <see cref="T:OpenQA.Selenium.By"/> class, and expose a public constructor that takes a <see cref="T:System.String"/>
-            argument.
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.FindsByAttribute.Finder">
-            <summary>
-            Gets or sets an explicit <see cref="T:OpenQA.Selenium.By"/> object to find by.
-            Setting this property takes precedence over setting the How or Using properties.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.op_Equality(SeleniumExtras.PageObjects.FindsByAttribute,SeleniumExtras.PageObjects.FindsByAttribute)">
-            <summary>
-            Determines if two <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> instances are equal.
-            </summary>
-            <param name="one">One instance to compare.</param>
-            <param name="two">The other instance to compare.</param>
-            <returns><see langword="true"/> if the two instances are equal; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.op_Inequality(SeleniumExtras.PageObjects.FindsByAttribute,SeleniumExtras.PageObjects.FindsByAttribute)">
-            <summary>
-            Determines if two <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> instances are unequal.
-            </summary>s
-            <param name="one">One instance to compare.</param>
-            <param name="two">The other instance to compare.</param>
-            <returns><see langword="true"/> if the two instances are not equal; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.op_GreaterThan(SeleniumExtras.PageObjects.FindsByAttribute,SeleniumExtras.PageObjects.FindsByAttribute)">
-            <summary>
-            Determines if one <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> instance is greater than another.
-            </summary>
-            <param name="one">One instance to compare.</param>
-            <param name="two">The other instance to compare.</param>
-            <returns><see langword="true"/> if the first instance is greater than the second; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.op_LessThan(SeleniumExtras.PageObjects.FindsByAttribute,SeleniumExtras.PageObjects.FindsByAttribute)">
-            <summary>
-            Determines if one <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> instance is less than another.
-            </summary>
-            <param name="one">One instance to compare.</param>
-            <param name="two">The other instance to compare.</param>
-            <returns><see langword="true"/> if the first instance is less than the second; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.CompareTo(System.Object)">
-            <summary>
-            Compares the current instance with another object of the same type and returns an
-            integer that indicates whether the current instance precedes, follows, or occurs
-            in the same position in the sort order as the other object.
-            </summary>
-            <param name="obj">An object to compare with this instance.</param>
-            <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
-            <list type="table">
-            <listheader>Value</listheader><listheader>Meaning</listheader>
-            <item><description>Less than zero</description><description>This instance precedes <paramref name="obj"/> in the sort order.</description></item>
-            <item><description>Zero</description><description>This instance occurs in the same position in the sort order as <paramref name="obj"/>.</description></item>
-            <item><description>Greater than zero</description><description>This instance follows <paramref name="obj"/> in the sort order. </description></item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object">Object</see> is equal
-            to the current <see cref="T:System.Object">Object</see>.
-            </summary>
-            <param name="obj">The <see cref="T:System.Object">Object</see> to compare with the
-            current <see cref="T:System.Object">Object</see>.</param>
-            <returns><see langword="true"/> if the specified <see cref="T:System.Object">Object</see>
-            is equal to the current <see cref="T:System.Object">Object</see>; otherwise,
-            <see langword="false"/>.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.FindsByAttribute.GetHashCode">
-            <summary>
-            Serves as a hash function for a particular type.
-            </summary>
-            <returns>A hash code for the current <see cref="T:System.Object">Object</see>.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.FindsBySequenceAttribute">
-            <summary>
-            Marks elements to indicate that each <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> on the field or
-            property should be used in sequence to find the appropriate element.
-            </summary>
-            <remarks>
-            <para>
-            When used with a set of <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/>, the criteria are used
-            in sequence according to the Priority property to find child elements. Note that
-            the behavior when setting multiple <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> Priority
-            properties to the same value, or not specifying a Priority value, is undefined.
-            </para>
-            <para>
-            <code>
-            // Will find the element with the ID attribute matching "elementId", then will find
-            // a child element with the ID attribute matching "childElementId".
-            [FindsBySequence]
-            [FindsBy(How = How.Id, Using = "elementId", Priority = 0)]
-            [FindsBy(How = How.Id, Using = "childElementId", Priority = 1)]
-            public IWebElement thisElement;
-            </code>
-            </para>
-            </remarks>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.How">
-            <summary>
-            Provides the lookup methods for the FindsBy attribute (for using in PageObjects)
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.Id">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.Id(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.Name">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.Name(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.TagName">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.TagName(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.ClassName">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.ClassName(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.CssSelector">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.CssSelector(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.LinkText">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.LinkText(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.PartialLinkText">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.PartialLinkText(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.XPath">
-            <summary>
-            Finds by <see cref="M:OpenQA.Selenium.By.XPath(System.String)" />
-            </summary>
-        </member>
-        <member name="F:SeleniumExtras.PageObjects.How.Custom">
-            <summary>
-            Finds by a custom implementation.
-            </summary>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.IElementLocator">
-            <summary>
-            Interface describing how elements are to be located by a <see cref="T:SeleniumExtras.PageObjects.PageFactory"/>.
-            </summary>
-            <remarks>
-            A locator must always contain a way to retrieve the <see cref="T:OpenQA.Selenium.ISearchContext"/> to
-            use in locating elements. In practice, this will usually be implemented by passing
-            the context in via a constructor.
-            </remarks>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.IElementLocator.SearchContext">
-            <summary>
-            Gets the <see cref="T:OpenQA.Selenium.ISearchContext"/> to be used in locating elements.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.IElementLocator.LocateElement(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates an element using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the element.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> which is the first match under the desired criteria.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.IElementLocator.LocateElements(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates a list of elements using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <returns>A list of all elements which match the desired criteria.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.IPageObjectMemberDecorator">
-            <summary>
-            Interface describing how members of a class which represent elements in a Page Object
-            are detected.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.IPageObjectMemberDecorator.Decorate(System.Reflection.MemberInfo,SeleniumExtras.PageObjects.IElementLocator)">
-            <summary>
-            Locates an element or list of elements for a Page Object member, and returns a
-            proxy object for the element or list of elements.
-            </summary>
-            <param name="member">The <see cref="T:System.Reflection.MemberInfo"/> containing information about
-            a class's member.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> used to locate elements.</param>
-            <returns>A transparent proxy to the WebDriver element object.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.PageFactory">
-            <summary>
-            Provides the ability to produce Page Objects modeling a page. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.PageFactory"/> class.
-            Private constructor prevents a default instance from being created.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements``1(OpenQA.Selenium.IWebDriver)">
-            <summary>
-            Initializes the elements in the Page Object with the given type.
-            </summary>
-            <typeparam name="T">The <see cref="T:System.Type"/> of the Page Object class.</typeparam>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> instance used to populate the page.</param>
-            <returns>An instance of the Page Object class with the elements initialized.</returns>
-            <remarks>
-            The class used in the <typeparamref name="T"/> argument must have a public constructor
-            that takes a single argument of type <see cref="T:OpenQA.Selenium.IWebDriver"/>. This helps to enforce
-            best practices of the Page Object pattern, and encapsulates the driver into the Page
-            Object so that it can have no external WebDriver dependencies.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            thrown if no constructor to the class can be found with a single IWebDriver argument
-            <para>-or-</para>
-            if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements``1(SeleniumExtras.PageObjects.IElementLocator)">
-            <summary>
-            Initializes the elements in the Page Object with the given type.
-            </summary>
-            <typeparam name="T">The <see cref="T:System.Type"/> of the Page Object class.</typeparam>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <returns>An instance of the Page Object class with the elements initialized.</returns>
-            <remarks>
-            The class used in the <typeparamref name="T"/> argument must have a public constructor
-            that takes a single argument of type <see cref="T:OpenQA.Selenium.IWebDriver"/>. This helps to enforce
-            best practices of the Page Object pattern, and encapsulates the driver into the Page
-            Object so that it can have no external WebDriver dependencies.
-            </remarks>
-            <exception cref="T:System.ArgumentException">
-            thrown if no constructor to the class can be found with a single IWebDriver argument
-            <para>-or-</para>
-            if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements(OpenQA.Selenium.ISearchContext,System.Object)">
-            <summary>
-            Initializes the elements in the Page Object.
-            </summary>
-            <param name="driver">The driver used to find elements on the page.</param>
-            <param name="page">The Page Object to be populated with elements.</param>
-            <exception cref="T:System.ArgumentException">
-            thrown if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements(OpenQA.Selenium.ISearchContext,System.Object,SeleniumExtras.PageObjects.IPageObjectMemberDecorator)">
-            <summary>
-            Initializes the elements in the Page Object.
-            </summary>
-            <param name="driver">The driver used to find elements on the page.</param>
-            <param name="page">The Page Object to be populated with elements.</param>
-            <param name="decorator">The <see cref="T:SeleniumExtras.PageObjects.IPageObjectMemberDecorator"/> implementation that
-            determines how Page Object members representing elements are discovered and populated.</param>
-            <exception cref="T:System.ArgumentException">
-            thrown if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements(System.Object,SeleniumExtras.PageObjects.IElementLocator)">
-            <summary>
-            Initializes the elements in the Page Object.
-            </summary>
-            <param name="page">The Page Object to be populated with elements.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <exception cref="T:System.ArgumentException">
-            thrown if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.PageFactory.InitElements(System.Object,SeleniumExtras.PageObjects.IElementLocator,SeleniumExtras.PageObjects.IPageObjectMemberDecorator)">
-            <summary>
-            Initializes the elements in the Page Object.
-            </summary>
-            <param name="page">The Page Object to be populated with elements.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <param name="decorator">The <see cref="T:SeleniumExtras.PageObjects.IPageObjectMemberDecorator"/> implementation that
-            determines how Page Object members representing elements are discovered and populated.</param>
-            <exception cref="T:System.ArgumentException">
-            thrown if a field or property decorated with the <see cref="T:SeleniumExtras.PageObjects.FindsByAttribute"/> is not of type
-            <see cref="T:OpenQA.Selenium.IWebElement"/> or IList{IWebElement}.
-            </exception>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.RetryingElementLocator">
-            <summary>
-            A locator for elements for use with the <see cref="T:SeleniumExtras.PageObjects.PageFactory"/> that retries locating
-            the element up to a timeout if the element is not found.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.RetryingElementLocator.#ctor(OpenQA.Selenium.ISearchContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.RetryingElementLocator"/> class.
-            </summary>
-            <param name="searchContext">The <see cref="T:OpenQA.Selenium.ISearchContext"/> object that the
-            locator uses for locating elements.</param>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.RetryingElementLocator.#ctor(OpenQA.Selenium.ISearchContext,System.TimeSpan)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.RetryingElementLocator"/> class.
-            </summary>
-            <param name="searchContext">The <see cref="T:OpenQA.Selenium.ISearchContext"/> object that the
-            locator uses for locating elements.</param>
-            <param name="timeout">The <see cref="T:System.TimeSpan"/> indicating how long the locator should
-            retry before timing out.</param>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.RetryingElementLocator.#ctor(OpenQA.Selenium.ISearchContext,System.TimeSpan,System.TimeSpan)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.RetryingElementLocator"/> class.
-            </summary>
-            <param name="searchContext">The <see cref="T:OpenQA.Selenium.ISearchContext"/> object that the
-            locator uses for locating elements.</param>
-            <param name="timeout">The <see cref="T:System.TimeSpan"/> indicating how long the locator should
-            retry before timing out.</param>
-            <param name="pollingInterval">The <see cref="T:System.TimeSpan"/> indicating how often to poll
-            for the existence of the element.</param>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.RetryingElementLocator.SearchContext">
-            <summary>
-            Gets the <see cref="T:OpenQA.Selenium.ISearchContext"/> to be used in locating elements.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.RetryingElementLocator.LocateElement(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates an element using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the element.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> which is the first match under the desired criteria.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.RetryingElementLocator.LocateElements(System.Collections.Generic.IEnumerable{OpenQA.Selenium.By})">
-            <summary>
-            Locates a list of elements using the given list of <see cref="T:OpenQA.Selenium.By"/> criteria.
-            </summary>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <returns>A list of all elements which match the desired criteria.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.WebDriverObjectProxy">
-            <summary>
-            Represents a base proxy class for objects used with the PageFactory.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebDriverObjectProxy.#ctor(System.Type,SeleniumExtras.PageObjects.IElementLocator,System.Collections.Generic.IEnumerable{OpenQA.Selenium.By},System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.WebDriverObjectProxy"/> class.
-            </summary>
-            <param name="classToProxy">The <see cref="T:System.Type"/> of object for which to create a proxy.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <param name="cache"><see langword="true"/> to cache the lookup to the element; otherwise, <see langword="false"/>.</param>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebDriverObjectProxy.Locator">
-            <summary>
-            Gets the <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that determines how elements are located.
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebDriverObjectProxy.Bys">
-            <summary>
-            Gets the list of methods by which to search for the elements.
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebDriverObjectProxy.Cache">
-            <summary>
-            Gets a value indicating whether element search results should be cached.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebDriverObjectProxy.InvokeMethod(System.Runtime.Remoting.Messaging.IMethodCallMessage,System.Object)">
-            <summary>
-            Invokes a method on the object this proxy represents.
-            </summary>
-            <param name="msg">Message containing the parameters of the method being invoked.</param>
-            <param name="representedValue">The object this proxy represents.</param>
-            <returns>The <see cref="T:System.Runtime.Remoting.Messaging.ReturnMessage"/> instance as a result of method invocation on the
-            object which this proxy represents.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.WebElementListProxy">
-            <summary>
-            Represents a proxy class for a list of elements to be used with the PageFactory.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementListProxy.#ctor(System.Type,SeleniumExtras.PageObjects.IElementLocator,System.Collections.Generic.IEnumerable{OpenQA.Selenium.By},System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.WebElementListProxy"/> class.
-            </summary>
-            <param name="typeToBeProxied">The <see cref="T:System.Type"/> of object for which to create a proxy.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <param name="cache"><see langword="true"/> to cache the lookup to the element; otherwise, <see langword="false"/>.</param>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebElementListProxy.ElementList">
-            <summary>
-            Gets the list of IWebElement objects this proxy represents, returning a cached one if requested.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementListProxy.CreateProxy(System.Type,SeleniumExtras.PageObjects.IElementLocator,System.Collections.Generic.IEnumerable{OpenQA.Selenium.By},System.Boolean)">
-            <summary>
-            Creates an object used to proxy calls to properties and methods of the
-            list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects.
-            </summary>
-            <param name="classToProxy">The <see cref="T:System.Type"/> of object for which to create a proxy.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <param name="cacheLookups"><see langword="true"/> to cache the lookup to the
-            element; otherwise, <see langword="false"/>.</param>
-            <returns>An object used to proxy calls to properties and methods of the
-            list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementListProxy.Invoke(System.Runtime.Remoting.Messaging.IMessage)">
-            <summary>
-            Invokes the method that is specified in the provided <see cref="T:System.Runtime.Remoting.Messaging.IMessage"/> on the
-            object that is represented by the current instance.
-            </summary>
-            <param name="msg">An <see cref="T:System.Runtime.Remoting.Messaging.IMessage"/> that contains an <see cref="T:System.Collections.IDictionary"/>  of
-            information about the method call. </param>
-            <returns>The message returned by the invoked method, containing the return value and any
-            out or ref parameters.</returns>
-        </member>
-        <member name="T:SeleniumExtras.PageObjects.WebElementProxy">
-            <summary>
-            Intercepts the request to a single <see cref="T:OpenQA.Selenium.IWebElement"/>
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementProxy.#ctor(System.Type,SeleniumExtras.PageObjects.IElementLocator,System.Collections.Generic.IEnumerable{OpenQA.Selenium.By},System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SeleniumExtras.PageObjects.WebElementProxy"/> class.
-            </summary>
-            <param name="classToProxy">The <see cref="T:System.Type"/> of object for which to create a proxy.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that determines
-            how elements are located.</param>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <param name="cache"><see langword="true"/> to cache the lookup to the element; otherwise, <see langword="false"/>.</param>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebElementProxy.WrappedElement">
-            <summary>
-            Gets the <see cref="T:OpenQA.Selenium.IWebElement"/> wrapped by this object.
-            </summary>
-        </member>
-        <member name="P:SeleniumExtras.PageObjects.WebElementProxy.Element">
-            <summary>
-            Gets the IWebElement object this proxy represents, returning a cached one if requested.
-            </summary>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementProxy.CreateProxy(System.Type,SeleniumExtras.PageObjects.IElementLocator,System.Collections.Generic.IEnumerable{OpenQA.Selenium.By},System.Boolean)">
-            <summary>
-            Creates an object used to proxy calls to properties and methods of an <see cref="T:OpenQA.Selenium.IWebElement"/> object.
-            </summary>
-            <param name="classToProxy">The <see cref="T:System.Type"/> of object for which to create a proxy.</param>
-            <param name="locator">The <see cref="T:SeleniumExtras.PageObjects.IElementLocator"/> implementation that
-            determines how elements are located.</param>
-            <param name="bys">The list of methods by which to search for the elements.</param>
-            <param name="cacheLookups"><see langword="true"/> to cache the lookup to the element; otherwise, <see langword="false"/>.</param>
-            <returns>An object used to proxy calls to properties and methods of the list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects.</returns>
-        </member>
-        <member name="M:SeleniumExtras.PageObjects.WebElementProxy.Invoke(System.Runtime.Remoting.Messaging.IMessage)">
-            <summary>
-            Invokes the method that is specified in the provided <see cref="T:System.Runtime.Remoting.Messaging.IMessage"/> on the
-            object that is represented by the current instance.
-            </summary>
-            <param name="msg">An <see cref="T:System.Runtime.Remoting.Messaging.IMessage"/> that contains a dictionary of
-            information about the method call. </param>
-            <returns>The message returned by the invoked method, containing the return value and any
-            out or ref parameters.</returns>
         </member>
     </members>
 </doc>

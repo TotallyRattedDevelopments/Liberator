@@ -144,9 +144,17 @@ namespace Liberator.Driver.Preferences
 
         static private void FindApplications()
         {
-            ChromeLocation = FindExecutables(@"C:\Program Files (x86)\Google\Chrome\Application", "chrome.exe");
-            FirefoxLocation = FindExecutables(@"C:\Program Files (x86)\Mozilla Firefox", "firefox.exe");
-            OperaLocation = FindExecutables(@"C:\Program Files\Opera", "opera.exe");
+            try
+            {
+
+                ChromeLocation = FindExecutables(@"C:\Program Files (x86)\Google\Chrome\Application", "chrome.exe");
+                FirefoxLocation = FindExecutables(@"C:\Program Files (x86)\Mozilla Firefox", "firefox.exe");
+                OperaLocation = FindExecutables(@"C:\Program Files\Opera", "opera.exe");
+            }
+            catch (Exception)
+            {
+                Console.Out.WriteLine("Failed to locate an executable.");
+            }
         }
 
         /// <summary>
@@ -155,7 +163,15 @@ namespace Liberator.Driver.Preferences
         /// <returns>The grandfather directory</returns>
         static private string GetGrandfatherDirectory()
         {
-            return Directory.GetParent(Path.GetFullPath(Path.Combine(Path.GetFullPath(_assembly.Location), @"..\..\"))).FullName;
+            try
+            {
+                return Directory.GetParent(Path.GetFullPath(Path.Combine(Path.GetFullPath(_assembly.Location), @"..\..\"))).FullName;
+            }
+            catch (Exception)
+            {
+                Console.Out.WriteLine("Unable to move to grandfather directory.");
+                return null;
+            }
         }
 
         /// <summary>
@@ -170,9 +186,9 @@ namespace Liberator.Driver.Preferences
             {
                 return Directory.GetFiles(pathToSearch, fileToFind, SearchOption.AllDirectories)[0];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                Console.Out.WriteLine("No executable found for: {0}", fileToFind);
                 return null;
             }
         }

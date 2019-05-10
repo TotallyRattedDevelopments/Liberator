@@ -21,4 +21,20 @@ namespace Liberator.Driver.Preferences
         /// </summary>
         public static string DesiredCapabilities { get; set; }
     }
+
+    /// <summary>
+    /// Settings file for dependency injection
+    /// </summary>
+    public class RemoteSettings
+    {
+        /// <summary>
+        /// Default address for the Web Driver
+        /// </summary>
+        public string DefaultRemoteAddress { get; set; }
+
+        /// <summary>
+        /// Capabilities of the browser that you are going to use
+        /// </summary>
+        public string DesiredCapabilities { get; set; }
+    }
 }
