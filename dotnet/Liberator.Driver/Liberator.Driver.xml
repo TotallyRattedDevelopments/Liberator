@@ -5816,6 +5816,61 @@
             Whether to record performance statistics
             </summary>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForAlertToBePresent">
+            <summary>
+            Waits for an alert style duialog to be displayed
+            </summary>
+            <returns>True if the wait terminates with an alert being found</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForAlertToBeInState(System.Boolean)">
+            <summary>
+            Checks for the state of an alert to be as expected
+            </summary>
+            <param name="state">True if the alert is to be displayed</param>
+            <returns>True if the wait terminates with the alert in the correct state</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToBeClickable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="element">The IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToBeClickable(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="locator">The locator for the IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToExist(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to exist in the DOM
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to exist</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToBeSelected(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToBeSelected(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="element">The IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToBeVisible(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a visble attribute of true
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be visible</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetCurrentWindowHandle">
             <summary>
             Gets the Window Handle for the currently selected page

@@ -7,7 +7,11 @@ namespace Liberator.Driver
     public partial class RatDriver<TWebDriver> : IRatDriver<TWebDriver>
         where TWebDriver : IWebDriver, new()
     {
-        private bool WaitForAlertToBePresent()
+        /// <summary>
+        /// Waits for an alert style duialog to be displayed
+        /// </summary>
+        /// <returns>True if the wait terminates with an alert being found</returns>
+        public bool WaitForAlertToBePresent()
         {
             try
             {
@@ -22,7 +26,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForAlertToBeInState(bool state)
+        /// <summary>
+        /// Checks for the state of an alert to be as expected
+        /// </summary>
+        /// <param name="state">True if the alert is to be displayed</param>
+        /// <returns>True if the wait terminates with the alert in the correct state</returns>
+        public bool WaitForAlertToBeInState(bool state)
         {
             try
             {
@@ -37,7 +46,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementToBeClickable(IWebElement element)
+        /// <summary>
+        /// Waits for an element to reach a clickable state
+        /// </summary>
+        /// <param name="element">The IWebElement representing the object</param>
+        /// <returns>True if the wait is terminated by the element becoming clickable</returns>
+        public bool WaitForElementToBeClickable(IWebElement element)
         {
             try
             {
@@ -52,7 +66,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementToBeClickable(By locator)
+        /// <summary>
+        /// Waits for an element to reach a clickable state
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement representing the object</param>
+        /// <returns>True if the wait is terminated by the element becoming clickable</returns>
+        public bool WaitForElementToBeClickable(By locator)
         {
             try
             {
@@ -67,6 +86,11 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for an element to exist in the DOM
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to await</param>
+        /// <returns>True if the wait is terminated by the element being found to exist</returns>
         private bool WaitForElementToExist(By locator)
         {
             try
@@ -81,7 +105,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementToBeSelected(By locator)
+        /// <summary>
+        /// Waits for an element to have a selected status
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to await</param>
+        /// <returns>True if the wait is terminated by the element being found to be selected</returns>
+        public bool WaitForElementToBeSelected(By locator)
         {
             try
             {
@@ -95,7 +124,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementToBeSelected(IWebElement element)
+        /// <summary>
+        /// Waits for an element to have a selected status
+        /// </summary>
+        /// <param name="element">The IWebElement to await</param>
+        /// <returns>True if the wait is terminated by the element being found to be selected</returns>
+        public bool WaitForElementToBeSelected(IWebElement element)
         {
             try
             {
@@ -109,7 +143,12 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementToBeVisible(By locator)
+        /// <summary>
+        /// Waits for an element to have a visble attribute of true
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to await</param>
+        /// <returns>True if the wait is terminated by the element being found to be visible</returns>
+        public bool WaitForElementToBeVisible(By locator)
         {
             try
             {
@@ -123,7 +162,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementSelectionStateToBe(By locator, bool state)
+        public bool WaitForElementSelectionStateToBe(By locator, bool state)
         {
             try
             {
@@ -137,7 +176,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementSelectionStateToBe(IWebElement element, bool state)
+        public bool WaitForElementSelectionStateToBe(IWebElement element, bool state)
         {
             try
             {
@@ -151,7 +190,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementInvisibility(By locator)
+        public bool WaitForElementInvisibility(By locator)
         {
             try
             {
@@ -165,7 +204,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForElementInvisibilityWithText(By locator, String text)
+        public bool WaitForElementInvisibilityWithText(By locator, String text)
         {
             try
             {
@@ -179,7 +218,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForPresenceOfAllElementsLocatedBy(By locator, String text)
+        public bool WaitForPresenceOfAllElementsLocatedBy(By locator, String text)
         {
             try
             {
@@ -193,7 +232,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForStalenessOf(IWebElement element)
+        public bool WaitForStalenessOf(IWebElement element)
         {
             try
             {
@@ -207,7 +246,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTextToBePresentInElement(IWebElement element, String text)
+        public bool WaitForTextToBePresentInElement(IWebElement element, String text)
         {
             try
             {
@@ -221,7 +260,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTextToBePresentInElement(By locator, String text)
+        public bool WaitForTextToBePresentInElement(By locator, String text)
         {
             try
             {
@@ -235,7 +274,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTextToBePresentInElementValue(By locator, String text)
+        public bool WaitForTextToBePresentInElementValue(By locator, String text)
         {
             try
             {
@@ -249,7 +288,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTextToBePresentInElementValue(IWebElement element, String text)
+        public bool WaitForTextToBePresentInElementValue(IWebElement element, String text)
         {
             try
             {
@@ -263,7 +302,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTitleToContain(String text)
+        public bool WaitForTitleToContain(String text)
         {
             try
             {
@@ -277,7 +316,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForTitleToBe(String text)
+        public bool WaitForTitleToBe(String text)
         {
             try
             {
@@ -291,7 +330,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForUrlToContain(String text)
+        public bool WaitForUrlToContain(String text)
         {
             try
             {
@@ -305,7 +344,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForUrlToMatch(String text)
+        public bool WaitForUrlToMatch(String text)
         {
             try
             {
@@ -319,7 +358,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForUrlToBe(String text)
+        public bool WaitForUrlToBe(String text)
         {
             try
             {
@@ -333,7 +372,7 @@ namespace Liberator.Driver
             }
         }
 
-        private bool WaitForVisibilityOfAllElementsLocatedBy(By locator)
+        public bool WaitForVisibilityOfAllElementsLocatedBy(By locator)
         {
             try
             {
