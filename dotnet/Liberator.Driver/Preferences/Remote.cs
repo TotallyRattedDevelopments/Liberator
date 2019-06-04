@@ -25,7 +25,7 @@ namespace Liberator.Driver.Preferences
     /// <summary>
     /// Settings file for dependency injection
     /// </summary>
-    public class RemoteSettings
+    public class RemoteSettings : BasePreferences
     {
         /// <summary>
         /// Default address for the Web Driver

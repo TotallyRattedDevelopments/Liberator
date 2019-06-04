@@ -3421,6 +3421,101 @@
             <param name="fileToFind">File name to find.</param>
             <returns>An array of file paths that fit the search parameters.</returns>
         </member>
+        <member name="T:Liberator.Driver.Preferences.BasePreferences">
+            <summary>
+            Injector for a base settings class
+            </summary>
+        </member>
+        <member name="M:Liberator.Driver.Preferences.BasePreferences.#ctor">
+            <summary>
+            Creates preset values for the preference injection
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.Timeout">
+            <summary>
+            Standard timeout
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.Sleep">
+            <summary>
+            The length of time to sleep
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.ImplicitWait">
+            <summary>
+            Implicit wait value for WebDriver
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.MenuHoverTime">
+            <summary>
+            The amount of time to keep a hover active
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.PageLoad">
+            <summary>
+            Page Load wait time
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.AsyncJavaScript">
+            <summary>
+            Asynchronous JavaScript wait time
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.AlertHandling">
+            <summary>
+            Whether to allow RatDriver to handle alerts
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.InternalTimers">
+            <summary>
+            Whether to use internal timers
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.ChromeDriverLocation">
+            <summary>
+            Location of Chrome Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.EdgeDriverLocation">
+            <summary>
+            Location of the Microsoft Web Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.FirefoxDriverLocation">
+            <summary>
+            Location of the Firefox Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.InternetExplorerDriverLocation">
+            <summary>
+            Location of the IEDriverServer executable. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.OperaDriverLocation">
+            <summary>
+            Location of the Opera Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.ChromeLocation">
+            <summary>
+            Location of the Chrome application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.FirefoxLocation">
+            <summary>
+            Locations of the Firefox application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.OperaLocation">
+            <summary>
+            Location of the Opera application
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BasePreferences.DebugLevel">
+            <summary>
+            The debug level to use for the test run
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Preferences.Chrome">
             <summary>
             Preferences for ChromeDriver
