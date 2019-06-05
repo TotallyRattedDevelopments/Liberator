@@ -33,7 +33,7 @@ namespace Liberator
     /// IWebElement element = wait.Until(ExpectedConditions.ElementExists(By.Id("foo")));
     /// </code>
     /// </example>
-    public sealed class ExpectedConditions
+    internal sealed class ExpectedConditions
     {
         /// <summary>
         /// Prevents a default instance of the <see cref="ExpectedConditions"/> class from being created.
@@ -47,7 +47,7 @@ namespace Liberator
         /// </summary>
         /// <param name="title">The expected title, which must be an exact match.</param>
         /// <returns><see langword="true"/> when the title matches; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TitleIs(string title)
+        internal static Func<IWebDriver, bool> TitleIs(string title)
         {
             return (driver) => { return title == driver.Title; };
         }
@@ -57,7 +57,7 @@ namespace Liberator
         /// </summary>
         /// <param name="title">The fragment of title expected.</param>
         /// <returns><see langword="true"/> when the title matches; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TitleContains(string title)
+        internal static Func<IWebDriver, bool> TitleContains(string title)
         {
             return (driver) => { return driver.Title.Contains(title); };
         }
@@ -67,7 +67,7 @@ namespace Liberator
         /// </summary>
         /// <param name="url">The URL that the page should be on</param>
         /// <returns><see langword="true"/> when the URL is what it should be; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> UrlToBe(string url)
+        internal static Func<IWebDriver, bool> UrlToBe(string url)
         {
             return (driver) => { return driver.Url.ToLowerInvariant().Equals(url.ToLowerInvariant()); };
         }
@@ -77,7 +77,7 @@ namespace Liberator
         /// </summary>
         /// <param name="fraction">The fraction of the url that the page should be on</param>
         /// <returns><see langword="true"/> when the URL contains the text; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> UrlContains(string fraction)
+        internal static Func<IWebDriver, bool> UrlContains(string fraction)
         {
             return (driver) => { return driver.Url.ToLowerInvariant().Contains(fraction.ToLowerInvariant()); };
         }
@@ -87,7 +87,7 @@ namespace Liberator
         /// </summary>
         /// <param name="regex">The regular expression that the URL should match</param>
         /// <returns><see langword="true"/> if the URL matches the specified regular expression; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> UrlMatches(string regex)
+        internal static Func<IWebDriver, bool> UrlMatches(string regex)
         {
             return (driver) =>
             {
@@ -104,7 +104,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns>The <see cref="IWebElement"/> once it is located.</returns>
-        public static Func<IWebDriver, IWebElement> ElementExists(By locator)
+        internal static Func<IWebDriver, IWebElement> ElementExists(By locator)
         {
             return (driver) => { return driver.FindElement(locator); };
         }
@@ -116,7 +116,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns>The <see cref="IWebElement"/> once it is located and visible.</returns>
-        public static Func<IWebDriver, IWebElement> ElementIsVisible(By locator)
+        internal static Func<IWebDriver, IWebElement> ElementIsVisible(By locator)
         {
             return (driver) =>
             {
@@ -138,7 +138,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns>The list of <see cref="IWebElement"/> once it is located and visible.</returns>
-        public static Func<IWebDriver, ReadOnlyCollection<IWebElement>> VisibilityOfAllElementsLocatedBy(By locator)
+        internal static Func<IWebDriver, ReadOnlyCollection<IWebElement>> VisibilityOfAllElementsLocatedBy(By locator)
         {
             return (driver) =>
             {
@@ -166,7 +166,7 @@ namespace Liberator
         /// </summary>
         /// <param name="elements">list of WebElements</param>
         /// <returns>The list of <see cref="IWebElement"/> once it is located and visible.</returns>
-        public static Func<IWebDriver, ReadOnlyCollection<IWebElement>> VisibilityOfAllElementsLocatedBy(ReadOnlyCollection<IWebElement> elements)
+        internal static Func<IWebDriver, ReadOnlyCollection<IWebElement>> VisibilityOfAllElementsLocatedBy(ReadOnlyCollection<IWebElement> elements)
         {
             return (driver) =>
             {
@@ -192,7 +192,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns>The list of <see cref="IWebElement"/> once it is located.</returns>
-        public static Func<IWebDriver, ReadOnlyCollection<IWebElement>> PresenceOfAllElementsLocatedBy(By locator)
+        internal static Func<IWebDriver, ReadOnlyCollection<IWebElement>> PresenceOfAllElementsLocatedBy(By locator)
         {
             return (driver) =>
             {
@@ -214,7 +214,7 @@ namespace Liberator
         /// <param name="element">The WebElement</param>
         /// <param name="text">Text to be present in the element</param>
         /// <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TextToBePresentInElement(IWebElement element, string text)
+        internal static Func<IWebDriver, bool> TextToBePresentInElement(IWebElement element, string text)
         {
             return (driver) =>
             {
@@ -236,7 +236,7 @@ namespace Liberator
         /// <param name="locator">The locator used to find the element.</param>
         /// <param name="text">Text to be present in the element</param>
         /// <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TextToBePresentInElementLocated(By locator, string text)
+        internal static Func<IWebDriver, bool> TextToBePresentInElementLocated(By locator, string text)
         {
             return (driver) =>
             {
@@ -259,7 +259,7 @@ namespace Liberator
         /// <param name="element">The WebElement</param>
         /// <param name="text">Text to be present in the element</param>
         /// <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TextToBePresentInElementValue(IWebElement element, string text)
+        internal static Func<IWebDriver, bool> TextToBePresentInElementValue(IWebElement element, string text)
         {
             return (driver) =>
             {
@@ -288,7 +288,7 @@ namespace Liberator
         /// <param name="locator">The locator used to find the element.</param>
         /// <param name="text">Text to be present in the element</param>
         /// <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> TextToBePresentInElementValue(By locator, string text)
+        internal static Func<IWebDriver, bool> TextToBePresentInElementValue(By locator, string text)
         {
             return (driver) =>
             {
@@ -319,7 +319,7 @@ namespace Liberator
         /// </summary>
         /// <param name="frameLocator">Used to find the frame (id or name)</param>
         /// <returns><see cref="IWebDriver"/></returns>
-        public static Func<IWebDriver, IWebDriver> FrameToBeAvailableAndSwitchToIt(string frameLocator)
+        internal static Func<IWebDriver, IWebDriver> FrameToBeAvailableAndSwitchToIt(string frameLocator)
         {
             return (driver) =>
             {
@@ -341,7 +341,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">Locator for the Frame</param>
         /// <returns><see cref="IWebDriver"/></returns>
-        public static Func<IWebDriver, IWebDriver> FrameToBeAvailableAndSwitchToIt(By locator)
+        internal static Func<IWebDriver, IWebDriver> FrameToBeAvailableAndSwitchToIt(By locator)
         {
             return (driver) =>
             {
@@ -362,7 +362,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns><see langword="true"/> if the element is not displayed; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> InvisibilityOfElementLocated(By locator)
+        internal static Func<IWebDriver, bool> InvisibilityOfElementLocated(By locator)
         {
             return (driver) =>
             {
@@ -392,7 +392,7 @@ namespace Liberator
         /// <param name="locator">The locator used to find the element.</param>
         /// <param name="text">Text of the element</param>
         /// <returns><see langword="true"/> if the element is not displayed; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> InvisibilityOfElementWithText(By locator, string text)
+        internal static Func<IWebDriver, bool> InvisibilityOfElementWithText(By locator, string text)
         {
             return (driver) =>
             {
@@ -428,7 +428,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns>The <see cref="IWebElement"/> once it is located and clickable (visible and enabled).</returns>
-        public static Func<IWebDriver, IWebElement> ElementToBeClickable(By locator)
+        internal static Func<IWebDriver, IWebElement> ElementToBeClickable(By locator)
         {
             return (driver) =>
             {
@@ -457,7 +457,7 @@ namespace Liberator
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns>The <see cref="IWebElement"/> once it is clickable (visible and enabled).</returns>
-        public static Func<IWebDriver, IWebElement> ElementToBeClickable(IWebElement element)
+        internal static Func<IWebDriver, IWebElement> ElementToBeClickable(IWebElement element)
         {
             return (driver) =>
             {
@@ -484,7 +484,7 @@ namespace Liberator
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns><see langword="false"/> is the element is still attached to the DOM; otherwise, <see langword="true"/>.</returns>
-        public static Func<IWebDriver, bool> StalenessOf(IWebElement element)
+        internal static Func<IWebDriver, bool> StalenessOf(IWebElement element)
         {
             return (driver) =>
             {
@@ -505,7 +505,7 @@ namespace Liberator
         /// </summary>
         /// <param name="element">The element.</param>
         /// <returns><see langword="true"/> given element is selected.; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> ElementToBeSelected(IWebElement element)
+        internal static Func<IWebDriver, bool> ElementToBeSelected(IWebElement element)
         {
             return ElementSelectionStateToBe(element, true);
         }
@@ -516,7 +516,7 @@ namespace Liberator
         /// <param name="element">The element.</param>
         /// <param name="selected">selected or not selected</param>
         /// <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> ElementToBeSelected(IWebElement element, bool selected)
+        internal static Func<IWebDriver, bool> ElementToBeSelected(IWebElement element, bool selected)
         {
             return (driver) =>
             {
@@ -530,7 +530,7 @@ namespace Liberator
         /// <param name="element">The element.</param>
         /// <param name="selected">selected or not selected</param>
         /// <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> ElementSelectionStateToBe(IWebElement element, bool selected)
+        internal static Func<IWebDriver, bool> ElementSelectionStateToBe(IWebElement element, bool selected)
         {
             return (driver) =>
             {
@@ -543,7 +543,7 @@ namespace Liberator
         /// </summary>
         /// <param name="locator">The locator used to find the element.</param>
         /// <returns><see langword="true"/> given element is selected.; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> ElementToBeSelected(By locator)
+        internal static Func<IWebDriver, bool> ElementToBeSelected(By locator)
         {
             return ElementSelectionStateToBe(locator, true);
         }
@@ -554,7 +554,7 @@ namespace Liberator
         /// <param name="locator">The locator used to find the element.</param>
         /// <param name="selected">selected or not selected</param>
         /// <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> ElementSelectionStateToBe(By locator, bool selected)
+        internal static Func<IWebDriver, bool> ElementSelectionStateToBe(By locator, bool selected)
         {
             return (driver) =>
             {
@@ -574,7 +574,7 @@ namespace Liberator
         /// An expectation for checking the AlterIsPresent
         /// </summary>
         /// <returns>Alert </returns>
-        public static Func<IWebDriver, IAlert> AlertIsPresent()
+        internal static Func<IWebDriver, IAlert> AlertIsPresent()
         {
             return (driver) =>
             {
@@ -594,7 +594,7 @@ namespace Liberator
         /// </summary>
         /// <param name="state">A value indicating whether or not an alert should be displayed in order to meet this condition.</param>
         /// <returns><see langword="true"/> alert is in correct state present or not present; otherwise, <see langword="false"/>.</returns>
-        public static Func<IWebDriver, bool> AlertState(bool state)
+        internal static Func<IWebDriver, bool> AlertState(bool state)
         {
             return (driver) =>
             {
@@ -613,7 +613,7 @@ namespace Liberator
             };
         }
 
-        private static IWebElement ElementIfVisible(IWebElement element)
+        internal static IWebElement ElementIfVisible(IWebElement element)
         {
             return element.Displayed ? element : null;
         }
