@@ -162,6 +162,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for the selection of an element to reach a certain state
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to be used</param>
+        /// <param name="state">The selection state to check for</param>
+        /// <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
         public bool WaitForElementSelectionStateToBe(By locator, bool state)
         {
             try
@@ -176,6 +182,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// aits for the selection of an element to reach a certain state
+        /// </summary>
+        /// <param name="element">The IWebElement to await</param>
+        /// <param name="state">The selection state to check for</param>
+        /// <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
         public bool WaitForElementSelectionStateToBe(IWebElement element, bool state)
         {
             try
@@ -190,6 +202,11 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for a given element containing text to be invisible
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to be used</param>
+        /// <returns>True if the elements is invisible, false if the wait expires.</returns>
         public bool WaitForElementInvisibility(By locator)
         {
             try
@@ -204,6 +221,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for a given element containing text to be invisible or to be removed from the DOM
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to be used</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the elements with given text is invisible, false if the wait expires</returns>
         public bool WaitForElementInvisibilityWithText(By locator, String text)
         {
             try
@@ -218,6 +241,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Checks if any elements on the page match the locator
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to be used</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the elements found by a locator are present, false if the wait expires or no elements are found.</returns>
         public bool WaitForPresenceOfAllElementsLocatedBy(By locator, String text)
         {
             try
@@ -232,6 +261,11 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for a given element to go stale
+        /// </summary>
+        /// <param name="element">The IWebElement to check</param>
+        /// <returns>True if the element becomes stale, false if the wait expires.</returns>
         public bool WaitForStalenessOf(IWebElement element)
         {
             try
@@ -246,6 +280,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits until specified text is found within a given element
+        /// </summary>
+        /// <param name="element">The IWebElement to check</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the element contains the given text, false if the wait expires.</returns>
         public bool WaitForTextToBePresentInElement(IWebElement element, String text)
         {
             try
@@ -260,7 +300,13 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForTextToBePresentInElement(By locator, String text)
+        /// <summary>
+        /// Waits until specified text is found within a given element
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to check</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the element contains the given text, false if the wait expires.</returns>
+        public bool WaitForTextToBePresentInElement(By locator, string text)
         {
             try
             {
@@ -274,6 +320,12 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits until specified text is found within a given element's value attribute
+        /// </summary>
+        /// <param name="locator">The locator for the IWebElement to check</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the element contains the given text, false if the wait expires.</returns>
         public bool WaitForTextToBePresentInElementValue(By locator, String text)
         {
             try
@@ -288,7 +340,13 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForTextToBePresentInElementValue(IWebElement element, String text)
+        /// <summary>
+        /// Waits until a given string is found in the value attribute of the given element
+        /// </summary>
+        /// <param name="element">The element to observe</param>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the element contains the given text, false if the wait expires.</returns>
+        public bool WaitForTextToBePresentInElementValue(IWebElement element, string text)
         {
             try
             {
@@ -302,7 +360,12 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForTitleToContain(String text)
+        /// <summary>
+        /// Pauses execution until the title of the page title contains a given string
+        /// </summary>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the title contains the given text, false if the wait expires.</returns>
+        public bool WaitForTitleToContain(string text)
         {
             try
             {
@@ -316,7 +379,12 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForTitleToBe(String text)
+        /// <summary>
+        /// Pauses execution until the title of the page title matches a given string
+        /// </summary>
+        /// <param name="text">The text to be used in comparison</param>
+        /// <returns>True if the title matches the given text, false if the wait expires.</returns>
+        public bool WaitForTitleToBe(string text)
         {
             try
             {
@@ -330,7 +398,12 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForUrlToContain(String text)
+        /// <summary>
+        /// Pauses execution until the url contains a given string
+        /// </summary>
+        /// <param name="text">The text to use in comparison.</param>
+        /// <returns>True if the URL contains the given text, false if the wait expires.</returns>
+        public bool WaitForUrlToContain(string text)
         {
             try
             {
@@ -344,12 +417,17 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForUrlToMatch(String text)
+        /// <summary>
+        /// Pauses execution until the url matches a given string
+        /// </summary>
+        /// <param name="text">The text to use in comparison.</param>
+        /// <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        public bool WaitForUrlToMatch(string text)
         {
             try
             {
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.UrlMatches(text));
-                if (wait == false) { throw new Exception("Could not confirm staleness of the element required."); }
+                if (wait == false) { throw new Exception("URL does not appear within the timeout period."); }
                 return true;
             }
             catch (Exception)
@@ -358,12 +436,17 @@ namespace Liberator.Driver
             }
         }
 
-        public bool WaitForUrlToBe(String text)
+        /// <summary>
+        /// Pauses execution until the url matches a given string
+        /// </summary>
+        /// <param name="text">The text to use in comparison.</param>
+        /// <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        public bool WaitForUrlToBe(string text)
         {
             try
             {
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.UrlToBe(text));
-                if (wait == false) { throw new Exception("Could not confirm staleness of the element required."); }
+                if (wait == false) { throw new Exception("URL does not appear within the timeout period."); }
                 return true;
             }
             catch (Exception)
@@ -372,12 +455,17 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Waits for all of the element identified by the locator to be visible
+        /// </summary>
+        /// <param name="locator">The locator to use to find elements</param>
+        /// <returns>True if all elements located are visible, false if the wait expires.</returns>
         public bool WaitForVisibilityOfAllElementsLocatedBy(By locator)
         {
             try
             {
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(locator));
-                if (wait.Count == 0) { throw new Exception("Could not confirm staleness of the element required."); }
+                if (wait.Count == 0) { throw new Exception("Could not confirm the visibility of the element required."); }
                 return true;
             }
             catch (Exception)
