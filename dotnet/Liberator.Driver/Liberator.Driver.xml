@@ -1879,6 +1879,181 @@
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForAlertToBePresent">
+            <summary>
+            Waits for an alert style duialog to be displayed
+            </summary>
+            <returns>True if the wait terminates with an alert being found</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForAlertToBeInState(System.Boolean)">
+            <summary>
+            Checks for the state of an alert to be as expected
+            </summary>
+            <param name="state">True if the alert is to be displayed</param>
+            <returns>True if the wait terminates with the alert in the correct state</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToBeClickable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="element">The IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToBeClickable(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="locator">The locator for the IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToExist(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to exist in the DOM
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to exist</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToBeSelected(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToBeSelected(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="element">The IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementToBeVisible(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a visble attribute of true
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be visible</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementSelectionStateToBe(OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Waits for the selection of an element to reach a certain state
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="state">The selection state to check for</param>
+            <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementSelectionStateToBe(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Waits for the selection of an element to reach a certain state
+            </summary>
+            <param name="element">The IWebElement to await</param>
+            <param name="state">The selection state to check for</param>
+            <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementInvisibility(OpenQA.Selenium.By)">
+            <summary>
+            Waits for a given element containing text to be invisible
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <returns>True if the elements is invisible, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForElementInvisibilityWithText(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits for a given element containing text to be invisible or to be removed from the DOM
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the elements with given text is invisible, false if the wait expires</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForPresenceOfAllElementsLocatedBy(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Checks if any elements on the page match the locator
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the elements found by a locator are present, false if the wait expires or no elements are found.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForStalenessOf(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for a given element to go stale
+            </summary>
+            <param name="element">The IWebElement to check</param>
+            <returns>True if the element becomes stale, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTextToBePresentInElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Waits until specified text is found within a given element
+            </summary>
+            <param name="element">The IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTextToBePresentInElement(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits until specified text is found within a given element
+            </summary>
+            <param name="locator">The locator for the IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTextToBePresentInElementValue(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits until specified text is found within a given element's value attribute
+            </summary>
+            <param name="locator">The locator for the IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTextToBePresentInElementValue(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Waits until a given string is found in the value attribute of the given element
+            </summary>
+            <param name="element">The element to observe</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTitleToContain(System.String)">
+            <summary>
+            Pauses execution until the title of the page title contains a given string
+            </summary>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the title contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForTitleToBe(System.String)">
+            <summary>
+            Pauses execution until the title of the page title matches a given string
+            </summary>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the title matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForUrlToContain(System.String)">
+            <summary>
+            Pauses execution until the url contains a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForUrlToMatch(System.String)">
+            <summary>
+            Pauses execution until the url matches a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForUrlToBe(System.String)">
+            <summary>
+            Pauses execution until the url matches a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.WaitForVisibilityOfAllElementsLocatedBy(OpenQA.Selenium.By)">
+            <summary>
+            Waits for all of the element identified by the locator to be visible
+            </summary>
+            <param name="locator">The locator to use to find elements</param>
+            <returns>True if all elements located are visible, false if the wait expires.</returns>
+        </member>
         <member name="T:Liberator.Driver.IRodent">
             <summary>
             Base interface for RatDriver, also used in multithreaded testing
@@ -2983,6 +3158,181 @@
             </summary>
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForAlertToBePresent">
+            <summary>
+            Waits for an alert style duialog to be displayed
+            </summary>
+            <returns>True if the wait terminates with an alert being found</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForAlertToBeInState(System.Boolean)">
+            <summary>
+            Checks for the state of an alert to be as expected
+            </summary>
+            <param name="state">True if the alert is to be displayed</param>
+            <returns>True if the wait terminates with the alert in the correct state</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToBeClickable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="element">The IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToBeClickable(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to reach a clickable state
+            </summary>
+            <param name="locator">The locator for the IWebElement representing the object</param>
+            <returns>True if the wait is terminated by the element becoming clickable</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToExist(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to exist in the DOM
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to exist</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToBeSelected(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToBeSelected(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to have a selected status
+            </summary>
+            <param name="element">The IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be selected</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementToBeVisible(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to have a visble attribute of true
+            </summary>
+            <param name="locator">The locator for the IWebElement to await</param>
+            <returns>True if the wait is terminated by the element being found to be visible</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementSelectionStateToBe(OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Waits for the selection of an element to reach a certain state
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="state">The selection state to check for</param>
+            <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementSelectionStateToBe(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Waits for the selection of an element to reach a certain state
+            </summary>
+            <param name="element">The IWebElement to await</param>
+            <param name="state">The selection state to check for</param>
+            <returns>True if the wait is terminated by the element being found to be in a given selection state.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementInvisibility(OpenQA.Selenium.By)">
+            <summary>
+            Waits for a given element containing text to be invisible
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <returns>True if the elements is invisible, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForElementInvisibilityWithText(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits for a given element containing text to be invisible or to be removed from the DOM
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the elements with given text is invisible, false if the wait expires</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForPresenceOfAllElementsLocatedBy(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Checks if any elements on the page match the locator
+            </summary>
+            <param name="locator">The locator for the IWebElement to be used</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the elements found by a locator are present, false if the wait expires or no elements are found.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForStalenessOf(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for a given element to go stale
+            </summary>
+            <param name="element">The IWebElement to check</param>
+            <returns>True if the element becomes stale, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTextToBePresentInElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Waits until specified text is found within a given element
+            </summary>
+            <param name="element">The IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTextToBePresentInElement(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits until specified text is found within a given element
+            </summary>
+            <param name="locator">The locator for the IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTextToBePresentInElementValue(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits until specified text is found within a given element's value attribute
+            </summary>
+            <param name="locator">The locator for the IWebElement to check</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTextToBePresentInElementValue(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Waits until a given string is found in the value attribute of the given element
+            </summary>
+            <param name="element">The element to observe</param>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the element contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTitleToContain(System.String)">
+            <summary>
+            Pauses execution until the title of the page title contains a given string
+            </summary>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the title contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForTitleToBe(System.String)">
+            <summary>
+            Pauses execution until the title of the page title matches a given string
+            </summary>
+            <param name="text">The text to be used in comparison</param>
+            <returns>True if the title matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForUrlToContain(System.String)">
+            <summary>
+            Pauses execution until the url contains a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL contains the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForUrlToMatch(System.String)">
+            <summary>
+            Pauses execution until the url matches a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForUrlToBe(System.String)">
+            <summary>
+            Pauses execution until the url matches a given string
+            </summary>
+            <param name="text">The text to use in comparison.</param>
+            <returns>True if the URL matches the given text, false if the wait expires.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.WaitForVisibilityOfAllElementsLocatedBy(OpenQA.Selenium.By)">
+            <summary>
+            Waits for all of the element identified by the locator to be visible
+            </summary>
+            <param name="locator">The locator to use to find elements</param>
+            <returns>True if all elements located are visible, false if the wait expires.</returns>
         </member>
         <member name="T:Liberator.Driver.Performance.EnumTiming">
             <summary>
@@ -5881,7 +6231,7 @@
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.WaitForElementSelectionStateToBe(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
-            aits for the selection of an element to reach a certain state
+            Waits for the selection of an element to reach a certain state
             </summary>
             <param name="element">The IWebElement to await</param>
             <param name="state">The selection state to check for</param>

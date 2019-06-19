@@ -91,7 +91,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the IWebElement to await</param>
         /// <returns>True if the wait is terminated by the element being found to exist</returns>
-        private bool WaitForElementToExist(By locator)
+        public bool WaitForElementToExist(By locator)
         {
             try
             {
@@ -183,7 +183,7 @@ namespace Liberator.Driver
         }
 
         /// <summary>
-        /// aits for the selection of an element to reach a certain state
+        /// Waits for the selection of an element to reach a certain state
         /// </summary>
         /// <param name="element">The IWebElement to await</param>
         /// <param name="state">The selection state to check for</param>
