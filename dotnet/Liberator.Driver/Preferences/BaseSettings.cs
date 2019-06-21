@@ -193,4 +193,111 @@ namespace Liberator.Driver.Preferences
             }
         }
     }
+
+    /// <summary>
+    /// Injector for a base settings class
+    /// </summary>
+    public abstract class BasePreferences : IDriverSettings
+    {
+        /// <summary>
+        /// Creates preset values for the preference injection
+        /// </summary>
+        public BasePreferences()
+        {
+            Timeout = new TimeSpan(0, 0, 0, 30, 0);
+            Sleep = new TimeSpan(0, 0, 0, 20, 0);
+            ImplicitWait = new TimeSpan(0, 0, 0, 10, 0);
+            MenuHoverTime = new TimeSpan(0, 0, 0, 10, 0);
+            PageLoad = new TimeSpan(0, 0, 0, 30, 0);
+            AsyncJavaScript = new TimeSpan(0, 0, 0, 10, 0);
+
+            AlertHandling = true;
+            InternalTimers = true;
+        }
+
+        /// <summary>
+        /// Standard timeout
+        /// </summary>
+        public TimeSpan Timeout { get; set; }
+
+        /// <summary>
+        /// The length of time to sleep
+        /// </summary>
+        public TimeSpan Sleep { get; set; }
+
+        /// <summary>
+        /// Implicit wait value for WebDriver
+        /// </summary>
+        public TimeSpan ImplicitWait { get; set; }
+
+        /// <summary>
+        /// The amount of time to keep a hover active
+        /// </summary>
+        public TimeSpan MenuHoverTime { get; set; }
+
+        /// <summary>
+        /// Page Load wait time
+        /// </summary>
+        public TimeSpan PageLoad { get; set; }
+
+        /// <summary>
+        /// Asynchronous JavaScript wait time
+        /// </summary>
+        public TimeSpan AsyncJavaScript { get; set; }
+
+        /// <summary>
+        /// Whether to allow RatDriver to handle alerts
+        /// </summary>
+        public bool AlertHandling { get; set; }
+
+        /// <summary>
+        /// Whether to use internal timers
+        /// </summary>
+        public bool InternalTimers { get; set; }
+
+        /// <summary>
+        /// Location of Chrome Driver. Defaults to the supplied version.
+        /// </summary>
+        public string ChromeDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Microsoft Web Driver. Defaults to the supplied version.
+        /// </summary>
+        public string EdgeDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Firefox Driver. Defaults to the supplied version.
+        /// </summary>
+        public string FirefoxDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the IEDriverServer executable. Defaults to the supplied version.
+        /// </summary>
+        public string InternetExplorerDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Opera Driver. Defaults to the supplied version.
+        /// </summary>
+        public string OperaDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Chrome application
+        /// </summary>
+        public string ChromeLocation { get; set; }
+
+        /// <summary>
+        /// Locations of the Firefox application
+        /// </summary>
+        public string FirefoxLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Opera application
+        /// </summary>
+        public string OperaLocation { get; set; }
+
+        /// <summary>
+        /// The debug level to use for the test run
+        /// </summary>
+        public EnumConsoleDebugLevel DebugLevel { get; set; }
+    }
 }
