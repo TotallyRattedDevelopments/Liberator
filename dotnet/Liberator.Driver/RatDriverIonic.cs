@@ -9,50 +9,28 @@ namespace Liberator.Driver
         where TWebDriver : IWebDriver, new()
     {
         /// <summary>
-        /// Allows navigation to elements within shadow roots by passing a series of FindBy locators
+        /// Expands a ShadowRoot tree using a chain of locators
+        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
         /// </summary>
-        /// <param name="shadowLocators">A list of shadow locators in order to navigate to an element.</param>
-        /// <returns>An object representing the target of the list of shadow locators.</returns>
-        public IWebElement NavigateToShadowRoot(List<ShadowLocator> shadowLocators)
+        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+        /// <returns>The final opened shadow root item.</returns>
+        public IWebElement ExpandShadowRootTree(List<ShadowLocator> shadowLocators)
         {
             try
             {
-                IWebDriver driver = ReturnEncapsulatedDriver();
-                IWebElement element = driver.FindElement(shadowLocators[0].FindBy);
+                IWebElement shadowRoot = Driver.FindElement(shadowLocators[0].SeleniumLocator);
+                IWebElement expandedElement = ExpandShadowRoot(shadowRoot);
 
                 for (int i = 1; i < shadowLocators.Count; i++)
                 {
-                    shadowLocators[i].Ancestor = element;
-                    IWebElement shadowRoot = element.FindElement(shadowLocators[i].FindBy);
-                    element = ExpandRootElement(shadowRoot);
-                    shadowLocators[i + 1].Child = element;
-                    Console.Out.WriteLine("Found locator: {0}", shadowLocators[i].FindBy.ToString());
+                    IWebElement webElement = shadowRoot.FindElement(shadowLocators[i].SeleniumLocator);
+                    shadowRoot = webElement;
                 }
-                return element;
+                return shadowRoot;
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Could not navigate to the next shadow root element.");
-                HandleErrors(ex);
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Allows a user to access the root element beneath a shadow root tag
-        /// </summary>
-        /// <param name="rootLocator">The locator for a root element.</param>
-        /// <returns>An IWebElement representing the root</returns>
-        public IWebElement MoveToShadowRootAndExpand(By rootLocator)
-        {
-            try
-            {
-                IWebElement element = Driver.FindElement(rootLocator);
-                return (IWebElement)((IJavaScriptExecutor)ReturnEncapsulatedDriver()).ExecuteAsyncScript("return arguments[0].shadowRoot", element);
-            }
-            catch (Exception ex)
-            {
-                Console.Out.WriteLine("Could not expand the element: {0}", rootLocator.ToString());
+                Console.Out.WriteLine("Could not expand the tree .");
                 HandleErrors(ex);
                 return null;
             }
@@ -61,18 +39,37 @@ namespace Liberator.Driver
         /// <summary>
         /// Expands a shadow root element
         /// </summary>
-        /// <param name="element">The shadow root element to expand</param>
+        /// <param name="elementToOpen">The shadow root element to expand</param>
         /// <returns>An IWebElement representing the expanded root.</returns>
-        public IWebElement ExpandRootElement(IWebElement element)
+        public IWebElement ExpandShadowRoot(IWebElement elementToOpen)
         {
             try
             {
-
-                return (IWebElement)((IJavaScriptExecutor)ReturnEncapsulatedDriver()).ExecuteAsyncScript("return arguments[0].shadowRoot", element);
+                return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", elementToOpen);
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Could not expand the {0} element passed.", element.TagName);
+                Console.Out.WriteLine("Could not expand the {0} element passed.", elementToOpen.TagName);
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Expands a shadow root element
+        /// <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+        /// </summary>
+        /// <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
+        /// <returns></returns>
+        public IWebElement ExpandShadowRoot(ShadowLocator shadowLocator)
+        {
+            try
+            {
+                return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", shadowLocator.Locator);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Could not expand the {0} element passed.", shadowLocator.Locator);
                 HandleErrors(ex);
                 return null;
             }
