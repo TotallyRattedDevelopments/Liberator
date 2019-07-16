@@ -502,6 +502,53 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        public string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (wait) { WaitForElementToBeClickable(locator); };
+                Element = Driver.FindElement(locator);
+                SelectElement se = new SelectElement(Element);
+                return se.SelectedOption.Text;
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to get the value of the specified field."); }
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="element">The element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        public string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (wait) { WaitForElementToBeClickable(element); };
+                SelectElement se = new SelectElement(element);
+                return se.SelectedOption.Text;
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to get the value of the specified field."); }
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Checks the browser for the presence of a particular WebElement
         /// </summary>
         /// <param name="element">The WebElement whose presence is tested</param>
