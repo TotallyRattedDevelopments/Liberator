@@ -5744,6 +5744,22 @@
             <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetSelectedTextFromDropdown(OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Retrieves the text value from the selected option in a dropdown menu.
+            </summary>
+            <param name="locator">The locator for the element that represents the dropdown menu.</param>
+            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <returns>The text of the WebElement</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetSelectedTextFromDropdown(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Retrieves the text value from the selected option in a dropdown menu.
+            </summary>
+            <param name="element">The element that represents the dropdown menu.</param>
+            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <returns>The text of the WebElement</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.ElementExists(OpenQA.Selenium.IWebElement)">
             <summary>
             Checks the browser for the presence of a particular WebElement

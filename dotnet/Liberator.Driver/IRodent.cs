@@ -921,6 +921,22 @@ namespace Liberator.Driver
         string GetElementText(By locator, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="element">The element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Checks the browser for the presence of a particular WebElement
         /// </summary>
         /// <param name="element">The WebElement whose presence is tested</param>
