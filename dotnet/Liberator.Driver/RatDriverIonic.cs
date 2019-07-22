@@ -24,7 +24,7 @@ namespace Liberator.Driver
                 for (int i = 1; i < shadowLocators.Count; i++)
                 {
                     IWebElement webElement = expandedElement.FindElement(shadowLocators[i].SeleniumLocator);
-                    expandedElement = webElement;
+                    expandedElement = ExpandShadowRoot(webElement);
                 }
                 return shadowRoot;
             }
@@ -141,11 +141,12 @@ namespace Liberator.Driver
         {
             try
             {
-                return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", shadowLocator.Locator);
+                var elementToOpen = Driver.FindElement(shadowLocator.SeleniumLocator);
+                return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", elementToOpen);
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Could not expand the {0} element passed.", shadowLocator.Locator);
+                Console.Out.WriteLine("Could not expand the element found using the {0} : {1}.", shadowLocator.FindBy.ToString(), shadowLocator.Locator);
                 HandleErrors(ex);
                 return null;
             }
