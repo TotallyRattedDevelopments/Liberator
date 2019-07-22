@@ -26,7 +26,7 @@ namespace Liberator.Driver
                     IWebElement webElement = expandedElement.FindElement(shadowLocators[i].SeleniumLocator);
                     expandedElement = ExpandShadowRoot(webElement);
                 }
-                return shadowRoot;
+                return expandedElement;
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace Liberator.Driver
                 for (int i = 0; i < shadowLocators.Count; i++)
                 {
                     IWebElement webElement = shadowRoot.FindElement(shadowLocators[i].SeleniumLocator);
-                    shadowRoot = webElement;
+                    shadowRoot = ExpandShadowRoot(webElement);
                 }
                 return shadowRoot;
             }
@@ -80,7 +80,7 @@ namespace Liberator.Driver
                 for (int i = 0; i < shadowLocators.Count; i++)
                 {
                     IWebElement webElement = shadowRoot.FindElement(shadowLocators[i].SeleniumLocator);
-                    shadowRoot = webElement;
+                    shadowRoot = ExpandShadowRoot(webElement);
                 }
                 return shadowRoot;
             }
