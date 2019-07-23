@@ -773,6 +773,47 @@
             </summary>
             <param name="driver"></param>
         </member>
+        <member name="T:Liberator.Driver.Ionic.ShadowLocator">
+            <summary>
+            A custom locator class used for Shadow Root elements
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Ionic.ShadowLocator.FindOrder">
+            <summary>
+            Find order when using multiple ShadowLocators to navigate a complex ShadowRoot system
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Ionic.ShadowLocator.FindBy">
+            <summary>
+            Defines the type of built in finder to use for shadow roots.
+            <para>Limited to finding by ID or by CSS Selector.</para>
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Ionic.ShadowLocator.Locator">
+            <summary>
+            Locator for the shadow element required
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Ionic.ShadowLocator.SeleniumLocator">
+            <summary>
+            Calculated selenium locator
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.Ionic.ShadowFindBy">
+            <summary>
+            Types of locator available for shadow elements
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Ionic.ShadowFindBy.Id">
+            <summary>
+            Use ID to find shadowed objects
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Ionic.ShadowFindBy.CssSelector">
+            <summary>
+            Use CSS Selector to find shadowed objects
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.IRatDriver`1">
             <summary>
             Provides a base interface for single instance web drivers
@@ -5372,6 +5413,54 @@
             Handles all caught exceptions
             </summary>
             <param name="ex">Exception which caused the method to be called</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRootTree(System.Collections.Generic.List{Liberator.Driver.Ionic.ShadowLocator})">
+            <summary>
+            Expands a ShadowRoot tree using a chain of locators
+            <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+            </summary>
+            <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+            <returns>The final opened shadow root item.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRootTree(OpenQA.Selenium.By,System.Collections.Generic.List{Liberator.Driver.Ionic.ShadowLocator})">
+            <summary>
+            Expands a ShadowRoot tree using a chain of locators
+            <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+            </summary>
+            <param name="rootLocator"></param>
+            <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+            <returns>The final opened shadow root item.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRootTree(OpenQA.Selenium.IWebElement,System.Collections.Generic.List{Liberator.Driver.Ionic.ShadowLocator})">
+            <summary>
+            Expands a ShadowRoot tree using a chain of locators
+            <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+            </summary>
+            <param name="rootElement"></param>
+            <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+            <returns>The final opened shadow root item.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRoot(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Expands a shadow root element
+            </summary>
+            <param name="elementToOpen">The shadow root element to expand</param>
+            <returns>An IWebElement representing the expanded root.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRoot(OpenQA.Selenium.By)">
+            <summary>
+            Expands a shadow root element
+            </summary>
+            <param name="locatorToOpen">Thelocator for the shadow root element to expand</param>
+            <returns>An IWebElement representing the expanded root.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExpandShadowRoot(Liberator.Driver.Ionic.ShadowLocator)">
+            <summary>
+            Expands a shadow root element
+            <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+            </summary>
+            <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
+            <returns>An IWebElement representing the expanded root.</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ReturnEncapsulatedDriver">
             <summary>
