@@ -40,6 +40,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.SwitchTo().Window(windowName);
+                Console.Out.WriteLine("Switched to the {0} window.", windowName);
             }
             catch (Exception ex)
             {
@@ -125,6 +126,7 @@ namespace Liberator.Driver
                 Driver.ExecuteJavaScript("window.open();");
                 Driver.SwitchTo().Window(Driver.WindowHandles.Last());
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                Console.Out.WriteLine("Opened a new view");
             }
             catch (Exception ex)
             {
@@ -145,6 +147,7 @@ namespace Liberator.Driver
                 Driver.Close();
                 Driver.SwitchTo().Window(WindowHandles.Last().Value);
                 WindowHandles.Remove(winHandle);
+                Console.Out.WriteLine("Closed the selected view");
             }
             catch (Exception ex)
             {
@@ -161,6 +164,7 @@ namespace Liberator.Driver
             try
             {
                 Process.GetProcessById(_browserPid).Kill();
+                Console.Out.WriteLine("Terminated browser process with PID: {0}", _browserPid);
             }
             catch (Exception)
             {
@@ -176,6 +180,7 @@ namespace Liberator.Driver
             try
             {
                 Process.GetProcessById(_driverPid).Kill();
+                Console.Out.WriteLine("Terminated driver process with PID: {0}", _browserPid);
             }
             catch (Exception)
             {
