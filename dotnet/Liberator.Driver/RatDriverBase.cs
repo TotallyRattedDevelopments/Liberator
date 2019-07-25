@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace Liberator.Driver
 {
@@ -46,24 +45,32 @@ namespace Liberator.Driver
         public RatDriver([Optional, DefaultParameterValue(null)]IDriverSettings driverSettings,
             [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
-            RecordPerformance = performanceTimings;
-            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
+            try
+            {
+                RecordPerformance = performanceTimings;
+                if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-            EstablishDriverSettings();
-            string driverType = typeof(TWebDriver).Name;
+                EstablishDriverSettings();
+                string driverType = typeof(TWebDriver).Name;
 
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
 
-            string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
-            IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
-            Driver = (TWebDriver)controller.StartDriver();
+                string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
+                IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
+                Driver = (TWebDriver)controller.StartDriver();
 
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
+                if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
 
-            WaitForPageToLoad(null);
-            WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                WaitForPageToLoad(null);
+                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("An unexpected error has been detected.");
+                HandleErrors(ex);
+            }
         }
 
         /// <summary>
@@ -75,29 +82,37 @@ namespace Liberator.Driver
         public RatDriver(string profileName, [Optional, DefaultParameterValue(null)]FirefoxSettings driverSettings,
             [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
-            RecordPerformance = performanceTimings;
-            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
-
-            string driverType = typeof(TWebDriver).Name;
-
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
-
-            if (typeof(TWebDriver) == typeof(FirefoxDriver))
+            try
             {
-                EstablishDriverSettings();
-                FirefoxDriverControl controller = new FirefoxDriverControl();
-                Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
-                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                RecordPerformance = performanceTimings;
+                if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                string driverType = typeof(TWebDriver).Name;
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
+                if (typeof(TWebDriver) == typeof(FirefoxDriver))
+                {
+                    EstablishDriverSettings();
+                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
+                    WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
+                else
+                {
+                    Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                    Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
+                }
+
+                if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
             }
-            else
+            catch (Exception ex)
             {
-                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
+                Console.Out.WriteLine("An unexpected error has been detected.");
+                HandleErrors(ex);
             }
-
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -111,29 +126,37 @@ namespace Liberator.Driver
             [Optional, DefaultParameterValue(null)]FirefoxSettings driverSettings,
              [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
-            RecordPerformance = performanceTimings;
-            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
-
-            string driverType = typeof(TWebDriver).Name;
-
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
-
-            if (typeof(TWebDriver) == typeof(FirefoxDriver))
+            try
             {
-                EstablishDriverSettings();
-                FirefoxDriverControl controller = new FirefoxDriverControl();
-                Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
-                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                RecordPerformance = performanceTimings;
+                if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                string driverType = typeof(TWebDriver).Name;
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
+                if (typeof(TWebDriver) == typeof(FirefoxDriver))
+                {
+                    EstablishDriverSettings();
+                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
+                    WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
+                else
+                {
+                    Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                    Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
+                }
+
+                if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
             }
-            else
+            catch (Exception ex)
             {
-                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.Out.WriteLine("Please switch to Firefox if named profile loading is required");
+                Console.Out.WriteLine("An unexpected error has been detected.");
+                HandleErrors(ex);
             }
-
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -147,29 +170,37 @@ namespace Liberator.Driver
             [Optional, DefaultParameterValue(null)]ChromeSettings driverSettings,
             [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
-            RecordPerformance = performanceTimings;
-            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
-
-            string driverType = typeof(TWebDriver).Name;
-
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
-
-            if (typeof(TWebDriver) == typeof(ChromeDriver))
+            try
             {
-                EstablishDriverSettings();
-                ChromeDriverControl controller = new ChromeDriverControl();
-                Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
-                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                RecordPerformance = performanceTimings;
+                if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                string driverType = typeof(TWebDriver).Name;
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
+                if (typeof(TWebDriver) == typeof(ChromeDriver))
+                {
+                    EstablishDriverSettings();
+                    ChromeDriverControl controller = new ChromeDriverControl();
+                    Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
+                    WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
+                else
+                {
+                    Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                    Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
+                }
+
+                if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
             }
-            else
+            catch (Exception ex)
             {
-                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
+                Console.Out.WriteLine("An unexpected error has been detected.");
+                HandleErrors(ex);
             }
-
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         /// <summary>
@@ -187,29 +218,37 @@ namespace Liberator.Driver
             [Optional, DefaultParameterValue(null)]ChromeSettings driverSettings,
             [Optional, DefaultParameterValue(false)]bool performanceTimings)
         {
-            RecordPerformance = performanceTimings;
-            if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
-
-            string driverType = typeof(TWebDriver).Name;
-
-            GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
-
-            if (typeof(TWebDriver) == typeof(ChromeDriver))
+            try
             {
-                EstablishDriverSettings();
-                ChromeDriverControl controller = new ChromeDriverControl();
-                Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
-                WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+                RecordPerformance = performanceTimings;
+                if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                string driverType = typeof(TWebDriver).Name;
+
+                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+
+                if (typeof(TWebDriver) == typeof(ChromeDriver))
+                {
+                    EstablishDriverSettings();
+                    ChromeDriverControl controller = new ChromeDriverControl();
+                    Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
+                    WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
+
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
+                else
+                {
+                    Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
+                    Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
+                }
+
+                if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
             }
-            else
+            catch (Exception ex)
             {
-                Console.Out.WriteLine("{0} does not currently allow the loading of profiles.", driverType);
-                Console.Out.WriteLine("Please switch to Chrome if mobile emulation is required");
+                Console.Out.WriteLine("An unexpected error has been detected.");
+                HandleErrors(ex);
             }
-
-            if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
         }
 
         #endregion
@@ -235,14 +274,14 @@ namespace Liberator.Driver
 
             if (element == null)
             {
-                var load = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
-                    .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
+                var load = new WebDriverWait(Driver, BaseSettings.Timeout)
+                    .Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(
-                    Liberator.ExpectedConditions.StalenessOf(element));
+                    ExpectedConditions.StalenessOf(element));
             }
             else
             {
@@ -317,9 +356,11 @@ namespace Liberator.Driver
         /// <param name="performanceTimings">Whether to collect timings</param>
         private void InitialiseRatWatch(bool performanceTimings)
         {
+            Console.Out.WriteLine("Creating RatWatch to monitor event timings.");
             RatTimerCollection = new RatWatch();
             RatTimerCollection.StartTimer();
             RecordPerformance = performanceTimings;
+            Console.Out.WriteLine("-- Initialised.");
         }
 
         /// <summary>
@@ -332,6 +373,14 @@ namespace Liberator.Driver
             List<RatProcess> processList = new List<RatProcess>();
             Process[] _processes = Process.GetProcesses();
 
+            switch (processCollectionTime)
+            {
+                case ProcessCollectionTime.InitialisationEnd:
+                    Console.Out.WriteLine("Gathering the current browser and driver processes.");
+                    break;
+                default:
+                    break;
+            }
             foreach (Process process in _processes)
             {
                 if (process.ProcessName.Equals(BrowserProcessName(driverType))
@@ -356,12 +405,12 @@ namespace Liberator.Driver
 
         private void KillTestProcesses()
         {
+            Console.Out.WriteLine("Killing driver and browser processes opened by the test.");
             foreach (RatProcess process in testProcesses)
             {
                 try
                 {
                     var processObject = Process.GetProcessById(process.Id);
-
                     if (!processObject.HasExited)
                     {
                         processObject.Kill();
