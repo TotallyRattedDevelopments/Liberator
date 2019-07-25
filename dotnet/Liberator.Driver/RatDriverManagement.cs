@@ -698,6 +698,7 @@ namespace Liberator.Driver
                     Driver.Quit();
                     KillTestProcesses();
                 }
+                Console.Out.WriteLine("Closed pages and quit {0} driver and {1} browser.", DriverName, BrowserProcessName(DriverName));
             }
             catch (Exception ex)
             {
