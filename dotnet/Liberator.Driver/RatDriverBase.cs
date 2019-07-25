@@ -274,14 +274,14 @@ namespace Liberator.Driver
 
             if (element == null)
             {
-                var load = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
-                    .Until(Liberator.ExpectedConditions.ElementIsVisible(By.TagName("body")));
+                var load = new WebDriverWait(Driver, BaseSettings.Timeout)
+                    .Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
             }
             else if (typeof(TWebDriver) != typeof(OperaDriver))
             {
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
                     .Until(
-                    Liberator.ExpectedConditions.StalenessOf(element));
+                    ExpectedConditions.StalenessOf(element));
             }
             else
             {
