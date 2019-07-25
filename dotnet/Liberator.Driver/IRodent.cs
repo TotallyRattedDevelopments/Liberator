@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Ionic;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -921,6 +922,22 @@ namespace Liberator.Driver
         string GetElementText(By locator, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="element">The element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Checks the browser for the presence of a particular WebElement
         /// </summary>
         /// <param name="element">The WebElement whose presence is tested</param>
@@ -1463,6 +1480,58 @@ namespace Liberator.Driver
         /// <param name="locator">The locator to use to find elements</param>
         /// <returns>True if all elements located are visible, false if the wait expires.</returns>
         bool WaitForVisibilityOfAllElementsLocatedBy(By locator);
+
+        #endregion
+
+        #region Ionic
+
+        /// <summary>
+        /// Expands a ShadowRoot tree using a chain of locators
+        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+        /// </summary>
+        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+        /// <returns>The final opened shadow root item.</returns>
+        IWebElement ExpandShadowRootTree(List<ShadowLocator> shadowLocators);
+
+        /// <summary>
+        /// Expands a ShadowRoot tree using a chain of locators
+        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+        /// </summary>
+        /// <param name="rootLocator"></param>
+        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+        /// <returns>The final opened shadow root item.</returns>
+        IWebElement ExpandShadowRootTree(By rootLocator, List<ShadowLocator> shadowLocators);
+
+        /// <summary>
+        /// Expands a ShadowRoot tree using a chain of locators
+        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+        /// </summary>
+        /// <param name="rootElement"></param>
+        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
+        /// <returns>The final opened shadow root item.</returns>
+        IWebElement ExpandShadowRootTree(IWebElement rootElement, List<ShadowLocator> shadowLocators);
+
+        /// <summary>
+        /// Expands a shadow root element
+        /// </summary>
+        /// <param name="elementToOpen">The shadow root element to expand</param>
+        /// <returns>An IWebElement representing the expanded root.</returns>
+        IWebElement ExpandShadowRoot(IWebElement elementToOpen);
+
+        /// <summary>
+        /// Expands a shadow root element
+        /// </summary>
+        /// <param name="locatorToOpen">Thelocator for the shadow root element to expand</param>
+        /// <returns>An IWebElement representing the expanded root.</returns>
+        IWebElement ExpandShadowRoot(By locatorToOpen);
+
+        /// <summary>
+        /// Expands a shadow root element
+        /// <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+        /// </summary>
+        /// <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
+        /// <returns>An IWebElement representing the expanded root.</returns>
+        IWebElement ExpandShadowRoot(ShadowLocator shadowLocator);
 
         #endregion
     }

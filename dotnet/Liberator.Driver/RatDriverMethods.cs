@@ -171,6 +171,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeClickable(element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 element.Click();
             }
             catch (Exception)
@@ -180,6 +181,7 @@ namespace Liberator.Driver
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     element.SendKeys(Keys.Enter);
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 }
                 catch (Exception ex)
                 {
@@ -208,6 +210,7 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeClickable(element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 element.Click();
             }
             catch (Exception)
@@ -244,6 +247,7 @@ namespace Liberator.Driver
             {
                 Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 Element.Click();
             }
             catch (Exception ex)
@@ -283,10 +287,12 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver))
                 {
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                     Element.SendKeys(Keys.Enter);
                 }
                 if (typeof(TWebDriver) != typeof(OperaDriver))
                 {
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                     Element.Click();
                 }
             }
@@ -324,6 +330,7 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(element, true);
                 if (typeof(TWebDriver) != typeof(OperaDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
@@ -351,6 +358,7 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(locator, true);
                 WaitForPageToLoad(LastPage);
 
@@ -375,9 +383,11 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(element, true);
                 WaitForUrlToContain(url);
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
+                Console.Out.WriteLine("URL: {0} has been loaded.", url);
             }
             catch (Exception ex)
             {
@@ -398,9 +408,11 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(locator, true);
                 WaitForUrlToContain(url);
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
+                Console.Out.WriteLine("URL: {0} has been loaded.", url);
             }
             catch (Exception ex)
             {
@@ -499,6 +511,53 @@ namespace Liberator.Driver
                 HandleErrors(ex);
             }
             return null;
+        }
+
+        /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        public string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (wait) { WaitForElementToBeClickable(locator); };
+                Element = Driver.FindElement(locator);
+                SelectElement se = new SelectElement(Element);
+                return se.SelectedOption.Text;
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to get the value of the specified field."); }
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the text value from the selected option in a dropdown menu.
+        /// </summary>
+        /// <param name="element">The element that represents the dropdown menu.</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <returns>The text of the WebElement</returns>
+        public string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (wait) { WaitForElementToBeClickable(element); };
+                SelectElement se = new SelectElement(element);
+                return se.SelectedOption.Text;
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could to get the value of the specified field."); }
+                HandleErrors(ex);
+                return null;
+            }
         }
 
         /// <summary>
@@ -655,6 +714,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.CssSelector(cssSelector));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the <{0}> element with the CSS Selector: {0}.", Element.TagName, cssSelector);
                 return element;
             }
             catch (Exception ex)
@@ -681,6 +741,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the CSS Selector: {0}.", cssSelector);
                 return collection;
             }
             catch (Exception ex)
@@ -710,6 +771,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the CSS Selector: {0}.", cssSelector);
                 return collection;
             }
             catch (Exception ex)
@@ -740,6 +802,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.CssSelector(cssSelector));
                 Elements = collection.ToList();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the CSS Selector: {0}.", cssSelector);
                 return collection;
             }
             catch (Exception ex)
@@ -766,6 +829,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.ClassName(className));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the Class Name: {0}.", className);
                 return element;
             }
             catch (Exception ex)
@@ -791,6 +855,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the Class Name: {0}.", className);
                 return collection;
             }
             catch (Exception ex)
@@ -820,6 +885,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the Class Name: {0}.", className);
                 return collection;
             }
             catch (Exception ex)
@@ -850,6 +916,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the Class Name: {0}.", className);
                 return collection;
             }
             catch (Exception ex)
@@ -876,6 +943,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.Id(id));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the ID: {0}.", id);
                 return element;
             }
             catch (Exception ex)
@@ -902,6 +970,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.LinkText(linkText));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the link text: {0}.", linkText);
                 return element;
             }
             catch (Exception ex)
@@ -928,6 +997,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.LinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -957,6 +1027,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.LinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -987,6 +1058,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.LinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -1013,6 +1085,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.Name(name));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the name: {0}.", name);
                 return element;
             }
             catch (Exception ex)
@@ -1039,6 +1112,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.Name(name));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the name: {0}.", name);
                 return collection;
             }
             catch (Exception ex)
@@ -1068,6 +1142,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the name: {0}.", name);
                 return collection;
             }
             catch (Exception ex)
@@ -1098,6 +1173,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the name: {0}.", name);
                 return collection;
             }
             catch (Exception ex)
@@ -1124,6 +1200,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.PartialLinkText(linkText));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the partial link text: {0}.", linkText);
                 return element;
             }
             catch (Exception ex)
@@ -1150,6 +1227,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the partial link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -1179,6 +1257,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the partial link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -1209,6 +1288,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.PartialLinkText(linkText));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the partial link text: {0}.", linkText);
                 return collection;
             }
             catch (Exception ex)
@@ -1235,6 +1315,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.TagName(tagName));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the tag: {0}.", tagName);
                 return element;
             }
             catch (Exception ex)
@@ -1261,6 +1342,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.TagName(tagName));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the tag: {0}.", tagName);
                 return collection;
             }
             catch (Exception ex)
@@ -1289,6 +1371,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.TagName(tagName));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the tag: {0}.", tagName);
                 return collection;
             }
             catch (Exception ex)
@@ -1318,6 +1401,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.TagName(tagName));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the tag: {0}.", tagName);
                 return collection;
             }
             catch (Exception ex)
@@ -1344,6 +1428,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.XPath(xpath));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the XPath: {0}.", xpath);
                 return element;
             }
             catch (Exception ex)
@@ -1370,6 +1455,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Driver.FindElements(By.XPath(xpath));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the elements with the XPath: {0}.", xpath);
                 return collection;
             }
             catch (Exception ex)
@@ -1399,6 +1485,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = element.FindElements(By.XPath(xpath));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the XPath: {0}.", xpath);
                 return collection;
             }
             catch (Exception ex)
@@ -1429,6 +1516,7 @@ namespace Liberator.Driver
                 IEnumerable<IWebElement> collection = Element.FindElements(By.XPath(xpath));
                 Elements = collection;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the XPath: {0}.", xpath);
                 return collection;
             }
             catch (Exception ex)
@@ -1458,6 +1546,7 @@ namespace Liberator.Driver
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attribute of {2}.", locator, attribute, value);
                 return Element;
             }
             catch (Exception ex)
@@ -1489,6 +1578,7 @@ namespace Liberator.Driver
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attribute of {2}.", locator, attribute, value);
                 return Element;
             }
             catch (Exception ex)
