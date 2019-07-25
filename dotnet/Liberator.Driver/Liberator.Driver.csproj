@@ -4,13 +4,13 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Liberator.Driver</PackageId>
-    <Version>0.8.2.7</Version>
+    <Version>0.8.3</Version>
     <Authors>LiberatorTestTools</Authors>
     <Product>Liberator.Driver</Product>
     <Copyright>2015-2019, Liberator Test Tools</Copyright>
     <PackageTags>Selenium QA Automation</PackageTags>
-    <AssemblyVersion>0.8.2.7</AssemblyVersion>
-    <FileVersion>0.8.2.7</FileVersion>
+    <AssemblyVersion>0.8.3.0</AssemblyVersion>
+    <FileVersion>0.8.3.0</FileVersion>
     <PackageReleaseNotes>Core code to access ShadowRoot elements provided by the Ionic framework</PackageReleaseNotes>
     <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
 
