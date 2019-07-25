@@ -64,6 +64,7 @@ namespace Liberator.Driver
                     ICookieJar cookieJar = Driver.Manage().Cookies;
                     cookieJar.AddCookie(new Cookie(name, value));
                 }
+                Console.Out.WriteLine("Cookie {0} has been added with a value {1}.", name, value);
             }
             catch (Exception ex)
             {
@@ -87,6 +88,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.AddCookie(new Cookie(name, value, path));
+                Console.Out.WriteLine("Cookie {0} has been added with a value {1}.", name, value);
             }
             catch (Exception ex)
             {
@@ -111,6 +113,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.AddCookie(new Cookie(name, value, path, expiry));
+                Console.Out.WriteLine("Cookie {0} has been added with a value {1}.", name, value);
             }
             catch (Exception ex)
             {
@@ -136,6 +139,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.AddCookie(new Cookie(name, value, domain, path, expiry));
+                Console.Out.WriteLine("Cookie {0} has been added with a value {1}.", name, value);
             }
             catch (Exception ex)
             {
@@ -161,6 +165,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.AddCookie(cookie);
+                Console.Out.WriteLine("Cookie {0} has been added with a value {1}.", cookie.Name, cookie.Value);
             }
             catch (Exception ex)
             {
@@ -203,6 +208,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.DeleteAllCookies();
+                Console.Out.WriteLine("All cookies have been deleted.");
             }
             catch (Exception ex)
             {
@@ -220,6 +226,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.DeleteCookie(cookie);
+                Console.Out.WriteLine("Cookie {0} has been deleted.", cookie);
             }
             catch (Exception ex)
             {
@@ -237,6 +244,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Cookies.DeleteCookieNamed(cookie);
+                Console.Out.WriteLine("Cookie {0} has been deleted.", cookie);
             }
             catch (Exception ex)
             {
@@ -276,6 +284,7 @@ namespace Liberator.Driver
             {
                 DeleteCookieNamed(name);
                 AddCookie(name, value);
+                Console.Out.WriteLine("Cookie {0} has been set to {2}.", name, value);
             }
             catch (Exception ex)
             {
@@ -300,6 +309,7 @@ namespace Liberator.Driver
             {
                 DeleteCookieNamed(name);
                 AddCookie(name, value, path);
+                Console.Out.WriteLine("Cookie {0} has been set to {2}.", name, value);
             }
             catch (Exception ex)
             {
@@ -325,6 +335,7 @@ namespace Liberator.Driver
             {
                 DeleteCookieNamed(name);
                 AddCookie(name, value, path, expiry);
+                Console.Out.WriteLine("Cookie {0} has been set to {2}.", name, value);
             }
             catch (Exception ex)
             {
@@ -351,6 +362,7 @@ namespace Liberator.Driver
             {
                 DeleteCookieNamed(name);
                 AddCookie(name, value, domain, path, expiry);
+                Console.Out.WriteLine("Cookie {0} for the domain {1} has been set to {2}.", name, domain, value);
             }
             catch (Exception ex)
             {
@@ -420,6 +432,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Console.Out.WriteLine("Implicit wait set at {0}:{1}.{2}", minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -439,6 +452,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Console.Out.WriteLine("Page load timeout set at {0}:{1}.{2}", minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -458,6 +472,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Timeouts().AsynchronousJavaScript = new TimeSpan(0, 0, minutes, seconds, milliseconds);
+                Console.Out.WriteLine("Script timeout set at {0}:{1}.{2}", minutes, seconds, milliseconds);
             }
             catch (Exception ex)
             {
@@ -474,6 +489,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Window.Maximize();
+                Console.Out.WriteLine("Browser window has been maximised.");
             }
             catch (Exception ex)
             {
@@ -500,6 +516,7 @@ namespace Liberator.Driver
             {
                 int x = Driver.Manage().Window.Position.X;
                 int y = Driver.Manage().Window.Position.Y;
+                Console.Out.WriteLine("Window position found as: {0} by {1}", x, y);
                 return new Tuple<int, int>(x, y);
             }
             catch (Exception ex)
@@ -521,6 +538,7 @@ namespace Liberator.Driver
             {
                 int x = Driver.Manage().Window.Size.Width;
                 int y = Driver.Manage().Window.Size.Height;
+                Console.Out.WriteLine("Window size found as: {0} by {1}", x, y);
                 return new Tuple<int, int>(x, y);
             }
             catch (Exception ex)
@@ -542,6 +560,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Manage().Window.Size = new Size(width, height);
+                Console.Out.WriteLine("Resized the browser window to {0} by {1}.", width, height);
             }
             catch (Exception ex)
             {
@@ -561,6 +580,7 @@ namespace Liberator.Driver
                 LastPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().Back();
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                Console.Out.WriteLine("Pressed the back button.");
             }
             catch (Exception ex)
             {
@@ -579,6 +599,7 @@ namespace Liberator.Driver
                 LastPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().Forward();
                 var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                Console.Out.WriteLine("Pressed the forward button.");
             }
             catch (Exception ex)
             {
@@ -598,6 +619,7 @@ namespace Liberator.Driver
                 IWebElement currentPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().GoToUrl(url);
                 WaitForPageToLoad(currentPage);
+                Console.Out.WriteLine("Loaded the URL: {0}.", url);
             }
             catch (Exception ex)
             {
@@ -617,6 +639,7 @@ namespace Liberator.Driver
                 IWebElement currentPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().GoToUrl(url);
                 WaitForPageToLoad(currentPage);
+                Console.Out.WriteLine("Loaded the URL: {0}.", url.AbsoluteUri);
             }
             catch (Exception ex)
             {
@@ -633,6 +656,7 @@ namespace Liberator.Driver
             try
             {
                 Driver.Navigate().Refresh();
+                Console.Out.WriteLine("Refreshed the browser.");
             }
             catch (Exception ex)
             {
@@ -698,7 +722,6 @@ namespace Liberator.Driver
                     Driver.Quit();
                     KillTestProcesses();
                 }
-                Console.Out.WriteLine("Closed pages and quit {0} driver and {1} browser.", DriverName, BrowserProcessName(DriverName));
             }
             catch (Exception ex)
             {

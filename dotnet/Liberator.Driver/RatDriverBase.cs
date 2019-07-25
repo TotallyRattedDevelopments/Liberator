@@ -373,14 +373,20 @@ namespace Liberator.Driver
             List<RatProcess> processList = new List<RatProcess>();
             Process[] _processes = Process.GetProcesses();
 
-            Console.Out.WriteLine("Gathering the current browser and driver processes.");
+            switch (processCollectionTime)
+            {
+                case ProcessCollectionTime.InitialisationEnd:
+                    Console.Out.WriteLine("Gathering the current browser and driver processes.");
+                    break;
+                default:
+                    break;
+            }
             foreach (Process process in _processes)
             {
                 if (process.ProcessName.Equals(BrowserProcessName(driverType))
                     || process.ProcessName.Equals(DriverProcessName(driverType)))
                 {
                     processList.Add(new RatProcess() { Id = process.Id, Name = process.ProcessName });
-                    Console.Out.WriteLine("-- Found: Process {0}, with ID: {1}", process.ProcessName, process.Id);
                 }
             }
 
@@ -399,12 +405,12 @@ namespace Liberator.Driver
 
         private void KillTestProcesses()
         {
+            Console.Out.WriteLine("Killing driver and browser processes opened by the test.");
             foreach (RatProcess process in testProcesses)
             {
                 try
                 {
                     var processObject = Process.GetProcessById(process.Id);
-                    Console.Out.WriteLine("Killing driver and browser processes opened by the test.");
                     if (!processObject.HasExited)
                     {
                         processObject.Kill();
@@ -412,7 +418,6 @@ namespace Liberator.Driver
                     }
                 }
                 catch { } //No need to act, the process is already closed
-                Console.Out.WriteLine("-- Killed: Processs {0}, with ID: {1}", process.Name, process.Id);
             }
         }
 

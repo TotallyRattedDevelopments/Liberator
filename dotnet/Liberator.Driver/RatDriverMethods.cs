@@ -171,8 +171,8 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeClickable(element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 element.Click();
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
             }
             catch (Exception)
             {
@@ -181,7 +181,7 @@ namespace Liberator.Driver
                     if (_debugLevel == EnumConsoleDebugLevel.Human)
                     { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
                     element.SendKeys(Keys.Enter);
-                    Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 }
                 catch (Exception ex)
                 {
@@ -210,8 +210,8 @@ namespace Liberator.Driver
             try
             {
                 if (wait) { WaitForElementToBeClickable(element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 element.Click();
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
             }
             catch (Exception)
             {
@@ -247,8 +247,8 @@ namespace Liberator.Driver
             {
                 Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 Element.Click();
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
             }
             catch (Exception ex)
             {
@@ -287,13 +287,13 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 if (typeof(TWebDriver) == typeof(OperaDriver))
                 {
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                     Element.SendKeys(Keys.Enter);
-                    Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 }
                 if (typeof(TWebDriver) != typeof(OperaDriver))
                 {
+                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                     Element.Click();
-                    Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 }
             }
             catch (Exception ex)
@@ -330,8 +330,8 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(element, true);
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 if (typeof(TWebDriver) != typeof(OperaDriver) && typeof(TWebDriver) != typeof(InternetExplorerDriver))
                 {
                     WaitForPageToLoad(LastPage);
@@ -358,8 +358,8 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
 
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(locator, true);
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 WaitForPageToLoad(LastPage);
 
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
@@ -383,8 +383,8 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(element, true);
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 WaitForUrlToContain(url);
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
                 Console.Out.WriteLine("URL: {0} has been loaded.", url);
@@ -408,8 +408,8 @@ namespace Liberator.Driver
             {
                 if (RecordPerformance) { RatTimerCollection.StartTimer(); }
                 LastPage = Driver.FindElement(By.TagName("html"));
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 ClickLink(locator, true);
-                Console.Out.WriteLine("Clicked on the {0} element passed.", Element.TagName);
                 WaitForUrlToContain(url);
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.PageLoad); }
                 Console.Out.WriteLine("URL: {0} has been loaded.", url);
@@ -714,7 +714,7 @@ namespace Liberator.Driver
                 IWebElement element = Driver.FindElement(By.CssSelector(cssSelector));
                 Element = element;
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
-                Console.Out.WriteLine("Found the {0} element with the CSS Selector: {0}.", Element.TagName, cssSelector);
+                Console.Out.WriteLine("Found the <{0}> element with the CSS Selector: {0}.", Element.TagName, cssSelector);
                 return element;
             }
             catch (Exception ex)
@@ -1546,7 +1546,7 @@ namespace Liberator.Driver
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
-                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attreibute of {2}.", locator, attribute, value);
+                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attribute of {2}.", locator, attribute, value);
                 return Element;
             }
             catch (Exception ex)
@@ -1578,7 +1578,7 @@ namespace Liberator.Driver
                 GetCollectionOfElements(type, locator);
                 Element = Elements.Where(e => e.GetAttribute(attribute).Contains(value)).FirstOrDefault();
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
-                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attreibute of {2}.", locator, attribute, value);
+                Console.Out.WriteLine("Found the element with the locator value: {0}, which has a {1} attribute of {2}.", locator, attribute, value);
                 return Element;
             }
             catch (Exception ex)

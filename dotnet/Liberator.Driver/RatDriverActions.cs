@@ -25,7 +25,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).Click().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Click().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Hovering over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).ClickAndHold().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Clicking and holding over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Clicking and holding over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -138,7 +138,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ClickAndHold().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Clicking and holding over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Clicking and holding over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -160,7 +160,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).ContextClick().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a contextual click on the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a contextual click on the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -183,7 +183,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).ContextClick().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a contextual click on the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a contextual click on the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -205,7 +205,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).DoubleClick().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a double click on the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a double click on the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -228,7 +228,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DoubleClick().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a double click on the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a double click on the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -301,7 +301,7 @@ namespace Liberator.Driver
 
                 _action = HoverAction(source);
                 _action.MoveToElement(Element).DragAndDrop(Element, _target).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Dragged an {0} element to an {1} element.", Element.TagName, _target.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Dragged an <{0}> element to an <{1}> element.", Element.TagName, _target.TagName); }
             }
             catch (Exception ex)
             {
@@ -325,7 +325,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).DragAndDropToOffset(element, xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a drag and drop of the {0} element to the location X = {1}, Y = {2}.", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a drag and drop of the <{0}> element to the location X = {1}, Y = {2}.", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -350,7 +350,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).DragAndDropToOffset(Element, xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a drag and drop of the {0} element to the location X = {1}, Y = {2}.", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Executed a drag and drop of the <{0}> element to the location X = {1}, Y = {2}.", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -373,7 +373,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).KeyDown(element, key).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Pressed the {0} key on the {1} element.", key, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Pressed the {0} key on the <{1}> element.", key, Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -397,7 +397,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Driver.FindElement(locator)).KeyDown(Element, key).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Pressed the {0} key on the {1} element.", key, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Pressed the {0} key on the <{1}> element.", key, Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -420,7 +420,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).KeyUp(element, key).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the {0} key on the {1} element.", key, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the {0} key on the <{1}> element.", key, Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -444,7 +444,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).KeyUp(Element, key).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the {0} key on the {1} element.", key, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the {0} key on the <{1}> element.", key, Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -468,7 +468,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).MoveByOffset(xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved the {0} element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved the <{0}> element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -493,7 +493,7 @@ namespace Liberator.Driver
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveByOffset(xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved the {0} element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved the <{0}> element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -517,7 +517,7 @@ namespace Liberator.Driver
                 if(wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).MoveToElement(element, xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved to the {0} element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved to the <{0}> element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -542,7 +542,7 @@ namespace Liberator.Driver
                 if(wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).MoveToElement(Element, xOffset, yOffset).Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved to the {0} element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Moved to the <{0}> element to the point at X = {1}, Y = {2}", Element.TagName, xOffset, yOffset); }
             }
             catch (Exception ex)
             {
@@ -564,7 +564,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(element); }
                 _action = HoverAction(element);
                 _action.MoveToElement(element).Release().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the mouse button over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the mouse button over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -587,7 +587,7 @@ namespace Liberator.Driver
                 if (wait) { WaitForElementToBeClickable(Element); }
                 _action = HoverAction(locator);
                 _action.MoveToElement(Element).Release().Build().Perform();
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the mouse button over the {0} element.", Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Released the mouse button over the <{0}> element.", Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -611,7 +611,7 @@ namespace Liberator.Driver
                 element.Click();
                 element.Clear();
                 element.SendKeys(text);
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Sent the test '{0}' to the {1} element.", text, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Sent the text '{0}' to the <{1}> element.", text, Element.TagName); }
             }
             catch (Exception ex)
             {
@@ -636,7 +636,7 @@ namespace Liberator.Driver
                 Element.Click();
                 Element.Clear();
                 Element.SendKeys(text);
-                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Sent the test '{0}' to the {1} element.", text, Element.TagName); }
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Sent the text '{0}' to the <{1}> element.", text, Element.TagName); }
             }
             catch (Exception ex)
             {
