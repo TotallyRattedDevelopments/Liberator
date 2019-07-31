@@ -784,6 +784,36 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds the child element of a given WebElement by CSS Selector
+        /// </summary>
+        /// <param name="cssSelector">The CSS Selector to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given CSS Selector</returns>
+        public IWebElement FindSubElementByCssSelector(string cssSelector, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.CssSelector(cssSelector));
+                Elements = collection.ToList();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the CSS Selector: {0}.", cssSelector);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find subelements using the CSS Selector: {0}.", cssSelector); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a CSS Selector
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
@@ -804,6 +834,37 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 Console.Out.WriteLine("Found the subelements with the CSS Selector: {0}.", cssSelector);
                 return collection;
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the CSS Selector: {0}.", cssSelector); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Finds the child element of a given WebElement by CSS Selector
+        /// </summary>
+        /// <param name="cssSelector">The CSS Selector to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given CSS Selector</returns>
+        public IWebElement FindSubElementByCssSelector(string cssSelector, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.CssSelector(cssSelector)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.CssSelector(cssSelector));
+                Elements = collection.ToList();
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the CSS Selector: {0}.", cssSelector);
+                return collection.First();
             }
             catch (Exception ex)
             {
@@ -961,12 +1022,12 @@ namespace Liberator.Driver
         }
 
         /// <summary>
-        /// 
+        /// Finds a child element of a given WebElement that has a specific Class Name.
         /// </summary>
         /// <param name="className">The Class Name to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
         /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
-        /// <returns></returns>
+        /// <returns>A WebElement described by the Class Name</returns>
         public IWebElement FindSubElementByClassName(string className, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;

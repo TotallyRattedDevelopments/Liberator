@@ -1653,6 +1653,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByCssSelector(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a CSS Selector
@@ -1661,6 +1670,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByClassName(System.String,System.Boolean)">
             <summary>
@@ -1687,6 +1705,16 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByClassName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement that has a specific Class Name.
+            <para>Will return the first item if a collection is found.</para>
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement described by the Class Name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a Class Name
@@ -1696,12 +1724,39 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement that has a specific Class Name.
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement described by the Class Name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementById(System.String,System.Boolean)">
             <summary>
             Finds a WebElement whose id is as specified
             </summary>
             <param name="id">The id to search for</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementElementById(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementElementById(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="parent">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement with the specified id</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByLinkText(System.String,System.Boolean)">
@@ -1729,6 +1784,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement whose link text is as specified
@@ -1737,6 +1801,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByName(System.String,System.Boolean)">
             <summary>
@@ -1763,6 +1836,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a name
@@ -1771,6 +1853,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement with a specified name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByPartialLinkText(System.String,System.Boolean)">
             <summary>
@@ -1797,6 +1888,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement whose link text is matched in part
@@ -1805,6 +1905,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByTag(System.String,System.Boolean)">
             <summary>
@@ -1831,6 +1940,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByTag(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a tag
@@ -1839,6 +1957,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindElementByXPath(System.String,System.Boolean)">
             <summary>
@@ -1865,6 +1992,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByXPath(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child elements of a given WebElement by xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the specified XPath</returns>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementsByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share an xpath
@@ -1873,6 +2009,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.FindSubElementByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child elements of a given WebElement that share an xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElements with the given XPath</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.ExtractElementFromCollectionByAttribute(OpenQA.Selenium.IWebElement,Liberator.Driver.Enums.EnumLocatorType,System.String,System.String,System.String,System.Boolean)">
             <summary>
@@ -2997,6 +3142,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByCssSelector(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a CSS Selector
@@ -3005,6 +3159,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByClassName(System.String,System.Boolean)">
             <summary>
@@ -3031,6 +3194,16 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByClassName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement that has a specific Class Name.
+            <para>Will return the first item if a collection is found.</para>
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement described by the Class Name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a Class Name
@@ -3040,12 +3213,39 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement that has a specific Class Name.
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement described by the Class Name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindElementById(System.String,System.Boolean)">
             <summary>
             Finds a WebElement whose id is as specified
             </summary>
             <param name="id">The id to search for</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementElementById(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementElementById(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="parent">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement with the specified id</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByLinkText(System.String,System.Boolean)">
@@ -3073,6 +3273,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement whose link text is as specified
@@ -3081,6 +3290,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByName(System.String,System.Boolean)">
             <summary>
@@ -3107,6 +3325,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a name
@@ -3115,6 +3342,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement with a specified name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByPartialLinkText(System.String,System.Boolean)">
             <summary>
@@ -3141,6 +3377,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement whose link text is matched in part
@@ -3149,6 +3394,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByTag(System.String,System.Boolean)">
             <summary>
@@ -3175,6 +3429,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByTag(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a tag
@@ -3183,6 +3446,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.FindElementByXPath(System.String,System.Boolean)">
             <summary>
@@ -3209,6 +3481,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByXPath(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child elements of a given WebElement by xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the specified XPath</returns>
+        </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share an xpath
@@ -3217,6 +3498,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child elements of a given WebElement that share an xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElements with the given XPath</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.ExtractElementFromCollectionByAttribute(OpenQA.Selenium.IWebElement,Liberator.Driver.Enums.EnumLocatorType,System.String,System.String,System.String,System.Boolean)">
             <summary>
@@ -6054,6 +6344,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByCssSelector(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a CSS Selector
@@ -6062,6 +6361,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement by CSS Selector
+            </summary>
+            <param name="cssSelector">The CSS Selector to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given CSS Selector</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByClassName(System.String,System.Boolean)">
             <summary>
@@ -6109,12 +6417,12 @@
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
-            
+            Finds a child element of a given WebElement that has a specific Class Name.
             </summary>
             <param name="className">The Class Name to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
-            <returns></returns>
+            <returns>A WebElement described by the Class Name</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementById(System.String,System.Boolean)">
             <summary>
@@ -6271,6 +6579,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement whose link text is matched in part
@@ -6279,6 +6596,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child element of a given WebElement whose link text is matched in part
+            </summary>
+            <param name="linkText">The text to find in whole or in part</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with matching partial link text</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByTag(System.String,System.Boolean)">
             <summary>
@@ -6305,6 +6631,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByTag(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share a tag
@@ -6313,6 +6648,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by tag
+            </summary>
+            <param name="tagName">The tag to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the given tag</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByXPath(System.String,System.Boolean)">
             <summary>
@@ -6339,6 +6683,15 @@
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByXPath(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child elements of a given WebElement by xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElement with the specified XPath</returns>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Finds the child elements of a given WebElement that share an xpath
@@ -6347,6 +6700,15 @@
             <param name="locator">The locator for the parent WebElement</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds the child elements of a given WebElement that share an xpath
+            </summary>
+            <param name="xpath">The xpath to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A child WebElements with the given XPath</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ExtractElementFromCollectionByAttribute(OpenQA.Selenium.IWebElement,Liberator.Driver.Enums.EnumLocatorType,System.String,System.String,System.String,System.Boolean)">
             <summary>
