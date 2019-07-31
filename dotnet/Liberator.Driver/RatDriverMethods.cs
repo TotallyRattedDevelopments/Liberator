@@ -164,7 +164,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement
         /// </summary>
         /// <param name="element">The WebElement on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickLink(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -203,7 +203,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The WebElement on which to click</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickLink(IWebElement element, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -239,7 +239,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement
         /// </summary>
         /// <param name="locator">The locator for the WebElement on which to click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickLink(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -277,7 +277,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the WebElement on which to click</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickLink(By locator, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -425,7 +425,7 @@ namespace Liberator.Driver
         /// Gets the text of a WebElement
         /// </summary>
         /// <param name="element">The WebElement from which to retrieve text</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetElementText(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -448,7 +448,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The WebElement from which to retrieve text</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetElementText(IWebElement element, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -470,7 +470,7 @@ namespace Liberator.Driver
         /// Gets the text of a WebElement
         /// </summary>
         /// <param name="locator">The WebElement from which to retrieve text</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetElementText(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -494,7 +494,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The WebElement from which to retrieve text</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetElementText(By locator, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -517,7 +517,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -541,7 +541,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="element">The element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         public string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -605,7 +605,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The WebElement whose attributes are to be tested</param>
         /// <param name="attribute">The attribute value to retrieve</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>True if the WebElement is present; false if the WebElement is not present</returns>
         public string GetElementAttribute(IWebElement element, string attribute, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -630,7 +630,7 @@ namespace Liberator.Driver
         /// <param name="element">The WebElement whose attributes are to be tested</param>
         /// <param name="attribute">The attribute value to retrieve</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The attribute to retrieve</returns>
         public string GetElementAttribute(IWebElement element, string attribute, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -653,7 +653,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the WebElement whose attributes are to be tested</param>
         /// <param name="attribute">The attribute value to retrieve</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The attribute to retrieve</returns>
         public string GetElementAttribute(By locator, string attribute, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -679,7 +679,7 @@ namespace Liberator.Driver
         /// <param name="locator">The locator for the WebElement whose attributes are to be tested</param>
         /// <param name="attribute">The attribute value to retrieve</param>
         /// <param name="clock">A clock that may be used to set custom timeouts</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The attribute to retrieve</returns>
         public string GetElementAttribute(By locator, string attribute, RatClock clock, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -703,7 +703,7 @@ namespace Liberator.Driver
         /// Finds an element with a unique CSS Selector
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElements that has the CSS Selector</returns>
         public IWebElement FindElementByCssSelector(string cssSelector, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -730,7 +730,7 @@ namespace Liberator.Driver
         /// Finds a list of elements that share a CSS Selector
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of WebElements that share the CSS Selector</returns>
         public IEnumerable<IWebElement> FindElementsByCssSelector(string cssSelector, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -758,7 +758,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByCssSelector(string cssSelector, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -788,7 +788,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByCssSelector(string cssSelector, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -818,7 +818,7 @@ namespace Liberator.Driver
         /// Finds a WebElement that has a Class Name
         /// </summary>
         /// <param name="className">The Class Name to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElement described by the Class Name</returns>
         public IWebElement FindElementByClassName(string className, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -840,11 +840,12 @@ namespace Liberator.Driver
             }
             return null;
         }
+
         /// <summary>
         /// Finds a list of elements that share a Class Name
         /// </summary>
         /// <param name="className">The Class Name to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByClassName(string className, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -872,7 +873,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="className">The Class Name to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByClassName(string className, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -898,11 +899,42 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child element of a given WebElement that has a specific Class Name.
+        /// <para>Will return the first item if a collection is found.</para>
+        /// </summary>
+        /// <param name="className">The Class Name to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement described by the Class Name</returns>
+        public IWebElement FindSubElementByClassName(string className, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.ClassName(className));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the Class Name: {0}.", className);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a Class Name
         /// </summary>
         /// <param name="className">The Class Name to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByClassName(string className, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -929,10 +961,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="className">The Class Name to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns></returns>
+        public IWebElement FindSubElementByClassName(string className, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.ClassName(className)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.ClassName(className));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the Class Name: {0}.", className);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the Class Name: {0}.", className); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds a WebElement whose id is as specified
         /// </summary>
         /// <param name="id">The id to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElement with the specified id</returns>
         public IWebElement FindElementById(string id, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -956,10 +1019,70 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a WebElement whose id is as specified
+        /// </summary>
+        /// <param name="id">The id to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified id</returns>
+        public IWebElement FindSubElementElementById(string id, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                IWebElement element = Driver.FindElement(locator);
+                Element = element;
+                IEnumerable<IWebElement> collection = Element.FindElements(By.Id(id));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the ID: {0}.", id);
+                return Elements.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find an element using the ID: {0}.", id); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Finds a WebElement whose id is as specified
+        /// </summary>
+        /// <param name="id">The id to search for</param>
+        /// <param name="parent">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified id</returns>
+        public IWebElement FindSubElementElementById(string id, IWebElement parent, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(parent); }
+                Element = parent;
+                IEnumerable<IWebElement> collection = Element.FindElements(By.Id(id));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the ID: {0}.", id);
+                return Elements.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find an element using the ID: {0}.", id); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+
+        /// <summary>
         /// Finds a WebElement whose link text is as specified
         /// </summary>
         /// <param name="linkText">The text to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElement with the specified Link Text</returns>
         public IWebElement FindElementByLinkText(string linkText, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -986,7 +1109,7 @@ namespace Liberator.Driver
         /// Finds a list of elements that whose link text is as specified
         /// </summary>
         /// <param name="linkText">The text to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByLinkText(string linkText, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1014,7 +1137,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="linkText">The text to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1040,11 +1163,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child element of a given WebElement whose link text is as specified
+        /// </summary>
+        /// <param name="linkText">The text to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified Link Text</returns>
+        public IWebElement FindSubElementByLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.LinkText(linkText));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the link text: {0}.", linkText);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement whose link text is as specified
         /// </summary>
         /// <param name="linkText">The text to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1070,11 +1223,44 @@ namespace Liberator.Driver
             return null;
         }
 
+
+
+        /// <summary>
+        /// Finds a child element of a given WebElement whose link text is as specified
+        /// </summary>
+        /// <param name="linkText">The text to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified Link Text</returns>
+        public IWebElement FindSubElementByLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.LinkText(linkText)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.LinkText(linkText));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the link text: {0}.", linkText);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the link text: {0}.", linkText); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Finds a WebElement by name
         /// </summary>
         /// <param name="name">The name to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElement</returns>
         public IWebElement FindElementByName(string name, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1101,7 +1287,7 @@ namespace Liberator.Driver
         /// Finds a list of elements that share a name
         /// </summary>
         /// <param name="name">The name to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByName(string name, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1129,7 +1315,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="name">The name to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByName(string name, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1155,11 +1341,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child element of a given WebElement by name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified name</returns>
+        public IWebElement FindSubElementByName(string name, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.Name(name)); }
+                IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the name: {0}.", name);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the name: {0}.", name); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a name
         /// </summary>
         /// <param name="name">The name to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByName(string name, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1186,10 +1402,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child element of a given WebElement with a specified name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified name</returns>
+        public IWebElement FindSubElementByName(string name, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.Name(name)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.Name(name));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the name: {0}.", name);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the name: {0}.", name); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds a WebElements whose link text is matched in part
         /// </summary>
         /// <param name="linkText">The text to find in whole or in part</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A WebElement</returns>
         public IWebElement FindElementByPartialLinkText(string linkText, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1216,7 +1463,7 @@ namespace Liberator.Driver
         /// Finds a list of elements whose link text is matched in part
         /// </summary>
         /// <param name="linkText">The text to find in whole or in part</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByPartialLinkText(string linkText, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1244,7 +1491,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="linkText">The text to find in whole or in part</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByPartialLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1270,11 +1517,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds the child element of a given WebElement whose link text is matched in part
+        /// </summary>
+        /// <param name="linkText">The text to find in whole or in part</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with matching partial link text</returns>
+        public IWebElement FindSubElementByPartialLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.PartialLinkText(linkText));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the partial link text: {0}.", linkText);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement whose link text is matched in part
         /// </summary>
         /// <param name="linkText">The text to find in whole or in part</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByPartialLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1301,10 +1578,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds the child element of a given WebElement whose link text is matched in part
+        /// </summary>
+        /// <param name="linkText">The text to find in whole or in part</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with matching partial link text</returns>
+        public IWebElement FindSubElementByPartialLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.PartialLinkText(linkText)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.PartialLinkText(linkText));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelement with the partial link text: {0}.", linkText);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the partial link text: {0}.", linkText); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds a list of elements that share a tag
         /// </summary>
         /// <param name="tagName">The tag to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IWebElement FindElementByTag(string tagName, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1331,7 +1639,7 @@ namespace Liberator.Driver
         /// Finds a list of elements that share a tag
         /// </summary>
         /// <param name="tagName">The tag to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByTag(string tagName, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1359,7 +1667,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="tagName">The tag to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByTag(string tagName, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1384,11 +1692,40 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child element of a given WebElement by tag
+        /// </summary>
+        /// <param name="tagName">The tag to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given tag</returns>
+        public IWebElement FindSubElementByTag(string tagName, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.TagName(tagName));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the tag: {0}.", tagName);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a tag
         /// </summary>
         /// <param name="tagName">The tag to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByTag(string tagName, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1413,11 +1750,43 @@ namespace Liberator.Driver
             return null;
         }
 
+
+
+        /// <summary>
+        /// Finds a child element of a given WebElement by tag
+        /// </summary>
+        /// <param name="tagName">The tag to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given tag</returns>
+        public IWebElement FindSubElementByTag(string tagName, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.TagName(tagName));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the tag: {0}.", tagName);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find a subelement using the tag name: {0}.", tagName); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Finds a list of elements that share xpath
         /// </summary>
         /// <param name="xpath">The xpath to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IWebElement FindElementByXPath(string xpath, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1444,7 +1813,7 @@ namespace Liberator.Driver
         /// Finds a list of elements that share an xpath
         /// </summary>
         /// <param name="xpath">The xpath to search for</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindElementsByXPath(string xpath, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1472,7 +1841,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="xpath">The xpath to search for</param>
         /// <param name="element">The parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByXPath(string xpath, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1498,11 +1867,41 @@ namespace Liberator.Driver
         }
 
         /// <summary>
+        /// Finds a child elements of a given WebElement by xpath
+        /// </summary>
+        /// <param name="xpath">The xpath to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the specified XPath</returns>
+        public IWebElement FindSubElementByXPath(string xpath, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Element = element;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeClickable(element); }
+                if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
+                IEnumerable<IWebElement> collection = element.FindElements(By.XPath(xpath));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the XPath: {0}.", xpath);
+                return collection.First();
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human || _debugLevel == EnumConsoleDebugLevel.Message)
+                { Console.Out.WriteLine("Could not find an element using the xpath: {0}.", xpath); }
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share an xpath
         /// </summary>
         /// <param name="xpath">The xpath to search for</param>
         /// <param name="locator">The locator for the parent WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>A collection of child WebElements</returns>
         public IEnumerable<IWebElement> FindSubElementsByXPath(string xpath, By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
@@ -1518,6 +1917,35 @@ namespace Liberator.Driver
                 if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
                 Console.Out.WriteLine("Found the subelements with the XPath: {0}.", xpath);
                 return collection;
+            }
+            catch (Exception ex)
+            {
+                HandleErrors(ex);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Finds the child elements of a given WebElement that share an xpath
+        /// </summary>
+        /// <param name="xpath">The xpath to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElements with the given XPath</returns>
+        public IWebElement FindSubElementByXPath(string xpath, By locator, [Optional, DefaultParameterValue(true)] bool wait)
+        {
+            Locator = locator;
+            try
+            {
+                if (RecordPerformance) { RatTimerCollection.StartTimer(); }
+                if (wait) { WaitForElementToBeVisible(locator); }
+                if (wait) { WaitForElementToBeVisible(By.XPath(xpath)); }
+                Element = Driver.FindElement(locator);
+                IEnumerable<IWebElement> collection = Element.FindElements(By.XPath(xpath));
+                Elements = collection;
+                if (RecordPerformance) { RatTimerCollection.StopTimer(EnumTiming.ElementFindTime); }
+                Console.Out.WriteLine("Found the subelements with the XPath: {0}.", xpath);
+                return collection.First();
             }
             catch (Exception ex)
             {

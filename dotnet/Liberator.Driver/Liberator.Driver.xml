@@ -1565,7 +1565,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="locator">The locator for the element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.GetSelectedTextFromDropdown(OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -1573,7 +1573,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="element">The element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.ElementExists(OpenQA.Selenium.IWebElement)">
@@ -2909,7 +2909,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="locator">The locator for the element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.GetSelectedTextFromDropdown(OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -2917,7 +2917,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="element">The element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.ElementExists(OpenQA.Selenium.IWebElement)">
@@ -5138,70 +5138,70 @@
             Moves the virtual cursor position to a WebElement which acts as a menu and hovers
             </summary>
             <param name="element">The WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.HoverOverMenu(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Moves the virtual cursor position to a WebElement which acts as a menu and hovers
             </summary>
             <param name="locator">The locator for the WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickAndHoverOverMenu(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Clicks on a WebElement acting as a menu and continues to hover
             </summary>
             <param name="element">The WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickAndHoverOverMenu(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Clicks on a WebElement acting as a menu and continues to hover
             </summary>
             <param name="locator">The locator for the WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickAndHoldMenu(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Clicks on a WebElement acting as a menu and continues to hold
             </summary>
             <param name="element">The WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickAndHoldMenu(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Clicks on a WebElement acting as a menu and continues to hold
             </summary>
             <param name="locator">The locator for the WebElement acting as a menu</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickContextualMenu(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Clicks on an element and displays a contextual menu
             </summary>
             <param name="element">The WebElement which is the target of the contextual menu click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickContextualMenu(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Clicks on an element and displays a contextual menu
             </summary>
             <param name="locator">The locator for the WebElement which is the target of the contextual menu click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DoubleClick(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Double clicks on a WebElement
             </summary>
             <param name="element">The WebElement on which a double click is required</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DoubleClick(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Double clicks on a WebElement
             </summary>
             <param name="locator">The locator for the WebElement which is the target of a double click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DragAndDrop(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement,System.Boolean,System.Boolean)">
             <summary>
@@ -5209,8 +5209,8 @@
             </summary>
             <param name="source">The Web Element being dragged</param>
             <param name="target">The target WebElement for the action</param>
-            <param name="waitForSource">(Optional parameter) Whether to wait for the cliackability of the source element</param>
-            <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+            <param name="waitForSource">(Optional parameter) Whether to wait for the clickability of the source element</param>
+            <param name="waitForTarget">(Optional parameter) Whether to wait for the clickability of the target element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DragAndDrop(OpenQA.Selenium.By,OpenQA.Selenium.By,System.Boolean,System.Boolean)">
             <summary>
@@ -5218,8 +5218,8 @@
             </summary>
             <param name="source">The locator for the Web Element being dragged</param>
             <param name="target">The locator for the target WebElement for the action</param>
-            <param name="waitForSource">(Optional parameter) Whether to wait for the cliackability of the source element</param>
-            <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+            <param name="waitForSource">(Optional parameter) Whether to wait for the clickability of the source element</param>
+            <param name="waitForTarget">(Optional parameter) Whether to wait for the clickability of the target element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DragAndDropToOffset(OpenQA.Selenium.IWebElement,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5228,7 +5228,7 @@
             <param name="element">The WebElement being dragged</param>
             <param name="xOffset">The x coordinate of the offset position</param>
             <param name="yOffset">The y coordinate of the offset position</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.DragAndDropToOffset(OpenQA.Selenium.By,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5237,7 +5237,7 @@
             <param name="locator">The locator for the WebElement being dragged</param>
             <param name="xOffset">The x coordinate of the offset position</param>
             <param name="yOffset">The y coordinate of the offset position</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.KeyDownOnElement(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
             <summary>
@@ -5245,7 +5245,7 @@
             </summary>
             <param name="element">The WebElement on which the key is to be pressed</param>
             <param name="key">The key to be pressed</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.KeyDownOnElement(OpenQA.Selenium.By,System.String,System.Boolean)">
             <summary>
@@ -5253,7 +5253,7 @@
             </summary>
             <param name="locator">The locator for the WebElement on which the key is to be pressed</param>
             <param name="key">The key to be pressed</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.KeyUpOnElement(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
             <summary>
@@ -5261,7 +5261,7 @@
             </summary>
             <param name="element">The target WebElement for the key release</param>
             <param name="key">The key to be released</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.KeyUpOnElement(OpenQA.Selenium.By,System.String,System.Boolean)">
             <summary>
@@ -5269,7 +5269,7 @@
             </summary>
             <param name="locator">The locator for the target WebElement for the key release</param>
             <param name="key">The key to be released</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.MoveByOffset(OpenQA.Selenium.IWebElement,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5278,7 +5278,7 @@
             <param name="element">The WebElement from which the cursor will move</param>
             <param name="xOffset">The x coordinate offset for the movement</param>
             <param name="yOffset">The y coordinate offset for the movement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.MoveByOffset(OpenQA.Selenium.By,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5287,7 +5287,7 @@
             <param name="locator">The locator for the WebElement from which the cursor will move</param>
             <param name="xOffset">The x coordinate offset for the movement</param>
             <param name="yOffset">The y coordinate offset for the movement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.MoveToElementWithOffset(OpenQA.Selenium.IWebElement,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5296,7 +5296,7 @@
             <param name="element">The WebElement from which the cursor will move</param>
             <param name="xOffset">The x coordinate offset for the movement</param>
             <param name="yOffset">The y coordinate offset for the movement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.MoveToElementWithOffset(OpenQA.Selenium.By,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -5305,21 +5305,21 @@
             <param name="locator">The locator for the WebElement from which the cursor will move</param>
             <param name="xOffset">The x coordinate offset for the movement</param>
             <param name="yOffset">The y coordinate offset for the movement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ReleaseMouseButton(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
             Releases the mouse button over a WebElement
             </summary>
             <param name="element">The WebElement over which to release the mouse button</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ReleaseMouseButton(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Releases the mouse button over a WebElement
             </summary>
             <param name="locator">The locator for the WebElement over which to release the mouse button</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SendValueToField(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
             <summary>
@@ -5327,7 +5327,7 @@
             </summary>
             <param name="element">The WebElement that receives the keystrokes</param>
             <param name="text">The keystrokes that are to be sent to the WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SendValueToField(OpenQA.Selenium.By,System.String,System.Boolean)">
             <summary>
@@ -5335,7 +5335,7 @@
             </summary>
             <param name="locator">The locator for the WebElement that receives the keystrokes</param>
             <param name="text">The keystrokes that are to be sent to the WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectItemFromDropdown(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
             <summary>
@@ -5343,7 +5343,7 @@
             </summary>
             <param name="element">The dropdown menu</param>
             <param name="item">The item to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectItemFromDropdown(OpenQA.Selenium.By,System.String,System.Boolean)">
             <summary>
@@ -5351,7 +5351,7 @@
             </summary>
             <param name="locator">The locator for the dropdown menu</param>
             <param name="item">The item to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectRowFromDropdown(OpenQA.Selenium.IWebElement,System.Int32,System.Boolean)">
             <summary>
@@ -5359,7 +5359,7 @@
             </summary>
             <param name="element">The dropdown menu</param>
             <param name="row">The row to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectRowFromDropdown(OpenQA.Selenium.By,System.Int32,System.Boolean)">
             <summary>
@@ -5367,7 +5367,7 @@
             </summary>
             <param name="locator">The locator for the dropdown menu</param>
             <param name="row">The row to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectValueFromDropdown(OpenQA.Selenium.IWebElement,System.String,System.Boolean)">
             <summary>
@@ -5375,7 +5375,7 @@
             </summary>
             <param name="element">The dropdown menu</param>
             <param name="value">The value to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.SelectValueFromDropdown(OpenQA.Selenium.By,System.String,System.Boolean)">
             <summary>
@@ -5383,7 +5383,7 @@
             </summary>
             <param name="locator">The locator for the dropdown menu</param>
             <param name="value">The value to choose</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.TakeScreenshot(System.String)">
             <summary>
@@ -5876,7 +5876,7 @@
             Clicks on a WebElement
             </summary>
             <param name="element">The WebElement on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.IWebElement,Liberator.Driver.RatClock,System.Boolean)">
             <summary>
@@ -5884,14 +5884,14 @@
             </summary>
             <param name="element">The WebElement on which to click</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.By,System.Boolean)">
             <summary>
             Clicks on a WebElement
             </summary>
             <param name="locator">The locator for the WebElement on which to click</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.By,Liberator.Driver.RatClock,System.Boolean)">
             <summary>
@@ -5899,7 +5899,7 @@
             </summary>
             <param name="locator">The locator for the WebElement on which to click</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLinkAndWait(OpenQA.Selenium.IWebElement)">
             <summary>
@@ -5932,7 +5932,7 @@
             Gets the text of a WebElement
             </summary>
             <param name="element">The WebElement from which to retrieve text</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementText(OpenQA.Selenium.IWebElement,Liberator.Driver.RatClock,System.Boolean)">
@@ -5941,7 +5941,7 @@
             </summary>
             <param name="element">The WebElement from which to retrieve text</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementText(OpenQA.Selenium.By,System.Boolean)">
@@ -5949,7 +5949,7 @@
             Gets the text of a WebElement
             </summary>
             <param name="locator">The WebElement from which to retrieve text</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementText(OpenQA.Selenium.By,Liberator.Driver.RatClock,System.Boolean)">
@@ -5958,7 +5958,7 @@
             </summary>
             <param name="locator">The WebElement from which to retrieve text</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetSelectedTextFromDropdown(OpenQA.Selenium.By,System.Boolean)">
@@ -5966,7 +5966,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="locator">The locator for the element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetSelectedTextFromDropdown(OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -5974,7 +5974,7 @@
             Retrieves the text value from the selected option in a dropdown menu.
             </summary>
             <param name="element">The element that represents the dropdown menu.</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The text of the WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ElementExists(OpenQA.Selenium.IWebElement)">
@@ -5997,7 +5997,7 @@
             </summary>
             <param name="element">The WebElement whose attributes are to be tested</param>
             <param name="attribute">The attribute value to retrieve</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>True if the WebElement is present; false if the WebElement is not present</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementAttribute(OpenQA.Selenium.IWebElement,System.String,Liberator.Driver.RatClock,System.Boolean)">
@@ -6007,7 +6007,7 @@
             <param name="element">The WebElement whose attributes are to be tested</param>
             <param name="attribute">The attribute value to retrieve</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The attribute to retrieve</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementAttribute(OpenQA.Selenium.By,System.String,System.Boolean)">
@@ -6016,7 +6016,7 @@
             </summary>
             <param name="locator">The locator for the WebElement whose attributes are to be tested</param>
             <param name="attribute">The attribute value to retrieve</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The attribute to retrieve</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.GetElementAttribute(OpenQA.Selenium.By,System.String,Liberator.Driver.RatClock,System.Boolean)">
@@ -6026,7 +6026,7 @@
             <param name="locator">The locator for the WebElement whose attributes are to be tested</param>
             <param name="attribute">The attribute value to retrieve</param>
             <param name="clock">A clock that may be used to set custom timeouts</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>The attribute to retrieve</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByCssSelector(System.String,System.Boolean)">
@@ -6034,7 +6034,7 @@
             Finds an element with a unique CSS Selector
             </summary>
             <param name="cssSelector">The CSS Selector to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElements that has the CSS Selector</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByCssSelector(System.String,System.Boolean)">
@@ -6042,7 +6042,7 @@
             Finds a list of elements that share a CSS Selector
             </summary>
             <param name="cssSelector">The CSS Selector to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of WebElements that share the CSS Selector</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByCssSelector(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6051,7 +6051,7 @@
             </summary>
             <param name="cssSelector">The CSS Selector to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByCssSelector(System.String,OpenQA.Selenium.By,System.Boolean)">
@@ -6060,7 +6060,7 @@
             </summary>
             <param name="cssSelector">The CSS Selector to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByClassName(System.String,System.Boolean)">
@@ -6068,7 +6068,7 @@
             Finds a WebElement that has a Class Name
             </summary>
             <param name="className">The Class Name to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement described by the Class Name</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByClassName(System.String,System.Boolean)">
@@ -6076,7 +6076,7 @@
             Finds a list of elements that share a Class Name
             </summary>
             <param name="className">The Class Name to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByClassName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6085,8 +6085,18 @@
             </summary>
             <param name="className">The Class Name to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByClassName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement that has a specific Class Name.
+            <para>Will return the first item if a collection is found.</para>
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement described by the Class Name</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
@@ -6094,15 +6104,42 @@
             </summary>
             <param name="className">The Class Name to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByClassName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="className">The Class Name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns></returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementById(System.String,System.Boolean)">
             <summary>
             Finds a WebElement whose id is as specified
             </summary>
             <param name="id">The id to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementElementById(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified id</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementElementById(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a WebElement whose id is as specified
+            </summary>
+            <param name="id">The id to search for</param>
+            <param name="parent">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement with the specified id</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByLinkText(System.String,System.Boolean)">
@@ -6110,7 +6147,7 @@
             Finds a WebElement whose link text is as specified
             </summary>
             <param name="linkText">The text to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement with the specified Link Text</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByLinkText(System.String,System.Boolean)">
@@ -6118,7 +6155,7 @@
             Finds a list of elements that whose link text is as specified
             </summary>
             <param name="linkText">The text to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6127,8 +6164,17 @@
             </summary>
             <param name="linkText">The text to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
@@ -6136,15 +6182,24 @@
             </summary>
             <param name="linkText">The text to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByName(System.String,System.Boolean)">
             <summary>
             Finds a WebElement by name
             </summary>
             <param name="name">The name to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByName(System.String,System.Boolean)">
@@ -6152,7 +6207,7 @@
             Finds a list of elements that share a name
             </summary>
             <param name="name">The name to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6161,8 +6216,17 @@
             </summary>
             <param name="name">The name to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByName(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement by name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByName(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
@@ -6170,15 +6234,24 @@
             </summary>
             <param name="name">The name to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.FindSubElementByName(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            Finds a child element of a given WebElement with a specified name
+            </summary>
+            <param name="name">The name to search for</param>
+            <param name="locator">The locator for the parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified name</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByPartialLinkText(System.String,System.Boolean)">
             <summary>
             Finds a WebElements whose link text is matched in part
             </summary>
             <param name="linkText">The text to find in whole or in part</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A WebElement</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByPartialLinkText(System.String,System.Boolean)">
@@ -6186,7 +6259,7 @@
             Finds a list of elements whose link text is matched in part
             </summary>
             <param name="linkText">The text to find in whole or in part</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByPartialLinkText(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6195,7 +6268,7 @@
             </summary>
             <param name="linkText">The text to find in whole or in part</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByPartialLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
@@ -6204,7 +6277,7 @@
             </summary>
             <param name="linkText">The text to find in whole or in part</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByTag(System.String,System.Boolean)">
@@ -6212,7 +6285,7 @@
             Finds a list of elements that share a tag
             </summary>
             <param name="tagName">The tag to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByTag(System.String,System.Boolean)">
@@ -6220,7 +6293,7 @@
             Finds a list of elements that share a tag
             </summary>
             <param name="tagName">The tag to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByTag(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6229,7 +6302,7 @@
             </summary>
             <param name="tagName">The tag to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByTag(System.String,OpenQA.Selenium.By,System.Boolean)">
@@ -6238,7 +6311,7 @@
             </summary>
             <param name="tagName">The tag to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementByXPath(System.String,System.Boolean)">
@@ -6246,7 +6319,7 @@
             Finds a list of elements that share xpath
             </summary>
             <param name="xpath">The xpath to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindElementsByXPath(System.String,System.Boolean)">
@@ -6254,7 +6327,7 @@
             Finds a list of elements that share an xpath
             </summary>
             <param name="xpath">The xpath to search for</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByXPath(System.String,OpenQA.Selenium.IWebElement,System.Boolean)">
@@ -6263,7 +6336,7 @@
             </summary>
             <param name="xpath">The xpath to search for</param>
             <param name="element">The parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.FindSubElementsByXPath(System.String,OpenQA.Selenium.By,System.Boolean)">
@@ -6272,7 +6345,7 @@
             </summary>
             <param name="xpath">The xpath to search for</param>
             <param name="locator">The locator for the parent WebElement</param>
-            <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
             <returns>A collection of child WebElements</returns>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ExtractElementFromCollectionByAttribute(OpenQA.Selenium.IWebElement,Liberator.Driver.Enums.EnumLocatorType,System.String,System.String,System.String,System.Boolean)">

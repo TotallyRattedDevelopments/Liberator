@@ -925,7 +925,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
@@ -933,7 +933,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="element">The element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
