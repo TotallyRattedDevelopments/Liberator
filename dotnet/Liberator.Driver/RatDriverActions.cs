@@ -1368,6 +1368,27 @@ namespace Liberator.Driver
             }
         }
 
+        /// <summary>
+        /// Scrolls to an element using JavaScript
+        /// </summary>
+        /// <param name="webElement"></param>
+        public void ScrollToElement(IWebElement webElement)
+        {
+            try
+            {
+                IJavaScriptExecutor js = ((IJavaScriptExecutor)Driver);
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", webElement);
+            }
+            catch (Exception ex)
+            {
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Could not execute the passed asynchronous JavaScript.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
         #endregion
     }
 }
