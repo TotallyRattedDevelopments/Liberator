@@ -16,7 +16,7 @@ namespace Liberator.Driver
         /// Moves the virtual cursor position to a WebElement which acts as a menu and hovers
         /// </summary>
         /// <param name="element">The WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void HoverOverMenu(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -38,7 +38,7 @@ namespace Liberator.Driver
         /// Moves the virtual cursor position to a WebElement which acts as a menu and hovers
         /// </summary>
         /// <param name="locator">The locator for the WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void HoverOverMenu(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -61,7 +61,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement acting as a menu and continues to hover
         /// </summary>
         /// <param name="element">The WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickAndHoverOverMenu(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -83,7 +83,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement acting as a menu and continues to hover
         /// </summary>
         /// <param name="locator">The locator for the WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickAndHoverOverMenu(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -106,7 +106,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement acting as a menu and continues to hold
         /// </summary>
         /// <param name="element">The WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickAndHoldMenu(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -128,7 +128,7 @@ namespace Liberator.Driver
         /// Clicks on a WebElement acting as a menu and continues to hold
         /// </summary>
         /// <param name="locator">The locator for the WebElement acting as a menu</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickAndHoldMenu(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -151,7 +151,7 @@ namespace Liberator.Driver
         /// Clicks on an element and displays a contextual menu
         /// </summary>
         /// <param name="element">The WebElement which is the target of the contextual menu click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickContextualMenu(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -173,7 +173,7 @@ namespace Liberator.Driver
         /// Clicks on an element and displays a contextual menu
         /// </summary>
         /// <param name="locator">The locator for the WebElement which is the target of the contextual menu click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ClickContextualMenu(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -196,7 +196,7 @@ namespace Liberator.Driver
         /// Double clicks on a WebElement
         /// </summary>
         /// <param name="element">The WebElement on which a double click is required</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void DoubleClick(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -218,7 +218,7 @@ namespace Liberator.Driver
         /// Double clicks on a WebElement
         /// </summary>
         /// <param name="locator">The locator for the WebElement which is the target of a double click</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void DoubleClick(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -242,8 +242,8 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="source">The Web Element being dragged</param>
         /// <param name="target">The target WebElement for the action</param>
-        /// <param name="waitForSource">(Optional parameter) Whether to wait for the cliackability of the source element</param>
-        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        /// <param name="waitForSource">(Optional parameter) Whether to wait for the clickability of the source element</param>
+        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the clickability of the target element</param>
         public void DragAndDrop(IWebElement source, IWebElement target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Element = source;
@@ -274,8 +274,8 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="source">The locator for the Web Element being dragged</param>
         /// <param name="target">The locator for the target WebElement for the action</param>
-        /// <param name="waitForSource">(Optional parameter) Whether to wait for the cliackability of the source element</param>
-        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the cliackability of the target element</param>
+        /// <param name="waitForSource">(Optional parameter) Whether to wait for the clickability of the source element</param>
+        /// <param name="waitForTarget">(Optional parameter) Whether to wait for the clickability of the target element</param>
         public void DragAndDrop(By source, By target, [Optional, DefaultParameterValue(true)] bool waitForSource, [Optional, DefaultParameterValue(true)] bool waitForTarget)
         {
             Locator = source;
@@ -316,7 +316,7 @@ namespace Liberator.Driver
         /// <param name="element">The WebElement being dragged</param>
         /// <param name="xOffset">The x coordinate of the offset position</param>
         /// <param name="yOffset">The y coordinate of the offset position</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void DragAndDropToOffset(IWebElement element, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -340,7 +340,7 @@ namespace Liberator.Driver
         /// <param name="locator">The locator for the WebElement being dragged</param>
         /// <param name="xOffset">The x coordinate of the offset position</param>
         /// <param name="yOffset">The y coordinate of the offset position</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void DragAndDropToOffset(By locator, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -364,7 +364,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The WebElement on which the key is to be pressed</param>
         /// <param name="key">The key to be pressed</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void KeyDownOnElement(IWebElement element, string key, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -387,7 +387,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the WebElement on which the key is to be pressed</param>
         /// <param name="key">The key to be pressed</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void KeyDownOnElement(By locator, string key, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -411,7 +411,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The target WebElement for the key release</param>
         /// <param name="key">The key to be released</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void KeyUpOnElement(IWebElement element, string key, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -434,7 +434,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the target WebElement for the key release</param>
         /// <param name="key">The key to be released</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void KeyUpOnElement(By locator, string key, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -459,7 +459,7 @@ namespace Liberator.Driver
         /// <param name="element">The WebElement from which the cursor will move</param>
         /// <param name="xOffset">The x coordinate offset for the movement</param>
         /// <param name="yOffset">The y coordinate offset for the movement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void MoveByOffset(IWebElement element, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -483,7 +483,7 @@ namespace Liberator.Driver
         /// <param name="locator">The locator for the WebElement from which the cursor will move</param>
         /// <param name="xOffset">The x coordinate offset for the movement</param>
         /// <param name="yOffset">The y coordinate offset for the movement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void MoveByOffset(By locator, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -508,7 +508,7 @@ namespace Liberator.Driver
         /// <param name="element">The WebElement from which the cursor will move</param>
         /// <param name="xOffset">The x coordinate offset for the movement</param>
         /// <param name="yOffset">The y coordinate offset for the movement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void MoveToElementWithOffset(IWebElement element, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -532,7 +532,7 @@ namespace Liberator.Driver
         /// <param name="locator">The locator for the WebElement from which the cursor will move</param>
         /// <param name="xOffset">The x coordinate offset for the movement</param>
         /// <param name="yOffset">The y coordinate offset for the movement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void MoveToElementWithOffset(By locator, int xOffset, int yOffset, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -555,7 +555,7 @@ namespace Liberator.Driver
         /// Releases the mouse button over a WebElement
         /// </summary>
         /// <param name="element">The WebElement over which to release the mouse button</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ReleaseMouseButton(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -577,7 +577,7 @@ namespace Liberator.Driver
         /// Releases the mouse button over a WebElement
         /// </summary>
         /// <param name="locator">The locator for the WebElement over which to release the mouse button</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void ReleaseMouseButton(By locator, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -601,7 +601,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The WebElement that receives the keystrokes</param>
         /// <param name="text">The keystrokes that are to be sent to the WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SendValueToField(IWebElement element, string text, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -625,7 +625,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the WebElement that receives the keystrokes</param>
         /// <param name="text">The keystrokes that are to be sent to the WebElement</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SendValueToField(By locator, string text, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -650,7 +650,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The dropdown menu</param>
         /// <param name="item">The item to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectItemFromDropdown(IWebElement element, string item, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -673,7 +673,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the dropdown menu</param>
         /// <param name="item">The item to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectItemFromDropdown(By locator, string item, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -697,7 +697,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The dropdown menu</param>
         /// <param name="row">The row to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectRowFromDropdown(IWebElement element, int row, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -720,7 +720,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the dropdown menu</param>
         /// <param name="row">The row to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectRowFromDropdown(By locator, int row, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -744,7 +744,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="element">The dropdown menu</param>
         /// <param name="value">The value to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectValueFromDropdown(IWebElement element, string value, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Element = element;
@@ -767,7 +767,7 @@ namespace Liberator.Driver
         /// </summary>
         /// <param name="locator">The locator for the dropdown menu</param>
         /// <param name="value">The value to choose</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         public void SelectValueFromDropdown(By locator, string value, [Optional, DefaultParameterValue(true)] bool wait)
         {
             Locator = locator;
@@ -1357,6 +1357,27 @@ namespace Liberator.Driver
                 IJavaScriptExecutor js = ((IJavaScriptExecutor)Driver);
                 js.ExecuteAsyncScript(script, parameters);
                 Console.Out.WriteLine("Executed the sctipt '{0}'.", script);
+            }
+            catch (Exception ex)
+            {
+                if (Preferences.BaseSettings.DebugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Could not execute the passed asynchronous JavaScript.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Scrolls to an element using JavaScript
+        /// </summary>
+        /// <param name="webElement"></param>
+        public void ScrollToElement(IWebElement webElement)
+        {
+            try
+            {
+                IJavaScriptExecutor js = ((IJavaScriptExecutor)Driver);
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", webElement);
             }
             catch (Exception ex)
             {
