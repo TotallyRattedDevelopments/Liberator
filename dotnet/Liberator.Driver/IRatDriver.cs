@@ -1,5 +1,4 @@
 ﻿using Liberator.Driver.Enums;
-using Liberator.Driver.Ionic;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -927,7 +926,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="locator">The locator for the element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         new string GetSelectedTextFromDropdown(By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
@@ -935,7 +934,7 @@ namespace Liberator.Driver
         /// Retrieves the text value from the selected option in a dropdown menu.
         /// </summary>
         /// <param name="element">The element that represents the dropdown menu.</param>
-        /// <param name="wait">(Optional parameter) Whether to wait for the cliackability of the element</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         /// <returns>The text of the WebElement</returns>
         new string GetSelectedTextFromDropdown(IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
@@ -1017,6 +1016,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByCssSelector(string cssSelector, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds the child element of a given WebElement by CSS Selector
+        /// </summary>
+        /// <param name="cssSelector">The CSS Selector to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given CSS Selector</returns>
+        new IWebElement FindSubElementByCssSelector(string cssSelector, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a CSS Selector
         /// </summary>
         /// <param name="cssSelector">The CSS Selector to search for</param>
@@ -1024,6 +1032,15 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByCssSelector(string cssSelector, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds the child element of a given WebElement by CSS Selector
+        /// </summary>
+        /// <param name="cssSelector">The CSS Selector to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given CSS Selector</returns>
+        new IWebElement FindSubElementByCssSelector(string cssSelector, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement that has a Class Name
@@ -1051,6 +1068,16 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByClassName(string className, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child element of a given WebElement that has a specific Class Name.
+        /// <para>Will return the first item if a collection is found.</para>
+        /// </summary>
+        /// <param name="className">The Class Name to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement described by the Class Name</returns>
+        new IWebElement FindSubElementByClassName(string className, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a Class Name
         /// </summary>
         /// <param name="cssSelector">The Class Name to search for</param>
@@ -1060,12 +1087,39 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByClassName(string cssSelector, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child element of a given WebElement that has a specific Class Name.
+        /// </summary>
+        /// <param name="className">The Class Name to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement described by the Class Name</returns>
+        new IWebElement FindSubElementByClassName(string className, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds a WebElement whose id is as specified
         /// </summary>
         /// <param name="id">The id to search for</param>
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A WebElement with the specified id</returns>
         new IWebElement FindElementById(string id, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds a WebElement whose id is as specified
+        /// </summary>
+        /// <param name="id">The id to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified id</returns>
+        new IWebElement FindSubElementElementById(string id, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds a WebElement whose id is as specified
+        /// </summary>
+        /// <param name="id">The id to search for</param>
+        /// <param name="parent">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified id</returns>
+        new IWebElement FindSubElementElementById(string id, IWebElement parent, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement whose link text is as specified
@@ -1093,6 +1147,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child element of a given WebElement whose link text is as specified
+        /// </summary>
+        /// <param name="linkText">The text to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified Link Text</returns>
+        new IWebElement FindSubElementByLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement whose link text is as specified
         /// </summary>
         /// <param name="linkText">The text to search for</param>
@@ -1100,6 +1163,15 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds a child element of a given WebElement whose link text is as specified
+        /// </summary>
+        /// <param name="linkText">The text to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified Link Text</returns>
+        new IWebElement FindSubElementByLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement by name
@@ -1127,6 +1199,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByName(string name, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child element of a given WebElement by name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified name</returns>
+        new IWebElement FindSubElementByName(string name, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a name
         /// </summary>
         /// <param name="name">The name to search for</param>
@@ -1134,6 +1215,15 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByName(string name, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds a child element of a given WebElement with a specified name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with the specified name</returns>
+        new IWebElement FindSubElementByName(string name, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement whose link text is matched in part
@@ -1161,6 +1251,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByPartialLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds the child element of a given WebElement whose link text is matched in part
+        /// </summary>
+        /// <param name="linkText">The text to find in whole or in part</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with matching partial link text</returns>
+        new IWebElement FindSubElementByPartialLinkText(string linkText, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement whose link text is matched in part
         /// </summary>
         /// <param name="linkText">The text to find in whole or in part</param>
@@ -1168,6 +1267,15 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByPartialLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds the child element of a given WebElement whose link text is matched in part
+        /// </summary>
+        /// <param name="linkText">The text to find in whole or in part</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A WebElement with matching partial link text</returns>
+        new IWebElement FindSubElementByPartialLinkText(string linkText, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement that possesses a tag
@@ -1195,6 +1303,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByTag(string tagName, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child element of a given WebElement by tag
+        /// </summary>
+        /// <param name="tagName">The tag to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given tag</returns>
+        new IWebElement FindSubElementByTag(string tagName, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share a tag
         /// </summary>
         /// <param name="tagName">The tag to search for</param>
@@ -1202,6 +1319,16 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByTag(string tagName, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+
+        /// <summary>
+        /// Finds a child element of a given WebElement by tag
+        /// </summary>
+        /// <param name="tagName">The tag to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the given tag</returns>
+        new IWebElement FindSubElementByTag(string tagName, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebEements by its xpath
@@ -1229,6 +1356,15 @@ namespace Liberator.Driver
         new IEnumerable<IWebElement> FindSubElementsByXPath(string xpath, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
+        /// Finds a child elements of a given WebElement by xpath
+        /// </summary>
+        /// <param name="xpath">The xpath to search for</param>
+        /// <param name="element">The parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElement with the specified XPath</returns>
+        new IWebElement FindSubElementByXPath(string xpath, IWebElement element, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
         /// Finds the child elements of a given WebElement that share an xpath
         /// </summary>
         /// <param name="xpath">The xpath to search for</param>
@@ -1236,6 +1372,15 @@ namespace Liberator.Driver
         /// <param name="wait">(Optional parameter) Whether to wait for the element to reach a known state</param>
         /// <returns>A collection of child WebElements</returns>
         new IEnumerable<IWebElement> FindSubElementsByXPath(string xpath, By locator, [Optional, DefaultParameterValue(true)] bool wait);
+
+        /// <summary>
+        /// Finds the child elements of a given WebElement that share an xpath
+        /// </summary>
+        /// <param name="xpath">The xpath to search for</param>
+        /// <param name="locator">The locator for the parent WebElement</param>
+        /// <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+        /// <returns>A child WebElements with the given XPath</returns>
+        new IWebElement FindSubElementByXPath(string xpath, By locator, [Optional, DefaultParameterValue(true)] bool wait);
 
         /// <summary>
         /// Finds a WebElement identified by an attribite value from a collection of WebElements sharing a parent
@@ -1488,32 +1633,6 @@ namespace Liberator.Driver
         #region Ionic
 
         /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(List<ShadowLocator> shadowLocators);
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootLocator"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(By rootLocator, List<ShadowLocator> shadowLocators);
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootElement"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(IWebElement rootElement, List<ShadowLocator> shadowLocators);
-
-        /// <summary>
         /// Expands a shadow root element
         /// </summary>
         /// <param name="elementToOpen">The shadow root element to expand</param>
@@ -1528,12 +1647,30 @@ namespace Liberator.Driver
         new IWebElement ExpandShadowRoot(By locatorToOpen);
 
         /// <summary>
-        /// Expands a shadow root element
-        /// <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+        /// Finds a subelement beneath a shadow root element.
         /// </summary>
-        /// <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
-        /// <returns>An IWebElement representing the expanded root.</returns>
-        new IWebElement ExpandShadowRoot(ShadowLocator shadowLocator);
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        new IWebElement FindSubElementInShadowRoot(IWebElement shadowRootElement, By subElementLocator);
+
+        /// <summary>
+        /// Finds a subelement beneath a shadow root element.
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        new IEnumerable<IWebElement> FindSubElementsInShadowRoot(IWebElement shadowRootElement, By subElementLocator);
+
+        /// <summary>
+        /// Finds a subelement within a shadow root element that is identified by the value of an attribute
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <param name="attributeName">The name of the attribute to use for a uniqueness check.</param>
+        /// <param name="attributeValue">The unique value of the attribute to use.</param>
+        /// <returns>An IWebElement that has been identified by battribute.</returns>
+        new IWebElement FindSubElementInShadowRootByAttribute(IWebElement shadowRootElement, By subElementLocator, string attributeName, string attributeValue);
 
         #endregion
     }

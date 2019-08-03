@@ -1,7 +1,7 @@
-﻿using Liberator.Driver.Ionic;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Liberator.Driver
 {
@@ -9,88 +9,11 @@ namespace Liberator.Driver
         where TWebDriver : IWebDriver, new()
     {
         /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
+        /// Delegate method used for finding elements within a Shadow Root
         /// </summary>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        public IWebElement ExpandShadowRootTree(List<ShadowLocator> shadowLocators)
-        {
-            try
-            {
-                IWebElement shadowRoot = Driver.FindElement(shadowLocators[0].SeleniumLocator);
-                IWebElement expandedElement = ExpandShadowRoot(shadowRoot);
-
-                for (int i = 1; i < shadowLocators.Count; i++)
-                {
-                    IWebElement webElement = expandedElement.FindElement(shadowLocators[i].SeleniumLocator);
-                    expandedElement = ExpandShadowRoot(webElement);
-                }
-                return expandedElement;
-            }
-            catch (Exception ex)
-            {
-                Console.Out.WriteLine("Could not expand the tree .");
-                HandleErrors(ex);
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootLocator"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        public IWebElement ExpandShadowRootTree(By rootLocator, List<ShadowLocator> shadowLocators)
-        {
-            try
-            {
-                IWebElement shadowRoot = ExpandShadowRoot(rootLocator);
-
-                for (int i = 0; i < shadowLocators.Count; i++)
-                {
-                    IWebElement webElement = shadowRoot.FindElement(shadowLocators[i].SeleniumLocator);
-                    shadowRoot = ExpandShadowRoot(webElement);
-                }
-                return shadowRoot;
-            }
-            catch (Exception ex)
-            {
-                Console.Out.WriteLine("Could not expand the tree .");
-                HandleErrors(ex);
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootElement"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        public IWebElement ExpandShadowRootTree(IWebElement rootElement, List<ShadowLocator> shadowLocators)
-        {
-            try
-            {
-                IWebElement shadowRoot = ExpandShadowRoot(rootElement);
-
-                for (int i = 0; i < shadowLocators.Count; i++)
-                {
-                    IWebElement webElement = shadowRoot.FindElement(shadowLocators[i].SeleniumLocator);
-                    shadowRoot = ExpandShadowRoot(webElement);
-                }
-                return shadowRoot;
-            }
-            catch (Exception ex)
-            {
-                Console.Out.WriteLine("Could not expand the tree .");
-                HandleErrors(ex);
-                return null;
-            }
-        }
+        /// <param name="locator">The locator for the subelement within the shadow root to find</param>
+        /// <returns>A WebElement within a shadow root</returns>
+        public delegate IWebElement WebElementFinder(By locator);
 
         /// <summary>
         /// Expands a shadow root element
@@ -120,7 +43,7 @@ namespace Liberator.Driver
         {
             try
             {
-                var elementToOpen = Driver.FindElement(locatorToOpen);
+                IWebElement elementToOpen = Driver.FindElement(locatorToOpen);
                 return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", elementToOpen);
             }
             catch (Exception ex)
@@ -132,21 +55,68 @@ namespace Liberator.Driver
         }
 
         /// <summary>
-        /// Expands a shadow root element
-        /// <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+        /// Finds a subelement beneath a shadow root element.
         /// </summary>
-        /// <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
-        /// <returns>An IWebElement representing the expanded root.</returns>
-        public IWebElement ExpandShadowRoot(ShadowLocator shadowLocator)
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        public IWebElement FindSubElementInShadowRoot(IWebElement shadowRootElement, By subElementLocator)
         {
             try
             {
-                var elementToOpen = Driver.FindElement(shadowLocator.SeleniumLocator);
-                return (IWebElement)((IJavaScriptExecutor)Driver).ExecuteScript("return arguments[0].shadowRoot", elementToOpen);
+                IWebElement shadowRoot = ExpandShadowRoot(shadowRootElement);
+                IWebElement subElement = FindSubElement(shadowRootElement, subElementLocator);
+                return subElement;
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Could not expand the element found using the {0} : {1}.", shadowLocator.FindBy.ToString(), shadowLocator.Locator);
+                Console.Out.WriteLine("Could not find the element passed.");
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Finds a subelement beneath a shadow root element.
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        public IEnumerable<IWebElement> FindSubElementsInShadowRoot(IWebElement shadowRootElement, By subElementLocator)
+        {
+            try
+            {
+                IWebElement shadowRoot = ExpandShadowRoot(shadowRootElement);
+                IEnumerable<IWebElement> subElements = FindSubElements(shadowRootElement, subElementLocator);
+                return subElements;
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Could not find the element requested.");
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Finds a subelement within a shadow root element that is identified by the value of an attribute
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <param name="attributeName">The name of the attribute to use for a uniqueness check.</param>
+        /// <param name="attributeValue">The unique value of the attribute to use.</param>
+        /// <returns>An IWebElement that has been identified by battribute.</returns>
+        public IWebElement FindSubElementInShadowRootByAttribute(IWebElement shadowRootElement, By subElementLocator, string attributeName, string attributeValue)
+        {
+            try
+            {
+                IWebElement shadowRoot = ExpandShadowRoot(shadowRootElement);
+                IEnumerable<IWebElement> subElements = FindSubElements(shadowRootElement, subElementLocator);
+                return subElements.Where(a => a.GetAttribute(attributeName).Contains(attributeValue)).First();
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Could not find the element requested.");
                 HandleErrors(ex);
                 return null;
             }
