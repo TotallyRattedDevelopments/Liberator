@@ -1,5 +1,4 @@
 ﻿using Liberator.Driver.Enums;
-using Liberator.Driver.Ionic;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -1488,32 +1487,6 @@ namespace Liberator.Driver
         #region Ionic
 
         /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(List<ShadowLocator> shadowLocators);
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootLocator"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(By rootLocator, List<ShadowLocator> shadowLocators);
-
-        /// <summary>
-        /// Expands a ShadowRoot tree using a chain of locators
-        /// <para>A limitation in Selenium requires the use of only IDs or CSS Selectors.</para>
-        /// </summary>
-        /// <param name="rootElement"></param>
-        /// <param name="shadowLocators">A collection of locators for shadow root elements.</param>
-        /// <returns>The final opened shadow root item.</returns>
-        new IWebElement ExpandShadowRootTree(IWebElement rootElement, List<ShadowLocator> shadowLocators);
-
-        /// <summary>
         /// Expands a shadow root element
         /// </summary>
         /// <param name="elementToOpen">The shadow root element to expand</param>
@@ -1528,12 +1501,30 @@ namespace Liberator.Driver
         new IWebElement ExpandShadowRoot(By locatorToOpen);
 
         /// <summary>
-        /// Expands a shadow root element
-        /// <para>NB: A limitation in Selenium requires the use of only IDs or CSS Selectors</para>
+        /// Finds a subelement beneath a shadow root element.
         /// </summary>
-        /// <param name="shadowLocator">An object representing a locator for a shadow root element.</param>
-        /// <returns>An IWebElement representing the expanded root.</returns>
-        new IWebElement ExpandShadowRoot(ShadowLocator shadowLocator);
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        new IWebElement FindSubElementInShadowRoot(IWebElement shadowRootElement, By subElementLocator);
+
+        /// <summary>
+        /// Finds a subelement beneath a shadow root element.
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <returns>An IWebElement that is a subelement of the Shadow Root.</returns>
+        new IEnumerable<IWebElement> FindSubElementsInShadowRoot(IWebElement shadowRootElement, By subElementLocator);
+
+        /// <summary>
+        /// Finds a subelement within a shadow root element that is identified by the value of an attribute
+        /// </summary>
+        /// <param name="shadowRootElement">The shadow root element to expand.</param>
+        /// <param name="subElementLocator">A locator for a subelement witin the shadow root.</param>
+        /// <param name="attributeName">The name of the attribute to use for a uniqueness check.</param>
+        /// <param name="attributeValue">The unique value of the attribute to use.</param>
+        /// <returns>An IWebElement that has been identified by battribute.</returns>
+        new IWebElement FindSubElementInShadowRootByAttribute(IWebElement shadowRootElement, By subElementLocator, string attributeName, string attributeValue);
 
         #endregion
     }
