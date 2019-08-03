@@ -5713,6 +5713,12 @@
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ScrollToElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="webElement"></param>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Preferences.IDriverSettings,System.Boolean)">
             <summary>
             Base constructor for RatDriver
