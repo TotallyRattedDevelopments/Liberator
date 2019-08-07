@@ -1447,6 +1447,12 @@ namespace Liberator.Driver
         /// <param name="parameters">The parameters for the passed JavaScript</param>
         void ExecuteAsyncJavaScript(string script, params object[] parameters);
 
+        /// <summary>
+        /// Scrolls to an element using JavaScript
+        /// </summary>
+        /// <param name="webElement"></param>
+        void ScrollToElement(IWebElement webElement);
+
         #endregion
 
         #region Wait Methods

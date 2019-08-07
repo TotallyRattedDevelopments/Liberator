@@ -11,7 +11,7 @@
     <PackageTags>Selenium QA Automation</PackageTags>
     <AssemblyVersion>0.8.3.2</AssemblyVersion>
     <FileVersion>0.8.3.2</FileVersion>
-    <PackageReleaseNotes>Hotfix to Shadow Root functionality, removing SHadowLocator and providing subelement finders</PackageReleaseNotes>
+    <PackageReleaseNotes>Add JS scolling</PackageReleaseNotes>
     <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
 
 Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality to fine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>
