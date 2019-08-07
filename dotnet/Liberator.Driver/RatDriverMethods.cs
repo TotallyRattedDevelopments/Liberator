@@ -2141,6 +2141,34 @@ namespace Liberator.Driver
             Elements = collection;
         }
 
+        private IWebElement FindSubElement(IWebElement parentElement, By locator)
+        {
+            try
+            {
+                return parentElement.FindElement(locator);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Unable to find a subelement required with defined parameters.");
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
+        private IEnumerable<IWebElement> FindSubElements(IWebElement parentElement, By locator)
+        {
+            try
+            {
+                return parentElement.FindElements(locator);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Unable to find subelements required with defined parameters.");
+                HandleErrors(ex);
+                return null;
+            }
+        }
+
         #endregion
 
         #region CSS Retrievers
