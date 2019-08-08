@@ -314,7 +314,7 @@ namespace Liberator.Driver
 
         #endregion
 
-        //#region RatDriver Touch Actions
+        #region RatDriver Touch Actions
 
         ///// <summary>
         ///// Double taps on the WebElement
@@ -466,7 +466,7 @@ namespace Liberator.Driver
         ///// <param name="y">The y coordinate of the release</param>
         //new void ReleasePress(By locator, int x, int y);
 
-        //#endregion
+        #endregion
 
         #region RatDriver Management
 
