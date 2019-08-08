@@ -2040,6 +2040,12 @@
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
         </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ScrollToElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="webElement"></param>
+        </member>
         <member name="M:Liberator.Driver.IRatDriver`1.WaitForAlertToBePresent">
             <summary>
             Waits for an alert style duialog to be displayed
@@ -3520,6 +3526,12 @@
             </summary>
             <param name="script">The JavaScript to be executed</param>
             <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ScrollToElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="webElement"></param>
         </member>
         <member name="M:Liberator.Driver.IRodent.WaitForAlertToBePresent">
             <summary>
