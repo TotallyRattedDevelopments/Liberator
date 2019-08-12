@@ -126,4 +126,20 @@ namespace Liberator.Driver
         /// </summary>
         public int Height { get; set; }
     }
+
+    /// <summary>
+    /// Represents the offsets for the element
+    /// </summary>
+    public class HeightWidth
+    {
+        /// <summary>
+        /// The offset height of the element
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// The offset width of the element
+        /// </summary>
+        public int Width { get; set; }
+    }
 }
