@@ -4,14 +4,14 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Liberator.Driver</PackageId>
-    <Version>0.8.3.2</Version>
+    <Version>0.8.3.3</Version>
     <Authors>LiberatorTestTools</Authors>
     <Product>Liberator.Driver</Product>
     <Copyright>2015-2019, Liberator Test Tools</Copyright>
     <PackageTags>Selenium QA Automation</PackageTags>
-    <AssemblyVersion>0.8.3.2</AssemblyVersion>
-    <FileVersion>0.8.3.2</FileVersion>
-    <PackageReleaseNotes>Add JS scolling</PackageReleaseNotes>
+    <AssemblyVersion>0.8.3.3</AssemblyVersion>
+    <FileVersion>0.8.3.3</FileVersion>
+    <PackageReleaseNotes>Add further JavaScript extensions</PackageReleaseNotes>
     <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
 
 Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality to fine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>

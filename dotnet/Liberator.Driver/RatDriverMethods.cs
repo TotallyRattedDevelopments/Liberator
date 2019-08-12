@@ -18,149 +18,6 @@ namespace Liberator.Driver
         #region Public Methods
 
         /// <summary>
-        /// Waits for an element to be loaded
-        /// </summary>
-        /// <param name="element">The element for which to wait</param>
-        public void WaitForElementToLoad(IWebElement element)
-        {
-            Element = element;
-            try
-            {
-                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
-                    .Until(ExpectedConditions
-                    .ElementToBeClickable(element));
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
-        /// Waits for an element to be loaded
-        /// </summary>
-        /// <param name="locator">The locator for the element for which to wait</param>
-        public void WaitForElementToLoad(By locator)
-        {
-            Locator = locator;
-            try
-            {
-                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Driver.FindElement(locator)));
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
-        /// Waits for an element to be loaded
-        /// </summary>
-        /// <param name="element">The element for which to wait</param>
-        /// <param name="seconds">Maximum number of seconds to wait</param>
-        public void WaitForElementToLoad(IWebElement element, int seconds)
-        {
-            Element = element;
-            try
-            {
-                TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(Driver, timeSpan)
-                    .Until(ExpectedConditions
-                    .ElementToBeClickable(element));
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
-        /// Waits for an element to be loaded
-        /// </summary>
-        /// <param name="locator">The locator for the element for which to wait</param>
-        /// <param name="seconds">Maximum number of seconds to wait</param>
-        public void WaitForElementToLoad(By locator, int seconds)
-        {
-            Locator = locator;
-            try
-            {
-                TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
-                var wait = new WebDriverWait(this.Driver, timeSpan)
-                    .Until(ExpectedConditions
-                    .ElementToBeClickable(Driver.FindElement(locator)));
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
-        /// Waits for an element to disappear from the DOM
-        /// </summary>
-        /// <param name="locator">The locator for the element for which to wait</param>
-        public void WaitForInvisibilityOfElement(By locator)
-        {
-            Locator = locator;
-            try
-            {
-                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
-                    .Until(ExpectedConditions
-                    .InvisibilityOfElementLocated(locator));
-                if (wait) { throw new TimeoutException("Item has not disappeared as required by the test code."); }
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
-        /// Waits for an element containing text to disappear from the DOM
-        /// </summary>
-        /// <param name="locator">The locator for the element for which to wait</param>
-        /// <param name="text">The text that should be found in the element</param>
-        public void WaitForInvisibilityOfElementWithText(By locator, string text)
-        {
-            Locator = locator;
-            try
-            {
-                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
-                    .Until(ExpectedConditions
-                    .InvisibilityOfElementWithText(locator, text));
-                if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
-            }
-            catch (Exception ex)
-            {
-                if (_debugLevel == EnumConsoleDebugLevel.Human)
-                {
-                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
-                }
-                HandleErrors(ex);
-            }
-        }
-
-        /// <summary>
         /// Clicks on a WebElement
         /// </summary>
         /// <param name="element">The WebElement on which to click</param>
@@ -176,25 +33,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                try
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
-                    element.SendKeys(Keys.Enter);
-                    Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
-                }
-                catch (Exception ex)
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    {
-                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
-                    }
-                    if (ex.GetType() == typeof(ElementNotVisibleException))
-                    {
-                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
-                    }
-                    HandleErrors(ex);
-                }
+                TryClickWithEnter(element);
             }
         }
 
@@ -215,23 +54,7 @@ namespace Liberator.Driver
             }
             catch (Exception)
             {
-                try
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
-                    element.SendKeys(Keys.Enter);
-                }
-                catch (Exception ex)
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    {
-                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
-                    }
-                    if (ex.GetType() == typeof(ElementNotVisibleException))
-                    {
-                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
-                    }
-                    HandleErrors(ex);
-                }
+                TryClickWithEnter(element);
             }
         }
 
@@ -250,25 +73,9 @@ namespace Liberator.Driver
                 Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
                 Element.Click();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                try
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
-                    Driver.FindElement(locator).SendKeys(Keys.Enter);
-                }
-                catch (Exception)
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    {
-                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
-                    }
-                    if (ex.GetType() == typeof(ElementNotVisibleException))
-                    {
-                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
-                    }
-                    HandleErrors(ex);
-                }
+                TryClickWithEnter(locator);
             }
         }
 
@@ -296,25 +103,9 @@ namespace Liberator.Driver
                     Element.Click();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                try
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
-                    Element.SendKeys(Keys.Enter);
-                }
-                catch (Exception)
-                {
-                    if (_debugLevel == EnumConsoleDebugLevel.Human)
-                    {
-                        Console.Out.WriteLine("Cannot click on the element requested. Both methods fail.");
-                    }
-                    if (ex.GetType() == typeof(ElementNotVisibleException))
-                    {
-                        Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
-                    }
-                    HandleErrors(ex);
-                }
+                TryClickWithEnter(locator);
             }
         }
 
@@ -2215,6 +2006,56 @@ namespace Liberator.Driver
                 Console.Out.WriteLine("Unable to retrieve the css value required with defined parameters.");
                 HandleErrors(ex);
                 return null;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        internal void TryClickWithEnter(IWebElement element)
+        {
+            try
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                element.SendKeys(Keys.Enter);
+                Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType() == typeof(ElementNotVisibleException))
+                {
+                    Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                    HandleErrors(ex);
+                }
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Cannot send enter to the element requested. Attempting JavaScript.");
+                    ClickUsingJava(element);
+                }
+            }
+        }
+
+        private void TryClickWithEnter(By locator)
+        {
+            try
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human) { Console.Out.WriteLine("Could not use the click method. Atempting to send Enter key instead."); }
+                Element.SendKeys(Keys.Enter);
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType() == typeof(ElementNotVisibleException))
+                {
+                    Console.Out.WriteLine("The element passed by {0} is not visible on the page {1}", ex.Source, Driver.Url);
+                    HandleErrors(ex);
+                }
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Cannot click on the element requested. Attempting JavaScript.");
+                    ClickUsingJava(locator);
+                }
             }
         }
 

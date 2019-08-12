@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Liberator.Driver.Enums;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 
@@ -7,6 +8,149 @@ namespace Liberator.Driver
     public partial class RatDriver<TWebDriver> : IRatDriver<TWebDriver>
         where TWebDriver : IWebDriver, new()
     {
+        /// <summary>
+        /// Waits for an element to be loaded
+        /// </summary>
+        /// <param name="element">The element for which to wait</param>
+        public void WaitForElementToLoad(IWebElement element)
+        {
+            Element = element;
+            try
+            {
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(element));
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Waits for an element to be loaded
+        /// </summary>
+        /// <param name="locator">The locator for the element for which to wait</param>
+        public void WaitForElementToLoad(By locator)
+        {
+            Locator = locator;
+            try
+            {
+                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.ElementToBeClickable(Driver.FindElement(locator)));
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Waits for an element to be loaded
+        /// </summary>
+        /// <param name="element">The element for which to wait</param>
+        /// <param name="seconds">Maximum number of seconds to wait</param>
+        public void WaitForElementToLoad(IWebElement element, int seconds)
+        {
+            Element = element;
+            try
+            {
+                TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
+                var wait = new WebDriverWait(Driver, timeSpan)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(element));
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Waits for an element to be loaded
+        /// </summary>
+        /// <param name="locator">The locator for the element for which to wait</param>
+        /// <param name="seconds">Maximum number of seconds to wait</param>
+        public void WaitForElementToLoad(By locator, int seconds)
+        {
+            Locator = locator;
+            try
+            {
+                TimeSpan timeSpan = new TimeSpan(0, 0, 0, seconds, 0);
+                var wait = new WebDriverWait(this.Driver, timeSpan)
+                    .Until(ExpectedConditions
+                    .ElementToBeClickable(Driver.FindElement(locator)));
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Waits for an element to disappear from the DOM
+        /// </summary>
+        /// <param name="locator">The locator for the element for which to wait</param>
+        public void WaitForInvisibilityOfElement(By locator)
+        {
+            Locator = locator;
+            try
+            {
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
+                    .Until(ExpectedConditions
+                    .InvisibilityOfElementLocated(locator));
+                if (wait) { throw new TimeoutException("Item has not disappeared as required by the test code."); }
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
+        /// <summary>
+        /// Waits for an element containing text to disappear from the DOM
+        /// </summary>
+        /// <param name="locator">The locator for the element for which to wait</param>
+        /// <param name="text">The text that should be found in the element</param>
+        public void WaitForInvisibilityOfElementWithText(By locator, string text)
+        {
+            Locator = locator;
+            try
+            {
+                bool wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout)
+                    .Until(ExpectedConditions
+                    .InvisibilityOfElementWithText(locator, text));
+                if (wait) { throw new TimeoutException("The invisibility of the element conatining the text specified cannot be ascertained."); }
+            }
+            catch (Exception ex)
+            {
+                if (_debugLevel == EnumConsoleDebugLevel.Human)
+                {
+                    Console.Out.WriteLine("Unable to complete wait for element correctly.");
+                }
+                HandleErrors(ex);
+            }
+        }
+
         /// <summary>
         /// Waits for an alert style duialog to be displayed
         /// </summary>

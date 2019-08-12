@@ -1455,6 +1455,253 @@ namespace Liberator.Driver
         /// <param name="webElement"></param>
         new void ScrollToElement(IWebElement webElement);
 
+        /// <summary>
+        /// Scrolls to an element using JavaScript
+        /// </summary>
+        /// <param name="locator">The the locator for the Web Element.</param>
+        new void ScrollToElement(By locator);
+
+        /// <summary>
+        /// Adds an access key to a web element.
+        /// </summary>
+        /// <param name="webElement">The Web Element to receive the access key.</param>
+        /// <param name="key">The key to be used for access.</param>
+        new void AddAccessKeyToElement(IWebElement webElement, string key);
+
+        /// <summary>
+        /// Adds an access key to a web element.
+        /// </summary>
+        /// <param name="locator">The the locator for the Web Element to receive the access key.</param>
+        /// <param name="key">The key to be used for access.</param>
+        new void AddAccessKeyToElement(By locator, string key);
+
+        /// <summary>
+        /// Gets an access key from a web element.
+        /// </summary>
+        /// <param name="webElement">The Web Element for which to retrieve the access key.</param>
+        new void GetAccessKeyForElement(IWebElement webElement);
+
+        /// <summary>
+        /// Gets an access key from a web element.
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element for which to retrieve the access key.</param>
+        new void GetAccessKeyForElement(By locator);
+
+        /// <summary>
+        /// Returns the number of web elements.
+        /// </summary>
+        /// <param name="webElement">The web element for which a child element count is required.</param>
+        /// <returns>The number of child elements that the web element possesses.</returns>
+        new int ChildElementCount(IWebElement webElement);
+
+        /// <summary>
+        /// Returns the number of web elements
+        /// </summary>
+        /// <param name="locator">The locator for the web element for which a child element count is required.</param>
+        new int ChildElementCount(By locator);
+
+        /// <summary>
+        /// Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+        /// </summary>
+        /// <param name="webElement">The web element for which a child element count is required.</param>
+        /// <returns>The viewable area measurements of the web element.</returns>
+        new ElementSize GetElementSize(IWebElement webElement);
+
+        /// <summary>
+        /// Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+        /// </summary>
+        /// <param name="locator">The locator for the web element for which a child element count is required.</param>
+        /// <returns>The viewable area measurements of the web element.</returns>
+        new ElementSize GetElementSize(By locator);
+
+        /// <summary>
+        /// Compares the positions for a pair of elements.
+        /// </summary>
+        /// <param name="firstElement">The first element of the pair.</param>
+        /// <param name="secondElement">The second element of the pair.</param>
+        /// <returns>An enumerated value for the relative positions of the elements.</returns>
+        new EnumElementRelationships CompareElementPositons(IWebElement firstElement, IWebElement secondElement);
+
+        /// <summary>
+        /// Compares the positions for a pair of elements.
+        /// </summary>
+        /// <param name="firstLocator">The locator for the first element of the pair.</param>
+        /// <param name="secondLocator">The locator for the second element of the pair.</param>
+        /// <returns>An enumerated value for the relative positions of the elements.</returns>
+        new EnumElementRelationships CompareElementPositons(By firstLocator, By secondLocator);
+
+        /// <summary>
+        /// Checks to see if an element is contained by another element.
+        /// </summary>
+        /// <param name="firstElement">The first element of the pair.</param>
+        /// <param name="secondElement">The second element of the pair.</param>
+        /// <returns>True if the second element is a descendent of the first.</returns>
+        new bool? Contains(IWebElement firstElement, IWebElement secondElement);
+
+        /// <summary>
+        /// Checks to see if an element is contained by another element.
+        /// </summary>
+        /// <param name="firstLocator">The locator for the first element of the pair.</param>
+        /// <param name="secondLocator">The locator for the second element of the pair.</param>
+        /// <returns>True if the second element is a descendent of the first.</returns>
+        new bool? Contains(By firstLocator, By secondLocator);
+
+        /// <summary>
+        /// Gives the focus to an element
+        /// </summary>
+        /// <param name="webElement">The Web Element</param>
+        new void GiveFocus(IWebElement webElement);
+
+        /// <summary>
+        /// Gives the focus to an element
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element</param>
+        new void GiveFocus(By locator);
+
+        /// <summary>
+        /// Gets the bounding rectangle for the element
+        /// </summary>
+        /// <param name="webElement">The web element</param>
+        /// <returns>An object representing the bounding rectangle</returns>
+        new DomRectangle GetBoundingRectagle(IWebElement webElement);
+
+        /// <summary>
+        /// Gets the bounding rectangle for the element
+        /// </summary>
+        /// <param name="locator">The locator for the web element</param>
+        /// <returns>An object representing the bounding rectangle</returns>
+        new DomRectangle GetBoundingRectagle(By locator);
+
+        /// <summary>
+        /// Checks if a Web Element has a particular attribute
+        /// </summary>
+        /// <param name="webElement">The web element</param>
+        /// <param name="attribute">The attribute to check for.</param>
+        /// <returns>True if the element has the given attribute.</returns>
+        new bool? HasAttribute(IWebElement webElement, string attribute);
+
+        /// <summary>
+        /// Checks if a Web Element has a particular attribute
+        /// </summary>
+        /// <param name="locator">The locator for the web element</param>
+        /// <param name="attribute">The attribute to check for.</param>
+        /// <returns>True if the element has the given attribute.</returns>
+        new bool? HasAttribute(By locator, string attribute);
+
+        /// <summary>
+        /// Checks whether the web element has any attributes.
+        /// </summary>
+        /// <param name="webElement">The Web Element.</param>
+        /// <returns>True if the web element has any attributes.</returns>
+        new bool? HasAttributes(IWebElement webElement);
+
+        /// <summary>
+        /// Checks whether the web element has any attributes.
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element.</param>
+        /// <returns>True if the web element has any attributes.</returns>
+        new bool? HasAttributes(By locator);
+
+        /// <summary>
+        /// Checks whether the web element has any child nodes.
+        /// </summary>
+        /// <param name="webElement">The Web Element.</param>
+        /// <returns>True if the web element has any child nodes.</returns>
+        new bool? HasChildNodes(IWebElement webElement);
+
+        /// <summary>
+        /// Checks whether the web element has any child nodes.
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element.</param>
+        /// <returns>True if the web element has any child nodes.</returns>
+        new bool? HasChildNodes(By locator);
+
+        /// <summary>
+        /// Checks if the content of an element is editable.
+        /// </summary>
+        /// <param name="webElement">The Web Element</param>
+        /// <returns>rue if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        new string IsContentEditable(IWebElement webElement);
+
+        /// <summary>
+        /// Checks if the content of an element is editable.
+        /// </summary>
+        /// <param name="locator">The the locator for the Web Element.</param>
+        /// <returns>True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        new string IsContentEditable(By locator);
+
+        /// <summary>
+        /// Gets the language assigned to a WebElement
+        /// </summary>
+        /// <param name="webElement">The Web Element</param>
+        /// <returns>The ISO 639-1 code for the language.</returns>
+        new string GetElementLanguage(IWebElement webElement);
+
+        /// <summary>
+        /// Gets the language assigned to a WebElement
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element</param>
+        /// <returns>The ISO 639-1 code for the language.</returns>
+        new string GetElementLanguage(By locator);
+
+        /// <summary>
+        /// Gets the offsets for an element.
+        /// </summary>
+        /// <param name="webElement">The Web Element</param>
+        /// <returns>An object representing the offsets of the element</returns>
+        new HeightWidth GetOffsets(IWebElement webElement);
+
+        /// <summary>
+        /// Gets the offsets for an element.
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element</param>
+        /// <returns>An object representing the offsets of the element</returns>
+        new HeightWidth GetOffsets(By locator);
+
+        /// <summary>
+        /// Checks to see if an element is equal to another element.
+        /// </summary>
+        /// <param name="firstElement">The first element of the pair.</param>
+        /// <param name="secondElement">The second element of the pair.</param>
+        /// <returns>True if the second element is equal to the first.</returns>
+        new bool? AreNodesEqual(IWebElement firstElement, IWebElement secondElement);
+
+        /// <summary>
+        /// Checks to see if an element is equal to another element.
+        /// </summary>
+        /// <param name="firstLocator">The locator for the first element of the pair.</param>
+        /// <param name="secondLocator">The locator for the second element of the pair.</param>
+        /// <returns>True if the second element is equal to the first.</returns>
+        new bool? AreNodesEqual(By firstLocator, By secondLocator);
+
+        /// <summary>
+        /// Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+        /// </summary>
+        /// <param name="webElement">The Web Element</param>
+        /// <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        new ElementSize GetScrollSize(IWebElement webElement);
+
+        /// <summary>
+        /// Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+        /// </summary>
+        /// <param name="locator">The locator for the Web Element</param>
+        /// <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        new ElementSize GetScrollSize(By locator);
+
+        /// <summary>
+        /// Returns the tab index of the chosen web element.
+        /// </summary>
+        /// <param name="webElement">The web element for which a tab index is required.</param>
+        /// <returns>The tab index of the chosen element.</returns>
+        new int GetTabIndex(IWebElement webElement);
+
+        /// <summary>
+        /// Returns the tab index of the chosen web element.
+        /// </summary>
+        /// <param name="locator">The locator for the web element for which a tab index is required.</param>
+        /// <returns>The tab index of the chosen element.</returns>
+        new int GetTabIndex(By locator);
+
         #endregion
 
         #region Wait Methods

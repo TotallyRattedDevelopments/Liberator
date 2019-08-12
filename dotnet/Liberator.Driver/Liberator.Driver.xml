@@ -565,6 +565,46 @@
             Safari web driver
             </summary>
         </member>
+        <member name="T:Liberator.Driver.Enums.EnumElementRelationships">
+            <summary>
+            Enumerations of relationships between elements
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.NoResponse">
+            <summary>
+            No relationship has been calculated
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.NoRelationship">
+            <summary>
+            No relationship, the two nodes do not belong to the same document
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementAfterSecond">
+            <summary>
+            The first node (p1) is positioned after the second node (p2)
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementBeforeSecond">
+            <summary>
+            The first node (p1) is positioned before the second node (p2)
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementInsideSecond">
+            <summary>
+            The first node (p1) is positioned inside the second node (p2)
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.SecondElementInsideFirst">
+            <summary>
+            The second node (p2) is positioned inside the first node (p1)
+            </summary>
+        </member>
+        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.MayBeSameElement">
+            <summary>
+            No relationship, or the two nodes are two attributes on the same element
+            </summary>
+        </member>
         <member name="T:Liberator.Driver.Enums.EnumLocatorType">
             <summary>
             Type of locator being used
@@ -772,6 +812,91 @@
             
             </summary>
             <param name="driver"></param>
+        </member>
+        <member name="T:Liberator.Driver.ElementSize">
+            <summary>
+            The measurements for elements
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.ElementSize.Height">
+            <summary>
+            Height of the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.ElementSize.Left">
+            <summary>
+            Leftmost edge of the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.ElementSize.Top">
+            <summary>
+            Topmost edge of the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.ElementSize.Width">
+            <summary>
+            Width of the element
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.DomRectangle">
+            <summary>
+            Bounding client rectangle
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Left">
+            <summary>
+            Leftmost edge
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Top">
+            <summary>
+            Topmost edge
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Right">
+            <summary>
+            Rightmost edge
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Bottom">
+            <summary>
+            Bottom edge
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.X">
+            <summary>
+            X Co-ordinate
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Y">
+            <summary>
+            Y Co-ordinate
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Width">
+            <summary>
+            Width of the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.DomRectangle.Height">
+            <summary>
+            Height of the element
+            </summary>
+        </member>
+        <member name="T:Liberator.Driver.HeightWidth">
+            <summary>
+            Represents the offsets for the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.HeightWidth.Height">
+            <summary>
+            The offset height of the element
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.HeightWidth.Width">
+            <summary>
+            The offset width of the element
+            </summary>
         </member>
         <member name="T:Liberator.Driver.IRatDriver`1">
             <summary>
@@ -2045,6 +2170,253 @@
             Scrolls to an element using JavaScript
             </summary>
             <param name="webElement"></param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ScrollToElement(OpenQA.Selenium.By)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.AddAccessKeyToElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="webElement">The Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.AddAccessKeyToElement(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="locator">The the locator for the Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetAccessKeyForElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="webElement">The Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetAccessKeyForElement(OpenQA.Selenium.By)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="locator">The locator for the Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ChildElementCount(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the number of web elements.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The number of child elements that the web element possesses.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.ChildElementCount(OpenQA.Selenium.By)">
+            <summary>
+            Returns the number of web elements
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetElementSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetElementSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.CompareElementPositons(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.CompareElementPositons(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.Contains(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.Contains(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GiveFocus(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="webElement">The Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GiveFocus(OpenQA.Selenium.By)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetBoundingRectagle(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="webElement">The web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetBoundingRectagle(OpenQA.Selenium.By)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasAttribute(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="webElement">The web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasAttribute(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasAttributes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasAttributes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasChildNodes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.HasChildNodes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.IsContentEditable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>rue if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.IsContentEditable(OpenQA.Selenium.By)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+            <returns>True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetElementLanguage(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetElementLanguage(OpenQA.Selenium.By)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetOffsets(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetOffsets(OpenQA.Selenium.By)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.AreNodesEqual(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.AreNodesEqual(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetScrollSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetScrollSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetTabIndex(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="webElement">The web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRatDriver`1.GetTabIndex(OpenQA.Selenium.By)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="locator">The locator for the web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
         </member>
         <member name="M:Liberator.Driver.IRatDriver`1.WaitForAlertToBePresent">
             <summary>
@@ -3532,6 +3904,253 @@
             Scrolls to an element using JavaScript
             </summary>
             <param name="webElement"></param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ScrollToElement(OpenQA.Selenium.By)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.AddAccessKeyToElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="webElement">The Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.AddAccessKeyToElement(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="locator">The the locator for the Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetAccessKeyForElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="webElement">The Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetAccessKeyForElement(OpenQA.Selenium.By)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="locator">The locator for the Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ChildElementCount(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the number of web elements.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The number of child elements that the web element possesses.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.ChildElementCount(OpenQA.Selenium.By)">
+            <summary>
+            Returns the number of web elements
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetElementSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetElementSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.CompareElementPositons(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.CompareElementPositons(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.Contains(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.Contains(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GiveFocus(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="webElement">The Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GiveFocus(OpenQA.Selenium.By)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetBoundingRectagle(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="webElement">The web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetBoundingRectagle(OpenQA.Selenium.By)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasAttribute(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="webElement">The web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasAttribute(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasAttributes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasAttributes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasChildNodes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.HasChildNodes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.IsContentEditable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>rue if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.IsContentEditable(OpenQA.Selenium.By)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+            <returns>True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetElementLanguage(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetElementLanguage(OpenQA.Selenium.By)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetOffsets(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetOffsets(OpenQA.Selenium.By)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.AreNodesEqual(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.AreNodesEqual(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetScrollSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetScrollSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetTabIndex(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="webElement">The web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.GetTabIndex(OpenQA.Selenium.By)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="locator">The locator for the web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
         </member>
         <member name="M:Liberator.Driver.IRodent.WaitForAlertToBePresent">
             <summary>
@@ -5630,50 +6249,6 @@
             <param name="value">The value to choose</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
-        <member name="M:Liberator.Driver.RatDriver`1.TakeScreenshot(System.String)">
-            <summary>
-            Takes a screenshot of the active web page
-            </summary>
-            <param name="path">The path and name under which to save the image</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.Scripts">
-            <summary>
-            Returns a JavaScript Executor to the end user for custom JavaScript
-            </summary>
-            <returns>A JavaScript Executor</returns>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String)">
-            <summary>
-            Executes a JavaScript statement passed as a string
-            </summary>
-            <param name="script">The JavaScript to be executed</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String,System.Object[])">
-            <summary>
-            Executes a JavaScript statement passed as a string
-            </summary>
-            <param name="script">The JavaScript to be executed</param>
-            <param name="parameters">The parameters for the passed JavaScript</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String)">
-            <summary>
-            Executes a JavaScript statement passed as a string
-            </summary>
-            <param name="script">The JavaScript to be executed</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String,System.Object[])">
-            <summary>
-            Executes a JavaScript statement passed as a string
-            </summary>
-            <param name="script">The JavaScript to be executed</param>
-            <param name="parameters">The parameters for the passed JavaScript</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.ScrollToElement(OpenQA.Selenium.IWebElement)">
-            <summary>
-            Scrolls to an element using JavaScript
-            </summary>
-            <param name="webElement"></param>
-        </member>
         <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Preferences.IDriverSettings,System.Boolean)">
             <summary>
             Base constructor for RatDriver
@@ -6081,45 +6656,6 @@
             <summary>
             Switches to the parent frame of a selected WebElement
             </summary>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.IWebElement)">
-            <summary>
-            Waits for an element to be loaded
-            </summary>
-            <param name="element">The element for which to wait</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By)">
-            <summary>
-            Waits for an element to be loaded
-            </summary>
-            <param name="locator">The locator for the element for which to wait</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.IWebElement,System.Int32)">
-            <summary>
-            Waits for an element to be loaded
-            </summary>
-            <param name="element">The element for which to wait</param>
-            <param name="seconds">Maximum number of seconds to wait</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By,System.Int32)">
-            <summary>
-            Waits for an element to be loaded
-            </summary>
-            <param name="locator">The locator for the element for which to wait</param>
-            <param name="seconds">Maximum number of seconds to wait</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElement(OpenQA.Selenium.By)">
-            <summary>
-            Waits for an element to disappear from the DOM
-            </summary>
-            <param name="locator">The locator for the element for which to wait</param>
-        </member>
-        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElementWithText(OpenQA.Selenium.By,System.String)">
-            <summary>
-            Waits for an element containing text to disappear from the DOM
-            </summary>
-            <param name="locator">The locator for the element for which to wait</param>
-            <param name="text">The text that should be found in the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
@@ -6793,6 +7329,348 @@
             <summary>
             Whether to record performance statistics
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.TakeScreenshot(System.String)">
+            <summary>
+            Takes a screenshot of the active web page
+            </summary>
+            <param name="path">The path and name under which to save the image</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.Scripts">
+            <summary>
+            Returns a JavaScript Executor to the end user for custom JavaScript
+            </summary>
+            <returns>A JavaScript Executor</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String)">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String,System.Object[])">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+            <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String)">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String,System.Object[])">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+            <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ScrollToElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="webElement">The Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ScrollToElement(OpenQA.Selenium.By)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.AddAccessKeyToElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="webElement">The Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.AddAccessKeyToElement(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Adds an access key to a web element.
+            </summary>
+            <param name="locator">The the locator for the Web Element to receive the access key.</param>
+            <param name="key">The key to be used for access.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetAccessKeyForElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="webElement">The Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetAccessKeyForElement(OpenQA.Selenium.By)">
+            <summary>
+            Gets an access key from a web element.
+            </summary>
+            <param name="locator">The locator for the Web Element for which to retrieve the access key.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ChildElementCount(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the number of web elements.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The number of child elements that the web element possesses.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ChildElementCount(OpenQA.Selenium.By)">
+            <summary>
+            Returns the number of web elements
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetElementSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="webElement">The web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetElementSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the viewable area measurements of the element passed. This does not include borders, scrollbars or margins.
+            </summary>
+            <param name="locator">The locator for the web element for which a child element count is required.</param>
+            <returns>The viewable area measurements of the web element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.CompareElementPositons(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.CompareElementPositons(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Compares the positions for a pair of elements.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>An enumerated value for the relative positions of the elements.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.Contains(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.Contains(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is contained by another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is a descendent of the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GiveFocus(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="webElement">The Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GiveFocus(OpenQA.Selenium.By)">
+            <summary>
+            Gives the focus to an element
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetBoundingRectagle(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="webElement">The web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetBoundingRectagle(OpenQA.Selenium.By)">
+            <summary>
+            Gets the bounding rectangle for the element
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <returns>An object representing the bounding rectangle</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasAttribute(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="webElement">The web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasAttribute(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Checks if a Web Element has a particular attribute
+            </summary>
+            <param name="locator">The locator for the web element</param>
+            <param name="attribute">The attribute to check for.</param>
+            <returns>True if the element has the given attribute.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasAttributes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasAttributes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any attributes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any attributes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasChildNodes(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="webElement">The Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.HasChildNodes(OpenQA.Selenium.By)">
+            <summary>
+            Checks whether the web element has any child nodes.
+            </summary>
+            <param name="locator">The locator for the Web Element.</param>
+            <returns>True if the web element has any child nodes.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.IsContentEditable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>rue if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.IsContentEditable(OpenQA.Selenium.By)">
+            <summary>
+            Checks if the content of an element is editable.
+            </summary>
+            <param name="locator">The the locator for the Web Element.</param>
+            <returns>True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetElementLanguage(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetElementLanguage(OpenQA.Selenium.By)">
+            <summary>
+            Gets the language assigned to a WebElement
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>The ISO 639-1 code for the language.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetOffsets(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetOffsets(OpenQA.Selenium.By)">
+            <summary>
+            Gets the offsets for an element.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the offsets of the element</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.AreNodesEqual(OpenQA.Selenium.IWebElement,OpenQA.Selenium.IWebElement)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstElement">The first element of the pair.</param>
+            <param name="secondElement">The second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.AreNodesEqual(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Checks to see if an element is equal to another element.
+            </summary>
+            <param name="firstLocator">The locator for the first element of the pair.</param>
+            <param name="secondLocator">The locator for the second element of the pair.</param>
+            <returns>True if the second element is equal to the first.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetScrollSize(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="webElement">The Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetScrollSize(OpenQA.Selenium.By)">
+            <summary>
+            Gets the height and width of an element in pixels, including padding, but not the border, scrollbar or margin.
+            </summary>
+            <param name="locator">The locator for the Web Element</param>
+            <returns>An object representing the scroll height and width of the element, along with current positioning.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetTabIndex(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="webElement">The web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.GetTabIndex(OpenQA.Selenium.By)">
+            <summary>
+            Returns the tab index of the chosen web element.
+            </summary>
+            <param name="locator">The locator for the web element for which a tab index is required.</param>
+            <returns>The tab index of the chosen element.</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ClickUsingJava(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Attempts a click using JavaScript
+            </summary>
+            <param name="webElement">The Web Element to which the click is sent.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ClickUsingJava(OpenQA.Selenium.By)">
+            <summary>
+            Attempts a click using JavaScript
+            </summary>
+            <param name="locator">The locator for the Web Element to which the click is sent.</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="element">The element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.IWebElement,System.Int32)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="element">The element for which to wait</param>
+            <param name="seconds">Maximum number of seconds to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By,System.Int32)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+            <param name="seconds">Maximum number of seconds to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElement(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to disappear from the DOM
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElementWithText(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits for an element containing text to disappear from the DOM
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+            <param name="text">The text that should be found in the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.WaitForAlertToBePresent">
             <summary>
