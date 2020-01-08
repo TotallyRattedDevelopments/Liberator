@@ -10,9 +10,9 @@ public class RatTimer implements ITimer  {
         duration = -1;
     }
 
-    private Instant startTime;
-    private Instant endTime;
-    long duration;
+    public Instant startTime;
+    public Instant endTime;
+    public long duration;
 
     /**
      * Start the timer
