@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.javatuples.Pair;
 import org.liberator.ratdriver.enums.Timing;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 

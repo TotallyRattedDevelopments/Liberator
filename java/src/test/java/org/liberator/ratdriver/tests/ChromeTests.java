@@ -394,7 +394,7 @@ public class ChromeTests {
     }
 
     @Test
-    public void Chrome_FindElementsByXPath()
+    public void testFindElementsByXPathChrome()
     {
         IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
