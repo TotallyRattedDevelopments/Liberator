@@ -6,13 +6,12 @@ import org.liberator.ratdriver.IRodent;
 import org.liberator.ratdriver.RatDriver;
 import org.liberator.ratdriver.enums.DriverType;
 import org.liberator.ratdriver.enums.LocatorType;
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntry;
 
-import javax.print.DocFlavor;
-import java.util.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -227,7 +226,6 @@ public class ChromeTests {
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementById("carousel-example", false);
-        String text = ratDriver.GetElementText(By.id("carousel-example"), false);
         Assert.assertTrue(ratDriver.GetElementAttribute(element, "data-ride", false).contains("carousel"));
         ratDriver.ClosePagesAndQuitDriver();
     }

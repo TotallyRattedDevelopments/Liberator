@@ -10,7 +10,7 @@ public class BaseSettings {
     /**
      * Standard timeout
      */
-    public static Integer Timeout = null;
+    public static Integer Timeout = 30;
 
     /**
      * The length of time to sleep
