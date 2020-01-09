@@ -1675,9 +1675,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public void OpenNewView() {
         try {
-            if (PlatformUtil.isWindows()) {
-                EncapsulatedDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
-            } else if (PlatformUtil.isMac() || PlatformUtil.isLinux()) {
+
                 JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
                 js.executeScript("window.open();");
 
@@ -1686,7 +1684,7 @@ public class RatDriver implements IRatDriver {
                 iterator.next();
                 String tab = (String) iterator.next();
                 EncapsulatedDriver.switchTo().window(tab);
-            }
+
             System.out.println("Opened a new tab.");
         } catch (Exception ex) {
             System.out.println("Could not open a new tab.");

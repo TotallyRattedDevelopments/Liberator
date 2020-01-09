@@ -143,6 +143,7 @@ public class ChromeSettings extends BaseSettings {
             BinaryLocation = "/Applications/Google Chrome.app";
             MinidumpPath = "/";
         } else if (PlatformUtil.isWindows()) {
+            ChromeDriverLocation = "src/main/resources/drivers/chromedriver.exe";
             BinaryLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
             MinidumpPath = "\\Outputs\\";
         } else if (PlatformUtil.isLinux()){

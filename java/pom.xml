@@ -68,53 +68,39 @@
           dpkg-query -L openjfx
         -->
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.base.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.controls.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.fxml.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.graphics.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.media.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.swing.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
         <dependency>
-            <groupId>javafx</groupId>
+            <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${javafx.dir}/javafx.web.jar</systemPath>
+            <version>13.0.1</version>
         </dependency>
 
 
