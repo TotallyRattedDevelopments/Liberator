@@ -181,7 +181,6 @@ public class RatDriver implements IRatDriver {
 
     public RatDriver(DriverType type, BasePreferences preferences, Boolean performanceTimings) {
         try {
-            Class driverClass = ((Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
             if (RecordPerformance) {
                 InitialiseRatWatch(performanceTimings);
                 RatTimerCollection.StartTimer();
@@ -1676,9 +1675,9 @@ public class RatDriver implements IRatDriver {
     @Override
     public void OpenNewView() {
         try {
-            if (PlatformUtil.isWindows() || PlatformUtil.isLinux()) {
+            if (PlatformUtil.isWindows()) {
                 EncapsulatedDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
-            } else if (PlatformUtil.isMac()) {
+            } else if (PlatformUtil.isMac() || PlatformUtil.isLinux()) {
                 JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
                 js.executeScript("window.open();");
 

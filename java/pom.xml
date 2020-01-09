@@ -20,7 +20,21 @@
         </plugins>
     </build>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.source.level>1.8</project.source.level>
+        <project.target.level>1.8</project.target.level>
+
+        <javafx.dir>/usr/share/openjfx/lib</javafx.dir>
+    </properties>
+
+
     <dependencies>
+
+        <!-- JavaFx :
+          sudo apt install openjfx
+          dpkg-query -L openjfx
+        -->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -42,27 +56,65 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <!-- Import dependency management from Spring Boot -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>2.2.1.RELEASE</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- JavaFx :
+          sudo apt install openjfx
+          dpkg-query -L openjfx
+        -->
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.base.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.controls.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.fxml.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.graphics.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.media.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.swing.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javafx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${javafx.dir}/javafx.web.jar</systemPath>
         </dependency>
 
 
