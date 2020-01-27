@@ -136,18 +136,16 @@ public class ChromeSettings extends BaseSettings {
      */
     public static String Width;
 
+
     static {
         // Driver Pre-sets
         if (PlatformUtil.isMac()) {
-            ChromeDriverLocation = "src/main/resources/drivers/chromedriver";
             BinaryLocation = "/Applications/Google Chrome.app";
             MinidumpPath = "/";
         } else if (PlatformUtil.isWindows()) {
-            ChromeDriverLocation = "src/main/resources/drivers/chromedriver.exe";
             BinaryLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
             MinidumpPath = "\\Outputs\\";
         } else if (PlatformUtil.isLinux()){
-            ChromeDriverLocation = "/usr/local/bin/chromedriver";
             BinaryLocation = "usr/bin/google-chrome";
             MinidumpPath = "/";
         }

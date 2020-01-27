@@ -30,11 +30,6 @@
 
 
     <dependencies>
-
-        <!-- JavaFx :
-          sudo apt install openjfx
-          dpkg-query -L openjfx
-        -->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

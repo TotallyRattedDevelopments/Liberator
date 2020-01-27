@@ -3,10 +3,7 @@ package org.liberator.ratdriver;
 import com.sun.javafx.PlatformUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.liberator.ratdriver.control.BrowserControl;
-import org.liberator.ratdriver.control.ChromeControl;
-import org.liberator.ratdriver.control.FirefoxControl;
-import org.liberator.ratdriver.control.OperaControl;
+import org.liberator.ratdriver.control.*;
 import org.liberator.ratdriver.entities.DomRectangle;
 import org.liberator.ratdriver.entities.ElementSize;
 import org.liberator.ratdriver.entities.HeightWidth;
@@ -19,12 +16,12 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -205,7 +202,9 @@ public class RatDriver implements IRatDriver {
                 InitialiseRatWatch(performanceTimings);
                 RatTimerCollection.StartTimer();
             }
+
             establishDriverType(type, null);
+
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.Instantiation);
             }
@@ -1676,14 +1675,14 @@ public class RatDriver implements IRatDriver {
     public void OpenNewView() {
         try {
 
-                JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
-                js.executeScript("window.open();");
+            JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
+            js.executeScript("window.open();");
 
-                Set<String> handles = EncapsulatedDriver.getWindowHandles();
-                Iterator iterator = handles.iterator();
-                iterator.next();
-                String tab = (String) iterator.next();
-                EncapsulatedDriver.switchTo().window(tab);
+            Set<String> handles = EncapsulatedDriver.getWindowHandles();
+            Iterator iterator = handles.iterator();
+            iterator.next();
+            String tab = (String) iterator.next();
+            EncapsulatedDriver.switchTo().window(tab);
 
             System.out.println("Opened a new tab.");
         } catch (Exception ex) {
@@ -4225,12 +4224,38 @@ public class RatDriver implements IRatDriver {
                 case "chromedriver":
                     controller = new ChromeControl(null);
                     break;
-                case "geckodriver":
+                case "firefoxdriver":
                     controller = new FirefoxControl(null);
                     break;
                 case "operadriver":
                     controller = new OperaControl(null);
                     break;
+                case "safaridriver":
+                    if (PlatformUtil.isMac()) {
+                        controller = new SafariControl(null);
+                    } else {
+                        System.out.println("Safari is a Mac only browser.");
+                    }
+                    break;
+                case "edgedriver":
+                    if (PlatformUtil.isWindows()) {
+                        controller = new EdgeControl(null);
+                    } else {
+                        System.out.println("Edge is a Windows only browser.");
+                    }
+                    break;
+                case "internetexplorerdriver":
+                    if (PlatformUtil.isWindows()) {
+                        controller = new IEControl(null);
+                    } else {
+                        System.out.println("Internet Exploiter is a Windows only browser.");
+                    }
+                    break;
+                case "remotedriver":
+                    controller = new RemoteControl(null);
+                    break;
+                default:
+                    throw new Exception();
             }
 
             if (controller != null) {
@@ -4242,6 +4267,7 @@ public class RatDriver implements IRatDriver {
             } else {
                 System.out.println("Unable to load the driver control class requested.");
                 System.out.println("Please check that your driver is supported.");
+                throw new Exception();
             }
         } catch (Exception ex) {
             System.out.println("Could not establish the driver type");

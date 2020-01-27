@@ -1,30 +1,52 @@
 package org.liberator.ratdriver.preferences;
 
+import com.sun.javafx.PlatformUtil;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+
+import static org.openqa.selenium.PageLoadStrategy.*;
+import static org.openqa.selenium.UnexpectedAlertBehaviour.*;
+
 public class FirefoxPreferences extends BasePreferences {
     
     public FirefoxPreferences()
     {
-        LogLevel = "Trace";
-        ProfileDirectory = "\\BrowserDrivers\\Profiles";
-        CleanProfile = "False";
-        UseLegacyImplementation = "False";
+        if (PlatformUtil.isMac()) {
+            FirefoxDriverLocation = "src/main/resources/drivers/mac/geckodriver";
+            FirefoxLocation = "/Applications/Firefox.app";
+        } else if (PlatformUtil.isWindows()) {
+            FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
+            FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
+        } else if (PlatformUtil.isLinux()){
+            FirefoxDriverLocation = "/usr/local/bin/geckodriver";
+            FirefoxLocation = "usr/bin/firefox";
+        }
 
-        AcceptUntrustedCertificates = "True";
-        AlwaysLoadNoFocusLibrary = "True";
-        AssumeUntrustedCertificateIssuer = "True";
-        DeleteAfterUse = "False";
-        EnableNativeEvents = "False";
+        LogLevel = FirefoxDriverLogLevel.DEBUG;
+        ProfileDirectory = "\\BrowserDrivers\\Profiles";
+        CleanProfile = false;
+        UseLegacyImplementation = false;
+
+        AcceptUntrustedCertificates = null;
+        AlwaysLoadNoFocusLibrary = null;
+        AssumeUntrustedCertificateIssuer = null;
+        DeleteAfterUse = false;
+        EnableNativeEvents = false;
         Port = "4444";
 
         ConnectToRunningBrowser = "False";
         HideCommandPromptWindow = "False";
         SuppressInitialDiagnosticInformation = "False";
+
+        PageLoadStrategy = EAGER;
+        UnexpectedAlertBehaviour = ACCEPT;
     }
 
     /**
      * Gets or sets the logging level of the Firefox driver.
      */
-    public String LogLevel;
+    public FirefoxDriverLogLevel LogLevel;
 
     /**
      * Gets the directory containing the profile.
@@ -34,41 +56,41 @@ public class FirefoxPreferences extends BasePreferences {
     /**
      * Cleans this Firefox profile.
      */
-    public String CleanProfile;
+    public Boolean CleanProfile;
 
     /**
      * Gets or sets a value indicating whether to use the legacy driver implementation.
      */
-    public String UseLegacyImplementation;
+    public Boolean UseLegacyImplementation;
 
     /**
      * Gets or sets a value indicating whether Firefox should accept SSL certificates
      * which have expired, signed by an unknown authority or are generally untrusted.
      * Set to true by default.
      */
-    public String AcceptUntrustedCertificates;
+    public Boolean AcceptUntrustedCertificates;
 
     /**
      * Gets or sets a value indicating whether to always load the library for allowing
      * Firefox to execute commands without its window having focus.
      */
-    public String AlwaysLoadNoFocusLibrary;
+    public Boolean AlwaysLoadNoFocusLibrary;
 
     /**
      * Gets or sets a value indicating whether Firefox assume untrusted SSL certificates
      * come from an untrusted issuer or are self-signed. Set to true by default.
      */
-    public String AssumeUntrustedCertificateIssuer;
+    public Boolean AssumeUntrustedCertificateIssuer;
 
     /**
      * Gets or sets a value indicating whether to delete this profile after use with the OpenQA.Selenium.Firefox.FirefoxDriver.
      */
-    public String DeleteAfterUse;
+    public Boolean DeleteAfterUse;
 
     /**
      * Gets or sets a value indicating whether native events are enabled.
      */
-    public String EnableNativeEvents;
+    public Boolean EnableNativeEvents;
 
     /**
      * Gets or sets the port on which the profile connects to the WebDriver extension.
@@ -111,4 +133,9 @@ public class FirefoxPreferences extends BasePreferences {
      * Comma separated list of preferences in the format {name}={value}|{type}
      */
     public String Preferences = null;
+
+
+    public PageLoadStrategy PageLoadStrategy;
+
+    public UnexpectedAlertBehaviour UnexpectedAlertBehaviour = null;
 }

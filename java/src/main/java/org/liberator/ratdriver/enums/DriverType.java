@@ -32,5 +32,15 @@ public enum DriverType {
     /**
      * Opera web driver
      */
-    OperaDriver
+    OperaDriver,
+
+    /**
+     * Safari Web Driver
+     */
+    SafariDriver,
+
+    /**
+     * Remote Web Driver
+     */
+    RemoteDriver
 }

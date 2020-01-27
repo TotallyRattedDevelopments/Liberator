@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.settings;
 
+import com.sun.javafx.PlatformUtil;
 import org.liberator.ratdriver.enums.ConsoleDebugLevel;
 
 /**
@@ -7,6 +8,25 @@ import org.liberator.ratdriver.enums.ConsoleDebugLevel;
  */
 public class BaseSettings {
 
+    static {
+
+        // Driver Pre-sets
+        if (PlatformUtil.isMac()) {
+            ChromeDriverLocation = "src/main/resources/drivers/mac/chromedriver";
+            FirefoxDriverLocation = "src/main/resources/drivers/mac/geckodriver";
+            FirefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox";
+        } else if (PlatformUtil.isWindows()) {
+            ChromeDriverLocation = "src/main/resources/drivers/win/chromedriver.exe";
+            FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
+            FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
+        } else if (PlatformUtil.isLinux()){
+            ChromeDriverLocation = "/usr/local/bin/chromedriver";
+            FirefoxDriverLocation = "/usr/local/bin/geckodriver";
+            FirefoxLocation = "usr/bin/firefox";
+        }
+
+
+    }
     /**
      * Standard timeout
      */
@@ -50,42 +70,42 @@ public class BaseSettings {
     /**
      * Location of Chrome Driver. Defaults to the supplied version.
      */
-    public static String ChromeDriverLocation = null;
+    public static String ChromeDriverLocation;
 
     /**
      * Location of the Microsoft Web Driver. Defaults to the supplied version.
      */
-    public static String EdgeDriverLocation = null;
+    public static String EdgeDriverLocation;
 
     /**
      * Location of the Firefox Driver. Defaults to the supplied version.
      */
-    public static String FirefoxDriverLocation = null;
+    public static String FirefoxDriverLocation;
 
     /**
      * Location of the IEDriverServer executable. Defaults to the supplied version.
      */
-    public static String InternetExplorerDriverLocation = null;
+    public static String InternetExplorerDriverLocation;
 
     /**
      * Location of the Opera Driver. Defaults to the supplied version.
      */
-    public static String OperaDriverLocation = null;
+    public static String OperaDriverLocation;
 
     /**
      * Location of the Chrome application
      */
-    public static String ChromeLocation = null;
+    public static String ChromeLocation;
 
     /**
      * Locations of the Firefox application
      */
-    public static String FirefoxLocation = null;
+    public static String FirefoxLocation;
 
     /**
      * Location of the Opera application
      */
-    public static String OperaLocation = null;
+    public static String OperaLocation;
 
     /**
      * The debug level to use for the test run

@@ -139,10 +139,11 @@ public class ChromePreferences extends BasePreferences {
     {
         // Driver Pre-sets
         if (PlatformUtil.isMac()) {
-            ChromeDriverLocation = "src/main/resources/drivers/chromedriver";
+            ChromeDriverLocation = "src/main/resources/drivers/mac/chromedriver";
             BinaryLocation = "/Applications/Google Chrome.app";
             MinidumpPath = "/";
         } else if (PlatformUtil.isWindows()) {
+            ChromeDriverLocation = "src/main/resources/drivers/win/chromedriver.exe";
             BinaryLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
             MinidumpPath = "\\Outputs\\";
         } else if (PlatformUtil.isLinux()){
