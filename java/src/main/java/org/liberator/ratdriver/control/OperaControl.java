@@ -125,7 +125,7 @@ public class OperaControl extends BrowserControl {
     public WebDriver StartDriver(BasePreferences driverSettings) {
         try {
             setImportedPreferences((OperaPreferences) driverSettings);
-            System.setProperty("webdriver.Opera.driver", FirefoxSettings.OperaDriverLocation);
+            System.setProperty("webdriver.opera.driver", FirefoxSettings.OperaDriverLocation);
 
             SetOperaOptions();
             SetOperaDriverService();
@@ -148,6 +148,8 @@ public class OperaControl extends BrowserControl {
         try {
             Options = new OperaOptions();
             Options.setBinary(BaseSettings.OperaLocation);
+            Options.addArguments("--remote-debugging-port=9222");
+            Options.addArguments("start-maximized");
             setAcceptInsecureCertificates();
             setSSLCertificates();
             setPageLoadStrategy();
@@ -172,84 +174,84 @@ public class OperaControl extends BrowserControl {
         }
     }
 
-    private void setAcceptInsecureCertificates(){
+    private void setAcceptInsecureCertificates() {
         try {
-            if (OperaSettings.AcceptInsecureCertificates != null){
+            if (OperaSettings.AcceptInsecureCertificates != null) {
                 Options.setCapability(ACCEPT_INSECURE_CERTS, OperaSettings.AcceptInsecureCertificates);
                 System.out.format("Set accept insecure certificates to: %s", OperaSettings.AcceptInsecureCertificates.toString());
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set accept insecure certificates to: %s", OperaSettings.AcceptInsecureCertificates.toString());
             System.out.println();
 
         }
     }
 
-    private void setSSLCertificates(){
+    private void setSSLCertificates() {
         try {
-            if (OperaSettings.AcceptSSLCertificates != null){
+            if (OperaSettings.AcceptSSLCertificates != null) {
                 Options.setCapability(ACCEPT_SSL_CERTS, OperaSettings.AcceptSSLCertificates);
                 System.out.format("Set accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
             System.out.println();
 
         }
     }
 
-    private void setPageLoadStrategy(){
+    private void setPageLoadStrategy() {
         try {
-            if (OperaSettings.PageLoadStrategy != null){
+            if (OperaSettings.PageLoadStrategy != null) {
                 Options.setCapability(PAGE_LOAD_STRATEGY, OperaSettings.PageLoadStrategy);
                 System.out.format("Set page load strategy to: %s", OperaSettings.PageLoadStrategy);
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set page load strategy to: %s", OperaSettings.PageLoadStrategy);
             System.out.println();
 
         }
     }
 
-    private void setTakesScreenshot(){
+    private void setTakesScreenshot() {
         try {
-            if (OperaSettings.TakesScreenshot != null){
+            if (OperaSettings.TakesScreenshot != null) {
                 Options.setCapability(TAKES_SCREENSHOT, OperaSettings.TakesScreenshot);
                 System.out.format("Set Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
             System.out.println();
 
         }
     }
 
-    private void setUnexpectedAlertBehaviour(){
+    private void setUnexpectedAlertBehaviour() {
         try {
-            if (OperaSettings.UnexpectedAlertBehaviour != null){
+            if (OperaSettings.UnexpectedAlertBehaviour != null) {
                 Options.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, OperaSettings.UnexpectedAlertBehaviour);
                 System.out.format("Set Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
             System.out.println();
 
         }
     }
 
-    private void setUnhandledPromptBehaviour(){
+    private void setUnhandledPromptBehaviour() {
         try {
-            if (OperaSettings.UnhandledPromptBehaviour != null){
+            if (OperaSettings.UnhandledPromptBehaviour != null) {
                 Options.setCapability(UNHANDLED_PROMPT_BEHAVIOUR, OperaSettings.UnhandledPromptBehaviour);
                 System.out.format("Set Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
                 System.out.println();
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.format("Could not set Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
             System.out.println();
 
