@@ -14,14 +14,18 @@ public class BaseSettings {
         if (PlatformUtil.isMac()) {
             ChromeDriverLocation = "src/main/resources/drivers/mac/chromedriver";
             FirefoxDriverLocation = "src/main/resources/drivers/mac/geckodriver";
+            OperaDriverLocation = "src/main/resources/drivers/mac/operadriver";
             FirefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox";
+            OperaLocation = "/Applications/Opera.app/Contents/MacOS/Opera";
         } else if (PlatformUtil.isWindows()) {
             ChromeDriverLocation = "src/main/resources/drivers/win/chromedriver.exe";
             FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
+            OperaDriverLocation = "src/main/resources/drivers/win/operadriver.exe";
             FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
+            OperaDriverLocation = "/usr/local/bin/operadriver";
             FirefoxLocation = "usr/bin/firefox";
         }
 

@@ -4,12 +4,12 @@ public class OperaPreferences extends BasePreferences {
 
     public OperaPreferences()
     {
-        LeaveBrowserRunning = "false";
-        AndroidDebugBridgePort = "-1";
-        EnableVerboseLogging = "false";
-        HideCommandPromptWindow = "true";
-        Port = "4444";
-        SuppressInitialDiagnosticInformation = "true";
+        LeaveBrowserRunning = false;
+        AndroidDebugBridgePort = -1;
+        EnableVerboseLogging = false;
+        HideCommandPromptWindow = true;
+        Port = 4444;
+        SuppressInitialDiagnosticInformation = true;
     }
 
     /**
@@ -20,7 +20,7 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets a value indicating whether Opera should be left running after the OperaDriver instance is exited. Defaults to false.
      */
-    public String LeaveBrowserRunning;
+    public Boolean LeaveBrowserRunning;
 
     /**
      * Gets or sets the directory in which to store minidump files.
@@ -30,17 +30,17 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the port on which the Android Debug Bridge is listening for commands.
      */
-    public String AndroidDebugBridgePort;
+    public Integer AndroidDebugBridgePort;
 
     /**
      * Gets or sets a value indicating whether to enable verbose logging for the OperaDriver executable. Defaults to false.
      */
-    public String EnableVerboseLogging;
+    public Boolean EnableVerboseLogging;
 
     /**
      * Gets or sets a value indicating whether the command prompt window of the service should be hidden.
      */
-    public String HideCommandPromptWindow;
+    public Boolean HideCommandPromptWindow;
 
     /**
      * Gets or sets the location of the log file written to by the OperaDriver executable.
@@ -50,7 +50,7 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the port of the service.
      */
-    public String Port;
+    public Integer Port;
 
     /**
      * Gets or sets the address of a server to contact for reserving a port.
@@ -62,10 +62,40 @@ public class OperaPreferences extends BasePreferences {
      * suppressed when starting the driver server executable. Defaults to false, meaning
      * diagnostic information should be shown by the driver server executable.
      */
-    public String SuppressInitialDiagnosticInformation;
+    public Boolean SuppressInitialDiagnosticInformation;
 
     /**
      * Gets or sets the base URL path prefix for commands (e.g., "wd/url").
      */
     public String UrlPathPrefix = null;
+
+    /**
+     * Whether to accept insecure certificates
+     */
+    public Boolean AcceptInsecureCertificates = null;
+
+    /**
+     * Whether to accept SSL certificates
+     */
+    public Boolean AcceptSSLCertificates = null;
+
+    /**
+     * The page load strategy for the driver
+     */
+    public String PageLoadStrategy = null;
+
+    /**
+     * Whether the driver should take screenshots
+     */
+    public Boolean TakesScreenshot = null;
+
+    /**
+     * The unexpected alert behaviour
+     */
+    public String UnexpectedAlertBehaviour = null;
+
+    /**
+     * The unhandled prompt behaviour
+     */
+    public String UnhandledPromptBehaviour = null;
 }
