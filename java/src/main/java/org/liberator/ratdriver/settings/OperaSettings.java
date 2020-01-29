@@ -1,11 +1,8 @@
 package org.liberator.ratdriver.settings;
 
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.UnexpectedAlertBehaviour;
-import org.openqa.selenium.UnhandledAlertException;
-
-import static org.openqa.selenium.PageLoadStrategy.*;
-import static org.openqa.selenium.UnexpectedAlertBehaviour.*;
+import static org.openqa.selenium.PageLoadStrategy.EAGER;
+import static org.openqa.selenium.UnexpectedAlertBehaviour.ACCEPT;
+import static org.openqa.selenium.UnexpectedAlertBehaviour.DISMISS;
 
 public class OperaSettings extends BaseSettings {
 
