@@ -1,6 +1,7 @@
 package org.liberator.ratdriver.settings;
 
 import com.sun.javafx.PlatformUtil;
+import javafx.application.Application;
 import org.liberator.ratdriver.enums.ConsoleDebugLevel;
 
 /**
@@ -15,18 +16,24 @@ public class BaseSettings {
             ChromeDriverLocation = "src/main/resources/drivers/mac/chromedriver";
             FirefoxDriverLocation = "src/main/resources/drivers/mac/geckodriver";
             OperaDriverLocation = "src/main/resources/drivers/mac/operadriver";
+            SafariDriverLocation = "/usr/bin/safaridriver";
             FirefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox";
             OperaLocation = "/Applications/Opera.app/Contents/MacOS/Opera";
+            SafariLocation = "/Applications/Safari.app";
         } else if (PlatformUtil.isWindows()) {
             ChromeDriverLocation = "src/main/resources/drivers/win/chromedriver.exe";
             FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
             OperaDriverLocation = "src/main/resources/drivers/win/operadriver.exe";
+            SafariDriverLocation = null;
             FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
+            SafariLocation = null;
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
             OperaDriverLocation = "/usr/local/bin/operadriver";
+            SafariDriverLocation = null;
             FirefoxLocation = "usr/bin/firefox";
+            SafariLocation = null;
         }
 
 
@@ -96,6 +103,8 @@ public class BaseSettings {
      */
     public static String OperaDriverLocation;
 
+    public static String SafariDriverLocation;
+
     /**
      * Location of the Chrome application
      */
@@ -110,6 +119,8 @@ public class BaseSettings {
      * Location of the Opera application
      */
     public static String OperaLocation;
+
+    public static String SafariLocation;
 
     /**
      * The debug level to use for the test run

@@ -1777,7 +1777,7 @@ public class RatDriver implements IRatDriver {
     public void WaitForPageToLoad(WebElement element) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
-            webDriverWait.until(ExpectedConditions.invisibilityOf(element));
+            webDriverWait.until(ExpectedConditions.stalenessOf(element));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
@@ -1829,7 +1829,11 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(element);
             }
-            element.click();
+            if (DriverName.equals("SafariDriver")){
+                Element.sendKeys(Keys.RETURN);
+            } else {
+                Element.click();
+            }
         } catch (Exception ex) {
             System.out.println("Clicked on the element.");
         }
@@ -1848,7 +1852,11 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(locator);
             }
-            Element.click();
+            if (DriverName.equals("SafariDriver")){
+                Element.sendKeys(Keys.RETURN);
+            } else {
+                Element.click();
+            }
         } catch (Exception ex) {
             System.out.println("Clicked on the element.");
         }
@@ -1867,7 +1875,11 @@ public class RatDriver implements IRatDriver {
             }
             Element = element;
             WaitForElementToBeClickable(element);
-            Element.click();
+            if (DriverName.equals("SafariDriver")){
+                Element.sendKeys(Keys.RETURN);
+            } else {
+                Element.click();
+            }
             System.out.println("Clicked on the element.");
             WaitForPageToLoad(element);
             if (RecordPerformance) {
@@ -1891,7 +1903,11 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            Element.click();
+            if (DriverName.equals("SafariDriver")){
+                Element.sendKeys(Keys.RETURN);
+            } else {
+                Element.click();
+            }
             System.out.println("Clicked on the element.");
             WaitForPageToLoad(Element);
             if (RecordPerformance) {
@@ -1943,7 +1959,11 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            Element.click();
+            if (DriverName.equals("SafariDriver")){
+                Element.sendKeys(Keys.RETURN);
+            } else {
+                Element.click();
+            }
             System.out.println("Clicked on the element.");
             WaitForPageToLoad(Element);
             WaitForUrlToContain(url);
