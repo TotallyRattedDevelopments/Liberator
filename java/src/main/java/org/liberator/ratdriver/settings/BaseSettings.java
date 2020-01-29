@@ -26,8 +26,9 @@ public class BaseSettings {
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
-            OperaDriverLocation = "/usr/local/bin/operadriver";
+            OperaDriverLocation = "/usr/local/bin/operadriver/operadriver";
             FirefoxLocation = "usr/bin/firefox";
+            OperaLocation = "/snap/bin/opera";
         }
 
 
