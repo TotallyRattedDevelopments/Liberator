@@ -23,6 +23,7 @@ public class SafariControl extends BrowserControl {
     }
 
     public SafariControl(BasePreferences preferences) {
+        setImportedPreferences((SafariPreferences) preferences);
     }
 
     public WebDriver StartDriver() {
@@ -74,7 +75,10 @@ public class SafariControl extends BrowserControl {
 
     private void setImportedPreferences(SafariPreferences preferences){
         if (preferences != null){
-
+            SafariSettings.Port = preferences.Port;
+            SafariSettings.TechnologyPreview = preferences.TechnologyPreview;
+            SafariSettings.AutomaticInspection = preferences.AutomaticInspection;
+            SafariSettings.AutomaticProfiling = preferences.AutomaticProfiling;
         }
     }
 
