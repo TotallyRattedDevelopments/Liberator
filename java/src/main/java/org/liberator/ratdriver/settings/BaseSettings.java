@@ -14,6 +14,7 @@ public class BaseSettings {
         // Driver Pre-sets
         if (PlatformUtil.isMac()) {
             ChromeDriverLocation = "src/main/resources/drivers/mac/chromedriver";
+            EdgeDriverLocation = "";
             FirefoxDriverLocation = "src/main/resources/drivers/mac/geckodriver";
             OperaDriverLocation = "src/main/resources/drivers/mac/operadriver";
             SafariDriverLocation = "/usr/bin/safaridriver";
@@ -22,13 +23,16 @@ public class BaseSettings {
             SafariLocation = "/Applications/Safari.app";
         } else if (PlatformUtil.isWindows()) {
             ChromeDriverLocation = "src/main/resources/drivers/win/chromedriver.exe";
+            EdgeDriverLocation = "C:\\Windows\\System32\\MicrosoftWebDriver.exe";
             FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
+            InternetExplorerDriverLocation = "src/main/resources/drivers/win/IEDriverServer.exe";
             OperaDriverLocation = "src/main/resources/drivers/win/operadriver.exe";
             SafariDriverLocation = null;
             FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
             SafariLocation = null;
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
+            EdgeDriverLocation = "";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
             OperaDriverLocation = "/usr/local/bin/operadriver";
             SafariDriverLocation = null;
@@ -36,7 +40,9 @@ public class BaseSettings {
             SafariLocation = null;
         }
 
-
+        PageLoad = 30;
+        AsyncJavaScript = 30;
+        ImplicitWait = 30;
     }
     /**
      * Standard timeout
@@ -46,37 +52,37 @@ public class BaseSettings {
     /**
      * The length of time to sleep
      */
-    public static Integer Sleep = null;
+    public static Integer Sleep;
 
     /**
      * Implicit wait value for WebDriver
      */
-    public static Integer ImplicitWait = null;
+    public static Integer ImplicitWait;
 
     /**
      * The amount of time to keep a hover active
      */
-    public static Integer MenuHoverTime = null;
+    public static Integer MenuHoverTime;
 
     /**
      * Page Load wait time
      */
-    public static Integer PageLoad = null;
+    public static Integer PageLoad;
 
     /**
      * Asynchronous JavaScript wait time
      */
-    public static Integer AsyncJavaScript = null;
+    public static Integer AsyncJavaScript;
 
     /**
      * Whether to allow RatDriver to handle alerts
      */
-    public static Boolean AlertHandling = null;
+    public static Boolean AlertHandling;
 
     /**
      * Whether to use internal timers
      */
-    public static Boolean InternalTimers = null;
+    public static Boolean InternalTimers;
 
     /**
      * Location of Chrome Driver. Defaults to the supplied version.

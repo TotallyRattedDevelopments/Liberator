@@ -927,6 +927,9 @@ public class RatDriver implements IRatDriver {
     public WebDriver ReturnEncapsulatedDriver() {
         try {
             EncapsulatedDriver = Driver;
+            EncapsulatedDriver.manage().timeouts().pageLoadTimeout(BaseSettings.PageLoad, TimeUnit.SECONDS);
+            EncapsulatedDriver.manage().timeouts().implicitlyWait(BaseSettings.ImplicitWait, TimeUnit.SECONDS);
+            EncapsulatedDriver.manage().timeouts().setScriptTimeout(BaseSettings.AsyncJavaScript, TimeUnit.SECONDS);
             return EncapsulatedDriver;
         } catch (Exception ex) {
             return null;
@@ -1383,7 +1386,11 @@ public class RatDriver implements IRatDriver {
     @Override
     public void NavigateToPage(String url) {
         try {
-            EncapsulatedDriver.navigate().to(url);
+            if (!DriverName.toLowerCase().contains("internetexplorer")) {
+                EncapsulatedDriver.navigate().to(url);
+            } else {
+                EncapsulatedDriver.get(url);
+            }
             System.out.println("Navigation request sent");
         } catch (Exception ex) {
             System.out.println("Could not send navigation request.");
@@ -1674,14 +1681,19 @@ public class RatDriver implements IRatDriver {
     public void OpenNewView() {
         try {
 
-            JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
-            js.executeScript("window.open();");
-
-            Set<String> handles = EncapsulatedDriver.getWindowHandles();
-            Iterator iterator = handles.iterator();
-            iterator.next();
-            String tab = (String) iterator.next();
-            EncapsulatedDriver.switchTo().window(tab);
+            String tab = null;
+            if (!DriverName.toLowerCase().contains("internetexplorer")) {
+                JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
+                js.executeScript("window.open();");
+                Set<String> handles = EncapsulatedDriver.getWindowHandles();
+                Iterator iterator = handles.iterator();
+                iterator.next();
+                tab = (String) iterator.next();
+                EncapsulatedDriver.switchTo().window(tab);
+            } else {
+                Element = EncapsulatedDriver.findElement(By.tagName("body"));
+                Element.sendKeys(Keys.chord(Keys.CONTROL, "t"));
+            }
 
             System.out.println("Opened a new tab.");
         } catch (Exception ex) {
