@@ -22,11 +22,13 @@ public class BaseSettings {
             FirefoxDriverLocation = "src/main/resources/drivers/win/geckodriver.exe";
             OperaDriverLocation = "src/main/resources/drivers/win/operadriver.exe";
             FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
+            OperaLocation = "C:\\Program Files\\Opera\\66.0.3515.44\\opera.exe";
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
-            OperaDriverLocation = "/usr/local/bin/operadriver";
+            OperaDriverLocation = "/usr/local/bin/operadriver/operadriver";
             FirefoxLocation = "usr/bin/firefox";
+            OperaLocation = "/snap/bin/opera";
         }
 
 
