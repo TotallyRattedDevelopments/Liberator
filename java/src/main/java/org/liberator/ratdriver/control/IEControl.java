@@ -19,35 +19,17 @@ public class IEControl extends BrowserControl {
     /**
      * Holds the preset values for Internet Explorer Options
      */
-    public InternetExplorerOptions Options = null;
+    public InternetExplorerOptions Options;
 
     /**
      * The Internet Explorer driver service
      */
-    public InternetExplorerDriverService Service = null;
+    public InternetExplorerDriverService Service;
 
+    /**
+     * The builder for the IE Driver Service
+     */
     public InternetExplorerDriverService.Builder Builder;
-
-    /**
-     * Holds the instantiated Internet Explorer Driver
-     */
-    public WebDriver Driver = null;
-
-
-    /**
-     * The maximum sleep interval
-     */
-    public Integer SleepInterval = null;
-
-    /**
-     * The maximum time to wait for the browser to load
-     */
-    public Integer BrowserTimeout = null;
-
-    /**
-     * The maximum amount of time to wait between commands
-     */
-    public Integer CommandTimeout = null;
 
     //endregion
 

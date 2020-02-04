@@ -8,7 +8,7 @@ public abstract class BrowserControl {
     /**
      * Driver implementation under test
      */
-    WebDriver Driver = null;
+    WebDriver Driver;
 
     /**
      * Starts a web driver

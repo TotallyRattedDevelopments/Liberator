@@ -12,8 +12,10 @@ import org.liberator.ratdriver.performance.RatWatch;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -1897,7 +1899,10 @@ public class RatDriver implements IRatDriver {
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.PageLoad);
             }
-        } catch (Exception ex) {
+        } catch (MoveTargetOutOfBoundsException ex) {
+            System.out.println("Element is reporting an out of bounds exception.");
+            Scripts().executeAsyncScript("arguments[0].click();", Element);
+        } catch (Exception e){
             System.out.println("Could not click on the element.");
         }
     }
@@ -3784,7 +3789,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForElementToBeClickable(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(Driver, BaseSettings.Timeout);
             WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(element));
             if (ele == null) {
                 throw new Exception("Could not confirm click-ability of the element required.");
@@ -3907,7 +3912,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForElementSelectionStateToBe(WebElement element, Boolean state) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.elementSelectionStateToBe(element, state));
             if (bool) {
                 throw new Exception("Could not confirm selection state of the element required.");
@@ -3927,7 +3932,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForElementInvisibility(By locator) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
             if (bool) {
                 throw new Exception("Could not confirm invisibility of the element required.");
@@ -3948,7 +3953,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForElementInvisibilityWithText(By locator, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text));
             if (bool) {
                 throw new Exception("Could not confirm invisibility of the element required.");
@@ -3968,7 +3973,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForPresenceOfAllElementsLocatedBy(By locator) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
             if (elements.size() == 0) {
                 throw new Exception("Could not confirm presence of the elements required.");
@@ -3988,7 +3993,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForStalenessOf(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.stalenessOf(element));
             if (bool) {
                 throw new Exception("Could not confirm staleness of the element required.");
@@ -4009,7 +4014,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTextToBePresentInElement(WebElement element, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElement(element, text));
             if (bool) {
                 throw new Exception("Text does not appear within the timeout period.");
@@ -4030,7 +4035,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTextToBePresentInElement(By locator, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
             if (bool) {
                 throw new Exception("Text does not appear within the timeout period.");
@@ -4051,7 +4056,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTextToBePresentInElementValue(By locator, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementValue(locator, text));
             if (bool) {
                 throw new Exception("Text does not appear within the timeout period.");
@@ -4072,7 +4077,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTextToBePresentInElementValue(WebElement element, String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementValue(element, text));
             if (bool) {
                 throw new Exception("Text does not appear within the timeout period.");
@@ -4092,7 +4097,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTitleToContain(String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.titleContains(text));
             if (bool) {
                 throw new Exception("Title does not appear within the timeout period.");
@@ -4112,7 +4117,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForTitleToBe(String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.titleIs(text));
             if (bool) {
                 throw new Exception("Title does not appear within the timeout period.");
@@ -4132,7 +4137,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForUrlToContain(String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlContains(text));
             if (bool) {
                 throw new Exception("URL does not appear within the timeout period.");
@@ -4152,7 +4157,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForUrlToMatch(String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlMatches(text));
             if (bool) {
                 throw new Exception("URL does not appear within the timeout period.");
@@ -4172,7 +4177,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForUrlToBe(String text) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlToBe(text));
             if (bool) {
                 throw new Exception("URL does not appear within the timeout period.");
@@ -4192,7 +4197,7 @@ public class RatDriver implements IRatDriver {
     @Override
     public Boolean WaitForVisibilityOfAllElementsLocatedBy(By locator) {
         try {
-            WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
+            WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
             if (elements.size() == 0) {
                 throw new Exception("Could not confirm the visibility of the element required.");

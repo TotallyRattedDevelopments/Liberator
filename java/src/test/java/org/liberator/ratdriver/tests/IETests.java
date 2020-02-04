@@ -37,10 +37,10 @@ public class IETests {
     public void testClickLinkIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
+        WebElement devLink = ratDriver.FindElementsByCssSelector("a[href='developments.html']", true).get(0);
         Assert.assertTrue(ratDriver.ElementExists(devLink));
         ratDriver.ClickLinkAndWait(devLink);
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("developments"));
+        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("development"));
         ratDriver.ClosePagesAndQuitDriver();
     }
 
@@ -116,8 +116,8 @@ public class IETests {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Point position = ratDriver.GetWindowPosition();
-        Assert.assertTrue(position.x >= -7);
-        Assert.assertTrue(position.y >= -7);
+        Assert.assertTrue(position.x >= -9);
+        Assert.assertTrue(position.y >= -9);
         ratDriver.ClosePagesAndQuitDriver();
     }
 
