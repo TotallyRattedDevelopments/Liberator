@@ -111,8 +111,8 @@ public class OperaTests {
         IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Point position = ratDriver.GetWindowPosition();
-        Assert.assertTrue(position.x >= 0);
-        Assert.assertTrue(position.y >= 0);
+        Assert.assertTrue(position.x >= -8);
+        Assert.assertTrue(position.y >= -8);
         ratDriver.ClosePagesAndQuitDriver();
     }
 

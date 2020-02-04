@@ -27,13 +27,16 @@ public class BaseSettings {
             SafariDriverLocation = null;
             FirefoxLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\firefox.exe";
             SafariLocation = null;
+            OperaLocation = "C:\\Program Files\\Opera\\66.0.3515.44\\opera.exe";
         } else if (PlatformUtil.isLinux()){
             ChromeDriverLocation = "/usr/local/bin/chromedriver";
             FirefoxDriverLocation = "/usr/local/bin/geckodriver";
             OperaDriverLocation = "/usr/local/bin/operadriver";
             SafariDriverLocation = null;
+            OperaDriverLocation = "/usr/local/bin/operadriver/operadriver";
             FirefoxLocation = "usr/bin/firefox";
             SafariLocation = null;
+            OperaLocation = "/snap/bin/opera";
         }
 
 
