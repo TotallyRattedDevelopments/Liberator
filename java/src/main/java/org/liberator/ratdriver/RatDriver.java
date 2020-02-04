@@ -1677,9 +1677,12 @@ public class RatDriver implements IRatDriver {
             JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
             js.executeScript("window.open();");
 
+
             Set<String> handles = EncapsulatedDriver.getWindowHandles();
             Iterator iterator = handles.iterator();
-            iterator.next();
+            if (!DriverName.toLowerCase().contains("safari")) {
+                iterator.next();
+            }
             String tab = (String) iterator.next();
             EncapsulatedDriver.switchTo().window(tab);
 
@@ -1829,7 +1832,7 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(element);
             }
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1852,7 +1855,7 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(locator);
             }
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1875,7 +1878,7 @@ public class RatDriver implements IRatDriver {
             }
             Element = element;
             WaitForElementToBeClickable(element);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1903,7 +1906,7 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1959,7 +1962,7 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
