@@ -1689,7 +1689,9 @@ public class RatDriver implements IRatDriver {
                 js.executeScript("window.open();");
                 Set<String> handles = EncapsulatedDriver.getWindowHandles();
                 Iterator iterator = handles.iterator();
-                iterator.next();
+                if (!DriverName.toLowerCase().contains("safari")) {
+                    iterator.next();
+                }
                 tab = (String) iterator.next();
                 EncapsulatedDriver.switchTo().window(tab);
             } else {
@@ -1843,7 +1845,7 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(element);
             }
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1866,7 +1868,7 @@ public class RatDriver implements IRatDriver {
             if (wait == null || wait) {
                 WaitForElementToBeClickable(locator);
             }
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1889,7 +1891,7 @@ public class RatDriver implements IRatDriver {
             }
             Element = element;
             WaitForElementToBeClickable(element);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1902,7 +1904,7 @@ public class RatDriver implements IRatDriver {
         } catch (MoveTargetOutOfBoundsException ex) {
             System.out.println("Element is reporting an out of bounds exception.");
             Scripts().executeAsyncScript("arguments[0].click();", Element);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Could not click on the element.");
         }
     }
@@ -1920,7 +1922,7 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
@@ -1976,7 +1978,7 @@ public class RatDriver implements IRatDriver {
             }
             WaitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
-            if (DriverName.equals("SafariDriver")){
+            if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
