@@ -26,28 +26,28 @@ public class OperaControl extends BrowserControl {
      */
     @Getter
     @Setter
-    public OperaOptions Options = null;
+    public OperaOptions Options;
 
     /**
      * The Internet Explorer driver service
      */
     @Getter
     @Setter
-    public OperaDriverService Service = null;
+    public OperaDriverService Service;
 
     /**
      * Holds the instantiated Opera Driver
      */
     @Getter
     @Setter
-    public WebDriver Driver = null;
+    public WebDriver Driver;
 
     /**
      * The maximum amount of time to wait between commands
      */
     @Getter
     @Setter
-    public Integer CommandTimeout = null;
+    public Integer CommandTimeout;
 
     private OperaDriverService.Builder Builder;
 
