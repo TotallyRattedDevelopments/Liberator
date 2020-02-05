@@ -114,7 +114,7 @@ public class FirefoxSettings extends BaseSettings {
         LogLevel = FirefoxDriverLogLevel.INFO;
         ProfileDirectory = null;
         CleanProfile = null;
-        UseLegacyImplementation = true; //TODO: investigate why setting this to TRUE causes driver failure
+        UseLegacyImplementation = true;
 
         AcceptUntrustedCertificates = true;
         AlwaysLoadNoFocusLibrary = true;
