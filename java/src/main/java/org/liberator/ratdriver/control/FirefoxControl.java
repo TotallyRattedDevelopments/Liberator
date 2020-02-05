@@ -2,6 +2,7 @@ package org.liberator.ratdriver.control;
 
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.FirefoxPreferences;
+import org.liberator.ratdriver.settings.ChromeSettings;
 import org.liberator.ratdriver.settings.FirefoxSettings;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -57,6 +58,17 @@ public class FirefoxControl extends BrowserControl {
      */
     public FirefoxControl(FirefoxPreferences firefoxPreferences) {
         if (firefoxPreferences != null) {
+
+            FirefoxSettings.Timeout = firefoxPreferences.Timeout;
+            FirefoxSettings.AsyncJavaScript = firefoxPreferences.AsyncJavaScript;
+            FirefoxSettings.DebugLevel = firefoxPreferences.DebugLevel;
+            FirefoxSettings.ImplicitWait = firefoxPreferences.ImplicitWait;
+            FirefoxSettings.PageLoad = firefoxPreferences.PageLoad;
+            FirefoxSettings.AlertHandling = firefoxPreferences.AlertHandling;
+            FirefoxSettings.InternalTimers = firefoxPreferences.InternalTimers;
+            FirefoxSettings.MenuHoverTime = firefoxPreferences.MenuHoverTime;
+            FirefoxSettings.Sleep = firefoxPreferences.Sleep;
+
             FirefoxSettings.AcceptUntrustedCertificates = firefoxPreferences.AcceptUntrustedCertificates;
             FirefoxSettings.AlwaysLoadNoFocusLibrary = firefoxPreferences.AlwaysLoadNoFocusLibrary;
             FirefoxSettings.AssumeUntrustedCertificateIssuer = firefoxPreferences.AssumeUntrustedCertificateIssuer;

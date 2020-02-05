@@ -3,6 +3,7 @@ package org.liberator.ratdriver.control;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.IEPreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
+import org.liberator.ratdriver.settings.FirefoxSettings;
 import org.liberator.ratdriver.settings.IESettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -54,6 +55,17 @@ public class IEControl extends BrowserControl {
 
     private void setImportedPreferences(IEPreferences iePreferences) {
         if (iePreferences != null) {
+
+            IESettings.Timeout = iePreferences.Timeout;
+            IESettings.AsyncJavaScript = iePreferences.AsyncJavaScript;
+            IESettings.DebugLevel = iePreferences.DebugLevel;
+            IESettings.ImplicitWait = iePreferences.ImplicitWait;
+            IESettings.PageLoad = iePreferences.PageLoad;
+            IESettings.AlertHandling = iePreferences.AlertHandling;
+            IESettings.InternalTimers = iePreferences.InternalTimers;
+            IESettings.MenuHoverTime = iePreferences.MenuHoverTime;
+            IESettings.Sleep = iePreferences.Sleep;
+
             IESettings.CommandLineArguments = iePreferences.CommandLineArguments;
             IESettings.EnableFullPageScreenshot = iePreferences.EnableFullPageScreenshot;
             IESettings.EnableNativeEvents = iePreferences.EnableNativeEvents;

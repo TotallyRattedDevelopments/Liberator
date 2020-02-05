@@ -3,6 +3,7 @@ package org.liberator.ratdriver.control;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.SafariPreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
+import org.liberator.ratdriver.settings.OperaSettings;
 import org.liberator.ratdriver.settings.SafariSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -73,12 +74,22 @@ public class SafariControl extends BrowserControl {
         }
     }
 
-    private void setImportedPreferences(SafariPreferences preferences){
-        if (preferences != null){
-            SafariSettings.Port = preferences.Port;
-            SafariSettings.TechnologyPreview = preferences.TechnologyPreview;
-            SafariSettings.AutomaticInspection = preferences.AutomaticInspection;
-            SafariSettings.AutomaticProfiling = preferences.AutomaticProfiling;
+    private void setImportedPreferences(SafariPreferences safariPreferences){
+        if (safariPreferences != null){
+            SafariSettings.Timeout = safariPreferences.Timeout;
+            SafariSettings.AsyncJavaScript = safariPreferences.AsyncJavaScript;
+            SafariSettings.DebugLevel = safariPreferences.DebugLevel;
+            SafariSettings.ImplicitWait = safariPreferences.ImplicitWait;
+            SafariSettings.PageLoad = safariPreferences.PageLoad;
+            SafariSettings.AlertHandling = safariPreferences.AlertHandling;
+            SafariSettings.InternalTimers = safariPreferences.InternalTimers;
+            SafariSettings.MenuHoverTime = safariPreferences.MenuHoverTime;
+            SafariSettings.Sleep = safariPreferences.Sleep;
+
+            SafariSettings.Port = safariPreferences.Port;
+            SafariSettings.TechnologyPreview = safariPreferences.TechnologyPreview;
+            SafariSettings.AutomaticInspection = safariPreferences.AutomaticInspection;
+            SafariSettings.AutomaticProfiling = safariPreferences.AutomaticProfiling;
         }
     }
 

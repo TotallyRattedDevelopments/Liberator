@@ -2,6 +2,7 @@ package org.liberator.ratdriver.control;
 
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.ChromePreferences;
+import org.liberator.ratdriver.settings.BaseSettings;
 import org.liberator.ratdriver.settings.ChromeSettings;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +34,21 @@ public class ChromeControl extends BrowserControl {
         Options = new ChromeOptions();
         Preferences = chromePreferences;
 
+        setImportedPreferences(chromePreferences);
+    }
+
+    private void setImportedPreferences(ChromePreferences chromePreferences) {
         if (chromePreferences != null) {
+
+            ChromeSettings.Timeout = chromePreferences.Timeout;
+            ChromeSettings.AsyncJavaScript = chromePreferences.AsyncJavaScript;
+            ChromeSettings.DebugLevel = chromePreferences.DebugLevel;
+            ChromeSettings.ImplicitWait = chromePreferences.ImplicitWait;
+            ChromeSettings.PageLoad = chromePreferences.PageLoad;
+            ChromeSettings.AlertHandling = chromePreferences.AlertHandling;
+            ChromeSettings.InternalTimers = chromePreferences.InternalTimers;
+            ChromeSettings.MenuHoverTime = chromePreferences.MenuHoverTime;
+            ChromeSettings.Sleep = chromePreferences.Sleep;
 
             ChromeSettings.AndroidDebugBridgePort = chromePreferences.AndroidDebugBridgePort;
             ChromeSettings.BinaryLocation = chromePreferences.BinaryLocation;
@@ -133,6 +148,7 @@ public class ChromeControl extends BrowserControl {
         try {
             if (!driverSettings.equals(Preferences)) {
                 Preferences = (ChromePreferences) driverSettings;
+                setImportedPreferences(Preferences);
             }
             SetOptions();
             SetService();

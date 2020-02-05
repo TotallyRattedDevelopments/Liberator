@@ -3,7 +3,9 @@ package org.liberator.ratdriver.control;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.EdgePreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
+import org.liberator.ratdriver.settings.ChromeSettings;
 import org.liberator.ratdriver.settings.EdgeSettings;
+import org.liberator.ratdriver.settings.FirefoxSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
@@ -47,6 +49,17 @@ public class EdgeControl extends BrowserControl {
 
     private void setImportedPreferences(EdgePreferences edgePreferences) {
         if (edgePreferences != null) {
+
+            EdgeSettings.Timeout = edgePreferences.Timeout;
+            EdgeSettings.AsyncJavaScript = edgePreferences.AsyncJavaScript;
+            EdgeSettings.DebugLevel = edgePreferences.DebugLevel;
+            EdgeSettings.ImplicitWait = edgePreferences.ImplicitWait;
+            EdgeSettings.PageLoad = edgePreferences.PageLoad;
+            EdgeSettings.AlertHandling = edgePreferences.AlertHandling;
+            EdgeSettings.InternalTimers = edgePreferences.InternalTimers;
+            EdgeSettings.MenuHoverTime = edgePreferences.MenuHoverTime;
+            EdgeSettings.Sleep = edgePreferences.Sleep;
+
             EdgeSettings.HideCommandPromptWindow = edgePreferences.HideCommandPromptWindow;
             EdgeSettings.Host = edgePreferences.Host;
             EdgeSettings.Package = edgePreferences.Package;

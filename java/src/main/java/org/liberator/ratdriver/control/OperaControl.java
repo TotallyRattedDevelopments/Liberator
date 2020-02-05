@@ -6,6 +6,7 @@ import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.OperaPreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
 import org.liberator.ratdriver.settings.FirefoxSettings;
+import org.liberator.ratdriver.settings.IESettings;
 import org.liberator.ratdriver.settings.OperaSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -74,6 +75,16 @@ public class OperaControl extends BrowserControl {
     }
 
     private void setImportedPreferences(OperaPreferences operaPreferences) {
+        OperaSettings.Timeout = operaPreferences.Timeout;
+        OperaSettings.AsyncJavaScript = operaPreferences.AsyncJavaScript;
+        OperaSettings.DebugLevel = operaPreferences.DebugLevel;
+        OperaSettings.ImplicitWait = operaPreferences.ImplicitWait;
+        OperaSettings.PageLoad = operaPreferences.PageLoad;
+        OperaSettings.AlertHandling = operaPreferences.AlertHandling;
+        OperaSettings.InternalTimers = operaPreferences.InternalTimers;
+        OperaSettings.MenuHoverTime = operaPreferences.MenuHoverTime;
+        OperaSettings.Sleep = operaPreferences.Sleep;
+
         OperaSettings.AndroidDebugBridgePort = operaPreferences.AndroidDebugBridgePort;
         OperaSettings.DebuggerAddress = operaPreferences.DebuggerAddress;
         OperaSettings.EnableVerboseLogging = operaPreferences.EnableVerboseLogging;

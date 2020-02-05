@@ -147,16 +147,19 @@ public class SafariTests {
 
     @Test
     public void testBrowserButtonsSafari() {
+        WebElement devLink;
         ratDriver= new RatDriver(DriverType.SafariDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
+        devLink = ratDriver.FindElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.ElementExists(devLink));
         ratDriver.ClickLinkAndWait(devLink);
+        ratDriver.FindElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("developments"));
         ratDriver.PressBackButton();
         Assert.assertFalse(ratDriver.GetBrowserWindowUrl().contains("developments"));
         ratDriver.PressForwardButton();
+        ratDriver.FindElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("developments"));
         ratDriver.ClosePagesAndQuitDriver();
     }
