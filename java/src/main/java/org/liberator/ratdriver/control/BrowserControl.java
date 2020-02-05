@@ -1,9 +1,13 @@
 package org.liberator.ratdriver.control;
 
 import org.liberator.ratdriver.preferences.BasePreferences;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 
 public abstract class BrowserControl {
+
+
+    Proxy Proxy;
 
     /**
      * Driver implementation under test
@@ -23,4 +27,7 @@ public abstract class BrowserControl {
      * @return A web driver instance
      */
     public abstract WebDriver StartDriver(BasePreferences driverSettings);
+
+
+    public abstract void setProxy();
 }

@@ -8,6 +8,7 @@ import org.liberator.ratdriver.settings.BaseSettings;
 import org.liberator.ratdriver.settings.FirefoxSettings;
 import org.liberator.ratdriver.settings.IESettings;
 import org.liberator.ratdriver.settings.OperaSettings;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaDriverService;
@@ -105,13 +106,13 @@ public class OperaControl extends BrowserControl {
      *
      * @return A web driver instance
      */
-    @Override
     public WebDriver StartDriver() {
         try {
             System.setProperty("webdriver.opera.driver", BaseSettings.OperaDriverLocation);
 
             SetOperaOptions();
             SetOperaDriverService();
+            setProxy();
 
             if (Service != null && Options != null) {
                 Driver = new OperaDriver(Service, Options);
@@ -132,7 +133,6 @@ public class OperaControl extends BrowserControl {
      * @param driverSettings Preference injection object
      * @return A web driver instance
      */
-    @Override
     public WebDriver StartDriver(BasePreferences driverSettings) {
         try {
             setImportedPreferences((OperaPreferences) driverSettings);
@@ -140,6 +140,7 @@ public class OperaControl extends BrowserControl {
 
             SetOperaOptions();
             SetOperaDriverService();
+            setProxy();
 
             if (Service != null && Options != null) {
                 Driver = new OperaDriver(Service, Options);
@@ -348,6 +349,121 @@ public class OperaControl extends BrowserControl {
         } catch (Exception ex) {
             System.out.format("Could not set port to: %s", OperaSettings.Port.toString());
             System.out.println();
+        }
+    }
+
+    public void setProxy(){
+        try {
+            if (BaseSettings.proxyType != null) {
+                Proxy = new Proxy();
+                setProxyAutoConfigUrl();
+                setProxyType();
+                setAutoDetect();
+                setFtpProxy();
+                setHttpProxy();
+                setNoProxy();
+                setSocks();
+                setSslProxy();
+            }
+        } catch (Exception ex){
+            System.out.println("Could not set up the proxy with current settings.");
+        }
+    }
+
+    private void setProxyAutoConfigUrl() {
+        try {
+            if (BaseSettings.proxyAutoconfigUrl != null && BaseSettings.proxyAutoconfigUrl.length() > 0) {
+                Proxy.setProxyAutoconfigUrl(BaseSettings.proxyAutoconfigUrl);
+                System.out.format("Set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
+        }
+    }
+
+    private void setProxyType() {
+        try {
+            if (BaseSettings.proxyType != null) {
+                Proxy.setProxyType(BaseSettings.proxyType);
+                System.out.format("Set proxy type to: %s", BaseSettings.proxyType.name());
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set proxy type to: %s", BaseSettings.proxyType.name());
+        }
+    }
+
+    private void setAutoDetect() {
+        try {
+            if (BaseSettings.autodetect) {
+                Proxy.setAutodetect(true);
+            } else {
+                Proxy.setAutodetect(false);
+            }
+            System.out.format("Set proxy autodetect to: %s", BaseSettings.proxyType.name());
+        } catch (Exception e) {
+            System.out.format("Could not set proxy autodetect to: %s", BaseSettings.proxyType.name());
+        }
+    }
+
+    private void setFtpProxy() {
+        try {
+            if (BaseSettings.ftpProxy != null) {
+                Proxy.setFtpProxy(BaseSettings.ftpProxy);
+                System.out.format("Set ftp proxy to: %s", BaseSettings.ftpProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set ftp proxy to: %s", BaseSettings.ftpProxy);
+        }
+    }
+
+    private void setNoProxy() {
+        try {
+            if (BaseSettings.noProxy != null) {
+                Proxy.setNoProxy(BaseSettings.noProxy);
+                System.out.format("Set 'no proxy' to: %s", BaseSettings.noProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set 'no proxy' to: %s", BaseSettings.noProxy);
+        }
+    }
+
+    private void setHttpProxy() {
+        try {
+            if (BaseSettings.httpProxy != null) {
+                Proxy.setHttpProxy(BaseSettings.httpProxy);
+                System.out.format("Set http proxy to: %s", BaseSettings.httpProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set http proxy to: %s", BaseSettings.httpProxy);
+        }
+    }
+
+    private void setSocks() {
+        try {
+            if (BaseSettings.socksProxy != null) {
+                Proxy.setSocksProxy(BaseSettings.socksProxy);
+                Proxy.setSocksVersion(BaseSettings.socksVersion);
+                Proxy.setSocksUsername(BaseSettings.socksUsername);
+                Proxy.setSocksPassword(BaseSettings.socksPassword);
+
+                System.out.format("Set socks proxy to: %s", BaseSettings.socksProxy);
+                System.out.format("Set socks proxy version to: %s", BaseSettings.socksVersion);
+                System.out.format("Set socks proxy username to: %s", BaseSettings.socksUsername);
+                System.out.format("Set socks proxy password to: %s", BaseSettings.socksPassword);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set socks proxy to.");
+        }
+    }
+
+    private void setSslProxy() {
+        try {
+            if (BaseSettings.sslProxy != null) {
+                Proxy.setHttpProxy(BaseSettings.sslProxy);
+                System.out.format("Set SSL proxy to: %s", BaseSettings.sslProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set SSL proxy to: %s", BaseSettings.sslProxy);
         }
     }
 }

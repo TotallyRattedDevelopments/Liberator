@@ -242,6 +242,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -263,6 +264,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -286,6 +288,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to click and hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -307,6 +310,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).click(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -327,6 +331,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).clickAndHold(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to click and hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -348,6 +353,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).clickAndHold(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to hover over the named menu");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -368,6 +374,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).contextClick(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to click the contextual menu.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -389,6 +396,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).contextClick(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to click the contextual menu.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -409,6 +417,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).doubleClick(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to double click the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -430,6 +439,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).doubleClick(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to click the contextual menu.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -455,6 +465,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).dragAndDrop(Element, target).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to drag and drop the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -483,6 +494,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).dragAndDrop(Element, targetElement).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to drag and drop the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -505,6 +517,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).dragAndDropBy(Element, xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to drag and drop the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -528,6 +541,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).dragAndDropBy(Element, xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to drag and drop the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -549,6 +563,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).keyDown(Element, key).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to key down on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -571,6 +586,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).keyDown(Element, key).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to key down on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -592,6 +608,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).keyUp(Element, key).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to key up on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -614,6 +631,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).keyUp(Element, key).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to key down on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -636,6 +654,7 @@ public class RatDriver implements IRatDriver {
             actions.moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to move by offset.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -659,6 +678,7 @@ public class RatDriver implements IRatDriver {
             actions.moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to move by offset.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -681,6 +701,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to move by offset.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -704,6 +725,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to move by offset.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -724,6 +746,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).release(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to send a mouse button release.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -745,6 +768,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).release(Element).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to send a mouse button release.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -766,6 +790,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).sendKeys(Element, text).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to send the value to the field.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -788,6 +813,7 @@ public class RatDriver implements IRatDriver {
             actions.moveToElement(Element).sendKeys(Element, text).build().perform();
         } catch (Exception ex) {
             System.out.println("Unable to send the value to the field.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -809,6 +835,7 @@ public class RatDriver implements IRatDriver {
             select.selectByVisibleText(item);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -831,6 +858,7 @@ public class RatDriver implements IRatDriver {
             select.selectByVisibleText(item);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -852,6 +880,7 @@ public class RatDriver implements IRatDriver {
             select.selectByIndex(row);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -874,6 +903,7 @@ public class RatDriver implements IRatDriver {
             select.selectByIndex(row);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -895,6 +925,7 @@ public class RatDriver implements IRatDriver {
             select.selectByValue(value);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -917,6 +948,7 @@ public class RatDriver implements IRatDriver {
             select.selectByValue(value);
         } catch (Exception ex) {
             System.out.println("Unable to select the item from the dropdown.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -934,6 +966,8 @@ public class RatDriver implements IRatDriver {
             EncapsulatedDriver.manage().timeouts().setScriptTimeout(BaseSettings.AsyncJavaScript, TimeUnit.SECONDS);
             return EncapsulatedDriver;
         } catch (Exception ex) {
+            System.out.println("Could not return encapsulated driver.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -952,6 +986,7 @@ public class RatDriver implements IRatDriver {
             return true;
         } catch (Exception ex) {
             System.out.println("Named cookie does not exist");
+            ErrorHandler.HandleErrors(ex);
             return false;
         }
     }
@@ -970,6 +1005,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -988,6 +1024,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1007,6 +1044,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1027,6 +1065,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1042,6 +1081,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1058,6 +1098,7 @@ public class RatDriver implements IRatDriver {
             return cookies;
         } catch (Exception ex) {
             System.out.println("Could not return the cookies.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1072,6 +1113,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("All cookies deleted.");
         } catch (Exception ex) {
             System.out.println("Could not delete all cookies.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1087,6 +1129,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Cookie was deleted.");
         } catch (Exception ex) {
             System.out.println("Cookie was not deleted.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1102,6 +1145,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Cookie was deleted.");
         } catch (Exception ex) {
             System.out.println("Cookie was not deleted.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1119,6 +1163,7 @@ public class RatDriver implements IRatDriver {
             return returnedCookie;
         } catch (Exception ex) {
             System.out.println("Cookie could not be returned.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1157,6 +1202,7 @@ public class RatDriver implements IRatDriver {
             AddCookie(name, value, path);
         } catch (Exception ex) {
             System.out.println("Cookie could not be replaced.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1177,6 +1223,7 @@ public class RatDriver implements IRatDriver {
             AddCookie(name, value, path, expiry);
         } catch (Exception ex) {
             System.out.println("Cookie could not be replaced.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1198,6 +1245,7 @@ public class RatDriver implements IRatDriver {
             AddCookie(name, value, domain, path, expiry);
         } catch (Exception ex) {
             System.out.println("Cookie could not be replaced.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1214,6 +1262,7 @@ public class RatDriver implements IRatDriver {
             return logTypes;
         } catch (Exception ex) {
             System.out.println("Could not return log types.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1232,6 +1281,7 @@ public class RatDriver implements IRatDriver {
             return log.getAll();
         } catch (Exception ex) {
             System.out.println("Could not return log entries.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1251,6 +1301,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Set implicit timeout.");
         } catch (Exception ex) {
             System.out.println("Could not set implicit timeout.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1269,6 +1320,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Set page load timeout.");
         } catch (Exception ex) {
             System.out.println("Could not set page load timeout.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1287,6 +1339,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Set script timeout.");
         } catch (Exception ex) {
             System.out.println("Could not set script timeout.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1300,6 +1353,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Browser window was maximised.");
         } catch (Exception ex) {
             System.out.println("Browser window could not be maximised.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1316,6 +1370,7 @@ public class RatDriver implements IRatDriver {
             return point;
         } catch (Exception ex) {
             System.out.println("Browser window could not be maximised.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1333,6 +1388,7 @@ public class RatDriver implements IRatDriver {
             return dimension;
         } catch (Exception ex) {
             System.out.println("Browser size could not be returned.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1351,6 +1407,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Browser was resized.");
         } catch (Exception ex) {
             System.out.println("Browser could not be resized.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1364,6 +1421,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Back button was pressed.");
         } catch (Exception ex) {
             System.out.println("Back button could not be pressed.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1377,6 +1435,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Forward button was pressed.");
         } catch (Exception ex) {
             System.out.println("Forward button could not be pressed.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1396,6 +1455,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Navigation request sent");
         } catch (Exception ex) {
             System.out.println("Could not send navigation request.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1409,6 +1469,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Refresh request was sent.");
         } catch (Exception ex) {
             System.out.println("Refresh request was not sent.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1426,6 +1487,7 @@ public class RatDriver implements IRatDriver {
             return contains;
         } catch (Exception ex) {
             System.out.println("Could not check page source for presence of text.");
+            ErrorHandler.HandleErrors(ex);
             return false;
         }
     }
@@ -1443,6 +1505,7 @@ public class RatDriver implements IRatDriver {
             return pageSource;
         } catch (Exception ex) {
             System.out.println("Page source could not be requested.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1457,6 +1520,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Terminated driver.");
         } catch (Exception ex) {
             System.out.println("Could not terminate driver.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1474,6 +1538,7 @@ public class RatDriver implements IRatDriver {
             return true;
         } catch (Exception ex) {
             System.out.println("Could not confirm window presence.");
+            ErrorHandler.HandleErrors(ex);
             return false;
         }
     }
@@ -1488,6 +1553,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to active element.");
         } catch (Exception ex) {
             System.out.println("Could not switch to active element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1501,6 +1567,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to alert.");
         } catch (Exception ex) {
             System.out.println("Could not switch to alert.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1516,6 +1583,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to default content.");
         } catch (Exception ex) {
             System.out.println("Could not switch to default content.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1531,6 +1599,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to frame with given index.");
         } catch (Exception ex) {
             System.out.println("Could not switch to a frame with that index.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1546,6 +1615,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to the chosen frame element.");
         } catch (Exception ex) {
             System.out.println("Could not switch to the web element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1562,6 +1632,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to the chosen frame element.");
         } catch (Exception ex) {
             System.out.println("Could not switch to the web element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1577,6 +1648,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to the named frame element.");
         } catch (Exception ex) {
             System.out.println("Could not switch to a frame with thew given name.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1590,6 +1662,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to the parent frame.");
         } catch (Exception ex) {
             System.out.println("Could not switch to the parent frame.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1605,6 +1678,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Switched to the window.");
         } catch (Exception ex) {
             System.out.println("Could not switch to the window.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1621,6 +1695,7 @@ public class RatDriver implements IRatDriver {
             return title;
         } catch (Exception ex) {
             System.out.println("Could not return the browser window title.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1638,6 +1713,7 @@ public class RatDriver implements IRatDriver {
             return windowUrl;
         } catch (Exception ex) {
             System.out.println("Could not return the current url.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1655,6 +1731,7 @@ public class RatDriver implements IRatDriver {
             return windowUrl;
         } catch (Exception ex) {
             System.out.println("Could not return the current window handle.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1672,6 +1749,7 @@ public class RatDriver implements IRatDriver {
             return handles;
         } catch (Exception ex) {
             System.out.println("Could not return the current window handle.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -1702,6 +1780,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Opened a new tab.");
         } catch (Exception ex) {
             System.out.println("Could not open a new tab.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1715,6 +1794,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Closed the open view.");
         } catch (Exception ex) {
             System.out.println("Could not close the current view.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1731,6 +1811,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1747,6 +1828,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1764,6 +1846,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1781,6 +1864,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1797,6 +1881,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1813,6 +1898,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1830,6 +1916,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
             System.out.println("Element was not visible within the timeout period.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1852,6 +1939,7 @@ public class RatDriver implements IRatDriver {
             }
         } catch (Exception ex) {
             System.out.println("Clicked on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1875,6 +1963,7 @@ public class RatDriver implements IRatDriver {
             }
         } catch (Exception ex) {
             System.out.println("Clicked on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1904,8 +1993,10 @@ public class RatDriver implements IRatDriver {
         } catch (MoveTargetOutOfBoundsException ex) {
             System.out.println("Element is reporting an out of bounds exception.");
             Scripts().executeAsyncScript("arguments[0].click();", Element);
+            ErrorHandler.HandleErrors(ex);
         } catch (Exception e) {
             System.out.println("Could not click on the element.");
+            ErrorHandler.HandleErrors(e);
         }
     }
 
@@ -1934,6 +2025,7 @@ public class RatDriver implements IRatDriver {
             }
         } catch (Exception ex) {
             System.out.println("Could not click on the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1961,6 +2053,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Url of page confirmed.");
         } catch (Exception ex) {
             System.out.println("Failure during attempt to click a link which opens a page.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -1992,6 +2085,7 @@ public class RatDriver implements IRatDriver {
             System.out.println("Url of page confirmed.");
         } catch (Exception ex) {
             System.out.println("Failure during attempt to click a link which opens a page.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -2012,6 +2106,7 @@ public class RatDriver implements IRatDriver {
             return Element.getText();
         } catch (Exception ex) {
             System.out.println("Could not get the text of the specified element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2034,6 +2129,7 @@ public class RatDriver implements IRatDriver {
             return Element.getText();
         } catch (Exception ex) {
             System.out.println("Could not get the text of the specified element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2051,6 +2147,7 @@ public class RatDriver implements IRatDriver {
             return Element.isDisplayed();
         } catch (Exception ex) {
             System.out.println("Could not confirm whether the specified element exists.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2069,6 +2166,7 @@ public class RatDriver implements IRatDriver {
             return true;
         } catch (Exception ex) {
             System.out.println("Could not confirm whether the specified element exists.");
+            ErrorHandler.HandleErrors(ex);
             return false;
         }
     }
@@ -2091,6 +2189,7 @@ public class RatDriver implements IRatDriver {
             return element.getAttribute(attribute);
         } catch (Exception ex) {
             System.out.println("Failed to get the attribute from the specified element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2114,6 +2213,7 @@ public class RatDriver implements IRatDriver {
             return Element.getAttribute(attribute);
         } catch (Exception ex) {
             System.out.println("Failed to get the attribute from the specified element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2141,6 +2241,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the CSS Selector");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2168,6 +2269,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the CSS Selector");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2198,6 +2300,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the CSS Selector");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2228,6 +2331,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find the sub elements using the CSS Selector");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2255,6 +2359,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the class name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2282,6 +2387,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the class name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2312,6 +2418,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the class name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2343,6 +2450,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the class name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2370,6 +2478,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the id");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2399,6 +2508,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2426,6 +2536,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2456,6 +2567,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2487,6 +2599,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2514,6 +2627,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2541,6 +2655,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2571,6 +2686,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2602,6 +2718,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2629,6 +2746,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the partial link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2656,6 +2774,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the partial link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2686,6 +2805,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the partial link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2717,6 +2837,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the partial link text");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2744,6 +2865,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the tag name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2771,6 +2893,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the tag name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2801,6 +2924,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the tag name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2832,6 +2956,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using the tag name");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2859,6 +2984,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Could not find an element using xpath");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2886,6 +3012,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using xpath");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2916,6 +3043,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using xpath");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2947,6 +3075,7 @@ public class RatDriver implements IRatDriver {
             return Elements;
         } catch (Exception ex) {
             System.out.println("Could not find an element using xpath");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -2980,6 +3109,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Unable to extract the element required with defined parameters.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3014,6 +3144,7 @@ public class RatDriver implements IRatDriver {
             return Element;
         } catch (Exception ex) {
             System.out.println("Unable to extract the element required with defined parameters.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3045,6 +3176,7 @@ public class RatDriver implements IRatDriver {
             screenshotFile.renameTo(destinationFile);
         } catch (Exception ex) {
             System.out.println("Unable to save a screenshot.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3059,6 +3191,7 @@ public class RatDriver implements IRatDriver {
             return (JavascriptExecutor) Driver;
         } catch (Exception ex) {
             System.out.println("Unable to execute the script required.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3075,6 +3208,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeScript(script);
         } catch (Exception ex) {
             System.out.println("Unable to execute the script required.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3091,6 +3225,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeScript(script, parameters);
         } catch (Exception ex) {
             System.out.println("Unable to execute the script required.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3106,6 +3241,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript(script);
         } catch (Exception ex) {
             System.out.println("Unable to execute the script required.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3122,6 +3258,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript(script, parameters);
         } catch (Exception ex) {
             System.out.println("Unable to execute the script required.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3136,6 +3273,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].scrollIntoView(true);", webElement);
         } catch (Exception ex) {
             System.out.println("Could not scroll to the element passed.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3151,6 +3289,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].scrollIntoView(true);", webElement);
         } catch (Exception ex) {
             System.out.println("Could not scroll to the element passed.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3166,6 +3305,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey = [1];", webElement, key);
         } catch (Exception ex) {
             System.out.println("Could not add the access key to the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3182,6 +3322,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey = [1];", webElement, key);
         } catch (Exception ex) {
             System.out.println("Could not add the access key to the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3196,6 +3337,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not get the access key for the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3211,6 +3353,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not get the access key for the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3226,6 +3369,7 @@ public class RatDriver implements IRatDriver {
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].childElementCount", webElement);
         } catch (Exception ex) {
             System.out.println("Could not get the child element count for the element.");
+            ErrorHandler.HandleErrors(ex);
             return 0;
         }
     }
@@ -3243,6 +3387,7 @@ public class RatDriver implements IRatDriver {
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].childElementCount", webElement);
         } catch (Exception ex) {
             System.out.println("Could not get the child element count for the element.");
+            ErrorHandler.HandleErrors(ex);
             return 0;
         }
     }
@@ -3264,6 +3409,7 @@ public class RatDriver implements IRatDriver {
             return elementSize;
         } catch (Exception ex) {
             System.out.println("Could not get the client size for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3286,6 +3432,7 @@ public class RatDriver implements IRatDriver {
             return elementSize;
         } catch (Exception ex) {
             System.out.println("Could not get the client size for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3303,6 +3450,7 @@ public class RatDriver implements IRatDriver {
             return (ElementRelationships) javascriptExecutor.executeAsyncScript("arguments[0].compareDocumentPosition(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not analyse the element relationships.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3322,6 +3470,7 @@ public class RatDriver implements IRatDriver {
             return (ElementRelationships) javascriptExecutor.executeAsyncScript("arguments[0].compareDocumentPosition(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not analyse the element relationships.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3339,6 +3488,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].contains(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not analyse the element relationships.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3358,6 +3508,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].contains(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not analyse the element relationships.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3373,6 +3524,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].focus()", webElement);
         } catch (Exception ex) {
             System.out.println("Could not give focus to the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3388,6 +3540,7 @@ public class RatDriver implements IRatDriver {
             javascriptExecutor.executeAsyncScript("arguments[0].focus()", webElement);
         } catch (Exception ex) {
             System.out.println("Could not give focus to the element.");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 
@@ -3412,6 +3565,7 @@ public class RatDriver implements IRatDriver {
             return domRectangle;
         } catch (Exception ex) {
             System.out.println("Could get the bounding rectangle for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3438,6 +3592,7 @@ public class RatDriver implements IRatDriver {
             return domRectangle;
         } catch (Exception ex) {
             System.out.println("Could get the bounding rectangle for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3455,6 +3610,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttribute(arguments[1]);", webElement, attribute);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has the attribute");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3473,6 +3629,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttribute(arguments[1]);", webElement, attribute);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has the attribute");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3489,6 +3646,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttributes();", webElement);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has attributes");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3506,6 +3664,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttributes();", webElement);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has attributes");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3522,6 +3681,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasChildNodes();", webElement);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has child nodes");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3539,6 +3699,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasChildNodes();", webElement);
         } catch (Exception ex) {
             System.out.println("Could not assess whether the element has child nodes");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3555,6 +3716,7 @@ public class RatDriver implements IRatDriver {
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].contentEditable;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not confirm if the element has editable content.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3572,6 +3734,7 @@ public class RatDriver implements IRatDriver {
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].contentEditable;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not confirm if the element has editable content.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3588,6 +3751,7 @@ public class RatDriver implements IRatDriver {
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].lang;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not confirm the language assignment of the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3605,6 +3769,7 @@ public class RatDriver implements IRatDriver {
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].lang;", webElement);
         } catch (Exception ex) {
             System.out.println("Could not confirm the language assignment of the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3624,6 +3789,7 @@ public class RatDriver implements IRatDriver {
             return heightWidth;
         } catch (Exception ex) {
             System.out.println("Could not get the offsets for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3644,6 +3810,7 @@ public class RatDriver implements IRatDriver {
             return heightWidth;
         } catch (Exception ex) {
             System.out.println("Could not get the offsets for the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3661,6 +3828,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].isEqualNode(arguments[1]);", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not compare the elements for equality.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3680,6 +3848,7 @@ public class RatDriver implements IRatDriver {
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].isEqualNode(arguments[1]);", firstElement, secondElement);
         } catch (Exception ex) {
             System.out.println("Could not compare the elements for equality.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3701,6 +3870,7 @@ public class RatDriver implements IRatDriver {
             return elementSize;
         } catch (Exception ex) {
             System.out.println("Could not get the scroll size of the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3721,6 +3891,7 @@ public class RatDriver implements IRatDriver {
             return elementSize;
         } catch (Exception ex) {
             System.out.println("Could not get the scroll size of the element.");
+            ErrorHandler.HandleErrors(ex);
             return null;
         }
     }
@@ -3737,6 +3908,7 @@ public class RatDriver implements IRatDriver {
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].tabIndex", webElement);
         } catch (Exception ex) {
             System.out.println("Could get the tab index for the element.");
+            ErrorHandler.HandleErrors(ex);
             return 0;
         }
     }
@@ -3754,6 +3926,7 @@ public class RatDriver implements IRatDriver {
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].tabIndex", webElement);
         } catch (Exception ex) {
             System.out.println("Could get the tab index for the element.");
+            ErrorHandler.HandleErrors(ex);
             return 0;
         }
     }
@@ -4309,6 +4482,7 @@ public class RatDriver implements IRatDriver {
             }
         } catch (Exception ex) {
             System.out.println("Could not establish the driver type");
+            ErrorHandler.HandleErrors(ex);
         }
     }
 }

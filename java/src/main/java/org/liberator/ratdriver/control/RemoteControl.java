@@ -16,4 +16,6 @@ public class RemoteControl extends BrowserControl {
     public WebDriver StartDriver(BasePreferences preferences) {
         return null;
     }
+
+    public void setProxy() { }
 }
