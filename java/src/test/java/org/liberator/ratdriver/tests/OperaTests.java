@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.tests;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.liberator.ratdriver.IRodent;
@@ -17,9 +18,16 @@ import java.util.Set;
 
 public class OperaTests {
 
+    IRodent ratDriver;
+
+    @After
+    public void cleanUp(){
+        ratDriver.ClosePagesAndQuitDriver();
+    }
+
     @Test
     public void testInstantiationOpera(){
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("totallyratted"));
         ratDriver.ClosePagesAndQuitDriver();
@@ -27,7 +35,7 @@ public class OperaTests {
 
     @Test
     public void testClickLinkOpera(){
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.ElementExists(devLink));
@@ -38,7 +46,7 @@ public class OperaTests {
 
     @Test
     public void testGetTextOpera(){
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -52,7 +60,7 @@ public class OperaTests {
 
     @Test
     public void  testCheckPageSourceOpera(){
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -68,7 +76,7 @@ public class OperaTests {
     @Test
     public void testGetAvailableLogTypesOpera(){
 
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Set<String> logTypes = ratDriver.GetAvailableLogTypes();
         Assert.assertTrue(logTypes.contains("browser"));
@@ -80,7 +88,7 @@ public class OperaTests {
 
     @Test
     public  void testGetBrowserLogEntriesOpera(){
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         List<LogEntry> logEntries = ratDriver.GetAvailableLogEntries("browser");
         Assert.assertNotNull(logEntries);
@@ -90,7 +98,7 @@ public class OperaTests {
     @Test
     public void testSetImplicitWaitOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.SetImplicitWait(0, 5, 0);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ClosePagesAndQuitDriver();
@@ -99,7 +107,7 @@ public class OperaTests {
     @Test
     public void testSetPageLoadTimeoutOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.SetPageLoadTimeout(0, 30, 0);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ClosePagesAndQuitDriver();
@@ -108,7 +116,7 @@ public class OperaTests {
     @Test
     public void testGetWindowPositionOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Point position = ratDriver.GetWindowPosition();
         Assert.assertTrue(position.x >= -8);
@@ -119,7 +127,7 @@ public class OperaTests {
     @Test
     public void testGetWindowSizeOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Dimension position = ratDriver.GetWindowSize();
         Assert.assertTrue(position.width >= 0);
@@ -130,7 +138,7 @@ public class OperaTests {
     @Test
     public void testResizeWindowOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ResizeBrowserWindow(640, 480);
         Dimension size = ratDriver.GetWindowSize();
@@ -142,7 +150,7 @@ public class OperaTests {
     @Test
     public void testBrowserButtonsOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -163,7 +171,7 @@ public class OperaTests {
     @Test
     public void testGetPageSourceOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, true);
+        ratDriver = new RatDriver(DriverType.OperaDriver, true);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -175,7 +183,7 @@ public class OperaTests {
     @Test
     public void testSwitchToWindowOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         String window = ratDriver.GetCurrentWindowHandle();
@@ -190,7 +198,7 @@ public class OperaTests {
     @Test
     public void testGetBrowserWindowTitleOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         String title = ratDriver.GetBrowserWindowTitle();
@@ -201,7 +209,7 @@ public class OperaTests {
     @Test
     public void testGetAllWindowHandlesOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         Set<String> handles = ratDriver.GetAllWindowHandles();
@@ -212,7 +220,7 @@ public class OperaTests {
     @Test
     public void testClickLinkAndWaitForPageOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", false);
@@ -224,7 +232,7 @@ public class OperaTests {
     @Test
     public void testGetElementAttributeOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementById("carousel-example", false);
@@ -235,7 +243,7 @@ public class OperaTests {
     @Test
     public void testFindByClassNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByClassName("carousel-inner", false);
@@ -247,7 +255,7 @@ public class OperaTests {
     @Test
     public void testFindElementsByClassNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByClassName("menutext", false);
@@ -258,7 +266,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByClassNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementByCssSelector(".nav.navbar-nav.navbar-right", false);
@@ -270,7 +278,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByClassNameLocatorOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindSubElementsByClassName("menutext", By.className("container"), false);
@@ -281,7 +289,7 @@ public class OperaTests {
     @Test
     public void testFindByIdOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementById("home", false);
@@ -293,7 +301,7 @@ public class OperaTests {
     @Test
     public void testFindByLinkTextOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByLinkText("Developments", false);
@@ -305,7 +313,7 @@ public class OperaTests {
     @Test
     public void testFindElementsByLinkTextOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByLinkText("Read Details", false);
@@ -316,7 +324,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByLinkTextOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementById("just-intro", false);
@@ -328,7 +336,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByLinkTextLocatorOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.id("just-intro");
@@ -340,7 +348,7 @@ public class OperaTests {
     @Test
     public void testFindElementByTagNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByTag("body", false);
@@ -351,7 +359,7 @@ public class OperaTests {
     @Test
     public void testFindElementsByTagNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByTag("section", false);
@@ -362,7 +370,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByTagNameOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementById("just-intro", false);
@@ -374,7 +382,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByTagNameLocatorOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.id("just-intro");
@@ -386,7 +394,7 @@ public class OperaTests {
     @Test
     public void testFindElementByXPathOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByXPath(".//*[@id='carousel-example']", false);
@@ -398,7 +406,7 @@ public class OperaTests {
     @Test
     public void testFindElementsByXPathOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByXPath(".//section", false);
@@ -409,7 +417,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByXPathOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementByXPath("html/body", false);
@@ -421,7 +429,7 @@ public class OperaTests {
     @Test
     public void testFindSubElementsByXPathLocatorOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.xpath("html/body");
@@ -433,7 +441,7 @@ public class OperaTests {
     @Test
     public void testExtractElementFromCollectionByAttributeLocatorOpera()
     {
-        IRodent ratDriver = new RatDriver(DriverType.OperaDriver, false);
+        ratDriver = new RatDriver(DriverType.OperaDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.xpath("html/body");
