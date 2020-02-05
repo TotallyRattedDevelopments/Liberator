@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.tests;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.liberator.ratdriver.IRodent;
@@ -17,9 +18,16 @@ import java.util.Set;
 
 public class ChromeTests {
 
+    IRodent ratDriver;
+
+    @After
+    public void cleanUp(){
+        ratDriver.ClosePagesAndQuitDriver();
+    }
+
     @Test
     public void testChromeInstantiation(){
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("totallyratted"));
         ratDriver.ClosePagesAndQuitDriver();
@@ -27,7 +35,7 @@ public class ChromeTests {
 
     @Test
     public void testChromeClickLink(){
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.ElementExists(devLink));
@@ -38,7 +46,7 @@ public class ChromeTests {
 
     @Test
     public void testChromeGetText(){
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -52,7 +60,7 @@ public class ChromeTests {
 
     @Test
     public void  testCheckPageSourceChrome(){
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -67,7 +75,7 @@ public class ChromeTests {
     @Test
     public void testGetAvailableLogTypesChrome(){
 
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Set<String> logTypes = ratDriver.GetAvailableLogTypes();
         Assert.assertTrue(logTypes.contains("browser"));
@@ -78,7 +86,7 @@ public class ChromeTests {
 
     @Test
     public  void testGetBrowserLogEntriesChrome(){
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         List<LogEntry> logEntries = ratDriver.GetAvailableLogEntries("browser");
         Assert.assertNotNull(logEntries);
@@ -88,7 +96,7 @@ public class ChromeTests {
     @Test
     public void testSetImplicitWaitChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.SetImplicitWait(0, 5, 0);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ClosePagesAndQuitDriver();
@@ -97,7 +105,7 @@ public class ChromeTests {
     @Test
     public void testSetPageLoadTimeoutChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.SetPageLoadTimeout(0, 30, 0);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ClosePagesAndQuitDriver();
@@ -106,7 +114,7 @@ public class ChromeTests {
     @Test
     public void testGetWindowPositionChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Point position = ratDriver.GetWindowPosition();
         Assert.assertTrue(position.x >= 0);
@@ -117,7 +125,7 @@ public class ChromeTests {
     @Test
     public void testGetWindowSizeChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         Dimension position = ratDriver.GetWindowSize();
         Assert.assertTrue(position.width >= 0);
@@ -128,7 +136,7 @@ public class ChromeTests {
     @Test
     public void testResizeWindowChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.ResizeBrowserWindow(640, 480);
         Dimension size = ratDriver.GetWindowSize();
@@ -140,7 +148,7 @@ public class ChromeTests {
     @Test
     public void testBrowserButtonsChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -161,7 +169,7 @@ public class ChromeTests {
     @Test
     public void testGetPageSourceChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, true);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, true);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
@@ -173,7 +181,7 @@ public class ChromeTests {
     @Test
     public void testSwitchToWindowChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         String window = ratDriver.GetCurrentWindowHandle();
@@ -188,7 +196,7 @@ public class ChromeTests {
     @Test
     public void testGetBrowserWindowTitleChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         String title = ratDriver.GetBrowserWindowTitle();
@@ -199,7 +207,7 @@ public class ChromeTests {
     @Test
     public void testGetAllWindowHandlesChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         Set<String> handles = ratDriver.GetAllWindowHandles();
@@ -210,7 +218,7 @@ public class ChromeTests {
     @Test
     public void testClickLinkAndWaitForPageChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement devLink = ratDriver.FindElementByLinkText("Developments", false);
@@ -222,7 +230,7 @@ public class ChromeTests {
     @Test
     public void testGetElementAttributeChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementById("carousel-example", false);
@@ -233,7 +241,7 @@ public class ChromeTests {
     @Test
     public void testFindByClassNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByClassName("carousel-inner", false);
@@ -245,7 +253,7 @@ public class ChromeTests {
     @Test
     public void testFindElementsByClassNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByClassName("menutext", false);
@@ -256,7 +264,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByClassNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementByCssSelector(".nav.navbar-nav.navbar-right", false);
@@ -268,7 +276,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByClassNameLocatorChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindSubElementsByClassName("menutext", By.className("container"), false);
@@ -279,7 +287,7 @@ public class ChromeTests {
     @Test
     public void testFindByIdChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementById("home", false);
@@ -291,7 +299,7 @@ public class ChromeTests {
     @Test
     public void testFindByLinkTextChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByLinkText("Developments", false);
@@ -303,7 +311,7 @@ public class ChromeTests {
     @Test
     public void testFindElementsByLinkTextChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByLinkText("Read Details", false);
@@ -314,7 +322,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByLinkTextChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementById("just-intro", false);
@@ -326,7 +334,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByLinkTextLocatorChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.id("just-intro");
@@ -338,7 +346,7 @@ public class ChromeTests {
     @Test
     public void testFindElementByTagNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByTag("body", false);
@@ -349,7 +357,7 @@ public class ChromeTests {
     @Test
     public void testFindElementsByTagNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByTag("section", false);
@@ -360,7 +368,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByTagNameChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementById("just-intro", false);
@@ -372,7 +380,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByTagNameLocatorChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.id("just-intro");
@@ -384,7 +392,7 @@ public class ChromeTests {
     @Test
     public void testFindElementByXPathChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement element = ratDriver.FindElementByXPath(".//*[@id='carousel-example']", false);
@@ -396,7 +404,7 @@ public class ChromeTests {
     @Test
     public void testFindElementsByXPathChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         List<WebElement> elements = ratDriver.FindElementsByXPath(".//section", false);
@@ -407,7 +415,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByXPathChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         WebElement parent = ratDriver.FindElementByXPath("html/body", false);
@@ -419,7 +427,7 @@ public class ChromeTests {
     @Test
     public void testFindSubElementsByXPathLocatorChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.xpath("html/body");
@@ -431,7 +439,7 @@ public class ChromeTests {
     @Test
     public void testExtractElementFromCollectionByAttributeLocatorChrome()
     {
-        IRodent ratDriver = new RatDriver(DriverType.ChromeDriver, false);
+        ratDriver = new RatDriver(DriverType.ChromeDriver, false);
         ratDriver.NavigateToPage("http://www.totallyratted.com");
         ratDriver.MaximiseView();
         By parent = By.xpath("html/body");
