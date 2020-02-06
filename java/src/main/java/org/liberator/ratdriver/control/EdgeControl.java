@@ -1,12 +1,10 @@
 package org.liberator.ratdriver.control;
 
+import org.liberator.ratdriver.ErrorHandler;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.EdgePreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
-import org.liberator.ratdriver.settings.ChromeSettings;
 import org.liberator.ratdriver.settings.EdgeSettings;
-import org.liberator.ratdriver.settings.FirefoxSettings;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
@@ -16,21 +14,21 @@ import java.io.File;
 
 import static org.openqa.selenium.remote.CapabilityType.*;
 
-public class EdgeControl extends BrowserControl {
+public class EdgeControl extends RemoteControl {
 
     //region Public Properties
 
 
-    public WebDriver Driver = null;
+    public WebDriver driver = null;
 
 
-    private EdgeOptions Options;
+    private EdgeOptions options;
 
 
-    public EdgeDriverService Service = null;
+    public EdgeDriverService service = null;
 
 
-    public EdgeDriverService.Builder Builder;
+    public EdgeDriverService.Builder builder;
 
     //endregion
 
@@ -38,35 +36,40 @@ public class EdgeControl extends BrowserControl {
     //region Constructors
 
 
-    public EdgeControl() {
-        Options = new EdgeOptions();
-    }
-
-
     public EdgeControl(EdgePreferences edgePreferences) {
-        Options = new EdgeOptions();
+        options = new EdgeOptions();
         setImportedPreferences(edgePreferences);
     }
 
     private void setImportedPreferences(EdgePreferences edgePreferences) {
-        if (edgePreferences != null) {
+        try {
+            if (edgePreferences != null) {
 
-            EdgeSettings.Timeout = edgePreferences.Timeout;
-            EdgeSettings.AsyncJavaScript = edgePreferences.AsyncJavaScript;
-            EdgeSettings.DebugLevel = edgePreferences.DebugLevel;
-            EdgeSettings.ImplicitWait = edgePreferences.ImplicitWait;
-            EdgeSettings.PageLoad = edgePreferences.PageLoad;
-            EdgeSettings.AlertHandling = edgePreferences.AlertHandling;
-            EdgeSettings.InternalTimers = edgePreferences.InternalTimers;
-            EdgeSettings.MenuHoverTime = edgePreferences.MenuHoverTime;
-            EdgeSettings.Sleep = edgePreferences.Sleep;
+                EdgeSettings.Timeout = edgePreferences.Timeout;
+                EdgeSettings.AsyncJavaScript = edgePreferences.AsyncJavaScript;
+                EdgeSettings.DebugLevel = edgePreferences.DebugLevel;
+                EdgeSettings.ImplicitWait = edgePreferences.ImplicitWait;
+                EdgeSettings.PageLoad = edgePreferences.PageLoad;
+                EdgeSettings.AlertHandling = edgePreferences.AlertHandling;
+                EdgeSettings.InternalTimers = edgePreferences.InternalTimers;
+                EdgeSettings.MenuHoverTime = edgePreferences.MenuHoverTime;
+                EdgeSettings.Sleep = edgePreferences.Sleep;
 
-            EdgeSettings.HideCommandPromptWindow = edgePreferences.HideCommandPromptWindow;
-            EdgeSettings.Host = edgePreferences.Host;
-            EdgeSettings.Package = edgePreferences.Package;
-            EdgeSettings.Port = edgePreferences.Port;
-            EdgeSettings.SuppressInitialDiagnosticInformation = edgePreferences.SuppressInitialDiagnosticInformation;
-            EdgeSettings.UseVerboseLogging = edgePreferences.UseVerboseLogging;
+                EdgeSettings.HideCommandPromptWindow = edgePreferences.HideCommandPromptWindow;
+                EdgeSettings.Host = edgePreferences.Host;
+                EdgeSettings.Package = edgePreferences.Package;
+                EdgeSettings.Port = edgePreferences.Port;
+                EdgeSettings.SuppressInitialDiagnosticInformation = edgePreferences.SuppressInitialDiagnosticInformation;
+                EdgeSettings.UseVerboseLogging = edgePreferences.UseVerboseLogging;
+            }
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "EdgeControl",
+                    "setImportedPreferences",
+                    "Unable to import preferences."
+            );
         }
     }
 
@@ -79,23 +82,30 @@ public class EdgeControl extends BrowserControl {
      *
      * @return A web driver instance
      */
-    public WebDriver StartDriver() {
+    public WebDriver startDriver() {
         try {
             System.setProperty("webdriver.edge.driver", BaseSettings.EdgeDriverLocation);
 
             setEdgeOptions();
             setEdgeDriverService();
 
-            if (Service != null && Options != null) {
-                Driver = new EdgeDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new EdgeDriver(Service);
-            } else if (Options != null) {
-                Driver = new EdgeDriver(Options);
+            if (service != null && options != null) {
+                driver = new EdgeDriver(service, options);
+            } else if (options == null && service != null) {
+                driver = new EdgeDriver(service);
+            } else if (options != null) {
+                driver = new EdgeDriver(options);
             }
 
-            return Driver;
-        } catch (Exception ex) {
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "EdgeControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
@@ -106,31 +116,27 @@ public class EdgeControl extends BrowserControl {
      * @param driverSettings Preference injection object
      * @return A web driver instance
      */
-    public WebDriver StartDriver(BasePreferences driverSettings) {
+    public WebDriver startDriver(BasePreferences driverSettings) {
         try {
             System.setProperty("webdriver.edge.driver", BaseSettings.EdgeDriverLocation);
             setImportedPreferences((EdgePreferences) driverSettings);
-
-            setEdgeOptions();
-            setEdgeDriverService();
-
-            if (Service != null && Options != null) {
-                Driver = new EdgeDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new EdgeDriver(Service);
-            } else if (Options != null) {
-                Driver = new EdgeDriver(Options);
-            }
-
-            return Driver;
-        } catch (Exception ex) {
+            startDriver();
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "EdgeControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
 
     private void setEdgeOptions() {
         try {
-            Options = new EdgeOptions();
+            options = new EdgeOptions();
             setPageLoadStrategy();
             setAcceptInsecureCertificates();
             setSSLCertificates();
@@ -146,26 +152,22 @@ public class EdgeControl extends BrowserControl {
     private void setPageLoadStrategy() {
         try {
             if (EdgeSettings.PageLoadStrategy != null) {
-                Options.setPageLoadStrategy(String.valueOf(EdgeSettings.PageLoadStrategy));
-                System.out.format("Set the page load strategy to: %s", EdgeSettings.PageLoadStrategy);
-                System.out.println();
+                options.setPageLoadStrategy(String.valueOf(EdgeSettings.PageLoadStrategy));
+                System.out.format("\nSet the page load strategy to: %s", EdgeSettings.PageLoadStrategy);
             }
         } catch (Exception e) {
-            System.out.format("Could not set the page load strategy to: %s", EdgeSettings.PageLoadStrategy);
-            System.out.println();
+            System.out.format("\nCould not set the page load strategy to: %s", EdgeSettings.PageLoadStrategy);
         }
     }
 
     private void setAcceptInsecureCertificates() {
         try {
             if (EdgeSettings.AcceptInsecureCertificates != null) {
-                Options.setCapability(ACCEPT_INSECURE_CERTS, EdgeSettings.AcceptInsecureCertificates);
-                System.out.format("Set accept insecure certificates to: %s", EdgeSettings.AcceptInsecureCertificates.toString());
-                System.out.println();
+                options.setCapability(ACCEPT_INSECURE_CERTS, EdgeSettings.AcceptInsecureCertificates);
+                System.out.format("\nSet accept insecure certificates to: %s", EdgeSettings.AcceptInsecureCertificates.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set accept insecure certificates to: %s", EdgeSettings.AcceptInsecureCertificates.toString());
-            System.out.println();
+            System.out.format("\nCould not set accept insecure certificates to: %s", EdgeSettings.AcceptInsecureCertificates.toString());
 
         }
     }
@@ -173,13 +175,11 @@ public class EdgeControl extends BrowserControl {
     private void setSSLCertificates() {
         try {
             if (EdgeSettings.AcceptSSLCertificates != null) {
-                Options.setCapability(ACCEPT_SSL_CERTS, EdgeSettings.AcceptSSLCertificates);
-                System.out.format("Set accept SSL certificates to: %s", EdgeSettings.AcceptSSLCertificates.toString());
-                System.out.println();
+                options.setCapability(ACCEPT_SSL_CERTS, EdgeSettings.AcceptSSLCertificates);
+                System.out.format("\nSet accept SSL certificates to: %s", EdgeSettings.AcceptSSLCertificates.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set accept SSL certificates to: %s", EdgeSettings.AcceptSSLCertificates.toString());
-            System.out.println();
+            System.out.format("\nCould not set accept SSL certificates to: %s", EdgeSettings.AcceptSSLCertificates.toString());
 
         }
     }
@@ -187,13 +187,11 @@ public class EdgeControl extends BrowserControl {
     private void setTakesScreenshot() {
         try {
             if (EdgeSettings.TakesScreenshot != null) {
-                Options.setCapability(TAKES_SCREENSHOT, EdgeSettings.TakesScreenshot);
-                System.out.format("Set Takes Screenshot to: %s", EdgeSettings.TakesScreenshot.toString());
-                System.out.println();
+                options.setCapability(TAKES_SCREENSHOT, EdgeSettings.TakesScreenshot);
+                System.out.format("\nSet Takes Screenshot to: %s", EdgeSettings.TakesScreenshot.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Takes Screenshot to: %s", EdgeSettings.TakesScreenshot.toString());
-            System.out.println();
+            System.out.format("\nCould not set Takes Screenshot to: %s", EdgeSettings.TakesScreenshot.toString());
 
         }
     }
@@ -201,13 +199,11 @@ public class EdgeControl extends BrowserControl {
     private void setUnexpectedAlertBehaviour() {
         try {
             if (EdgeSettings.UnexpectedAlertBehaviour != null) {
-                Options.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, EdgeSettings.UnexpectedAlertBehaviour);
-                System.out.format("Set Unexpected Alert Behaviour to: %s", EdgeSettings.UnexpectedAlertBehaviour);
-                System.out.println();
+                options.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, EdgeSettings.UnexpectedAlertBehaviour);
+                System.out.format("\nSet Unexpected Alert Behaviour to: %s", EdgeSettings.UnexpectedAlertBehaviour);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Unexpected Alert Behaviour to: %s", EdgeSettings.UnexpectedAlertBehaviour);
-            System.out.println();
+            System.out.format("\nCould not set Unexpected Alert Behaviour to: %s", EdgeSettings.UnexpectedAlertBehaviour);
 
         }
     }
@@ -215,23 +211,21 @@ public class EdgeControl extends BrowserControl {
     private void setUnhandledPromptBehaviour() {
         try {
             if (EdgeSettings.UnhandledPromptBehaviour != null) {
-                Options.setCapability(UNHANDLED_PROMPT_BEHAVIOUR, EdgeSettings.UnhandledPromptBehaviour);
-                System.out.format("Set Unhandled Prompt Behaviour to: %s", EdgeSettings.UnhandledPromptBehaviour);
-                System.out.println();
+                options.setCapability(UNHANDLED_PROMPT_BEHAVIOUR, EdgeSettings.UnhandledPromptBehaviour);
+                System.out.format("\nSet Unhandled Prompt Behaviour to: %s", EdgeSettings.UnhandledPromptBehaviour);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Unhandled Prompt Behaviour to: %s", EdgeSettings.UnhandledPromptBehaviour);
-            System.out.println();
+            System.out.format("\nCould not set Unhandled Prompt Behaviour to: %s", EdgeSettings.UnhandledPromptBehaviour);
 
         }
     }
 
     private void setEdgeDriverService() {
         try {
-            Builder = new EdgeDriverService.Builder();
+            builder = new EdgeDriverService.Builder();
             setDriverExecutable();
             setDriverPort();
-            Service = Builder.build();
+            service = builder.build();
             System.out.println("Created the Edge Driver Service.");
         } catch (Exception ex){
             System.out.println("Unable to create the Edge Driver Service.");
@@ -240,144 +234,24 @@ public class EdgeControl extends BrowserControl {
 
     private void setDriverExecutable() {
         try {
-            Builder.usingDriverExecutable(new File(EdgeSettings.EdgeDriverLocation));
-            System.out.format("Set the driver executable to: %s", EdgeSettings.EdgeDriverLocation);
-            System.out.println();
+            builder.usingDriverExecutable(new File(EdgeSettings.EdgeDriverLocation));
+            System.out.format("\nSet the driver executable to: %s", EdgeSettings.EdgeDriverLocation);
         } catch (Exception e) {
-            System.out.format("Unable to set the driver executable to: %s", EdgeSettings.EdgeDriverLocation);
-            System.out.println();
+            System.out.format("\nUnable to set the driver executable to: %s", EdgeSettings.EdgeDriverLocation);
         }
     }
 
     private void setDriverPort() {
         try {
             if (EdgeSettings.Port != null && EdgeSettings.Port > 0){
-                Builder.usingPort(EdgeSettings.Port);
-                System.out.format("Set port to: %s", EdgeSettings.Port.toString());
-                System.out.println();
+                builder.usingPort(EdgeSettings.Port);
+                System.out.format("\nSet port to: %s", EdgeSettings.Port.toString());
             } else if(EdgeSettings.Port != null) {
-                Builder.usingAnyFreePort();
+                builder.usingAnyFreePort();
                 System.out.println("Using any free port, as no specific port was chosen.");
-                System.out.println();
             }
         } catch (Exception e) {
-            System.out.format("Could not set the port to: %s", EdgeSettings.Port.toString());
-            System.out.println();
-        }
-    }
-
-    public void setProxy(){
-        try {
-            if (BaseSettings.proxyType != null) {
-                Proxy = new Proxy();
-                setProxyAutoConfigUrl();
-                setProxyType();
-                setAutoDetect();
-                setFtpProxy();
-                setHttpProxy();
-                setNoProxy();
-                setSocks();
-                setSslProxy();
-            }
-        } catch (Exception ex){
-            System.out.println("Could not set up the proxy with current settings.");
-        }
-    }
-
-    private void setProxyAutoConfigUrl() {
-        try {
-            if (BaseSettings.proxyAutoconfigUrl != null && BaseSettings.proxyAutoconfigUrl.length() > 0) {
-                Proxy.setProxyAutoconfigUrl(BaseSettings.proxyAutoconfigUrl);
-                System.out.format("Set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
-        }
-    }
-
-    private void setProxyType() {
-        try {
-            if (BaseSettings.proxyType != null) {
-                Proxy.setProxyType(BaseSettings.proxyType);
-                System.out.format("Set proxy type to: %s", BaseSettings.proxyType.name());
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set proxy type to: %s", BaseSettings.proxyType.name());
-        }
-    }
-
-    private void setAutoDetect() {
-        try {
-            if (BaseSettings.autodetect) {
-                Proxy.setAutodetect(true);
-            } else {
-                Proxy.setAutodetect(false);
-            }
-            System.out.format("Set proxy autodetect to: %s", BaseSettings.proxyType.name());
-        } catch (Exception e) {
-            System.out.format("Could not set proxy autodetect to: %s", BaseSettings.proxyType.name());
-        }
-    }
-
-    private void setFtpProxy() {
-        try {
-            if (BaseSettings.ftpProxy != null) {
-                Proxy.setFtpProxy(BaseSettings.ftpProxy);
-                System.out.format("Set ftp proxy to: %s", BaseSettings.ftpProxy);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set ftp proxy to: %s", BaseSettings.ftpProxy);
-        }
-    }
-
-    private void setNoProxy() {
-        try {
-            if (BaseSettings.noProxy != null) {
-                Proxy.setNoProxy(BaseSettings.noProxy);
-                System.out.format("Set 'no proxy' to: %s", BaseSettings.noProxy);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set 'no proxy' to: %s", BaseSettings.noProxy);
-        }
-    }
-
-    private void setHttpProxy() {
-        try {
-            if (BaseSettings.httpProxy != null) {
-                Proxy.setHttpProxy(BaseSettings.httpProxy);
-                System.out.format("Set http proxy to: %s", BaseSettings.httpProxy);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set http proxy to: %s", BaseSettings.httpProxy);
-        }
-    }
-
-    private void setSocks() {
-        try {
-            if (BaseSettings.socksProxy != null) {
-                Proxy.setSocksProxy(BaseSettings.socksProxy);
-                Proxy.setSocksVersion(BaseSettings.socksVersion);
-                Proxy.setSocksUsername(BaseSettings.socksUsername);
-                Proxy.setSocksPassword(BaseSettings.socksPassword);
-
-                System.out.format("Set socks proxy to: %s", BaseSettings.socksProxy);
-                System.out.format("Set socks proxy version to: %s", BaseSettings.socksVersion);
-                System.out.format("Set socks proxy username to: %s", BaseSettings.socksUsername);
-                System.out.format("Set socks proxy password to: %s", BaseSettings.socksPassword);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set socks proxy to.");
-        }
-    }
-
-    private void setSslProxy() {
-        try {
-            if (BaseSettings.sslProxy != null) {
-                Proxy.setHttpProxy(BaseSettings.sslProxy);
-                System.out.format("Set SSL proxy to: %s", BaseSettings.sslProxy);
-            }
-        } catch (Exception e) {
-            System.out.format("Could not set SSL proxy to: %s", BaseSettings.sslProxy);
+            System.out.format("\nCould not set the port to: %s", EdgeSettings.Port.toString());
         }
     }
 

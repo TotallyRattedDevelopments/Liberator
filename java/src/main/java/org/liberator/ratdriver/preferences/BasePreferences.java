@@ -5,6 +5,7 @@ import org.liberator.ratdriver.enums.ConsoleDebugLevel;
 /**
  * Injector for a base settings class
  */
+@SuppressWarnings({"CanBeFinal", "unused"})
 public abstract class BasePreferences {
     /**
      * Standard timeout
@@ -49,47 +50,47 @@ public abstract class BasePreferences {
     /**
      * Location of Chrome Driver. Defaults to the supplied version.
      */
-    public String ChromeDriverLocation = null;
+    public String ChromeDriverLocation;
 
     /**
      * Location of the Microsoft Web Driver. Defaults to the supplied version.
      */
-    public String EdgeDriverLocation = null;
+    public String EdgeDriverLocation;
 
     /**
      * Location of the Firefox Driver. Defaults to the supplied version.
      */
-    public String FirefoxDriverLocation = null;
+    public String FirefoxDriverLocation;
 
     /**
      * Location of the IEDriverServer executable. Defaults to the supplied version.
      */
-    public String InternetExplorerDriverLocation = null;
+    public String InternetExplorerDriverLocation;
 
     /**
      * Location of the Opera Driver. Defaults to the supplied version.
      */
-    public String OperaDriverLocation = null;
+    public String OperaDriverLocation;
 
     /**
      * Location of the Chrome application
      */
-    public String ChromeLocation = null;
+    public String ChromeLocation;
 
     /**
      * Locations of the Firefox application
      */
-    public String FirefoxLocation = null;
+    public String FirefoxLocation;
 
     /**
      * Location of the Opera application
      */
-    public String OperaLocation = null;
+    public String OperaLocation;
 
     /**
      * The debug level to use for the test run
      */
-    public ConsoleDebugLevel DebugLevel = null;
+    public ConsoleDebugLevel DebugLevel;
 
     public BasePreferences()
     {
@@ -102,5 +103,7 @@ public abstract class BasePreferences {
 
         AlertHandling = true;
         InternalTimers = true;
+
+        DebugLevel = null;
     }
 }

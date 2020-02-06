@@ -1,6 +1,5 @@
 package org.liberator.ratdriver.settings;
 
-import com.sun.javafx.PlatformUtil;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
@@ -8,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import static org.openqa.selenium.PageLoadStrategy.*;
 import static org.openqa.selenium.UnexpectedAlertBehaviour.*;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class FirefoxSettings extends BaseSettings {
 
     /**

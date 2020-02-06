@@ -2,7 +2,7 @@ package org.liberator.ratdriver.performance;
 
 import java.time.Instant;
 
-public class RatTimer implements ITimer  {
+public class RatTimer {
 
     RatTimer(){
         startTime = Instant.now();
@@ -17,7 +17,6 @@ public class RatTimer implements ITimer  {
     /**
      * Start the timer
      */
-    @Override
     public void Start() {
         startTime = Instant.now();
         endTime = Instant.now();
@@ -27,7 +26,6 @@ public class RatTimer implements ITimer  {
     /**
      * Stop the timer
      */
-    @Override
     public void Stop() {
         endTime = Instant.now();
         duration = endTime.toEpochMilli() - startTime.toEpochMilli();

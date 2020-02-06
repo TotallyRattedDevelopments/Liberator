@@ -8,6 +8,7 @@ import org.liberator.ratdriver.enums.Timing;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class RatWatch {
 
     /**
@@ -41,6 +42,7 @@ public class RatWatch {
      */
     public RatWatch(RatWatch ratWatch)
     {
+        CurrentTimer = null;
         Timings = ratWatch.Timings;
     }
 
@@ -86,21 +88,18 @@ public class RatWatch {
     /**
      * Stops the timer and adds a specified timing point type to the timings list
      * @param timerType the type of timer to record
-     * @return returns the number of milliseconds
      */
-    public long StopTimer(Timing timerType)
+    public void StopTimer(Timing timerType)
     {
         try
         {
             CurrentTimer.Stop();
             Timings.add(new Pair<>(timerType, CurrentTimer));
-            return CurrentTimer.duration;
         }
         catch (Exception ex)
         {
             System.out.println("Unable to stop the timer");
             System.out.println(ex.getMessage());
-            return 0;
         }
     }
 

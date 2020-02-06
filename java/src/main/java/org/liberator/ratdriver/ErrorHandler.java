@@ -1,12 +1,15 @@
 package org.liberator.ratdriver;
 
 import com.sun.javafx.PlatformUtil;
+import org.openqa.selenium.WebDriver;
 
 public class ErrorHandler {
 
-    public static void HandleErrors(Exception ex) {
+    public static void HandleErrors(WebDriver driver, Exception ex, String module, String method, String description) {
         String classname = ex.getClass().getName();
-        System.out.format("An exception of type '%s' was thrown.", classname);
+        System.out.format("\nAn exception of type '%s' was thrown in the module '%s'. The failing method was '%s", classname, module, method);
+        System.out.format("\nThe exception message was: %s", ex.getMessage());
+        System.out.format("\n%s", description);
 
         switch (classname) {
             case "UnhandledAlertException":
@@ -49,7 +52,7 @@ public class ErrorHandler {
                 System.out.println("An alert was expected but has not been detected.");
                 break;
             case "NoSuchContextException":
-                System.out.println("");
+                System.out.println("No such content was found.");
                 break;
             case "NoSuchCookieException":
                 System.out.println("No such cookie has been found.");
@@ -100,5 +103,7 @@ public class ErrorHandler {
             case "InvalidCoordinatesException":
                 System.out.println("The coordinates passed are invalid.");
         }
+
+        driver.quit();
     }
 }

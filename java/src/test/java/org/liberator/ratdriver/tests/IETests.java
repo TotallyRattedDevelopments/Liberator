@@ -23,53 +23,53 @@ public class IETests {
 
     @After
     public void cleanUp(){
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testInstantiationIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("totallyratted"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("totallyratted"));
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testClickLinkIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        WebElement devLink = ratDriver.FindElementsByCssSelector("a[href='developments.html']", true).get(0);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        ratDriver.ClickLinkAndWait(devLink);
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("development"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        WebElement devLink = ratDriver.findElementsByCssSelector("a[href='developments.html']", true).get(0);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        ratDriver.clickLinkAndWait(devLink);
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("development"));
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetTextIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        ratDriver.ClickLinkAndWait(devLink);
-        ratDriver.WaitForElementToLoad(By.cssSelector(".col-md-12>h1"));
-        String str = ratDriver.GetElementText(By.cssSelector(".col-md-12>h1"), true);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        ratDriver.clickLinkAndWait(devLink);
+        ratDriver.waitForElementToLoad(By.cssSelector(".col-md-12>h1"));
+        String str = ratDriver.getElementText(By.cssSelector(".col-md-12>h1"), true);
+        ratDriver.closePagesAndQuitDriver();
         Assert.assertTrue(str.contains("Totally Ratted Developments"));
     }
 
     @Test
     public void testCheckPageSourceIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        ratDriver.ClickLinkAndWait(devLink);
-        ratDriver.WaitForElementToLoad(By.cssSelector(".col-md-12>h1"));
-        String str = ratDriver.GetPageSource();
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        ratDriver.clickLinkAndWait(devLink);
+        ratDriver.waitForElementToLoad(By.cssSelector(".col-md-12>h1"));
+        String str = ratDriver.getPageSource();
+        ratDriver.closePagesAndQuitDriver();
         Assert.assertTrue(str.contains("Totally Ratted Developments"));
     }
 
@@ -78,348 +78,348 @@ public class IETests {
     public void testGetAvailableLogTypesIE() {
 
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        Set<String> logTypes = ratDriver.GetAvailableLogTypes();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        Set<String> logTypes = ratDriver.getAvailableLogTypes();
         Assert.assertTrue(logTypes.contains("browser"));
         Assert.assertTrue(logTypes.contains("driver"));
         Assert.assertTrue(logTypes.contains("client"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Ignore
     @Test
     public void testGetBrowserLogEntriesIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        List<LogEntry> logEntries = ratDriver.GetAvailableLogEntries("browser");
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        List<LogEntry> logEntries = ratDriver.getAvailableLogEntries("browser");
         Assert.assertNotNull(logEntries);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testSetImplicitWaitIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.SetImplicitWait(0, 5, 0);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.setImplicitWait(0, 5, 0);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testSetPageLoadTimeoutIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.SetPageLoadTimeout(0, 30, 0);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.setPageLoadTimeout(0, 30, 0);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetWindowPositionIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        Point position = ratDriver.GetWindowPosition();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        Point position = ratDriver.getWindowPosition();
         Assert.assertTrue(position.x >= -9);
         Assert.assertTrue(position.y >= -9);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetWindowSizeIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        Dimension position = ratDriver.GetWindowSize();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        Dimension position = ratDriver.getWindowSize();
         Assert.assertTrue(position.width >= 0);
         Assert.assertTrue(position.height >= 0);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testResizeWindowIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.ResizeBrowserWindow(640, 480);
-        Dimension size = ratDriver.GetWindowSize();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.resizeBrowserWindow(640, 480);
+        Dimension size = ratDriver.getWindowSize();
         Assert.assertEquals(640, size.width);
         Assert.assertEquals(480, size.height);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testBrowserButtonsIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage("http://www.totallyratted.com");
         //ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        ratDriver.ClickLinkAndWait(devLink);
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("developments"));
-        ratDriver.PressBackButton();
-        devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        Assert.assertFalse(ratDriver.GetBrowserWindowUrl().contains("developments"));
-        ratDriver.PressForwardButton();
-        devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("developments"));
-        ratDriver.ClosePagesAndQuitDriver();
+        WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        ratDriver.clickLinkAndWait(devLink);
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("developments"));
+        ratDriver.pressBackButton();
+        devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        Assert.assertFalse(ratDriver.getBrowserWindowUrl().contains("developments"));
+        ratDriver.pressForwardButton();
+        devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("developments"));
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetPageSourceIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, true);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", true);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        Assert.assertTrue(ratDriver.GetPageSource().length() >= 256);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        Assert.assertTrue(ratDriver.getPageSource().length() >= 256);
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Ignore
     @Test
     public void testSwitchToWindowIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        String window = ratDriver.GetCurrentWindowHandle();
-        ratDriver.OpenNewView();
-        ratDriver.NavigateToPage("http://www.google.com");
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("google"));
-        ratDriver.SwitchToWindow(window);
-        Assert.assertTrue(ratDriver.GetBrowserWindowUrl().contains("ratted"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        String window = ratDriver.getCurrentWindowHandle();
+        ratDriver.openNewView();
+        ratDriver.navigateToPage("http://www.google.com");
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("google"));
+        ratDriver.switchToWindow(window);
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("ratted"));
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetBrowserWindowTitleIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        String title = ratDriver.GetBrowserWindowTitle();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        String title = ratDriver.getBrowserWindowTitle();
         Assert.assertTrue(title.contains("Totally Ratted Limited"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetAllWindowHandlesIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        Set<String> handles = ratDriver.GetAllWindowHandles();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        Set<String> handles = ratDriver.getAllWindowHandles();
         Assert.assertNotNull(handles);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testClickLinkAndWaitForPageIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement devLink = ratDriver.FindElementByLinkText("Developments", false);
-        Assert.assertTrue(ratDriver.ElementExists(devLink));
-        ratDriver.ClickLinkAndWaitForUrl(devLink, "developments");
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement devLink = ratDriver.findElementByLinkText("Developments", false);
+        Assert.assertTrue(ratDriver.elementExists(devLink));
+        ratDriver.clickLinkAndWaitForUrl(devLink, "developments");
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetElementAttributeIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementById("carousel-example", false);
-        Assert.assertTrue(ratDriver.GetElementAttribute(element, "data-ride", false).contains("carousel"));
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementById("carousel-example", false);
+        Assert.assertTrue(ratDriver.getElementAttribute(element, "data-ride", false).contains("carousel"));
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindByClassNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementByClassName("carousel-inner", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementByClassName("carousel-inner", false);
         Assert.assertTrue(element.isDisplayed());
         Assert.assertTrue(element.isEnabled());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementsByClassNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        List<WebElement> elements = ratDriver.FindElementsByClassName("menutext", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        List<WebElement> elements = ratDriver.findElementsByClassName("menutext", false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByClassNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement parent = ratDriver.FindElementByCssSelector(".nav.navbar-nav.navbar-right", false);
-        List<WebElement> elements = ratDriver.FindSubElementsByClassName("menutext", parent, false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement parent = ratDriver.findElementByCssSelector(".nav.navbar-nav.navbar-right", false);
+        List<WebElement> elements = ratDriver.findSubElementsByClassName("menutext", parent, false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByClassNameLocatorIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        List<WebElement> elements = ratDriver.FindSubElementsByClassName("menutext", By.className("container"), false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        List<WebElement> elements = ratDriver.findSubElementsByClassName("menutext", By.className("container"), false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindByIdIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementById("home", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementById("home", false);
         Assert.assertTrue(element.isDisplayed());
         Assert.assertTrue(element.isEnabled());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindByLinkTextIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementByLinkText("Developments", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementByLinkText("Developments", false);
         Assert.assertTrue(element.isEnabled());
         Assert.assertTrue(element.isDisplayed());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementsByLinkTextIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        List<WebElement> elements = ratDriver.FindElementsByLinkText("Read Details", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        List<WebElement> elements = ratDriver.findElementsByLinkText("Read Details", false);
         Assert.assertEquals(6, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByLinkTextIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement parent = ratDriver.FindElementById("just-intro", false);
-        List<WebElement> elements = ratDriver.FindSubElementsByLinkText("Read Details", parent, false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement parent = ratDriver.findElementById("just-intro", false);
+        List<WebElement> elements = ratDriver.findSubElementsByLinkText("Read Details", parent, false);
         Assert.assertEquals(3, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByLinkTextLocatorIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
         By parent = By.id("just-intro");
-        List<WebElement> elements = ratDriver.FindSubElementsByLinkText("Read Details", parent, false);
+        List<WebElement> elements = ratDriver.findSubElementsByLinkText("Read Details", parent, false);
         Assert.assertEquals(3, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementByTagNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementByTag("body", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementByTag("body", false);
         Assert.assertNotNull(element);
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementsByTagNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        List<WebElement> elements = ratDriver.FindElementsByTag("section", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        List<WebElement> elements = ratDriver.findElementsByTag("section", false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByTagNameIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement parent = ratDriver.FindElementById("just-intro", false);
-        List<WebElement> elements = ratDriver.FindSubElementsByTag("a", parent, false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement parent = ratDriver.findElementById("just-intro", false);
+        List<WebElement> elements = ratDriver.findSubElementsByTag("a", parent, false);
         Assert.assertEquals(3, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByTagNameLocatorIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
         By parent = By.id("just-intro");
-        List<WebElement> elements = ratDriver.FindSubElementsByTag("a", parent, false);
+        List<WebElement> elements = ratDriver.findSubElementsByTag("a", parent, false);
         Assert.assertEquals(3, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementByXPathIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement element = ratDriver.FindElementByXPath(".//*[@id='carousel-example']", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement element = ratDriver.findElementByXPath(".//*[@id='carousel-example']", false);
         Assert.assertTrue(element.isDisplayed());
         Assert.assertTrue(element.isEnabled());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindElementsByXPathIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        List<WebElement> elements = ratDriver.FindElementsByXPath(".//section", false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        List<WebElement> elements = ratDriver.findElementsByXPath(".//section", false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByXPathIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
-        WebElement parent = ratDriver.FindElementByXPath("html/body", false);
-        List<WebElement> elements = ratDriver.FindSubElementsByXPath(".//section", parent, false);
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
+        WebElement parent = ratDriver.findElementByXPath("html/body", false);
+        List<WebElement> elements = ratDriver.findSubElementsByXPath(".//section", parent, false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testFindSubElementsByXPathLocatorIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
         By parent = By.xpath("html/body");
-        List<WebElement> elements = ratDriver.FindSubElementsByXPath(".//section", parent, false);
+        List<WebElement> elements = ratDriver.findSubElementsByXPath(".//section", parent, false);
         Assert.assertEquals(5, elements.size());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testExtractElementFromCollectionByAttributeLocatorIE() {
         ratDriver = new RatDriver(DriverType.InternetExplorerDriver, false);
-        ratDriver.NavigateToPage("http://www.totallyratted.com");
-        ratDriver.MaximiseView();
+        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.maximiseView();
         By parent = By.xpath("html/body");
-        WebElement element = ratDriver.ExtractElementFromCollectionByAttribute(parent, LocatorType.XPath, ".//section", "class", "note-sec", false);
+        WebElement element = ratDriver.extractElementFromCollectionByAttribute(parent, LocatorType.XPath, ".//section", "class", "note-sec", false);
         Assert.assertTrue(element.isDisplayed());
         Assert.assertTrue(element.isEnabled());
-        ratDriver.ClosePagesAndQuitDriver();
+        ratDriver.closePagesAndQuitDriver();
     }
 }

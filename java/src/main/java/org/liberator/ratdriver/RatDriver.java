@@ -12,7 +12,6 @@ import org.liberator.ratdriver.performance.RatWatch;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
@@ -27,6 +26,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
+@SuppressWarnings("unused")
 public class RatDriver implements IRatDriver {
 
     //region Instance Variables
@@ -115,7 +115,7 @@ public class RatDriver implements IRatDriver {
     /**
      * Contains timers for
      */
-    private RatWatch RatTimerCollection = null;
+    private RatWatch RatTimerCollection;
 
     /**
      * Whether to record performance statistics
@@ -123,9 +123,6 @@ public class RatDriver implements IRatDriver {
     @Getter
     @Setter
     public Boolean RecordPerformance;
-
-
-    ConsoleDebugLevel _debugLevel;
 
     /**
      *
@@ -143,7 +140,7 @@ public class RatDriver implements IRatDriver {
         try {
 
             if (RecordPerformance) {
-                InitialiseRatWatch(false);
+                initialiseRatWatch(false);
                 RatTimerCollection.StartTimer();
             }
 
@@ -163,7 +160,7 @@ public class RatDriver implements IRatDriver {
     public RatDriver(DriverType type, BasePreferences preferences) {
         try {
             if (RecordPerformance) {
-                InitialiseRatWatch(false);
+                initialiseRatWatch(false);
                 RatTimerCollection.StartTimer();
             }
             establishDriverType(type, preferences);
@@ -180,7 +177,7 @@ public class RatDriver implements IRatDriver {
     public RatDriver(DriverType type, BasePreferences preferences, Boolean performanceTimings) {
         try {
             if (RecordPerformance) {
-                InitialiseRatWatch(performanceTimings);
+                initialiseRatWatch(performanceTimings);
                 RatTimerCollection.StartTimer();
             }
             establishDriverType(type, preferences);
@@ -200,7 +197,7 @@ public class RatDriver implements IRatDriver {
         try {
             RecordPerformance = performanceTimings;
             if (RecordPerformance) {
-                InitialiseRatWatch(performanceTimings);
+                initialiseRatWatch(true);
                 RatTimerCollection.StartTimer();
             }
 
@@ -232,17 +229,16 @@ public class RatDriver implements IRatDriver {
      */
     @Override
 
-    public void HoverOverMenu(WebElement element, Boolean wait) {
+    public void hoverOverMenu(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
+                waitForElementToLoad(element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hoverOverMenu", "Unable to hover over the named menu");
         }
     }
 
@@ -253,18 +249,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void HoverOverMenu(By locator, Boolean wait) {
+    public void hoverOverMenu(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hoverOverMenu", "Unable to hover over the named menu");
         }
     }
 
@@ -275,20 +270,19 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickAndHoverOverMenu(WebElement element, Boolean wait) {
+    public void clickAndHoverOverMenu(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                ClickLink(element, wait);
+                waitForElementToLoad(element);
+                clickLink(element, wait);
             } else {
-                ClickLink(element, null);
+                clickLink(element, null);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to click and hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickAndHoverOverMenu", "Unable to click and hover over the named menu");
         }
     }
 
@@ -299,18 +293,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickAndHoverOverMenu(By locator, Boolean wait) {
+    public void clickAndHoverOverMenu(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).click(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickAndHoverOverMenu", "Unable to click and hover over the named menu");
         }
     }
 
@@ -321,17 +314,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickAndHoldMenu(WebElement element, Boolean wait) {
+    public void clickAndHoldMenu(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Element);
+                waitForElementToBeClickable(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).clickAndHold(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to click and hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickAndHoldMenu", "Unable to click and hold over the named menu");
         }
     }
 
@@ -342,18 +334,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickAndHoldMenu(By locator, Boolean wait) {
+    public void clickAndHoldMenu(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).clickAndHold(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to hover over the named menu");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickAndHoldMenu", "Unable to click and hold over the named menu");
         }
     }
 
@@ -364,17 +355,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickContextualMenu(WebElement element, Boolean wait) {
+    public void clickContextualMenu(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(element);
+                waitForElementToBeClickable(element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).contextClick(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to click the contextual menu.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickContextualMenu", "Unable to click the contextual menu.");
         }
     }
 
@@ -385,18 +375,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickContextualMenu(By locator, Boolean wait) {
+    public void clickContextualMenu(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).contextClick(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to click the contextual menu.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickContextualMenu", "Unable to click the contextual menu.");
         }
     }
 
@@ -407,17 +396,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void DoubleClick(WebElement element, Boolean wait) {
+    public void doubleClick(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(element);
+                waitForElementToBeClickable(element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).doubleClick(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to double click the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "doubleClick", "Unable to double click the element.");
         }
     }
 
@@ -428,18 +416,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void DoubleClick(By locator, Boolean wait) {
+    public void doubleClick(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).doubleClick(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to click the contextual menu.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "doubleClick", "Unable to double click the element.");
         }
     }
 
@@ -452,20 +439,19 @@ public class RatDriver implements IRatDriver {
      * @param waitForTarget Whether to wait for the target element to reach a known condition
      */
     @Override
-    public void DragAndDrop(WebElement source, WebElement target, Boolean waitForSource, Boolean waitForTarget) {
+    public void dragAndDrop(WebElement source, WebElement target, Boolean waitForSource, Boolean waitForTarget) {
         try {
             Element = source;
             if (waitForSource == null || waitForSource) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             if (waitForTarget == null || waitForTarget) {
-                WaitForElementToLoad(target);
+                waitForElementToLoad(target);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).dragAndDrop(Element, target).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to drag and drop the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "dragAndDrop", "Unable to drag and drop the element.");
         }
     }
 
@@ -478,23 +464,22 @@ public class RatDriver implements IRatDriver {
      * @param waitForTarget Whether to wait for the target element to reach a known condition
      */
     @Override
-    public void DragAndDrop(By source, By target, Boolean waitForSource, Boolean waitForTarget) {
+    public void dragAndDrop(By source, By target, Boolean waitForSource, Boolean waitForTarget) {
         try {
             Locator = source;
             if (waitForSource == null || waitForSource) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Locator = target;
             if (waitForTarget == null || waitForTarget) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             WebElement targetElement = (EncapsulatedDriver).findElement(target);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).dragAndDrop(Element, targetElement).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to drag and drop the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "dragAndDrop", "Unable to drag and drop the element.");
         }
     }
 
@@ -507,17 +492,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void DragAndDropToOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
+    public void dragAndDropToOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).dragAndDropBy(Element, xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to drag and drop the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "dragAndDropToOffset", "Unable to drag and drop the element.");
         }
     }
 
@@ -530,18 +514,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void DragAndDropToOffset(By locator, int xOffset, int yOffset, Boolean wait) {
+    public void dragAndDropToOffset(By locator, int xOffset, int yOffset, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).dragAndDropBy(Element, xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to drag and drop the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "dragAndDropToOffset", "Unable to drag and drop the element.");
         }
     }
 
@@ -553,17 +536,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void KeyDownOnElement(WebElement element, Keys key, Boolean wait) {
+    public void keyDownOnElement(WebElement element, Keys key, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).keyDown(Element, key).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to key down on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "keyDownOnElement", "Unable to key down on the element.");
         }
     }
 
@@ -575,18 +557,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void KeyDownOnElement(By locator, Keys key, Boolean wait) {
+    public void keyDownOnElement(By locator, Keys key, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).keyDown(Element, key).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to key down on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "keyDownOnElement", "Unable to key down on the element.");
         }
     }
 
@@ -598,17 +579,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void KeyUpOnElement(WebElement element, Keys key, Boolean wait) {
+    public void keyUpOnElement(WebElement element, Keys key, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).keyUp(Element, key).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to key up on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "keyUpOnElement", "Unable to key up on the element.");
         }
     }
 
@@ -620,18 +600,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void KeyUpOnElement(By locator, Keys key, Boolean wait) {
+    public void keyUpOnElement(By locator, Keys key, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).keyUp(Element, key).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to key down on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "keyUpOnElement", "Unable to key up on the element.");
         }
     }
 
@@ -644,17 +623,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void MoveByOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
+    public void moveByOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to move by offset.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "moveByOffset", "Unable to move by offset.");
         }
     }
 
@@ -667,18 +645,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void MoveByOffset(By locator, int xOffset, int yOffset, Boolean wait) {
+    public void moveByOffset(By locator, int xOffset, int yOffset, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to move by offset.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "moveByOffset", "Unable to move by offset.");
         }
     }
 
@@ -691,17 +668,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void MoveToElementWithOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
+    public void moveToElementWithOffset(WebElement element, int xOffset, int yOffset, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to move by offset.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "moveToElementWithOffset", "Unable to move by offset.");
         }
     }
 
@@ -714,18 +690,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void MoveToElementWithOffset(By locator, int xOffset, int yOffset, Boolean wait) {
+    public void moveToElementWithOffset(By locator, int xOffset, int yOffset, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).moveByOffset(xOffset, yOffset).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to move by offset.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "moveToElementWithOffset", "Unable to move by offset.");
         }
     }
 
@@ -736,17 +711,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ReleaseMouseButton(WebElement element, Boolean wait) {
+    public void releaseMouseButton(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).release(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to send a mouse button release.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "releaseMouseButton", "Unable to send a mouse button release.");
         }
     }
 
@@ -757,18 +731,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ReleaseMouseButton(By locator, Boolean wait) {
+    public void releaseMouseButton(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).release(Element).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to send a mouse button release.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "releaseMouseButton", "Unable to send a mouse button release.");
         }
     }
 
@@ -780,17 +753,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SendValueToField(WebElement element, Keys text, Boolean wait) {
+    public void sendValueToField(WebElement element, Keys text, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).sendKeys(Element, text).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to send the value to the field.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "sendValueToField", "Unable to send the value to the field.");
         }
     }
 
@@ -802,18 +774,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SendValueToField(By locator, Keys text, Boolean wait) {
+    public void sendValueToField(By locator, Keys text, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(Locator);
+                waitForElementToLoad(Locator);
             }
             Element = (EncapsulatedDriver).findElement(Locator);
             Actions actions = new Actions(EncapsulatedDriver);
             actions.moveToElement(Element).sendKeys(Element, text).build().perform();
         } catch (Exception ex) {
-            System.out.println("Unable to send the value to the field.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "sendValueToField", "Unable to send the value to the field.");
         }
     }
 
@@ -825,17 +796,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectItemFromDropdown(WebElement element, String item, Boolean wait) {
+    public void selectItemFromDropdown(WebElement element, String item, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Element);
+                waitForElementToBeClickable(Element);
             }
             Select select = new Select(Element);
             select.selectByVisibleText(item);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectItemFromDropdown", "Unable to select the item from the dropdown.");
         }
     }
 
@@ -847,18 +817,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectItemFromDropdown(By locator, String item, Boolean wait) {
+    public void selectItemFromDropdown(By locator, String item, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = EncapsulatedDriver.findElement(locator);
             Select select = new Select(Element);
             select.selectByVisibleText(item);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectItemFromDropdown", "Unable to select the item from the dropdown.");
         }
     }
 
@@ -870,17 +839,16 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectRowFromDropdown(WebElement element, int row, Boolean wait) {
+    public void selectRowFromDropdown(WebElement element, int row, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Select select = new Select(Element);
             select.selectByIndex(row);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectRowFromDropdown", "Unable to select the item from the dropdown.");
         }
     }
 
@@ -892,18 +860,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectRowFromDropdown(By locator, int row, Boolean wait) {
+    public void selectRowFromDropdown(By locator, int row, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = EncapsulatedDriver.findElement(locator);
             Select select = new Select(Element);
             select.selectByIndex(row);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectRowFromDropdown", "Unable to select the row from the dropdown.");
         }
     }
 
@@ -912,20 +879,19 @@ public class RatDriver implements IRatDriver {
      *
      * @param element The dropdown menu
      * @param value   The value to choose
-     * @param wait    (Optional parameter) Whether to wait for the element to reach a known state<
+     * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectValueFromDropdown(WebElement element, String value, Boolean wait) {
+    public void selectValueFromDropdown(WebElement element, String value, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             Select select = new Select(Element);
             select.selectByValue(value);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectValueFromDropdown", "Unable to select the value from the dropdown.");
         }
     }
 
@@ -937,18 +903,17 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void SelectValueFromDropdown(By locator, String value, Boolean wait) {
+    public void selectValueFromDropdown(By locator, String value, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToBeClickable(Locator);
+                waitForElementToBeClickable(Locator);
             }
             Element = EncapsulatedDriver.findElement(locator);
             Select select = new Select(Element);
             select.selectByValue(value);
         } catch (Exception ex) {
-            System.out.println("Unable to select the item from the dropdown.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "selectValueFromDropdown", "Unable to select the item from the dropdown.");
         }
     }
 
@@ -958,7 +923,7 @@ public class RatDriver implements IRatDriver {
      * @return The encapsulated IWebDriver
      */
     @Override
-    public WebDriver ReturnEncapsulatedDriver() {
+    public WebDriver returnEncapsulatedDriver() {
         try {
             EncapsulatedDriver = Driver;
             EncapsulatedDriver.manage().timeouts().pageLoadTimeout(BaseSettings.PageLoad, TimeUnit.SECONDS);
@@ -966,8 +931,7 @@ public class RatDriver implements IRatDriver {
             EncapsulatedDriver.manage().timeouts().setScriptTimeout(BaseSettings.AsyncJavaScript, TimeUnit.SECONDS);
             return EncapsulatedDriver;
         } catch (Exception ex) {
-            System.out.println("Could not return encapsulated driver.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "returnEncapsulatedDriver", "Could not return encapsulated driver.");
             return null;
         }
     }
@@ -979,14 +943,13 @@ public class RatDriver implements IRatDriver {
      * @return A Boolean value indicating whether the cookie exists
      */
     @Override
-    public Boolean DoesCookieExist(String cookieName) {
+    public Boolean doesCookieExist(String cookieName) {
         try {
             EncapsulatedDriver.manage().getCookieNamed(cookieName);
             System.out.println("Named cookie exists");
             return true;
         } catch (Exception ex) {
-            System.out.println("Named cookie does not exist");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "doesCookieExist", "Named cookie does not exist");
             return false;
         }
     }
@@ -998,14 +961,14 @@ public class RatDriver implements IRatDriver {
      * @param value The value set within the cookie
      */
     @Override
-    public void AddCookie(String name, String value) {
+    public void addCookie(String name, String value) {
         try {
             Cookie cookie = new Cookie(name, value);
             EncapsulatedDriver.manage().addCookie(cookie);
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addCookie", "Named cookie was not added.");
         }
     }
 
@@ -1017,14 +980,14 @@ public class RatDriver implements IRatDriver {
      * @param path  The path of the cookie
      */
     @Override
-    public void AddCookie(String name, String value, String path) {
+    public void addCookie(String name, String value, String path) {
         try {
             Cookie cookie = new Cookie(name, value, path);
             EncapsulatedDriver.manage().addCookie(cookie);
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
             System.out.println("Named cookie was not added.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addCookie", "Named cookie was not added.");
         }
     }
 
@@ -1037,14 +1000,13 @@ public class RatDriver implements IRatDriver {
      * @param expiry The date and time at which the cookie expires
      */
     @Override
-    public void AddCookie(String name, String value, String path, Date expiry) {
+    public void addCookie(String name, String value, String path, Date expiry) {
         try {
             Cookie cookie = new Cookie(name, value, path, expiry);
             EncapsulatedDriver.manage().addCookie(cookie);
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
-            System.out.println("Named cookie was not added.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addCookie", "Named cookie was not added.");
         }
     }
 
@@ -1058,14 +1020,13 @@ public class RatDriver implements IRatDriver {
      * @param expiry The date and time at which the cookie expires
      */
     @Override
-    public void AddCookie(String name, String value, String domain, String path, Date expiry) {
+    public void addCookie(String name, String value, String domain, String path, Date expiry) {
         try {
             Cookie cookie = new Cookie(name, value, domain, path, expiry);
             EncapsulatedDriver.manage().addCookie(cookie);
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
-            System.out.println("Named cookie was not added.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addCookie", "Named cookie was not added.");
         }
     }
 
@@ -1075,13 +1036,12 @@ public class RatDriver implements IRatDriver {
      * @param cookie The cookie to be added
      */
     @Override
-    public void AddCookie(Cookie cookie) {
+    public void addCookie(Cookie cookie) {
         try {
             EncapsulatedDriver.manage().addCookie(cookie);
             System.out.println("Named cookie was added.");
         } catch (Exception ex) {
-            System.out.println("Named cookie was not added.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addCookie", "Named cookie was not added.");
         }
     }
 
@@ -1091,14 +1051,13 @@ public class RatDriver implements IRatDriver {
      * @return The list of cookies
      */
     @Override
-    public Set<Cookie> GetCookies() {
+    public Set<Cookie> getCookies() {
         try {
             Set<Cookie> cookies = EncapsulatedDriver.manage().getCookies();
             System.out.println("Cookie set returned.");
             return cookies;
         } catch (Exception ex) {
-            System.out.println("Could not return the cookies.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getCookies", "Could not return the cookies.");
             return null;
         }
     }
@@ -1107,13 +1066,12 @@ public class RatDriver implements IRatDriver {
      * Deletes all cookies currently found in the browser
      */
     @Override
-    public void DeleteAllCookies() {
+    public void deleteAllCookies() {
         try {
             EncapsulatedDriver.manage().deleteAllCookies();
             System.out.println("All cookies deleted.");
         } catch (Exception ex) {
-            System.out.println("Could not delete all cookies.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "deleteAllCookies", "Could not delete all cookies.");
         }
     }
 
@@ -1123,13 +1081,12 @@ public class RatDriver implements IRatDriver {
      * @param cookie The definition of the cookie to be deleted
      */
     @Override
-    public void DeleteCookie(Cookie cookie) {
+    public void deleteCookie(Cookie cookie) {
         try {
             EncapsulatedDriver.manage().deleteCookie(cookie);
             System.out.println("Cookie was deleted.");
         } catch (Exception ex) {
-            System.out.println("Cookie was not deleted.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "deleteCookieNamed", "Cookie was not deleted.");
         }
     }
 
@@ -1139,13 +1096,12 @@ public class RatDriver implements IRatDriver {
      * @param cookie The name of the cookie
      */
     @Override
-    public void DeleteCookieNamed(String cookie) {
+    public void deleteCookieNamed(String cookie) {
         try {
             EncapsulatedDriver.manage().deleteCookieNamed(cookie);
             System.out.println("Cookie was deleted.");
         } catch (Exception ex) {
-            System.out.println("Cookie was not deleted.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "deleteCookieNamed", "Cookie was not deleted.");
         }
     }
 
@@ -1156,14 +1112,13 @@ public class RatDriver implements IRatDriver {
      * @return The named cookie
      */
     @Override
-    public Cookie GetCookieNamed(String cookie) {
+    public Cookie getCookieNamed(String cookie) {
         try {
             Cookie returnedCookie = EncapsulatedDriver.manage().getCookieNamed(cookie);
             System.out.println("Cookie was returned.");
             return returnedCookie;
         } catch (Exception ex) {
-            System.out.println("Cookie could not be returned.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getCookieNamed", "Cookie could not be returned.");
             return null;
         }
     }
@@ -1175,14 +1130,14 @@ public class RatDriver implements IRatDriver {
      * @param value The value to set within the cookie
      */
     @Override
-    public void ReplaceCookie(String name, String value) {
+    public void replaceCookie(String name, String value) {
         try {
-            if (DoesCookieExist(name)) {
-                DeleteCookieNamed(name);
+            if (doesCookieExist(name)) {
+                deleteCookieNamed(name);
             }
-            AddCookie(name, value);
+            addCookie(name, value);
         } catch (Exception ex) {
-            System.out.println("Cookie could not be replaced.");
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "replaceCookie", "Cookie could not be replaced.");
         }
     }
 
@@ -1194,15 +1149,14 @@ public class RatDriver implements IRatDriver {
      * @param path  The path of the cookie
      */
     @Override
-    public void ReplaceCookie(String name, String value, String path) {
+    public void replaceCookie(String name, String value, String path) {
         try {
-            if (DoesCookieExist(name)) {
-                DeleteCookieNamed(name);
+            if (doesCookieExist(name)) {
+                deleteCookieNamed(name);
             }
-            AddCookie(name, value, path);
+            addCookie(name, value, path);
         } catch (Exception ex) {
-            System.out.println("Cookie could not be replaced.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "replaceCookie", "Cookie could not be replaced.");
         }
     }
 
@@ -1215,15 +1169,14 @@ public class RatDriver implements IRatDriver {
      * @param expiry The date and time at which the cookie expires
      */
     @Override
-    public void ReplaceCookie(String name, String value, String path, Date expiry) {
+    public void replaceCookie(String name, String value, String path, Date expiry) {
         try {
-            if (DoesCookieExist(name)) {
-                DeleteCookieNamed(name);
+            if (doesCookieExist(name)) {
+                deleteCookieNamed(name);
             }
-            AddCookie(name, value, path, expiry);
+            addCookie(name, value, path, expiry);
         } catch (Exception ex) {
-            System.out.println("Cookie could not be replaced.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "replaceCookie", "Cookie could not be replaced.");
         }
     }
 
@@ -1237,15 +1190,14 @@ public class RatDriver implements IRatDriver {
      * @param expiry The date and time at which the cookie expires
      */
     @Override
-    public void ReplaceCookie(String name, String value, String domain, String path, Date expiry) {
+    public void replaceCookie(String name, String value, String domain, String path, Date expiry) {
         try {
-            if (DoesCookieExist(name)) {
-                DeleteCookieNamed(name);
+            if (doesCookieExist(name)) {
+                deleteCookieNamed(name);
             }
-            AddCookie(name, value, domain, path, expiry);
+            addCookie(name, value, domain, path, expiry);
         } catch (Exception ex) {
-            System.out.println("Cookie could not be replaced.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "replaceCookie", "Cookie could not be replaced.");
         }
     }
 
@@ -1255,14 +1207,13 @@ public class RatDriver implements IRatDriver {
      * @return The list of log types
      */
     @Override
-    public Set<String> GetAvailableLogTypes() {
+    public Set<String> getAvailableLogTypes() {
         try {
             Set<String> logTypes = EncapsulatedDriver.manage().logs().getAvailableLogTypes();
             System.out.println("Returning log types.");
             return logTypes;
         } catch (Exception ex) {
-            System.out.println("Could not return log types.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getAvailableLogTypes", "Could not return log types.");
             return null;
         }
     }
@@ -1274,14 +1225,13 @@ public class RatDriver implements IRatDriver {
      * @return The list of log entries
      */
     @Override
-    public List<LogEntry> GetAvailableLogEntries(String logKind) {
+    public List<LogEntry> getAvailableLogEntries(String logKind) {
         try {
             LogEntries log = EncapsulatedDriver.manage().logs().get(logKind);
             System.out.println("Returning log entries.");
             return log.getAll();
         } catch (Exception ex) {
-            System.out.println("Could not return log entries.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getAvailableLogEntries", "Could not return log entries.");
             return null;
         }
     }
@@ -1294,14 +1244,13 @@ public class RatDriver implements IRatDriver {
      * @param milliseconds The number of milliseconds in the  implicit wait
      */
     @Override
-    public void SetImplicitWait(int minutes, int seconds, int milliseconds) {
+    public void setImplicitWait(int minutes, int seconds, int milliseconds) {
         try {
             long millis = (minutes * 60 + seconds) * 1000 + milliseconds;
             EncapsulatedDriver.manage().timeouts().implicitlyWait(millis, TimeUnit.MILLISECONDS);
             System.out.println("Set implicit timeout.");
         } catch (Exception ex) {
-            System.out.println("Could not set implicit timeout.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "setImplicitWait", "Could not set implicit timeout.");
         }
     }
 
@@ -1313,14 +1262,13 @@ public class RatDriver implements IRatDriver {
      * @param milliseconds The number of milliseconds in the page load timeout
      */
     @Override
-    public void SetPageLoadTimeout(int minutes, int seconds, int milliseconds) {
+    public void setPageLoadTimeout(int minutes, int seconds, int milliseconds) {
         try {
             long millis = (minutes * 60 + seconds) * 1000 + milliseconds;
             EncapsulatedDriver.manage().timeouts().pageLoadTimeout(millis, TimeUnit.MILLISECONDS);
             System.out.println("Set page load timeout.");
         } catch (Exception ex) {
-            System.out.println("Could not set page load timeout.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "setPageLoadTimeout", "Could not set page load timeout.");
         }
     }
 
@@ -1332,14 +1280,13 @@ public class RatDriver implements IRatDriver {
      * @param milliseconds The number of milliseconds in the script timeout
      */
     @Override
-    public void SetScriptTimeout(int minutes, int seconds, int milliseconds) {
+    public void setScriptTimeout(int minutes, int seconds, int milliseconds) {
         try {
             long millis = (minutes * 60 + seconds) * 1000 + milliseconds;
             EncapsulatedDriver.manage().timeouts().setScriptTimeout(millis, TimeUnit.MILLISECONDS);
             System.out.println("Set script timeout.");
         } catch (Exception ex) {
-            System.out.println("Could not set script timeout.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "setScriptTimeout", "Could not set script timeout.");
         }
     }
 
@@ -1347,13 +1294,12 @@ public class RatDriver implements IRatDriver {
      * Maximises the current window
      */
     @Override
-    public void MaximiseView() {
+    public void maximiseView() {
         try {
             EncapsulatedDriver.manage().window().maximize();
             System.out.println("Browser window was maximised.");
         } catch (Exception ex) {
-            System.out.println("Browser window could not be maximised.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "maximiseView", "Browser window could not be maximised.");
         }
     }
 
@@ -1363,14 +1309,13 @@ public class RatDriver implements IRatDriver {
      * @return An object containing the x and y coordinates of the top left corner of the window
      */
     @Override
-    public Point GetWindowPosition() {
+    public Point getWindowPosition() {
         try {
             Point point = EncapsulatedDriver.manage().window().getPosition();
             System.out.println("Browser window was maximised.");
             return point;
         } catch (Exception ex) {
-            System.out.println("Browser window could not be maximised.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getWindowPosition", "Browser window could not be maximised.");
             return null;
         }
     }
@@ -1381,14 +1326,13 @@ public class RatDriver implements IRatDriver {
      * @return An object containing the width and height of the current window
      */
     @Override
-    public Dimension GetWindowSize() {
+    public Dimension getWindowSize() {
         try {
             Dimension dimension = EncapsulatedDriver.manage().window().getSize();
             System.out.println("Browser size was returned.");
             return dimension;
         } catch (Exception ex) {
-            System.out.println("Browser size could not be returned.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getWindowSize", "Browser size could not be returned.");
             return null;
         }
     }
@@ -1400,14 +1344,13 @@ public class RatDriver implements IRatDriver {
      * @param height The height to assign to the browser
      */
     @Override
-    public void ResizeBrowserWindow(int width, int height) {
+    public void resizeBrowserWindow(int width, int height) {
         try {
             Dimension dimension = new Dimension(width, height);
             EncapsulatedDriver.manage().window().setSize(dimension);
             System.out.println("Browser was resized.");
         } catch (Exception ex) {
-            System.out.println("Browser could not be resized.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "resizeBrowserWindow", "Browser could not be resized.");
         }
     }
 
@@ -1415,13 +1358,12 @@ public class RatDriver implements IRatDriver {
      * Presses the back button of the browser
      */
     @Override
-    public void PressBackButton() {
+    public void pressBackButton() {
         try {
             EncapsulatedDriver.navigate().back();
             System.out.println("Back button was pressed.");
         } catch (Exception ex) {
-            System.out.println("Back button could not be pressed.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "pressBackButton", "Back button could not be pressed.");
         }
     }
 
@@ -1429,13 +1371,12 @@ public class RatDriver implements IRatDriver {
      * Presses the forward button of the browser
      */
     @Override
-    public void PressForwardButton() {
+    public void pressForwardButton() {
         try {
             EncapsulatedDriver.navigate().forward();
             System.out.println("Forward button was pressed.");
         } catch (Exception ex) {
-            System.out.println("Forward button could not be pressed.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "pressForwardButton", "Forward button could not be pressed.");
         }
     }
 
@@ -1445,17 +1386,16 @@ public class RatDriver implements IRatDriver {
      * @param url The URL of the website to load in the browser
      */
     @Override
-    public void NavigateToPage(String url) {
+    public void navigateToPage(String url) {
         try {
             if (!DriverName.toLowerCase().contains("internetexplorer")) {
                 EncapsulatedDriver.navigate().to(url);
             } else {
                 EncapsulatedDriver.get(url);
             }
-            System.out.println("Navigation request sent");
+            System.out.println("\nNavigation request sent");
         } catch (Exception ex) {
-            System.out.println("Could not send navigation request.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "navigateToPage", "Could not send navigation request.");
         }
     }
 
@@ -1463,13 +1403,12 @@ public class RatDriver implements IRatDriver {
      * Refreshes the currently selected browser
      */
     @Override
-    public void RefreshBrowser() {
+    public void refreshBrowser() {
         try {
             EncapsulatedDriver.navigate().refresh();
-            System.out.println("Refresh request was sent.");
+            System.out.println("\nRefresh request was sent.");
         } catch (Exception ex) {
-            System.out.println("Refresh request was not sent.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "refreshBrowser", "Refresh request was not sent.");
         }
     }
 
@@ -1480,14 +1419,13 @@ public class RatDriver implements IRatDriver {
      * @return True if the page contains the text
      */
     @Override
-    public Boolean CheckPageSourceForText(String text) {
+    public Boolean checkPageSourceForText(String text) {
         try {
             boolean contains = EncapsulatedDriver.getPageSource().contains(text);
-            System.out.println("Page source checked for presence of text.");
+            System.out.println("\nPage source checked for presence of text.");
             return contains;
         } catch (Exception ex) {
-            System.out.println("Could not check page source for presence of text.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "checkPageSourceForText", "Could not check page source for presence of text.");
             return false;
         }
     }
@@ -1498,14 +1436,13 @@ public class RatDriver implements IRatDriver {
      * @return The Page Source
      */
     @Override
-    public String GetPageSource() {
+    public String getPageSource() {
         try {
             String pageSource = EncapsulatedDriver.getPageSource();
-            System.out.println("Page source requested.");
+            System.out.println("\nPage source requested.");
             return pageSource;
         } catch (Exception ex) {
-            System.out.println("Page source could not be requested.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getPageSource", "Page source could not be requested.");
             return null;
         }
     }
@@ -1514,13 +1451,12 @@ public class RatDriver implements IRatDriver {
      * Closes the browser pages and quits the driver
      */
     @Override
-    public void ClosePagesAndQuitDriver() {
+    public void closePagesAndQuitDriver() {
         try {
             EncapsulatedDriver.quit();
-            System.out.println("Terminated driver.");
+            System.out.println("\nTerminated driver.");
         } catch (Exception ex) {
-            System.out.println("Could not terminate driver.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "closePagesAndQuitDriver", "Could not terminate driver.");
         }
     }
 
@@ -1531,14 +1467,13 @@ public class RatDriver implements IRatDriver {
      * @return A true/false value
      */
     @Override
-    public Boolean IsWindowOpen(String window) {
+    public Boolean isWindowOpen(String window) {
         try {
             EncapsulatedDriver.switchTo().window(window);
-            System.out.println("Window presence confirmed.");
+            System.out.println("\nWindow presence confirmed.");
             return true;
         } catch (Exception ex) {
-            System.out.println("Could not confirm window presence.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "isWindowOpen", "Could not confirm window presence.");
             return false;
         }
     }
@@ -1547,13 +1482,12 @@ public class RatDriver implements IRatDriver {
      * Switches to the currently active WebElement
      */
     @Override
-    public void SwitchToActiveWebElement() {
+    public void switchToActiveWebElement() {
         try {
             EncapsulatedDriver.switchTo().activeElement();
-            System.out.println("Switched to active element.");
+            System.out.println("\nSwitched to active element.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to active element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToActiveWebElement", "Could not switch to active element.");
         }
     }
 
@@ -1561,13 +1495,12 @@ public class RatDriver implements IRatDriver {
      * Switches to the currently active Alert Dialog
      */
     @Override
-    public void SwitchToAlertDialog() {
+    public void switchToAlertDialog() {
         try {
             EncapsulatedDriver.switchTo().alert();
             System.out.println("Switched to alert.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to alert.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToAlertDialog", "Could not switch to alert.");
         }
     }
 
@@ -1577,13 +1510,12 @@ public class RatDriver implements IRatDriver {
      * Switches to the original frame or window
      */
     @Override
-    public void SwitchToDefaultContent() {
+    public void switchToDefaultContent() {
         try {
             EncapsulatedDriver.switchTo().defaultContent();
             System.out.println("Switched to default content.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to default content.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToDefaultContent", "Could not switch to default content.");
         }
     }
 
@@ -1593,13 +1525,12 @@ public class RatDriver implements IRatDriver {
      * @param frameIndex The index number for the frame
      */
     @Override
-    public void SwitchToFrame(int frameIndex) {
+    public void switchToFrame(int frameIndex) {
         try {
             EncapsulatedDriver.switchTo().frame(frameIndex);
             System.out.println("Switched to frame with given index.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to a frame with that index.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToFrame", "Could not switch to a frame with that index.");
         }
     }
 
@@ -1609,13 +1540,12 @@ public class RatDriver implements IRatDriver {
      * @param frameElement A WebElement representing the frame to activate
      */
     @Override
-    public void SwitchToFrame(WebElement frameElement) {
+    public void switchToFrame(WebElement frameElement) {
         try {
             EncapsulatedDriver.switchTo().frame(frameElement);
             System.out.println("Switched to the chosen frame element.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to the web element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToFrame", "Could not switch to the web element.");
         }
     }
 
@@ -1625,14 +1555,13 @@ public class RatDriver implements IRatDriver {
      * @param frameLocator The locator for the WebElement representing the frame to activate
      */
     @Override
-    public void SwitchToFrame(By frameLocator) {
+    public void switchToFrame(By frameLocator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(frameLocator);
             EncapsulatedDriver.switchTo().frame(webElement);
             System.out.println("Switched to the chosen frame element.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to the web element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToFrame", "Could not switch to the web element.");
         }
     }
 
@@ -1642,13 +1571,12 @@ public class RatDriver implements IRatDriver {
      * @param frameName The name of the frame to activate
      */
     @Override
-    public void SwitchToFrame(String frameName) {
+    public void switchToFrame(String frameName) {
         try {
             EncapsulatedDriver.switchTo().frame(frameName);
             System.out.println("Switched to the named frame element.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to a frame with thew given name.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToFrame", "Could not switch to a frame with thew given name.");
         }
     }
 
@@ -1656,13 +1584,12 @@ public class RatDriver implements IRatDriver {
      * Switches to the parent frame of a selected WebElement
      */
     @Override
-    public void SwitchToParentFrame() {
+    public void switchToParentFrame() {
         try {
             EncapsulatedDriver.switchTo().parentFrame();
             System.out.println("Switched to the parent frame.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to the parent frame.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToParentFrame", "Could not switch to the parent frame.");
         }
     }
 
@@ -1672,13 +1599,12 @@ public class RatDriver implements IRatDriver {
      * @param windowName The name of the window to switch to
      */
     @Override
-    public void SwitchToWindow(String windowName) {
+    public void switchToWindow(String windowName) {
         try {
             EncapsulatedDriver.switchTo().window(windowName);
             System.out.println("Switched to the window.");
         } catch (Exception ex) {
-            System.out.println("Could not switch to the window.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "switchToWindow", "Could not switch to the window.");
         }
     }
 
@@ -1688,14 +1614,13 @@ public class RatDriver implements IRatDriver {
      * @return The name of the currently active window
      */
     @Override
-    public String GetBrowserWindowTitle() {
+    public String getBrowserWindowTitle() {
         try {
             String title = EncapsulatedDriver.getTitle();
             System.out.println("Returned the browser window title.");
             return title;
         } catch (Exception ex) {
-            System.out.println("Could not return the browser window title.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getBrowserWindowTitle", "Could not return the browser window title.");
             return null;
         }
     }
@@ -1706,14 +1631,13 @@ public class RatDriver implements IRatDriver {
      * @return The URL for the browser
      */
     @Override
-    public String GetBrowserWindowUrl() {
+    public String getBrowserWindowUrl() {
         try {
             String windowUrl = EncapsulatedDriver.getCurrentUrl();
             System.out.println("Returned the url for the current browser window.");
             return windowUrl;
         } catch (Exception ex) {
-            System.out.println("Could not return the current url.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getBrowserWindowUrl", "Could not return the current url.");
             return null;
         }
     }
@@ -1724,14 +1648,13 @@ public class RatDriver implements IRatDriver {
      * @return A window handle representing a unique reference to a page
      */
     @Override
-    public String GetCurrentWindowHandle() {
+    public String getCurrentWindowHandle() {
         try {
             String windowUrl = EncapsulatedDriver.getWindowHandle();
             System.out.println("Returned the handle for the current browser window.");
             return windowUrl;
         } catch (Exception ex) {
-            System.out.println("Could not return the current window handle.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getCurrentWindowHandle", "Could not return the current window handle.");
             return null;
         }
     }
@@ -1742,14 +1665,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of WindowHandles
      */
     @Override
-    public Set<String> GetAllWindowHandles() {
+    public Set<String> getAllWindowHandles() {
         try {
             Set<String> handles = EncapsulatedDriver.getWindowHandles();
             System.out.println("Returned the handle for the current browser window.");
             return handles;
         } catch (Exception ex) {
-            System.out.println("Could not return the current window handle.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getAllWindowHandles", "Could not return the current window handle.");
             return null;
         }
     }
@@ -1758,15 +1680,15 @@ public class RatDriver implements IRatDriver {
      * Opens a new window using the send keys command
      */
     @Override
-    public void OpenNewView() {
+    public void openNewView() {
         try {
 
-            String tab = null;
+            String tab;
             if (!DriverName.toLowerCase().contains("internetexplorer")) {
                 JavascriptExecutor js = (JavascriptExecutor) EncapsulatedDriver;
                 js.executeScript("window.open();");
                 Set<String> handles = EncapsulatedDriver.getWindowHandles();
-                Iterator iterator = handles.iterator();
+                @SuppressWarnings("rawtypes") Iterator iterator = handles.iterator();
                 if (!DriverName.toLowerCase().contains("safari")) {
                     iterator.next();
                 }
@@ -1779,8 +1701,7 @@ public class RatDriver implements IRatDriver {
 
             System.out.println("Opened a new tab.");
         } catch (Exception ex) {
-            System.out.println("Could not open a new tab.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "openNewView", "Could not open a new tab.");
         }
     }
 
@@ -1788,13 +1709,12 @@ public class RatDriver implements IRatDriver {
      * Closes the currently selected window
      */
     @Override
-    public void CloseView() {
+    public void closeView() {
         try {
             EncapsulatedDriver.close();
             System.out.println("Closed the open view.");
         } catch (Exception ex) {
-            System.out.println("Could not close the current view.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "closeView", "Could not close the current view.");
         }
     }
 
@@ -1804,14 +1724,13 @@ public class RatDriver implements IRatDriver {
      * @param element The element for which to wait
      */
     @Override
-    public void WaitForElementToLoad(WebElement element) {
+    public void waitForElementToLoad(WebElement element) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForElementToLoad", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1821,14 +1740,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the element for which to wait
      */
     @Override
-    public void WaitForElementToLoad(By locator) {
+    public void waitForElementToLoad(By locator) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForElementToLoad", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1839,14 +1757,13 @@ public class RatDriver implements IRatDriver {
      * @param seconds Maximum number of seconds to wait
      */
     @Override
-    public void WaitForElementToLoad(WebElement element, int seconds) {
+    public void waitForElementToLoad(WebElement element, int seconds) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, seconds);
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForElementToLoad", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1857,14 +1774,13 @@ public class RatDriver implements IRatDriver {
      * @param seconds Maximum number of seconds to wait
      */
     @Override
-    public void WaitForElementToLoad(By locator, int seconds) {
+    public void waitForElementToLoad(By locator, int seconds) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, seconds);
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForElementToLoad", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1874,14 +1790,13 @@ public class RatDriver implements IRatDriver {
      * @param element An element from the previous page. If omitted, the code will wait for the body of the page to be visible
      */
     @Override
-    public void WaitForPageToLoad(WebElement element) {
+    public void waitForPageToLoad(WebElement element) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             webDriverWait.until(ExpectedConditions.stalenessOf(element));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForPageToLoad", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1891,14 +1806,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the element for which to wait
      */
     @Override
-    public void WaitForInvisibilityOfElement(By locator) {
+    public void waitForInvisibilityOfElement(By locator) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForInvisibilityOfElement", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1909,14 +1823,13 @@ public class RatDriver implements IRatDriver {
      * @param text    The text that should be found in the element
      */
     @Override
-    public void WaitForInvisibilityOfElementWithText(By locator, String text) {
+    public void waitForInvisibilityOfElementWithText(By locator, String text) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             webDriverWait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text));
             System.out.println("Element confirmed as visible.");
         } catch (Exception ex) {
-            System.out.println("Element was not visible within the timeout period.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "waitForInvisibilityOfElementWithText", "Element was not visible within the timeout period.");
         }
     }
 
@@ -1927,10 +1840,10 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickLink(WebElement element, Boolean wait) {
+    public void clickLink(WebElement element, Boolean wait) {
         try {
             if (wait == null || wait) {
-                WaitForElementToBeClickable(element);
+                waitForElementToBeClickable(element);
             }
             if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
@@ -1938,8 +1851,7 @@ public class RatDriver implements IRatDriver {
                 Element.click();
             }
         } catch (Exception ex) {
-            System.out.println("Clicked on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLink", "Clicked on the element.");
         }
     }
 
@@ -1950,11 +1862,11 @@ public class RatDriver implements IRatDriver {
      * @param wait    (Optional parameter) Whether to wait for the element to reach a known state
      */
     @Override
-    public void ClickLink(By locator, Boolean wait) {
+    public void clickLink(By locator, Boolean wait) {
         try {
             Element = EncapsulatedDriver.findElement(locator);
             if (wait == null || wait) {
-                WaitForElementToBeClickable(locator);
+                waitForElementToBeClickable(locator);
             }
             if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
@@ -1962,8 +1874,7 @@ public class RatDriver implements IRatDriver {
                 Element.click();
             }
         } catch (Exception ex) {
-            System.out.println("Clicked on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLink", "Clicked on the element.");
         }
     }
 
@@ -1973,30 +1884,28 @@ public class RatDriver implements IRatDriver {
      * @param element The element on which to click
      */
     @Override
-    public void ClickLinkAndWait(WebElement element) {
+    public void clickLinkAndWait(WebElement element) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             Element = element;
-            WaitForElementToBeClickable(element);
+            waitForElementToBeClickable(element);
             if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
             } else {
                 Element.click();
             }
             System.out.println("Clicked on the element.");
-            WaitForPageToLoad(element);
+            waitForPageToLoad(element);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.PageLoad);
             }
         } catch (MoveTargetOutOfBoundsException ex) {
-            System.out.println("Element is reporting an out of bounds exception.");
-            Scripts().executeAsyncScript("arguments[0].click();", Element);
-            ErrorHandler.HandleErrors(ex);
+            scripts().executeAsyncScript("arguments[0].click();", Element);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLinkAndWait", "Element is reporting an out of bounds exception.");
         } catch (Exception e) {
-            System.out.println("Could not click on the element.");
-            ErrorHandler.HandleErrors(e);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, e, "RatDriver", "clickLinkAndWait", "Could not click on the element.");
         }
     }
 
@@ -2006,12 +1915,12 @@ public class RatDriver implements IRatDriver {
      * @param locator The element on which to click
      */
     @Override
-    public void ClickLinkAndWait(By locator) {
+    public void clickLinkAndWait(By locator) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
-            WaitForElementToBeClickable(locator);
+            waitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
             if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
@@ -2019,13 +1928,12 @@ public class RatDriver implements IRatDriver {
                 Element.click();
             }
             System.out.println("Clicked on the element.");
-            WaitForPageToLoad(Element);
+            waitForPageToLoad(Element);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.PageLoad);
             }
         } catch (Exception ex) {
-            System.out.println("Could not click on the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLinkAndWait", "Could not click on the element.");
         }
     }
 
@@ -2037,23 +1945,22 @@ public class RatDriver implements IRatDriver {
      * @param url     The partial URL to be waited for
      */
     @Override
-    public void ClickLinkAndWaitForUrl(WebElement element, String url) {
+    public void clickLinkAndWaitForUrl(WebElement element, String url) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             Element = element;
-            ClickLink(Element, null);
+            clickLink(Element, null);
             System.out.println("Clicked on the element.");
-            WaitForPageToLoad(Element);
-            WaitForUrlToContain(url);
+            waitForPageToLoad(Element);
+            waitForUrlToContain(url);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.PageLoad);
             }
             System.out.println("Url of page confirmed.");
         } catch (Exception ex) {
-            System.out.println("Failure during attempt to click a link which opens a page.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLinkAndWaitForUrl", "Failure during attempt to click a link which opens a page.");
         }
     }
 
@@ -2064,12 +1971,12 @@ public class RatDriver implements IRatDriver {
      * @param url     The partial URL to be waited for
      */
     @Override
-    public void ClickLinkAndWaitForUrl(By locator, String url) {
+    public void clickLinkAndWaitForUrl(By locator, String url) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
-            WaitForElementToBeClickable(locator);
+            waitForElementToBeClickable(locator);
             Element = EncapsulatedDriver.findElement(locator);
             if (DriverName.equals("SafariDriver")) {
                 Element.sendKeys(Keys.RETURN);
@@ -2077,15 +1984,14 @@ public class RatDriver implements IRatDriver {
                 Element.click();
             }
             System.out.println("Clicked on the element.");
-            WaitForPageToLoad(Element);
-            WaitForUrlToContain(url);
+            waitForPageToLoad(Element);
+            waitForUrlToContain(url);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.PageLoad);
             }
             System.out.println("Url of page confirmed.");
         } catch (Exception ex) {
-            System.out.println("Failure during attempt to click a link which opens a page.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "clickLinkAndWaitForUrl", "Failure during attempt to click a link which opens a page.");
         }
     }
 
@@ -2097,16 +2003,15 @@ public class RatDriver implements IRatDriver {
      * @return The text of the WebElement
      */
     @Override
-    public String GetElementText(WebElement element, Boolean wait) {
+    public String getElementText(WebElement element, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             return Element.getText();
         } catch (Exception ex) {
-            System.out.println("Could not get the text of the specified element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementText", "Could not get the text of the specified element.");
             return null;
         }
     }
@@ -2119,17 +2024,16 @@ public class RatDriver implements IRatDriver {
      * @return The text of the WebElement
      */
     @Override
-    public String GetElementText(By locator, Boolean wait) {
+    public String getElementText(By locator, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
+                waitForElementToLoad(locator);
             }
             Element = EncapsulatedDriver.findElement(locator);
             return Element.getText();
         } catch (Exception ex) {
-            System.out.println("Could not get the text of the specified element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementText", "Could not get the text of the specified element.");
             return null;
         }
     }
@@ -2141,13 +2045,12 @@ public class RatDriver implements IRatDriver {
      * @return True if the WebElement is present; false if the WebElement is not present
      */
     @Override
-    public Boolean ElementExists(WebElement element) {
+    public Boolean elementExists(WebElement element) {
         try {
             Element = element;
             return Element.isDisplayed();
         } catch (Exception ex) {
-            System.out.println("Could not confirm whether the specified element exists.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "elementExists", "Could not confirm whether the specified element exists.");
             return null;
         }
     }
@@ -2159,14 +2062,12 @@ public class RatDriver implements IRatDriver {
      * @return True if the WebElement is present; false if the WebElement is not present
      */
     @Override
-    public Boolean ElementExists(By locator) {
+    public Boolean elementExists(By locator) {
         try {
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
             return true;
         } catch (Exception ex) {
-            System.out.println("Could not confirm whether the specified element exists.");
-            ErrorHandler.HandleErrors(ex);
             return false;
         }
     }
@@ -2180,16 +2081,15 @@ public class RatDriver implements IRatDriver {
      * @return True if the WebElement is present; false if the WebElement is not present
      */
     @Override
-    public String GetElementAttribute(WebElement element, String attribute, Boolean wait) {
+    public String getElementAttribute(WebElement element, String attribute, Boolean wait) {
         try {
             Element = element;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
             return element.getAttribute(attribute);
         } catch (Exception ex) {
-            System.out.println("Failed to get the attribute from the specified element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementAttribute", "Failed to get the attribute from the specified element.");
             return null;
         }
     }
@@ -2203,17 +2103,16 @@ public class RatDriver implements IRatDriver {
      * @return The attribute to retrieve
      */
     @Override
-    public String GetElementAttribute(By locator, String attribute, Boolean wait) {
+    public String getElementAttribute(By locator, String attribute, Boolean wait) {
         try {
             Locator = locator;
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
+                waitForElementToLoad(locator);
             }
             Element = EncapsulatedDriver.findElement(locator);
             return Element.getAttribute(attribute);
         } catch (Exception ex) {
-            System.out.println("Failed to get the attribute from the specified element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementAttribute", "Failed to get the attribute from the specified element.");
             return null;
         }
     }
@@ -2226,13 +2125,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElements that has the CSS Selector
      */
     @Override
-    public WebElement FindElementByCssSelector(String cssSelector, Boolean wait) {
+    public WebElement findElementByCssSelector(String cssSelector, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.cssSelector(cssSelector));
+                waitForElementToLoad(By.cssSelector(cssSelector));
             }
             Element = EncapsulatedDriver.findElement(By.cssSelector(cssSelector));
             if (RecordPerformance) {
@@ -2240,8 +2139,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the CSS Selector");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByCssSelector", "Could not find an element using the CSS Selector");
             return null;
         }
     }
@@ -2254,13 +2152,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of WebElements that share the CSS Selector
      */
     @Override
-    public List<WebElement> FindElementsByCssSelector(String cssSelector, Boolean wait) {
+    public List<WebElement> findElementsByCssSelector(String cssSelector, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
+                waitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
             }
             Elements = EncapsulatedDriver.findElements(By.cssSelector(cssSelector));
             if (RecordPerformance) {
@@ -2268,8 +2166,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the CSS Selector");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByCssSelector", "Could not find an element using the CSS Selector");
             return null;
         }
     }
@@ -2283,14 +2180,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByCssSelector(String cssSelector, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByCssSelector(String cssSelector, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
             }
             Element = element;
             Elements = element.findElements(By.cssSelector(cssSelector));
@@ -2299,8 +2196,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the CSS Selector");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByCssSelector", "Could not find an element using the CSS Selector");
             return null;
         }
     }
@@ -2314,14 +2210,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByCssSelector(String cssSelector, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByCssSelector(String cssSelector, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.cssSelector(cssSelector));
             }
             Element = EncapsulatedDriver.findElement(locator);
             Elements = Element.findElements(By.cssSelector(cssSelector));
@@ -2330,8 +2226,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find the sub elements using the CSS Selector");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByCssSelector", "Could not find the sub elements using the CSS Selector");
             return null;
         }
     }
@@ -2344,13 +2239,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement described by the Class Name
      */
     @Override
-    public WebElement FindElementByClassName(String className, Boolean wait) {
+    public WebElement findElementByClassName(String className, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.className(className));
+                waitForElementToLoad(By.className(className));
             }
             Element = EncapsulatedDriver.findElement(By.className(className));
             if (RecordPerformance) {
@@ -2358,8 +2253,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the class name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByClassName", "Could not find an element using the class name");
             return null;
         }
     }
@@ -2372,13 +2266,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindElementsByClassName(String className, Boolean wait) {
+    public List<WebElement> findElementsByClassName(String className, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.className(className));
+                waitForPresenceOfAllElementsLocatedBy(By.className(className));
             }
             Elements = EncapsulatedDriver.findElements(By.className(className));
             if (RecordPerformance) {
@@ -2386,8 +2280,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the class name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByClassName", "Could not find an element using the class name");
             return null;
         }
     }
@@ -2401,14 +2294,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByClassName(String className, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByClassName(String className, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.className(className));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.className(className));
             }
             Element = element;
             Elements = element.findElements(By.className(className));
@@ -2417,8 +2310,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the class name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByClassName", "Could not find an element using the class name");
             return null;
         }
     }
@@ -2432,14 +2324,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByClassName(String className, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByClassName(String className, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.className(className));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.className(className));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(Locator);
@@ -2449,8 +2341,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the class name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByClassName", "Could not find an element using the class name");
             return null;
         }
     }
@@ -2463,13 +2354,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement with the specified id
      */
     @Override
-    public WebElement FindElementById(String id, Boolean wait) {
+    public WebElement findElementById(String id, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.id(id));
+                waitForElementToLoad(By.id(id));
             }
             Element = EncapsulatedDriver.findElement(By.id(id));
             if (RecordPerformance) {
@@ -2477,8 +2368,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the id");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementById", "Could not find an element using the id");
             return null;
         }
     }
@@ -2493,13 +2383,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement with the specified Link Text
      */
     @Override
-    public WebElement FindElementByLinkText(String linkText, Boolean wait) {
+    public WebElement findElementByLinkText(String linkText, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.linkText(linkText));
+                waitForElementToLoad(By.linkText(linkText));
             }
             Element = EncapsulatedDriver.findElement(By.linkText(linkText));
             if (RecordPerformance) {
@@ -2507,8 +2397,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByLinkText", "Could not find an element using the link text");
             return null;
         }
     }
@@ -2521,13 +2410,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindElementsByLinkText(String linkText, Boolean wait) {
+    public List<WebElement> findElementsByLinkText(String linkText, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
+                waitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
             }
             Elements = EncapsulatedDriver.findElements(By.linkText(linkText));
             if (RecordPerformance) {
@@ -2535,8 +2424,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByLinkText", "Could not find an element using the link text");
             return null;
         }
     }
@@ -2550,14 +2438,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByLinkText(String linkText, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByLinkText(String linkText, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
             }
             Element = element;
             Elements = element.findElements(By.linkText(linkText));
@@ -2566,8 +2454,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByLinkText", "Could not find an element using the link text");
             return null;
         }
     }
@@ -2581,14 +2468,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByLinkText(String linkText, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByLinkText(String linkText, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.linkText(linkText));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
@@ -2598,8 +2485,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByLinkText", "Could not find an element using the link text");
             return null;
         }
     }
@@ -2612,13 +2498,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement
      */
     @Override
-    public WebElement FindElementByName(String name, Boolean wait) {
+    public WebElement findElementByName(String name, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.name(name));
+                waitForElementToLoad(By.name(name));
             }
             Element = EncapsulatedDriver.findElement(By.name(name));
             if (RecordPerformance) {
@@ -2626,8 +2512,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByName", "Could not find an element using the name");
             return null;
         }
     }
@@ -2636,17 +2521,17 @@ public class RatDriver implements IRatDriver {
      * Finds a list of elements that share a name
      *
      * @param name The name to search for
-     * @param wait (Optional parameA collection of child WebElementster) Whether to wait for the element to reach a known state
+     * @param wait (Optional parameter) Whether to wait for the element to reach a known state
      * @return A collection of WebElements
      */
     @Override
-    public List<WebElement> FindElementsByName(String name, Boolean wait) {
+    public List<WebElement> findElementsByName(String name, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.name(name));
+                waitForPresenceOfAllElementsLocatedBy(By.name(name));
             }
             Elements = EncapsulatedDriver.findElements(By.name(name));
             if (RecordPerformance) {
@@ -2654,8 +2539,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByName", "Could not find an element using the name");
             return null;
         }
     }
@@ -2669,14 +2553,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByName(String name, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByName(String name, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.name(name));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.name(name));
             }
             Element = element;
             Elements = element.findElements(By.name(name));
@@ -2685,8 +2569,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByName", "Could not find an element using the name");
             return null;
         }
     }
@@ -2700,14 +2583,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByName(String name, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByName(String name, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.name(name));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.name(name));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
@@ -2717,8 +2600,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByName", "Could not find an element using the name");
             return null;
         }
     }
@@ -2731,13 +2613,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement
      */
     @Override
-    public WebElement FindElementByPartialLinkText(String linkText, Boolean wait) {
+    public WebElement findElementByPartialLinkText(String linkText, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.partialLinkText(linkText));
+                waitForElementToLoad(By.partialLinkText(linkText));
             }
             Element = EncapsulatedDriver.findElement(By.partialLinkText(linkText));
             if (RecordPerformance) {
@@ -2745,8 +2627,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the partial link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByPartialLinkText", "Could not find an element using the partial link text");
             return null;
         }
     }
@@ -2759,13 +2640,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindElementsByPartialLinkText(String linkText, Boolean wait) {
+    public List<WebElement> findElementsByPartialLinkText(String linkText, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
+                waitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
             }
             Elements = EncapsulatedDriver.findElements(By.partialLinkText(linkText));
             if (RecordPerformance) {
@@ -2773,8 +2654,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the partial link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByPartialLinkText", "Could not find an element using the partial link text");
             return null;
         }
     }
@@ -2788,14 +2668,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByPartialLinkText(String linkText, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByPartialLinkText(String linkText, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
             }
             Element = element;
             Elements = element.findElements(By.partialLinkText(linkText));
@@ -2804,8 +2684,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the partial link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByPartialLinkText", "Could not find an element using the partial link text");
             return null;
         }
     }
@@ -2819,14 +2698,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByPartialLinkText(String linkText, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByPartialLinkText(String linkText, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.partialLinkText(linkText));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
@@ -2836,8 +2715,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the partial link text");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByPartialLinkText", "Could not find an element using the partial link text");
             return null;
         }
     }
@@ -2850,13 +2728,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement
      */
     @Override
-    public WebElement FindElementByTag(String tagName, Boolean wait) {
+    public WebElement findElementByTag(String tagName, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.tagName(tagName));
+                waitForElementToLoad(By.tagName(tagName));
             }
             Element = EncapsulatedDriver.findElement(By.tagName(tagName));
             if (RecordPerformance) {
@@ -2864,8 +2742,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the tag name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByTag", "Could not find an element using the tag name");
             return null;
         }
     }
@@ -2878,13 +2755,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindElementsByTag(String tagName, Boolean wait) {
+    public List<WebElement> findElementsByTag(String tagName, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
+                waitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
             }
             Elements = EncapsulatedDriver.findElements(By.tagName(tagName));
             if (RecordPerformance) {
@@ -2892,8 +2769,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the tag name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByTag", "Could not find an element using the tag name");
             return null;
         }
     }
@@ -2907,14 +2783,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByTag(String tagName, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByTag(String tagName, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
             }
             Element = element;
             Elements = element.findElements(By.tagName(tagName));
@@ -2923,8 +2799,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the tag name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByTag", "Could not find an element using the tag name");
             return null;
         }
     }
@@ -2938,14 +2813,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByTag(String tagName, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByTag(String tagName, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.tagName(tagName));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
@@ -2955,8 +2830,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using the tag name");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByTag", "Could not find an element using the tag name");
             return null;
         }
     }
@@ -2969,13 +2843,13 @@ public class RatDriver implements IRatDriver {
      * @return A WebElement
      */
     @Override
-    public WebElement FindElementByXPath(String xpath, Boolean wait) {
+    public WebElement findElementByXPath(String xpath, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(By.xpath(xpath));
+                waitForElementToLoad(By.xpath(xpath));
             }
             Element = EncapsulatedDriver.findElement(By.xpath(xpath));
             if (RecordPerformance) {
@@ -2983,8 +2857,7 @@ public class RatDriver implements IRatDriver {
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using xpath");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementByXPath", "Could not find an element using xpath");
             return null;
         }
     }
@@ -2997,13 +2870,13 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindElementsByXPath(String xpath, Boolean wait) {
+    public List<WebElement> findElementsByXPath(String xpath, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
+                waitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
             }
             Elements = EncapsulatedDriver.findElements(By.xpath(xpath));
             if (RecordPerformance) {
@@ -3011,8 +2884,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using xpath");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findElementsByXPath", "Could not find an element using xpath");
             return null;
         }
     }
@@ -3026,14 +2898,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByXPath(String xpath, WebElement element, Boolean wait) {
+    public List<WebElement> findSubElementsByXPath(String xpath, WebElement element, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(element);
-                WaitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
+                waitForElementToLoad(element);
+                waitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
             }
             Element = element;
             Elements = element.findElements(By.xpath(xpath));
@@ -3042,8 +2914,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using xpath");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByXPath", "Could not find an element using xpath");
             return null;
         }
     }
@@ -3057,14 +2928,14 @@ public class RatDriver implements IRatDriver {
      * @return A collection of child WebElements
      */
     @Override
-    public List<WebElement> FindSubElementsByXPath(String xpath, By locator, Boolean wait) {
+    public List<WebElement> findSubElementsByXPath(String xpath, By locator, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             if (wait == null || wait) {
-                WaitForElementToLoad(locator);
-                WaitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
+                waitForElementToLoad(locator);
+                waitForPresenceOfAllElementsLocatedBy(By.xpath(xpath));
             }
             Locator = locator;
             Element = EncapsulatedDriver.findElement(locator);
@@ -3074,8 +2945,7 @@ public class RatDriver implements IRatDriver {
             }
             return Elements;
         } catch (Exception ex) {
-            System.out.println("Could not find an element using xpath");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "findSubElementsByXPath", "Could not find an element using xpath");
             return null;
         }
     }
@@ -3092,24 +2962,23 @@ public class RatDriver implements IRatDriver {
      * @return A web element identified by a locator type and an attribute value
      */
     @Override
-    public WebElement ExtractElementFromCollectionByAttribute(WebElement parentElement, LocatorType type, String locator, String attribute, String value, Boolean wait) {
+    public WebElement extractElementFromCollectionByAttribute(WebElement parentElement, LocatorType type, String locator, String attribute, String value, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
             }
             Element = parentElement;
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
-            GetCollectionOfElements(type, locator);
-            FindMatchingElement(attribute, value);
+            getCollectionOfElements(type, locator);
+            findMatchingElement(attribute, value);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.ElementFindTime);
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Unable to extract the element required with defined parameters.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "extractElementFromCollectionByAttribute", "Unable to extract the element required with defined parameters.");
             return null;
         }
     }
@@ -3126,7 +2995,7 @@ public class RatDriver implements IRatDriver {
      * @return A web element identified by a locator type and an attribute value
      */
     @Override
-    public WebElement ExtractElementFromCollectionByAttribute(By parentLocator, LocatorType type, String locator, String attribute, String value, Boolean wait) {
+    public WebElement extractElementFromCollectionByAttribute(By parentLocator, LocatorType type, String locator, String attribute, String value, Boolean wait) {
         try {
             if (RecordPerformance) {
                 RatTimerCollection.StartTimer();
@@ -3134,22 +3003,21 @@ public class RatDriver implements IRatDriver {
             Locator = parentLocator;
             Element = EncapsulatedDriver.findElement(Locator);
             if (wait == null || wait) {
-                WaitForElementToLoad(Element);
+                waitForElementToLoad(Element);
             }
-            GetCollectionOfElements(type, locator);
-            FindMatchingElement(attribute, value);
+            getCollectionOfElements(type, locator);
+            findMatchingElement(attribute, value);
             if (RecordPerformance) {
                 RatTimerCollection.StopTimer(Timing.ElementFindTime);
             }
             return Element;
         } catch (Exception ex) {
-            System.out.println("Unable to extract the element required with defined parameters.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "extractElementFromCollectionByAttribute", "Unable to extract the element required with defined parameters.");
             return null;
         }
     }
 
-    private void FindMatchingElement(String attribute, String value) {
+    private void findMatchingElement(String attribute, String value) {
         for (WebElement element : Elements) {
             if (element.getAttribute(attribute).contains(value)) {
                 Element = element;
@@ -3169,14 +3037,13 @@ public class RatDriver implements IRatDriver {
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
-    public void TakeScreenshot(String path) {
+    public void takeScreenshot(String path) {
         try {
             File screenshotFile = ((TakesScreenshot) Driver).getScreenshotAs(OutputType.FILE);
             File destinationFile = new File(path);
             screenshotFile.renameTo(destinationFile);
         } catch (Exception ex) {
-            System.out.println("Unable to save a screenshot.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "takeScreenshot", "Unable to save a screenshot.");
         }
     }
 
@@ -3186,12 +3053,11 @@ public class RatDriver implements IRatDriver {
      * @return A JavaScript Executor
      */
     @Override
-    public JavascriptExecutor Scripts() {
+    public JavascriptExecutor scripts() {
         try {
             return (JavascriptExecutor) Driver;
         } catch (Exception ex) {
-            System.out.println("Unable to execute the script required.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "scripts", "Unable to execute the script required.");
             return null;
         }
     }
@@ -3202,13 +3068,12 @@ public class RatDriver implements IRatDriver {
      * @param script The JavaScript to be executed
      */
     @Override
-    public void ExecuteJavaScript(String script) {
+    public void executeJavaScript(String script) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeScript(script);
         } catch (Exception ex) {
-            System.out.println("Unable to execute the script required.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "executeJavaScript", "Unable to execute the script required.");
         }
     }
 
@@ -3219,13 +3084,12 @@ public class RatDriver implements IRatDriver {
      * @param parameters The parameters for the passed JavaScript
      */
     @Override
-    public void ExecuteJavaScript(String script, Object[] parameters) {
+    public void executeJavaScript(String script, Object[] parameters) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeScript(script, parameters);
         } catch (Exception ex) {
-            System.out.println("Unable to execute the script required.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "executeJavaScript", "Unable to execute the script required.");
         }
     }
 
@@ -3235,13 +3099,12 @@ public class RatDriver implements IRatDriver {
      * @param script The JavaScript to be executed
      */
     @Override
-    public void ExecuteAsyncJavaScript(String script) {
+    public void executeAsyncJavaScript(String script) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript(script);
         } catch (Exception ex) {
-            System.out.println("Unable to execute the script required.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "executeAsyncJavaScript", "Unable to execute the script required.");
         }
     }
 
@@ -3252,13 +3115,12 @@ public class RatDriver implements IRatDriver {
      * @param parameters The parameters for the passed JavaScript
      */
     @Override
-    public void ExecuteAsyncJavaScript(String script, Object[] parameters) {
+    public void executeAsyncJavaScript(String script, Object[] parameters) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript(script, parameters);
         } catch (Exception ex) {
-            System.out.println("Unable to execute the script required.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "executeAsyncJavaScript", "Unable to execute the script required.");
         }
     }
 
@@ -3267,13 +3129,12 @@ public class RatDriver implements IRatDriver {
      *
      * @param webElement The Web element
      */
-    public void ScrollToElement(WebElement webElement) {
+    public void scrollToElement(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].scrollIntoView(true);", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not scroll to the element passed.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "scrollToElement", "Could not scroll to the element passed.");
         }
     }
 
@@ -3282,14 +3143,13 @@ public class RatDriver implements IRatDriver {
      *
      * @param locator The the locator for the Web Element.
      */
-    public void ScrollToElement(By locator) {
+    public void scrollToElement(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].scrollIntoView(true);", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not scroll to the element passed.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "scrollToElement", "Could not scroll to the element passed.");
         }
     }
 
@@ -3299,13 +3159,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element to receive the access key.
      * @param key        The key to be used for access.
      */
-    public void AddAccessKeyToElement(WebElement webElement, String key) {
+    public void addAccessKeyToElement(WebElement webElement, String key) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey = [1];", webElement, key);
         } catch (Exception ex) {
-            System.out.println("Could not add the access key to the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addAccessKeyToElement", "Could not add the access key to the element.");
         }
     }
 
@@ -3315,14 +3174,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The the locator for the Web Element to receive the access key.
      * @param key     The key to be used for access.
      */
-    public void AddAccessKeyToElement(By locator, String key) {
+    public void addAccessKeyToElement(By locator, String key) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey = [1];", webElement, key);
         } catch (Exception ex) {
-            System.out.println("Could not add the access key to the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "addAccessKeyToElement", "Could not add the access key to the element.");
         }
     }
 
@@ -3331,13 +3189,12 @@ public class RatDriver implements IRatDriver {
      *
      * @param webElement The Web Element for which to retrieve the access key.
      */
-    public void GetAccessKeyForElement(WebElement webElement) {
+    public void getAccessKeyForElement(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not get the access key for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getAccessKeyForElement", "Could not get the access key for the element.");
         }
     }
 
@@ -3346,14 +3203,13 @@ public class RatDriver implements IRatDriver {
      *
      * @param locator The locator for the Web Element for which to retrieve the access key.
      */
-    public void GetAccessKeyForElement(By locator) {
+    public void getAccessKeyForElement(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].accessKey;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not get the access key for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getAccessKeyForElement", "Could not get the access key for the element.");
         }
     }
 
@@ -3363,13 +3219,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The web element for which a child element count is required.
      * @return The number of child elements that the web element possesses.
      */
-    public int ChildElementCount(WebElement webElement) {
+    public int childElementCount(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].childElementCount", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not get the child element count for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "childElementCount", "Could not get the child element count for the element.");
             return 0;
         }
     }
@@ -3380,14 +3235,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the web element for which a child element count is required.
      * @return The number of web element
      */
-    public int ChildElementCount(By locator) {
+    public int childElementCount(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].childElementCount", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not get the child element count for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "childElementCount", "Could not get the child element count for the element.");
             return 0;
         }
     }
@@ -3398,7 +3252,7 @@ public class RatDriver implements IRatDriver {
      * @param webElement The web element for which a child element count is required.
      * @return The viewable area measurements of the web element.
      */
-    public ElementSize GetElementSize(WebElement webElement) {
+    public ElementSize getElementSize(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             ElementSize elementSize = new ElementSize();
@@ -3408,8 +3262,7 @@ public class RatDriver implements IRatDriver {
             elementSize.Left = (int) javascriptExecutor.executeScript("arguments[0].clientLeft", webElement);
             return elementSize;
         } catch (Exception ex) {
-            System.out.println("Could not get the client size for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementSize", "Could not get the client size for the element.");
             return null;
         }
     }
@@ -3420,7 +3273,7 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the web element for which a child element count is required.
      * @return The viewable area measurements of the web element.
      */
-    public ElementSize GetElementSize(By locator) {
+    public ElementSize getElementSize(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
@@ -3431,8 +3284,7 @@ public class RatDriver implements IRatDriver {
             elementSize.Left = (int) javascriptExecutor.executeScript("arguments[0].clientLeft", webElement);
             return elementSize;
         } catch (Exception ex) {
-            System.out.println("Could not get the client size for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementSize", "Could not get the client size for the element.");
             return null;
         }
     }
@@ -3444,13 +3296,12 @@ public class RatDriver implements IRatDriver {
      * @param secondElement The second element of the pair.
      * @return An enumerated value for the relative positions of the elements.
      */
-    public ElementRelationships CompareElementPositions(WebElement firstElement, WebElement secondElement) {
+    public ElementRelationships compareElementPositions(WebElement firstElement, WebElement secondElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (ElementRelationships) javascriptExecutor.executeAsyncScript("arguments[0].compareDocumentPosition(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not analyse the element relationships.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "compareElementPositions", "Could not analyse the element relationships.");
             return null;
         }
     }
@@ -3462,15 +3313,14 @@ public class RatDriver implements IRatDriver {
      * @param secondLocator The locator for the second element of the pair.
      * @return An enumerated value for the relative positions of the elements.
      */
-    public ElementRelationships CompareElementPositions(By firstLocator, By secondLocator) {
+    public ElementRelationships compareElementPositions(By firstLocator, By secondLocator) {
         try {
             WebElement firstElement = EncapsulatedDriver.findElement(firstLocator);
             WebElement secondElement = EncapsulatedDriver.findElement(secondLocator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (ElementRelationships) javascriptExecutor.executeAsyncScript("arguments[0].compareDocumentPosition(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not analyse the element relationships.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "compareElementPositions", "Could not analyse the element relationships.");
             return null;
         }
     }
@@ -3482,13 +3332,12 @@ public class RatDriver implements IRatDriver {
      * @param secondElement The second element of the pair.
      * @return True if the second element is a descendant of the first.
      */
-    public Boolean Contains(WebElement firstElement, WebElement secondElement) {
+    public Boolean contains(WebElement firstElement, WebElement secondElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].contains(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not analyse the element relationships.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "contains", "Could not analyse the element relationships.");
             return null;
         }
     }
@@ -3500,15 +3349,14 @@ public class RatDriver implements IRatDriver {
      * @param secondLocator The locator for the second element of the pair.
      * @return True if the second element is a descendant of the first.
      */
-    public Boolean Contains(By firstLocator, By secondLocator) {
+    public Boolean contains(By firstLocator, By secondLocator) {
         try {
             WebElement firstElement = EncapsulatedDriver.findElement(firstLocator);
             WebElement secondElement = EncapsulatedDriver.findElement(secondLocator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].contains(arguments[1])", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not analyse the element relationships.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "contains", "Could not analyse the element relationships.");
             return null;
         }
     }
@@ -3518,13 +3366,12 @@ public class RatDriver implements IRatDriver {
      *
      * @param webElement The Web Element
      */
-    public void GiveFocus(WebElement webElement) {
+    public void giveFocus(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].focus()", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not give focus to the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "giveFocus", "Could not give focus to the element.");
         }
     }
 
@@ -3533,14 +3380,13 @@ public class RatDriver implements IRatDriver {
      *
      * @param locator The locator for the Web Element
      */
-    public void GiveFocus(By locator) {
+    public void giveFocus(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             javascriptExecutor.executeAsyncScript("arguments[0].focus()", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not give focus to the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "", "Could not give focus to the element.");
         }
     }
 
@@ -3550,7 +3396,7 @@ public class RatDriver implements IRatDriver {
      * @param webElement The web element
      * @return An object representing the bounding rectangle
      */
-    public DomRectangle GetBoundingRectangle(WebElement webElement) {
+    public DomRectangle getBoundingRectangle(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             DomRectangle domRectangle = new DomRectangle();
@@ -3564,8 +3410,7 @@ public class RatDriver implements IRatDriver {
             domRectangle.Y = (int) javascriptExecutor.executeScript("arguments[0].getBoundingClientRect().y", webElement);
             return domRectangle;
         } catch (Exception ex) {
-            System.out.println("Could get the bounding rectangle for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getBoundingRectangle", "Could get the bounding rectangle for the element.");
             return null;
         }
     }
@@ -3576,7 +3421,7 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the web element
      * @return An object representing the bounding rectangle
      */
-    public DomRectangle GetBoundingRectangle(By locator) {
+    public DomRectangle getBoundingRectangle(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
@@ -3591,8 +3436,7 @@ public class RatDriver implements IRatDriver {
             domRectangle.Y = (int) javascriptExecutor.executeScript("arguments[0].getBoundingClientRect().y", webElement);
             return domRectangle;
         } catch (Exception ex) {
-            System.out.println("Could get the bounding rectangle for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getBoundingRectangle", "Could get the bounding rectangle for the element.");
             return null;
         }
     }
@@ -3604,13 +3448,12 @@ public class RatDriver implements IRatDriver {
      * @param attribute  The attribute to check for.
      * @return True if the element has the given attribute.
      */
-    public Boolean HasAttribute(WebElement webElement, String attribute) {
+    public Boolean hasAttribute(WebElement webElement, String attribute) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttribute(arguments[1]);", webElement, attribute);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has the attribute");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasAttribute", "Could not assess whether the element has the attribute");
             return null;
         }
     }
@@ -3622,14 +3465,13 @@ public class RatDriver implements IRatDriver {
      * @param attribute The attribute to check for.
      * @return True if the element has the given attribute.
      */
-    public Boolean HasAttribute(By locator, String attribute) {
+    public Boolean hasAttribute(By locator, String attribute) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttribute(arguments[1]);", webElement, attribute);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has the attribute");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasAttribute", "Could not assess whether the element has the attribute");
             return null;
         }
     }
@@ -3640,13 +3482,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element.
      * @return True if the web element has any attributes.
      */
-    public Boolean HasAttributes(WebElement webElement) {
+    public Boolean hasAttributes(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttributes();", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has attributes");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasAttributes", "Could not assess whether the element has attributes");
             return null;
         }
     }
@@ -3657,14 +3498,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the Web Element.
      * @return True if the web element has any attributes.
      */
-    public Boolean HasAttributes(By locator) {
+    public Boolean hasAttributes(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasAttributes();", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has attributes");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasAttributes", "Could not assess whether the element has attributes");
             return null;
         }
     }
@@ -3675,13 +3515,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element.
      * @return True if the web element has any child nodes.
      */
-    public Boolean HasChildNodes(WebElement webElement) {
+    public Boolean hasChildNodes(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasChildNodes();", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has child nodes");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasChildNodes", "Could not assess whether the element has child nodes");
             return null;
         }
     }
@@ -3692,14 +3531,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the Web Element.
      * @return True if the web element has any child nodes.
      */
-    public Boolean HasChildNodes(By locator) {
+    public Boolean hasChildNodes(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].hasChildNodes();", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not assess whether the element has child nodes");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "hasChildNodes", "Could not assess whether the element has child nodes");
             return null;
         }
     }
@@ -3710,13 +3548,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element
      * @return True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.
      */
-    public String IsContentEditable(WebElement webElement) {
+    public String isContentEditable(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].contentEditable;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not confirm if the element has editable content.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "isContentEditable", "Could not confirm if the element has editable content.");
             return null;
         }
     }
@@ -3727,14 +3564,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The the locator for the Web Element.
      * @return True if the content is editable, false if not. Also may return Inherit, to denote it has inherited this status.
      */
-    public String IsContentEditable(By locator) {
+    public String isContentEditable(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].contentEditable;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not confirm if the element has editable content.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "isContentEditable", "Could not confirm if the element has editable content.");
             return null;
         }
     }
@@ -3745,13 +3581,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element
      * @return The ISO 639-1 code for the language.
      */
-    public String GetElementLanguage(WebElement webElement) {
+    public String getElementLanguage(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].lang;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not confirm the language assignment of the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementLanguage", "Could not confirm the language assignment of the element.");
             return null;
         }
     }
@@ -3762,14 +3597,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the Web Element
      * @return The ISO 639-1 code for the language.
      */
-    public String GetElementLanguage(By locator) {
+    public String getElementLanguage(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (String) javascriptExecutor.executeAsyncScript("arguments[0].lang;", webElement);
         } catch (Exception ex) {
-            System.out.println("Could not confirm the language assignment of the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getElementLanguage", "Could not confirm the language assignment of the element.");
             return null;
         }
     }
@@ -3780,7 +3614,7 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element
      * @return An object representing the offsets of the element
      */
-    public HeightWidth GetOffsets(WebElement webElement) {
+    public HeightWidth getOffsets(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             HeightWidth heightWidth = new HeightWidth();
@@ -3788,8 +3622,7 @@ public class RatDriver implements IRatDriver {
             heightWidth.Width = (int) javascriptExecutor.executeScript("arguments[0].offsetWidth;", webElement);
             return heightWidth;
         } catch (Exception ex) {
-            System.out.println("Could not get the offsets for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getOffsets", "Could not get the offsets for the element.");
             return null;
         }
     }
@@ -3800,7 +3633,7 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the Web Element
      * @return An object representing the offsets of the element
      */
-    public HeightWidth GetOffsets(By locator) {
+    public HeightWidth getOffsets(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
@@ -3809,8 +3642,7 @@ public class RatDriver implements IRatDriver {
             heightWidth.Width = (int) javascriptExecutor.executeScript("arguments[0].offsetWidth;", webElement);
             return heightWidth;
         } catch (Exception ex) {
-            System.out.println("Could not get the offsets for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getOffsets", "Could not get the offsets for the element.");
             return null;
         }
     }
@@ -3822,13 +3654,12 @@ public class RatDriver implements IRatDriver {
      * @param secondElement The second element of the pair.
      * @return True if the second element is equal to the first.
      */
-    public Boolean AreNodesEqual(WebElement firstElement, WebElement secondElement) {
+    public Boolean areNodesEqual(WebElement firstElement, WebElement secondElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].isEqualNode(arguments[1]);", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not compare the elements for equality.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "areNodesEqual", "Could not compare the elements for equality.");
             return null;
         }
     }
@@ -3840,15 +3671,14 @@ public class RatDriver implements IRatDriver {
      * @param secondLocator The locator for the second element of the pair.
      * @return True if the second element is equal to the first.
      */
-    public Boolean AreNodesEqual(By firstLocator, By secondLocator) {
+    public Boolean areNodesEqual(By firstLocator, By secondLocator) {
         try {
             WebElement firstElement = EncapsulatedDriver.findElement(firstLocator);
             WebElement secondElement = EncapsulatedDriver.findElement(secondLocator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (Boolean) javascriptExecutor.executeAsyncScript("arguments[0].isEqualNode(arguments[1]);", firstElement, secondElement);
         } catch (Exception ex) {
-            System.out.println("Could not compare the elements for equality.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "areNodesEqual", "Could not compare the elements for equality.");
             return null;
         }
     }
@@ -3859,7 +3689,7 @@ public class RatDriver implements IRatDriver {
      * @param webElement The Web Element
      * @return An object representing the scroll height and width of the element, along with current positioning.
      */
-    public ElementSize GetScrollSize(WebElement webElement) {
+    public ElementSize getScrollSize(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             ElementSize elementSize = new ElementSize();
@@ -3869,8 +3699,7 @@ public class RatDriver implements IRatDriver {
             elementSize.Left = (int) javascriptExecutor.executeScript("arguments[0].scrollLeft;", webElement);
             return elementSize;
         } catch (Exception ex) {
-            System.out.println("Could not get the scroll size of the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getScrollSize", "Could not get the scroll size of the element.");
             return null;
         }
     }
@@ -3881,7 +3710,7 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the Web Element
      * @return An object representing the scroll height and width of the element, along with current positioning.
      */
-    public ElementSize GetScrollSize(By locator) {
+    public ElementSize getScrollSize(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
@@ -3890,8 +3719,7 @@ public class RatDriver implements IRatDriver {
             elementSize.Width = (int) javascriptExecutor.executeScript("arguments[0].offsetWidth;", webElement);
             return elementSize;
         } catch (Exception ex) {
-            System.out.println("Could not get the scroll size of the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getScrollSize", "Could not get the scroll size of the element.");
             return null;
         }
     }
@@ -3902,13 +3730,12 @@ public class RatDriver implements IRatDriver {
      * @param webElement The web element for which a tab index is required.
      * @return The tab index of the chosen element.
      */
-    public int GetTabIndex(WebElement webElement) {
+    public int getTabIndex(WebElement webElement) {
         try {
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].tabIndex", webElement);
         } catch (Exception ex) {
-            System.out.println("Could get the tab index for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getTabIndex", "Could get the tab index for the element.");
             return 0;
         }
     }
@@ -3919,14 +3746,13 @@ public class RatDriver implements IRatDriver {
      * @param locator The locator for the web element for which a tab index is required.
      * @return The tab index of the chosen element.
      */
-    public int GetTabIndex(By locator) {
+    public int getTabIndex(By locator) {
         try {
             WebElement webElement = EncapsulatedDriver.findElement(locator);
             JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Driver;
             return (int) javascriptExecutor.executeAsyncScript("arguments[0].tabIndex", webElement);
         } catch (Exception ex) {
-            System.out.println("Could get the tab index for the element.");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "getTabIndex", "Could get the tab index for the element.");
             return 0;
         }
     }
@@ -3942,7 +3768,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait terminates with an alert being found
      */
     @Override
-    public Boolean WaitForAlertToBePresent() {
+    public Boolean waitForAlertToBePresent() {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
@@ -3962,7 +3788,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element becoming clickable
      */
     @Override
-    public Boolean WaitForElementToBeClickable(WebElement element) {
+    public Boolean waitForElementToBeClickable(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(Driver, BaseSettings.Timeout);
             WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -3982,7 +3808,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element becoming clickable
      */
     @Override
-    public Boolean WaitForElementToBeClickable(By locator) {
+    public Boolean waitForElementToBeClickable(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(locator));
@@ -4003,7 +3829,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element being found to be selected
      */
     @Override
-    public Boolean WaitForElementToBeSelected(By locator) {
+    public Boolean waitForElementToBeSelected(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.elementToBeSelected(locator));
@@ -4023,7 +3849,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element being found to be selected
      */
     @Override
-    public Boolean WaitForElementToBeSelected(WebElement element) {
+    public Boolean waitForElementToBeSelected(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.elementToBeSelected(element));
@@ -4043,7 +3869,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element being found to be visible
      */
     @Override
-    public Boolean WaitForElementToBeVisible(By locator) {
+    public Boolean waitForElementToBeVisible(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -4064,7 +3890,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element being found to be in a given selection state.
      */
     @Override
-    public Boolean WaitForElementSelectionStateToBe(By locator, Boolean state) {
+    public Boolean waitForElementSelectionStateToBe(By locator, Boolean state) {
         try {
             WebDriverWait wait = new WebDriverWait(this.Driver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.elementSelectionStateToBe(locator, state));
@@ -4085,7 +3911,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the wait is terminated by the element being found to be in a given selection state.
      */
     @Override
-    public Boolean WaitForElementSelectionStateToBe(WebElement element, Boolean state) {
+    public Boolean waitForElementSelectionStateToBe(WebElement element, Boolean state) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.elementSelectionStateToBe(element, state));
@@ -4105,7 +3931,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the elements is invisible, false if the wait expires.
      */
     @Override
-    public Boolean WaitForElementInvisibility(By locator) {
+    public Boolean waitForElementInvisibility(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
@@ -4126,7 +3952,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the elements with given text is invisible, false if the wait expires
      */
     @Override
-    public Boolean WaitForElementInvisibilityWithText(By locator, String text) {
+    public Boolean waitForElementInvisibilityWithText(By locator, String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.invisibilityOfElementWithText(locator, text));
@@ -4146,7 +3972,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the elements found by a locator are present, false if the wait expires or no elements are found.
      */
     @Override
-    public Boolean WaitForPresenceOfAllElementsLocatedBy(By locator) {
+    public Boolean waitForPresenceOfAllElementsLocatedBy(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
@@ -4166,7 +3992,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the element becomes stale, false if the wait expires.
      */
     @Override
-    public Boolean WaitForStalenessOf(WebElement element) {
+    public Boolean waitForStalenessOf(WebElement element) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.stalenessOf(element));
@@ -4187,7 +4013,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the element contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTextToBePresentInElement(WebElement element, String text) {
+    public Boolean waitForTextToBePresentInElement(WebElement element, String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElement(element, text));
@@ -4208,7 +4034,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the element contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTextToBePresentInElement(By locator, String text) {
+    public Boolean waitForTextToBePresentInElement(By locator, String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
@@ -4229,7 +4055,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the element contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTextToBePresentInElementValue(By locator, String text) {
+    public Boolean waitForTextToBePresentInElementValue(By locator, String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementValue(locator, text));
@@ -4250,7 +4076,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the element contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTextToBePresentInElementValue(WebElement element, String text) {
+    public Boolean waitForTextToBePresentInElementValue(WebElement element, String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.textToBePresentInElementValue(element, text));
@@ -4270,7 +4096,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the title contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTitleToContain(String text) {
+    public Boolean waitForTitleToContain(String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.titleContains(text));
@@ -4290,7 +4116,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the title matches the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForTitleToBe(String text) {
+    public Boolean waitForTitleToBe(String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.titleIs(text));
@@ -4310,7 +4136,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the URL contains the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForUrlToContain(String text) {
+    public Boolean waitForUrlToContain(String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlContains(text));
@@ -4330,7 +4156,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the URL matches the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForUrlToMatch(String text) {
+    public Boolean waitForUrlToMatch(String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlMatches(text));
@@ -4350,7 +4176,7 @@ public class RatDriver implements IRatDriver {
      * @return True if the URL matches the given text, false if the wait expires.
      */
     @Override
-    public Boolean WaitForUrlToBe(String text) {
+    public Boolean waitForUrlToBe(String text) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             Boolean bool = wait.until(ExpectedConditions.urlToBe(text));
@@ -4370,7 +4196,7 @@ public class RatDriver implements IRatDriver {
      * @return True if all elements located are visible, false if the wait expires.
      */
     @Override
-    public Boolean WaitForVisibilityOfAllElementsLocatedBy(By locator) {
+    public Boolean waitForVisibilityOfAllElementsLocatedBy(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(EncapsulatedDriver, BaseSettings.Timeout);
             List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
@@ -4385,7 +4211,7 @@ public class RatDriver implements IRatDriver {
 
     //endregion
 
-    private void GetCollectionOfElements(LocatorType type, String locator) {
+    private void getCollectionOfElements(LocatorType type, String locator) {
         List<WebElement> collection = new LinkedList<WebElement>() {
         };
         switch (type) {
@@ -4418,7 +4244,7 @@ public class RatDriver implements IRatDriver {
         Elements = collection;
     }
 
-    private void InitialiseRatWatch(Boolean performanceTimings) {
+    private void initialiseRatWatch(Boolean performanceTimings) {
         System.out.println("Creating RatWatch to monitor event timings.");
         RatTimerCollection = new RatWatch();
         RatTimerCollection.StartTimer();
@@ -4463,7 +4289,7 @@ public class RatDriver implements IRatDriver {
                     }
                     break;
                 case "remotedriver":
-                    controller = new RemoteControl(null);
+                    controller = new RemoteControl();
                     break;
                 default:
                     throw new Exception();
@@ -4471,9 +4297,9 @@ public class RatDriver implements IRatDriver {
 
             if (controller != null) {
                 if (preferences != null) {
-                    EncapsulatedDriver = controller.StartDriver(preferences);
+                    EncapsulatedDriver = controller.startDriver(preferences);
                 } else {
-                    EncapsulatedDriver = controller.StartDriver();
+                    EncapsulatedDriver = controller.startDriver();
                 }
             } else {
                 System.out.println("Unable to load the driver control class requested.");
@@ -4481,8 +4307,7 @@ public class RatDriver implements IRatDriver {
                 throw new Exception();
             }
         } catch (Exception ex) {
-            System.out.println("Could not establish the driver type");
-            ErrorHandler.HandleErrors(ex);
+            ErrorHandler.HandleErrors(EncapsulatedDriver, ex, "RatDriver", "establishDriverType", "Could not establish the driver type");
         }
     }
 }

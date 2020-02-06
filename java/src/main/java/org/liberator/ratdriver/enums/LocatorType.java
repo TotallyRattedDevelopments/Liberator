@@ -3,6 +3,7 @@ package org.liberator.ratdriver.enums;
 /**
  * A list of locator types
  */
+@SuppressWarnings("unused")
 public enum LocatorType {
 
     /**
