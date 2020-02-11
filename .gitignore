@@ -9,3 +9,7 @@
 /dotnet/Liberator.DynamicPageEngine/obj/Release
 /dotnet/Liberator.DynamicPageEngine/bin/Debug
 /.vs
+/dotnet/Liberator.DynamicPageEngineTests
+/dotnet/Liberator.Tests.Driver/bin/Debug/netcoreapp2.2
+/dotnet/Liberator.DynamicPageEngine/obj
+*.user

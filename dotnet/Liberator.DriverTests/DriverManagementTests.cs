@@ -518,6 +518,7 @@ namespace Liberator.DriverTests
         }
 
         [Test]
+        [Ignore("Logs broken in Selenium 3.14. Will not be fixed until Selenium4")]
         [Category("Chrome")]
         public void Chrome_GetAvailableLogTypes()
         {
@@ -572,6 +573,7 @@ namespace Liberator.DriverTests
         }
 
         [Test]
+        [Ignore("Logs broken in Selenium 3.14. Will not be fixed until Selenium4")]
         [Category("Chrome")]
         public void Chrome_GetBrowserLogEntries()
         {
@@ -583,6 +585,7 @@ namespace Liberator.DriverTests
         }
 
         [Test]
+        [Ignore("Logs broken in Selenium 3.14. Will not be fixed until Selenium4")]
         [Category("Chrome")]
         public void Chrome_GetDriverLogEntries()
         {
