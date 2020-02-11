@@ -124,7 +124,7 @@ namespace Liberator.Driver.Preferences
         {
             string grandfatherDirectory = GetGrandfatherDirectory();
             ChromeDriverLocation = FindExecutables(grandfatherDirectory, "chromedriver.exe");
-            EdgeDriverLocation = FindExecutables(grandfatherDirectory, "MicrosoftWebDriver.exe");
+            EdgeDriverLocation = @"C:\Windows\System32\MicrosoftWebDriver.exe";
             FirefoxDriverLocation = FindExecutables(grandfatherDirectory, "geckodriver.exe");
             InternetExplorerDriverLocation = FindExecutables(grandfatherDirectory, "IEDriverServer.exe");
             OperaDriverLocation = FindExecutables(grandfatherDirectory, "operadriver.exe");
@@ -135,7 +135,7 @@ namespace Liberator.Driver.Preferences
         static private void FindDrivers()
         {
             ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\", "chromedriver.exe");
-            EdgeDriverLocation = FindExecutables(@".\BrowserDrivers\", "MicrosoftWebDriver.exe");
+            EdgeDriverLocation = @"C:\Windows\System32\MicrosoftWebDriver.exe";
             FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\", "geckodriver.exe");
             InternetExplorerDriverLocation = FindExecutables(@".\BrowserDrivers\", "IEDriverServer.exe");
             OperaDriverLocation = FindExecutables(@".\BrowserDrivers\", "operadriver.exe");
