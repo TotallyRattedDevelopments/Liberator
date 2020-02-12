@@ -125,7 +125,8 @@ namespace Liberator.Driver.BrowserControl
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
-                Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
+                Driver = new InternetExplorerDriver(Service);
+                //Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
@@ -248,7 +249,7 @@ namespace Liberator.Driver.BrowserControl
                 service.LibraryExtractionPath = extract ?? null;
                 service.LogFile = log ?? null;
                 service.LoggingLevel = logLevel;
-                service.Port = port;
+                //service.Port = port;
                 service.SuppressInitialDiagnosticInformation = sidi;
                 service.WhitelistedIPAddresses = whitelist ?? null;
                 Service = service;

@@ -37,19 +37,19 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <None Remove="Liberator.Driver.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BrowserDrivers\chromedriver.exe">
+    <Content Include="BrowserDrivers\Win\chromedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\geckodriver.exe">
+    <Content Include="BrowserDrivers\Win\geckodriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\IEDriverServer.exe">
+    <Content Include="BrowserDrivers\Win\IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\MicrosoftWebDriver.exe">
+    <Content Include="BrowserDrivers\Win\MicrosoftWebDriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\operadriver.exe">
+    <Content Include="BrowserDrivers\Win\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Liberator.Driver.xml">
@@ -57,15 +57,17 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MathNet.Numerics" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="System.Buffers" Version="4.5.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BrowserDrivers\Mac\" />
+    <Folder Include="BrowserDrivers\Linux\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
