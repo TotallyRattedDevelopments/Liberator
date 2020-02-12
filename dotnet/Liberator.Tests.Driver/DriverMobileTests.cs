@@ -9,6 +9,8 @@ namespace Liberator.DriverTests
     [TestFixture]
     public class DriverMobileTests
     {
+        public string WebsiteToTest { get; set; } = "http://localhost:80";
+
         [Test]
         [TestCase(EnumPhoneType.AmazonKindleFireHDX, true)]
         [TestCase(EnumPhoneType.AppleiPad, true)]
@@ -40,8 +42,8 @@ namespace Liberator.DriverTests
         public void Chrome_MobileDriver(EnumPhoneType phone, bool touch)
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            ratDriver.NavigateToPage(WebsiteToTest);
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -51,8 +53,8 @@ namespace Liberator.DriverTests
         public void Chrome_MobileDriver_ClickLink(EnumPhoneType phone, bool touch)
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            ratDriver.NavigateToPage(WebsiteToTest);
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
 
             var devLink = ratDriver.FindElementByXPath(".//*[@id='just-intro']/div/div/div[1]/a");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -68,8 +70,8 @@ namespace Liberator.DriverTests
         public void Chrome_MobileDriver_ClickMenu(EnumPhoneType phone, bool touch)
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            ratDriver.NavigateToPage(WebsiteToTest);
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
 
             var buttonLink = ratDriver.FindElementByXPath("html/body/div[1]/div/div[1]/button");
             Assert.IsTrue(ratDriver.ElementExists(buttonLink));

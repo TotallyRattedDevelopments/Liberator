@@ -37,19 +37,19 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <None Remove="Liberator.Driver.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BrowserDrivers\chromedriver.exe">
+    <Content Include="BrowserDrivers\Win\chromedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\geckodriver.exe">
+    <Content Include="BrowserDrivers\Win\geckodriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\IEDriverServer.exe">
+    <Content Include="BrowserDrivers\Win\IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\MicrosoftWebDriver.exe">
+    <Content Include="BrowserDrivers\Win\MicrosoftWebDriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrowserDrivers\operadriver.exe">
+    <Content Include="BrowserDrivers\Win\operadriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Liberator.Driver.xml">
@@ -66,6 +66,8 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BrowserDrivers\Mac\" />
+    <Folder Include="BrowserDrivers\Linux\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 </Project>

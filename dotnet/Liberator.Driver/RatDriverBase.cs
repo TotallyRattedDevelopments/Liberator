@@ -53,7 +53,11 @@ namespace Liberator.Driver
                 EstablishDriverSettings();
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
+
 
                 string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
                 IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
@@ -64,7 +68,11 @@ namespace Liberator.Driver
                 WaitForPageToLoad(null);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
             }
             catch (Exception ex)
             {
@@ -89,7 +97,10 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
@@ -98,7 +109,10 @@ namespace Liberator.Driver
                     Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -133,7 +147,10 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
@@ -142,7 +159,10 @@ namespace Liberator.Driver
                     Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -177,7 +197,10 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
@@ -186,7 +209,10 @@ namespace Liberator.Driver
                     Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -225,7 +251,10 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
@@ -234,7 +263,10 @@ namespace Liberator.Driver
                     Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {

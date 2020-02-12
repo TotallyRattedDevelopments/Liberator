@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Liberator.Driver.Preferences
 {
@@ -57,6 +58,7 @@ namespace Liberator.Driver.Preferences
 
         /// <summary>
         /// Location of the Microsoft Web Driver. Defaults to the supplied version.
+        /// Windows only
         /// </summary>
         public static string EdgeDriverLocation { get; set; }
 
@@ -67,6 +69,7 @@ namespace Liberator.Driver.Preferences
 
         /// <summary>
         /// Location of the IEDriverServer executable. Defaults to the supplied version.
+        /// Windows only.
         /// </summary>
         public static string InternetExplorerDriverLocation { get; set; }
 
@@ -74,6 +77,12 @@ namespace Liberator.Driver.Preferences
         /// Location of the Opera Driver. Defaults to the supplied version.
         /// </summary>
         public static string OperaDriverLocation { get; set; }
+
+        /// <summary>
+        /// Location of the Safari Driver. Defaults to the supplied version.
+        /// Mac OS X only
+        /// </summary>
+        public static string SafariDriverLocation { get; set; }
 
         /// <summary>
         /// Location of the Chrome application
@@ -134,11 +143,33 @@ namespace Liberator.Driver.Preferences
 #if  NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETSTANDARD2_0
         static private void FindDrivers()
         {
-            ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\", "chromedriver.exe");
-            EdgeDriverLocation = @"C:\Windows\System32\MicrosoftWebDriver.exe";
-            FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\", "geckodriver.exe");
-            InternetExplorerDriverLocation = FindExecutables(@".\BrowserDrivers\", "IEDriverServer.exe");
-            OperaDriverLocation = FindExecutables(@".\BrowserDrivers\", "operadriver.exe");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "chromedriver.exe");
+                EdgeDriverLocation = @"C:\Windows\System32\MicrosoftWebDriver.exe";
+                FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "geckodriver.exe");
+                InternetExplorerDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "IEDriverServer.exe");
+                OperaDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "operadriver.exe");
+                SafariDriverLocation = null;
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "chromedriver"); ;
+                EdgeDriverLocation = null;
+                FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "geckodriver");
+                InternetExplorerDriverLocation = null;
+                OperaDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "operadriver.exe"); ;
+                SafariDriverLocation = "/usr/bin/safaridriver";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                ChromeDriverLocation = "/usr/local/bin/chromedriver";
+                EdgeDriverLocation = null;
+                FirefoxDriverLocation = "/usr/local/bin/geckodriver";
+                InternetExplorerDriverLocation = null;
+                OperaDriverLocation = "/usr/local/bin/operadriver/operadriver";
+                SafariDriverLocation = null;
+            }
         }
 #endif
 
@@ -146,10 +177,24 @@ namespace Liberator.Driver.Preferences
         {
             try
             {
-
-                ChromeLocation = FindExecutables(@"C:\Program Files (x86)\Google\Chrome\Application", "chrome.exe");
-                FirefoxLocation = FindExecutables(@"C:\Program Files (x86)\Mozilla Firefox", "firefox.exe");
-                OperaLocation = FindExecutables(@"C:\Program Files\Opera", "opera.exe");
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    ChromeLocation = FindExecutables(@"C:\Program Files (x86)\Google\Chrome\Application", "chrome.exe");
+                    FirefoxLocation = FindExecutables(@"C:\Program Files (x86)\Mozilla Firefox", "firefox.exe");
+                    OperaLocation = FindExecutables(@"C:\Program Files\Opera", "opera.exe");
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    ChromeLocation = null;
+                    FirefoxLocation = FindExecutables(@"/Applications/", "Firefox.app/Contents/MacOS/firefox");
+                    OperaLocation = FindExecutables(@"/Applications/", "Opera.app/Contents/MacOS/Opera"); ;
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    ChromeLocation = null;
+                    FirefoxLocation = "usr/bin/firefox";
+                    OperaLocation = "/snap/bin/opera";
+                }
             }
             catch (Exception)
             {

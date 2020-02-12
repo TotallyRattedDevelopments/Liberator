@@ -4713,6 +4713,7 @@
         <member name="P:Liberator.Driver.Preferences.BaseSettings.EdgeDriverLocation">
             <summary>
             Location of the Microsoft Web Driver. Defaults to the supplied version.
+            Windows only
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.FirefoxDriverLocation">
@@ -4723,11 +4724,18 @@
         <member name="P:Liberator.Driver.Preferences.BaseSettings.InternetExplorerDriverLocation">
             <summary>
             Location of the IEDriverServer executable. Defaults to the supplied version.
+            Windows only.
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.OperaDriverLocation">
             <summary>
             Location of the Opera Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.SafariDriverLocation">
+            <summary>
+            Location of the Safari Driver. Defaults to the supplied version.
+            Mac OS X only
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ChromeLocation">

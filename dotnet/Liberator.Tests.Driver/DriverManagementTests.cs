@@ -17,14 +17,17 @@ namespace Liberator.DriverTests
     [TestFixture]
     public class DriverManagementTests
     {
+        public string WebsiteToTest { get; set; } = "http://localhost:80";
+        private string WebsiteUrl { get; set; } = "localhost";
+
         [Test]
         [Category("Firefox")]
         public void InstantiateFirefoxDriver()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -33,9 +36,9 @@ namespace Liberator.DriverTests
         public void InstantiateFirefoxDriver_WithProfile()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>("Automation");
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -44,9 +47,9 @@ namespace Liberator.DriverTests
         public void InstantiateChromeDriver()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -55,9 +58,9 @@ namespace Liberator.DriverTests
         public void InstantiateEdgeDriver()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -66,9 +69,9 @@ namespace Liberator.DriverTests
         public void InstantiateInternetExplorerDriver()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
         
@@ -77,9 +80,9 @@ namespace Liberator.DriverTests
         public void InstantiateOperaDriver()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -88,7 +91,7 @@ namespace Liberator.DriverTests
         public void Firefox_ClickLink()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             ratDriver.ClickLinkAndWait(devLink);
@@ -102,7 +105,7 @@ namespace Liberator.DriverTests
         public void Chrome_ClickLink()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             ratDriver.ClickLinkAndWait(devLink);
@@ -116,7 +119,7 @@ namespace Liberator.DriverTests
         public void Edge_ClickLink()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             ratDriver.ClickLinkAndWait(devLink);
@@ -130,7 +133,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_ClickLink()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             ratDriver.ClickLinkAndWait(devLink);
@@ -145,7 +148,7 @@ namespace Liberator.DriverTests
         public void Opera_ClickLink()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             ratDriver.ClickLinkAndWait(devLink);
@@ -159,7 +162,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetText()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -175,7 +178,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetText()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -191,7 +194,7 @@ namespace Liberator.DriverTests
         public void Edge_GetText()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -207,7 +210,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetText()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -223,7 +226,7 @@ namespace Liberator.DriverTests
         public void Opera_GetText()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -239,7 +242,7 @@ namespace Liberator.DriverTests
         public void Firefox_CheckPageSourceForText()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -255,7 +258,7 @@ namespace Liberator.DriverTests
         public void Chrome_CheckPageSourceForText()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -271,7 +274,7 @@ namespace Liberator.DriverTests
         public void Edge_CheckPageSourceForText()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -287,7 +290,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_CheckPageSourceForText()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -303,7 +306,7 @@ namespace Liberator.DriverTests
         public void Opera_CheckPageSourceForText()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -319,7 +322,7 @@ namespace Liberator.DriverTests
         public void Firefox_CookieTests()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             ratDriver.WaitForElementToLoad(ratDriver.FindElementByCssSelector(".navbar-brand.tradewinds"));
 
@@ -344,7 +347,7 @@ namespace Liberator.DriverTests
             Assert.IsTrue(ratDriver.GetCookieNamed("ratBagel").Value.Contains("ham"));
             ratDriver.DeleteCookieNamed("ratBagel");
 
-            ratDriver.AddCookie("ratCrumpet", "jam", "totallyratted.com", "/", DateTime.Now.AddDays(1));
+            ratDriver.AddCookie("ratCrumpet", "jam",null, "/", DateTime.Now.AddDays(1));
             Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
             ratDriver.ReplaceCookie("ratCrumpet", "honey");
             Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
@@ -361,7 +364,7 @@ namespace Liberator.DriverTests
         public void Chrome_CookieTests()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             ratDriver.WaitForElementToLoad(ratDriver.FindElementByCssSelector(".navbar-brand.tradewinds"));
 
@@ -385,7 +388,7 @@ namespace Liberator.DriverTests
             Assert.IsTrue(ratDriver.GetCookieNamed("ratBagel").Value.Contains("ham"));
             ratDriver.DeleteCookieNamed("ratBagel");
 
-            ratDriver.AddCookie("ratCrumpet", "jam", "totallyratted.com", "/", DateTime.Now.AddDays(1));
+            ratDriver.AddCookie("ratCrumpet", "jam", null, "/", DateTime.Now.AddDays(1));
             Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
             ratDriver.ReplaceCookie("ratCrumpet", "honey");
             Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
@@ -401,7 +404,7 @@ namespace Liberator.DriverTests
         public void Edge_CookieTests()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             ratDriver.WaitForElementToLoad(ratDriver.FindElementByCssSelector(".navbar-brand.tradewinds"));
 
@@ -425,7 +428,7 @@ namespace Liberator.DriverTests
             Assert.IsTrue(ratDriver.GetCookieNamed("ratBagel").Value.Contains("ham"));
             ratDriver.DeleteCookieNamed("ratBagel");
 
-            ratDriver.AddCookie("ratCrumpet", "jam", "totallyratted.com", "/", DateTime.Now.AddDays(1));
+            ratDriver.AddCookie("ratCrumpet", "jam", null, "/", DateTime.Now.AddDays(1));
             Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
             ratDriver.ReplaceCookie("ratCrumpet", "honey");
             Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
@@ -442,7 +445,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_CookieTests()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             ratDriver.WaitForElementToLoad(ratDriver.FindElementByCssSelector(".navbar-brand.tradewinds"));
 
@@ -466,7 +469,7 @@ namespace Liberator.DriverTests
             Assert.IsTrue(ratDriver.GetCookieNamed("ratBagel").Value.Contains("ham"));
             ratDriver.DeleteCookieNamed("ratBagel");
 
-            ratDriver.AddCookie("ratCrumpet", "jam", "totallyratted.com", "/", DateTime.Now.AddDays(1));
+            ratDriver.AddCookie("ratCrumpet", "jam", null, "/", DateTime.Now.AddDays(1));
             Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
             ratDriver.ReplaceCookie("ratCrumpet", "honey");
             Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
@@ -482,7 +485,7 @@ namespace Liberator.DriverTests
         public void Opera_CookieTests()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             ratDriver.WaitForElementToLoad(ratDriver.FindElementByCssSelector(".navbar-brand.tradewinds"));
 
@@ -506,12 +509,12 @@ namespace Liberator.DriverTests
             Assert.IsTrue(ratDriver.GetCookieNamed("ratBagel").Value.Contains("ham"));
             ratDriver.DeleteCookieNamed("ratBagel");
 
-            //ratDriver.AddCookie("ratCrumpet", "jam", "totallyratted", "/", DateTime.Now.AddDays(1));
-            //Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
-            //ratDriver.ReplaceCookie("ratCrumpet", "honey");
-            //Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
-            //Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("honey"));
-            //ratDriver.DeleteCookieNamed("ratCrumpet");
+            ratDriver.AddCookie("ratCrumpet", "jam", null, "/", DateTime.Now.AddDays(1));
+            Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("jam"));
+            ratDriver.ReplaceCookie("ratCrumpet", "honey");
+            Assert.IsTrue(ratDriver.CheckCookieExists("ratCrumpet"));
+            Assert.IsTrue(ratDriver.GetCookieNamed("ratCrumpet").Value.Contains("honey"));
+            ratDriver.DeleteCookieNamed("ratCrumpet");
 
             ratDriver.DeleteAllCookies();
             ratDriver.ClosePagesAndQuitDriver();
@@ -523,7 +526,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetAvailableLogTypes()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             List<string> logTypes = ratDriver.GetAvailableLogTypes().ToList();
             Assert.IsTrue(logTypes[0] == "browser");
             Assert.IsTrue(logTypes[1] == "driver");
@@ -535,7 +538,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetAvailableLogTypes()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsNull(ratDriver.GetAvailableLogTypes());
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -545,7 +548,7 @@ namespace Liberator.DriverTests
         public void Edge_GetAvailableLogTypes()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsNull(ratDriver.GetAvailableLogTypes());
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -555,7 +558,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetAvailableLogTypes()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsNull(ratDriver.GetAvailableLogTypes());
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -565,7 +568,7 @@ namespace Liberator.DriverTests
         public void Opera_GetAvailableLogTypes()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             List<string> logTypes = ratDriver.GetAvailableLogTypes().ToList();
             Assert.IsTrue(logTypes[0] == "browser");
             Assert.IsTrue(logTypes[1] == "driver");
@@ -578,7 +581,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetBrowserLogEntries()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var logEntries = ratDriver.GetAvailableLogEntries("browser");
             Assert.IsNotNull(logEntries);
             ratDriver.ClosePagesAndQuitDriver();
@@ -590,7 +593,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetDriverLogEntries()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             var logEntries = ratDriver.GetAvailableLogEntries("driver");
             Assert.IsNotNull(logEntries);
             ratDriver.ClosePagesAndQuitDriver();
@@ -602,7 +605,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
             ratDriver.SetImplicitWait(0, 5, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -612,7 +615,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
             ratDriver.SetImplicitWait(0, 5, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -622,7 +625,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
             ratDriver.SetImplicitWait(0, 5, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -632,7 +635,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
             ratDriver.SetImplicitWait(0, 5, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -642,7 +645,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
             ratDriver.SetImplicitWait(0, 5, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -652,7 +655,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
             ratDriver.SetPageLoadTimeout(0, 30, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -662,7 +665,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
             ratDriver.SetPageLoadTimeout(0, 30, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -672,7 +675,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
             ratDriver.SetPageLoadTimeout(0, 30, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -682,7 +685,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
             ratDriver.SetPageLoadTimeout(0, 30, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -692,7 +695,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
             ratDriver.SetPageLoadTimeout(0, 30, 0);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -701,7 +704,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetWindowPosition()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowPosition();
             Assert.IsTrue(position.Item1 >= -10);
             Assert.IsTrue(position.Item2 >= -10);
@@ -713,7 +716,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetWindowPosition()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowPosition();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -725,7 +728,7 @@ namespace Liberator.DriverTests
         public void Edge_GetWindowPosition()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowPosition();
             Assert.IsTrue(position.Item1 >= -20);
             Assert.IsTrue(position.Item2 >= -20);
@@ -737,7 +740,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetWindowPosition()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowPosition();
             Assert.IsTrue(position.Item1 >= -20);
             Assert.IsTrue(position.Item2 >= -20);
@@ -749,7 +752,7 @@ namespace Liberator.DriverTests
         public void Opera_GetWindowPosition()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowPosition();
             Assert.IsTrue(position.Item1 >= -20);
             Assert.IsTrue(position.Item2 >= -20);
@@ -761,7 +764,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetWindowSize()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowSize();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -773,7 +776,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetWindowSize()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowSize();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -785,7 +788,7 @@ namespace Liberator.DriverTests
         public void Edge_GetWindowSize()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowSize();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -797,7 +800,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetWindowSize()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowSize();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -809,7 +812,7 @@ namespace Liberator.DriverTests
         public void Opera_GetWindowSize()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             Tuple<int, int> position = ratDriver.GetWindowSize();
             Assert.IsTrue(position.Item1 >= 0);
             Assert.IsTrue(position.Item2 >= 0);
@@ -821,7 +824,7 @@ namespace Liberator.DriverTests
         public void Firefox_ResizeWindow()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
             Assert.IsTrue(size.Item1 == 640);
@@ -834,7 +837,7 @@ namespace Liberator.DriverTests
         public void Chrome_ResizeWindow()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
             Assert.IsTrue(size.Item1 == 640);
@@ -847,7 +850,7 @@ namespace Liberator.DriverTests
         public void Edge_ResizeWindow()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
             Assert.IsTrue(size.Item1 >= 690 || size.Item1 <= 694);
@@ -860,7 +863,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_ResizeWindow()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
             Assert.IsTrue(size.Item1 == 640);
@@ -873,7 +876,7 @@ namespace Liberator.DriverTests
         public void Opera_ResizeWindow()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.ResizeBrowserWindow(640, 480);
             Tuple<int, int> size = ratDriver.GetWindowSize();
             Assert.IsTrue(size.Item1 == 640);
@@ -886,7 +889,7 @@ namespace Liberator.DriverTests
         public void Firefox_BrowserButtons()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -908,7 +911,7 @@ namespace Liberator.DriverTests
         public void Chrome_BrowserButtons()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -930,7 +933,7 @@ namespace Liberator.DriverTests
         public void Edge_BrowserButtons()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -952,7 +955,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_BrowserButtons()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -975,7 +978,7 @@ namespace Liberator.DriverTests
         public void Opera_BrowserButtons()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByPartialLinkText("Developments");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -997,12 +1000,12 @@ namespace Liberator.DriverTests
         public void Firefox_NavigateUsingUri()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1012,12 +1015,12 @@ namespace Liberator.DriverTests
         public void Chrome_NavigateUsingUri()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1027,12 +1030,12 @@ namespace Liberator.DriverTests
         public void Edge_NavigateUsingUri()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1042,12 +1045,12 @@ namespace Liberator.DriverTests
         public void InternetExplorer_NavigateUsingUri()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1057,12 +1060,12 @@ namespace Liberator.DriverTests
         public void Opera_NavigateUsingUri()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("totallyratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1072,7 +1075,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetPageSource()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -1085,7 +1088,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetPageSource()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -1098,7 +1101,7 @@ namespace Liberator.DriverTests
         public void Edge_GetPageSource()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -1111,7 +1114,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetPageSource()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -1124,7 +1127,7 @@ namespace Liberator.DriverTests
         public void Opera_GetPageSource()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -1137,7 +1140,7 @@ namespace Liberator.DriverTests
         public void Firefox_SwitchToWindow()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             //var pageOne = ratDriver.FindElementByTag("body");
             var window = ratDriver.Driver.CurrentWindowHandle;
@@ -1145,7 +1148,7 @@ namespace Liberator.DriverTests
             ratDriver.NavigateToPage("http://www.google.com");
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("google"));
             ratDriver.SwitchToWindow(window);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("ratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
         
@@ -1154,7 +1157,7 @@ namespace Liberator.DriverTests
         public void Chrome_SwitchToWindow()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             //var pageOne = ratDriver.FindElementByTag("body");
             var window = ratDriver.Driver.CurrentWindowHandle;
@@ -1162,7 +1165,7 @@ namespace Liberator.DriverTests
             ratDriver.NavigateToPage("http://www.google.com");
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("google"));
             ratDriver.SwitchToWindow(window);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("ratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -1172,14 +1175,14 @@ namespace Liberator.DriverTests
         public void Edge_SwitchToWindow()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var window = ratDriver.Driver.CurrentWindowHandle;
             ratDriver.OpenNewView();
             ratDriver.NavigateToPage("http://www.google.com");
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("google"));
             ratDriver.SwitchToWindow(window);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("ratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
         
@@ -1189,14 +1192,14 @@ namespace Liberator.DriverTests
         public void InternetExplorer_SwitchToWindow()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var window = ratDriver.Driver.CurrentWindowHandle;
             ratDriver.OpenNewView();
             ratDriver.NavigateToPage("http://www.google.com");
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("google"));
             ratDriver.SwitchToWindow(window);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("ratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
         
@@ -1205,14 +1208,14 @@ namespace Liberator.DriverTests
         public void Opera_SwitchToWindow()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var window = ratDriver.Driver.CurrentWindowHandle;
             ratDriver.OpenNewView();
             ratDriver.NavigateToPage("http://www.google.com");
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("google"));
             ratDriver.SwitchToWindow(window);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("ratted"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -1221,7 +1224,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetBrowserWindowTitle()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetBrowserWindowTitle();
             Assert.IsTrue(title.Contains("Totally Ratted Limited"));
@@ -1233,7 +1236,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetBrowserWindowTitle()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetBrowserWindowTitle();
             Assert.IsTrue(title.Contains("Totally Ratted Limited"));
@@ -1245,7 +1248,7 @@ namespace Liberator.DriverTests
         public void Edge_GetBrowserWindowTitle()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetBrowserWindowTitle();
             Assert.IsTrue(title.Contains("Totally Ratted Limited"));
@@ -1257,7 +1260,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetBrowserWindowTitle()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetBrowserWindowTitle();
             Assert.IsTrue(title.Contains("Totally Ratted Limited"));
@@ -1269,7 +1272,7 @@ namespace Liberator.DriverTests
         public void Opera_GetBrowserWindowTitle()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetBrowserWindowTitle();
             Assert.IsTrue(title.Contains("Totally Ratted Limited"));
@@ -1281,7 +1284,7 @@ namespace Liberator.DriverTests
         public void Firefox_GetAllWindowHandles()
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetAllWindowHandles();
             Assert.IsNotNull(title);
@@ -1293,7 +1296,7 @@ namespace Liberator.DriverTests
         public void Chrome_GetAllWindowHandles()
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetAllWindowHandles();
             Assert.IsNotNull(title);
@@ -1305,7 +1308,7 @@ namespace Liberator.DriverTests
         public void Edge_GetAllWindowHandles()
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetAllWindowHandles();
             Assert.IsNotNull(title);
@@ -1317,7 +1320,7 @@ namespace Liberator.DriverTests
         public void InternetExplorer_GetAllWindowHandles()
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetAllWindowHandles();
             Assert.IsNotNull(title);
@@ -1329,7 +1332,7 @@ namespace Liberator.DriverTests
         public void Opera_GetAllWindowHandles()
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>();
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var title = ratDriver.GetAllWindowHandles();
             Assert.IsNotNull(title);
@@ -1342,7 +1345,7 @@ namespace Liberator.DriverTests
         {
             string userAgent = "Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(360, 640, userAgent, 3.0d, true);
-            ratDriver.NavigateToPage("http://www.totallyratted.com");
+            ratDriver.NavigateToPage(WebsiteToTest);
         }
 
 
@@ -1354,7 +1357,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<FirefoxDriver> ratDriver = new RatDriver<FirefoxDriver>(new FirefoxSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
             ratDriver.MaximiseView();
@@ -1369,7 +1372,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(new ChromeSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
             ratDriver.MaximiseView();
@@ -1384,7 +1387,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<EdgeDriver> ratDriver = new RatDriver<EdgeDriver>(new EdgeSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
             ratDriver.MaximiseView();
@@ -1399,7 +1402,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<InternetExplorerDriver> ratDriver = new RatDriver<InternetExplorerDriver>(new InternetExplorerSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
             ratDriver.MaximiseView();
@@ -1414,7 +1417,7 @@ namespace Liberator.DriverTests
         {
             RatDriver<OperaDriver> ratDriver = new RatDriver<OperaDriver>(new OperaSettings(), true);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 2, Is.True);
-            Uri url = new Uri("http://www.totallyratted.com");
+            Uri url = new Uri(WebsiteToTest);
             ratDriver.NavigateToPage(url);
             Assert.That(ratDriver.RatTimerCollection.Timings.Count == 3, Is.True);
             ratDriver.MaximiseView();
