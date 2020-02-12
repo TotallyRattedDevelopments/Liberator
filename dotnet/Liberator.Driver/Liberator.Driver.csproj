@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Liberator.Driver</PackageId>
     <Version>0.8.3.3</Version>
@@ -20,13 +20,6 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <RootNamespace>Liberator.Driver</RootNamespace>
     <AssemblyName>Liberator.Driver</AssemblyName>
     <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
-    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="BrowserDrivers\chromedriver.exe" />
