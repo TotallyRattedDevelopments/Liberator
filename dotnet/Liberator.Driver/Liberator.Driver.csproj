@@ -61,7 +61,6 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
   <ItemGroup>
     <Folder Include="BrowserDrivers\Mac\" />
     <Folder Include="BrowserDrivers\Linux\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="BrowserDrivers\Linux\operadriver">
@@ -76,10 +75,14 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
     <None Update="BrowserDrivers\Linux\chromedriver">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Preferences\BaseSettings.cs">
+    <None Update="BrowserDrivers\Mac\operadriver">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    </None>
+    <None Update="BrowserDrivers\Mac\geckodriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Mac\chromedriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

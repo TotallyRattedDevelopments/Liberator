@@ -33,6 +33,9 @@ namespace Liberator.Driver
         int _browserPid = 0;
         int _driverPid = 0;
 
+        bool _runTests = false;
+        string _browserError = null;
+
         #endregion
 
         #region Constructor & Helpers
@@ -50,8 +53,11 @@ namespace Liberator.Driver
                 RecordPerformance = performanceTimings;
                 if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                EstablishDriverSettings();
+
                 string driverType = typeof(TWebDriver).Name;
+                EstablishDriverSettings(driverType);
+
+                if (!_runTests) { throw new LiberatorOSException(_browserError); }
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
                 RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -78,7 +84,8 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -107,7 +114,8 @@ namespace Liberator.Driver
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
-                    EstablishDriverSettings();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
                     FirefoxDriverControl controller = new FirefoxDriverControl();
                     Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
@@ -128,7 +136,10 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                {
+                    Console.Out.WriteLine("An unexpected error has been detected.");
+                }
                 HandleErrors(ex);
             }
         }
@@ -159,7 +170,8 @@ namespace Liberator.Driver
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
-                    EstablishDriverSettings();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
                     FirefoxDriverControl controller = new FirefoxDriverControl();
                     Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
@@ -180,7 +192,9 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -211,7 +225,8 @@ namespace Liberator.Driver
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
-                    EstablishDriverSettings();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
                     ChromeDriverControl controller = new ChromeDriverControl();
                     Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
@@ -232,7 +247,8 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -267,7 +283,9 @@ namespace Liberator.Driver
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
-                    EstablishDriverSettings();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
+
                     ChromeDriverControl controller = new ChromeDriverControl();
                     Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
@@ -288,7 +306,8 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -297,9 +316,66 @@ namespace Liberator.Driver
 
         #region Private Methods
 
-        private void GetWebDriverSettings()
+        private void GetWebDriverSettings(string driverType)
         {
-
+            switch (driverType.ToLower())
+            {
+                case "chromedriver":
+                case "firefoxdriver":
+                    _runTests = true;
+                    break;
+                case "edgedriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Edge is only available for Windows.";
+                    }
+                    break;
+                case "internetexplorerdriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Internet Explorer is only available for Windows.";
+                    }
+                    break;
+                case "operadriver":
+                    if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Opera Driver currently displays errors on Mac OS X.";
+                    }
+                    break;
+                case "safaridriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Safari is only available for Mac OS X.";
+                    }
+                    break;
+                default:
+                    _runTests = false;
+                    break;
+            }
         }
 
         #endregion
@@ -340,11 +416,11 @@ namespace Liberator.Driver
         /// <summary>
         /// Initialises driver settings.
         /// </summary>
-        private void EstablishDriverSettings()
+        private void EstablishDriverSettings(string driverType)
         {
             Id = Guid.NewGuid();
             WindowHandles = new Dictionary<string, string>();
-            GetWebDriverSettings();
+            GetWebDriverSettings(driverType);
         }
 
         /// <summary>

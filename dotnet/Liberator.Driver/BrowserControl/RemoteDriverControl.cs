@@ -1,4 +1,5 @@
 ﻿using Liberator.Driver.Enums;
+using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
@@ -22,7 +23,7 @@ namespace Liberator.Driver.BrowserControl
 
 
         public DriverOptions Options { get; set; }
-        
+
         #endregion
 
         #region Constructor & Public Methods
@@ -44,7 +45,7 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 Uri remoteAddress = null;
-                string address = Preferences.Remote.DefaultRemoteAddress;
+                string address = Remote.DefaultRemoteAddress;
                 //SetPlatform(PlatformType.Windows);
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
                 Driver = new RemoteWebDriver(remoteAddress, Options);
@@ -52,7 +53,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start chrome driver.");
@@ -83,14 +84,14 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 Uri remoteAddress = null;
-                string address = Preferences.Remote.DefaultRemoteAddress;
+                string address = Remote.DefaultRemoteAddress;
                 if (address.Length > 1) { remoteAddress = new Uri(address); }
                 Driver = new RemoteWebDriver(remoteAddress, Options);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.WriteLine("Could not start chrome driver.");
@@ -113,7 +114,7 @@ namespace Liberator.Driver.BrowserControl
         #endregion
 
         #region Private Methods
-        
+
 
 
         ///// <summary>
@@ -129,7 +130,7 @@ namespace Liberator.Driver.BrowserControl
         //    }
         //    catch (Exception ex)
         //    {
-        //        switch (Preferences.Preferences.DebugLevel)
+        //        switch (DebugLevel)
         //        {
         //            case EnumConsoleDebugLevel.Human:
         //                Console.WriteLine("Could set the browser platform.");

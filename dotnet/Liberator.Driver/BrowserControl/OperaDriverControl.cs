@@ -2,9 +2,7 @@
 using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Opera;
-using OpenQA.Selenium.Remote;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
@@ -83,7 +81,7 @@ namespace Liberator.Driver.BrowserControl
                 SetOperaOptions();
                 //SetOperaDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                Driver = new OperaDriver(Directory.GetParent(Preferences.BaseSettings.OperaDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);
+                Driver = new OperaDriver(Directory.GetParent(BaseSettings.OperaDriverLocation).FullName, Options, BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
@@ -104,20 +102,20 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool.TryParse(Preferences.Opera.LeaveBrowserRunning, out bool running);
+                bool.TryParse(Opera.LeaveBrowserRunning, out bool running);
 
                 OperaOptions options = new OperaOptions()
                 {
-                    BinaryLocation = Preferences.BaseSettings.OperaLocation,
-                    DebuggerAddress = Preferences.Opera.DebuggerAddress ?? null,
+                    BinaryLocation = BaseSettings.OperaLocation,
+                    DebuggerAddress = Opera.DebuggerAddress ?? null,
                     LeaveBrowserRunning = running,
-                    MinidumpPath = Preferences.Opera.MinidumpPath ?? null
+                    MinidumpPath = Opera.MinidumpPath ?? null
                 };
                 Options = options;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the opera diver options.");
@@ -144,20 +142,20 @@ namespace Liberator.Driver.BrowserControl
             {
                 int android = -1;
 
-                int.TryParse(Preferences.Opera.AndroidDebugBridgePort, out android);
-                bool.TryParse(Preferences.Opera.EnableVerboseLogging, out bool verbose);
-                bool.TryParse(Preferences.Opera.HideCommandPromptWindow, out bool hidePrompt);
-                int.TryParse(Preferences.Opera.Port, out int port);
-                bool.TryParse(Preferences.Opera.SuppressInitialDiagnosticInformation, out bool sidi);
+                int.TryParse(Opera.AndroidDebugBridgePort, out android);
+                bool.TryParse(Opera.EnableVerboseLogging, out bool verbose);
+                bool.TryParse(Opera.HideCommandPromptWindow, out bool hidePrompt);
+                int.TryParse(Opera.Port, out int port);
+                bool.TryParse(Opera.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                string operaLocation = Preferences.BaseSettings.OperaDriverLocation;
+                string operaLocation = BaseSettings.OperaDriverLocation;
 
-                string logPath = Preferences.Opera.LogPath;
-                string portServer = Preferences.Opera.PortServerAddress;
-                string prefix = Preferences.Opera.UrlPathPrefix;
+                string logPath = Opera.LogPath;
+                string portServer = Opera.PortServerAddress;
+                string prefix = Opera.UrlPathPrefix;
 
                 OperaDriverService service = OperaDriverService.CreateDefaultService(operaLocation);
-                service.AndroidDebugBridgePort = android >= 0 ? android : -1 ;
+                service.AndroidDebugBridgePort = android >= 0 ? android : -1;
                 service.EnableVerboseLogging = verbose;
                 service.HideCommandPromptWindow = hidePrompt;
                 service.Port = port;
@@ -167,7 +165,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start the opera driver service.");
