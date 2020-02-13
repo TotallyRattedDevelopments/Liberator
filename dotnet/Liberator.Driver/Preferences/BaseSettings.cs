@@ -154,11 +154,11 @@ namespace Liberator.Driver.Preferences
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "chromedriver"); ;
+                ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "chromedriver");
                 EdgeDriverLocation = null;
                 FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "geckodriver");
                 InternetExplorerDriverLocation = null;
-                OperaDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "operadriver.exe"); ;
+                OperaDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "operadriver");
                 SafariDriverLocation = "/usr/bin/safaridriver";
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -167,7 +167,7 @@ namespace Liberator.Driver.Preferences
                 EdgeDriverLocation = null;
                 FirefoxDriverLocation = "/usr/local/bin/geckodriver";
                 InternetExplorerDriverLocation = null;
-                OperaDriverLocation = "/usr/local/bin/operadriver/operadriver";
+                OperaDriverLocation = "/usr/local/bin/operadriver";
                 SafariDriverLocation = null;
             }
         }
@@ -192,7 +192,7 @@ namespace Liberator.Driver.Preferences
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
                     ChromeLocation = null;
-                    FirefoxLocation = "usr/bin/firefox";
+                    FirefoxLocation = "/usr/bin/firefox";
                     OperaLocation = "/snap/bin/opera";
                 }
             }
