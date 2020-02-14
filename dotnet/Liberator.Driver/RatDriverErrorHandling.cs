@@ -162,6 +162,7 @@ namespace Liberator.Driver
         public LiberatorOSException(string message)
             : base(message)
         {
+            Console.Out.WriteLine(message);
         }
 
         public LiberatorOSException(string message, Exception inner)
