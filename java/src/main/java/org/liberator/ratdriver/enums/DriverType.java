@@ -3,11 +3,11 @@ package org.liberator.ratdriver.enums;
 /**
  * A list of driver types
  */
+@SuppressWarnings("unused")
 public enum DriverType {
     /**
      * Driver not specified
-     */
-    NotSpecified,
+     */NotSpecified,
 
     /**
      * Firefox web driver
@@ -42,5 +42,5 @@ public enum DriverType {
     /**
      * Remote Web Driver
      */
-    RemoteDriver
+    @SuppressWarnings("unused") RemoteDriver
 }

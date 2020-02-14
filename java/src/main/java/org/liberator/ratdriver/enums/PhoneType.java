@@ -3,6 +3,7 @@ package org.liberator.ratdriver.enums;
 /**
  * Type of phone to simulate using Google Chrome
  */
+@SuppressWarnings("unused")
 public enum PhoneType {
 
     /**

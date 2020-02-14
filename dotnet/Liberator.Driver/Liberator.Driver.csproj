@@ -61,6 +61,28 @@ Liberator uses Expected Conditions to avoid the race conditions common when auto
   <ItemGroup>
     <Folder Include="BrowserDrivers\Mac\" />
     <Folder Include="BrowserDrivers\Linux\" />
-    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="BrowserDrivers\Linux\operadriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Linux\operadriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Linux\geckodriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Linux\chromedriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Mac\operadriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Mac\geckodriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="BrowserDrivers\Mac\chromedriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

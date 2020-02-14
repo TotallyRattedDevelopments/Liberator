@@ -6,12 +6,12 @@ import org.openqa.selenium.PageLoadStrategy;
 
 import static org.openqa.selenium.PageLoadStrategy.EAGER;
 import static org.openqa.selenium.UnexpectedAlertBehaviour.*;
-import static org.openqa.selenium.ie.InternetExplorerDriverLogLevel.*;;
+import static org.openqa.selenium.ie.InternetExplorerDriverLogLevel.*;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.ie.InternetExplorerDriverLogLevel;
 
+@SuppressWarnings("unused")
 public class IESettings extends BaseSettings {
-
 
     public IESettings() {
         EnableFullPageScreenshot = null;

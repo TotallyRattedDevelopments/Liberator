@@ -5,6 +5,7 @@ import com.sun.javafx.PlatformUtil;
 /**
  * Preferences for ChromeDriver
  */
+@SuppressWarnings("unused")
 public class ChromeSettings extends BaseSettings {
 
     /**
@@ -164,7 +165,7 @@ public class ChromeSettings extends BaseSettings {
         AndroidDebugBridgePort = "5037";
         EnableVerboseLogging = "false";
         HideCommandPromptWindow = "false";
-        //LogPath = "/Users/kevmccarthy/Projects/Liberator/java/src/test/resources/logs";
+        //LogPath = "";
         SuppressInitialDiagnosticInformation = "false";
 
         // Mobile Emulation Pre-Sets

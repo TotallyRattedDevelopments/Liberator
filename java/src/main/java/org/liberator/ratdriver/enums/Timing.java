@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.enums;
 
+@SuppressWarnings("unused")
 public enum Timing {
 
     /**

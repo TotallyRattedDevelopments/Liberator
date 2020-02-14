@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Liberator.Driver.Preferences
+﻿namespace Liberator.Driver.Preferences
 {
     /// <summary>
     /// Preferences for the Opera Driver

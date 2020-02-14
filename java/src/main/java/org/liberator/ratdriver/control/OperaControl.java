@@ -2,6 +2,7 @@ package org.liberator.ratdriver.control;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.liberator.ratdriver.ErrorHandler;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.OperaPreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
@@ -12,12 +13,11 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaDriverService;
 import org.openqa.selenium.opera.OperaOptions;
 
-import java.io.File;
 import java.util.Arrays;
 
 import static org.openqa.selenium.remote.CapabilityType.*;
 
-public class OperaControl extends BrowserControl {
+public class OperaControl extends RemoteControl {
 
     //region Public Properties
 
@@ -26,41 +26,34 @@ public class OperaControl extends BrowserControl {
      */
     @Getter
     @Setter
-    public OperaOptions Options;
+    public OperaOptions operaOptions;
 
     /**
      * The Internet Explorer driver service
      */
     @Getter
     @Setter
-    public OperaDriverService Service;
+    public OperaDriverService operaDriverService;
 
     /**
      * Holds the instantiated Opera Driver
      */
     @Getter
     @Setter
-    public WebDriver Driver;
+    public WebDriver driver;
 
     /**
      * The maximum amount of time to wait between commands
      */
     @Getter
     @Setter
-    public Integer CommandTimeout;
+    public Integer commandTimeout;
 
-    private OperaDriverService.Builder Builder;
+    private OperaDriverService.Builder builder;
 
     //endregion
 
     //region Constructor
-
-    /**
-     *
-     */
-    public OperaControl() {
-
-    }
 
     /**
      * Constructor allowing for the setting of preferences on-the-fly
@@ -74,17 +67,39 @@ public class OperaControl extends BrowserControl {
     }
 
     private void setImportedPreferences(OperaPreferences operaPreferences) {
-        OperaSettings.AndroidDebugBridgePort = operaPreferences.AndroidDebugBridgePort;
-        OperaSettings.DebuggerAddress = operaPreferences.DebuggerAddress;
-        OperaSettings.EnableVerboseLogging = operaPreferences.EnableVerboseLogging;
-        OperaSettings.HideCommandPromptWindow = operaPreferences.HideCommandPromptWindow;
-        OperaSettings.LeaveBrowserRunning = operaPreferences.LeaveBrowserRunning;
-        OperaSettings.LogPath = operaPreferences.LogPath;
-        OperaSettings.MinidumpPath = operaPreferences.MinidumpPath;
-        OperaSettings.Port = operaPreferences.Port;
-        OperaSettings.PortServerAddress = operaPreferences.PortServerAddress;
-        OperaSettings.SuppressInitialDiagnosticInformation = operaPreferences.SuppressInitialDiagnosticInformation;
-        OperaSettings.UrlPathPrefix = operaPreferences.UrlPathPrefix;
+        try {
+            if (operaPreferences != null) {
+                OperaSettings.Timeout = operaPreferences.Timeout;
+                OperaSettings.AsyncJavaScript = operaPreferences.AsyncJavaScript;
+                OperaSettings.DebugLevel = operaPreferences.DebugLevel;
+                OperaSettings.ImplicitWait = operaPreferences.ImplicitWait;
+                OperaSettings.PageLoad = operaPreferences.PageLoad;
+                OperaSettings.AlertHandling = operaPreferences.AlertHandling;
+                OperaSettings.InternalTimers = operaPreferences.InternalTimers;
+                OperaSettings.MenuHoverTime = operaPreferences.MenuHoverTime;
+                OperaSettings.Sleep = operaPreferences.Sleep;
+
+                OperaSettings.AndroidDebugBridgePort = operaPreferences.AndroidDebugBridgePort;
+                OperaSettings.DebuggerAddress = operaPreferences.DebuggerAddress;
+                OperaSettings.EnableVerboseLogging = operaPreferences.EnableVerboseLogging;
+                OperaSettings.HideCommandPromptWindow = operaPreferences.HideCommandPromptWindow;
+                OperaSettings.LeaveBrowserRunning = operaPreferences.LeaveBrowserRunning;
+                OperaSettings.LogPath = operaPreferences.LogPath;
+                OperaSettings.MinidumpPath = operaPreferences.MinidumpPath;
+                OperaSettings.Port = operaPreferences.Port;
+                OperaSettings.PortServerAddress = operaPreferences.PortServerAddress;
+                OperaSettings.SuppressInitialDiagnosticInformation = operaPreferences.SuppressInitialDiagnosticInformation;
+                OperaSettings.UrlPathPrefix = operaPreferences.UrlPathPrefix;
+            }
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "OperaControl",
+                    "setImportedPreferences",
+                    "Unable to import preferences."
+            );
+        }
     }
 
     //endregion
@@ -94,23 +109,30 @@ public class OperaControl extends BrowserControl {
      *
      * @return A web driver instance
      */
-    @Override
-    public WebDriver StartDriver() {
+    public WebDriver startDriver() {
         try {
             System.setProperty("webdriver.opera.driver", BaseSettings.OperaDriverLocation);
 
-            SetOperaOptions();
-            SetOperaDriverService();
+            setOperaOptions();
+            setOperaDriverService();
+            setProxy();
 
-            if (Service != null && Options != null) {
-                Driver = new OperaDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new OperaDriver(Service);
-            } else if (Options != null) {
-                Driver = new OperaDriver(Options);
+            if (operaDriverService != null && operaOptions != null) {
+                driver = new OperaDriver(operaDriverService, operaOptions);
+            } else if (operaOptions == null && operaDriverService != null) {
+                driver = new OperaDriver(operaDriverService);
+            } else if (operaOptions != null) {
+                driver = new OperaDriver(operaOptions);
             }
-            return Driver;
-        } catch (Exception ex) {
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "OperaControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
@@ -121,35 +143,33 @@ public class OperaControl extends BrowserControl {
      * @param driverSettings Preference injection object
      * @return A web driver instance
      */
-    @Override
-    public WebDriver StartDriver(BasePreferences driverSettings) {
+    public WebDriver startDriver(BasePreferences driverSettings) {
         try {
             setImportedPreferences((OperaPreferences) driverSettings);
             System.setProperty("webdriver.opera.driver", FirefoxSettings.OperaDriverLocation);
 
-            SetOperaOptions();
-            SetOperaDriverService();
+            startDriver();
 
-            if (Service != null && Options != null) {
-                Driver = new OperaDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new OperaDriver(Service);
-            } else if (Options != null) {
-                Driver = new OperaDriver(Options);
-            }
-            return Driver;
-        } catch (Exception ex) {
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "OperaControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
 
 
-    private void SetOperaOptions() {
+    private void setOperaOptions() {
         try {
-            Options = new OperaOptions();
-            Options.setBinary(BaseSettings.OperaLocation);
-            Options.addArguments("--remote-debugging-port=9222");
-            Options.addArguments("start-maximized");
+            operaOptions = new OperaOptions();
+            operaOptions.setBinary(BaseSettings.OperaLocation);
+            operaOptions.addArguments("--remote-debugging-port=9222");
+            operaOptions.addArguments("start-maximized");
             setAcceptInsecureCertificates();
             setSSLCertificates();
             setPageLoadStrategy();
@@ -177,7 +197,7 @@ public class OperaControl extends BrowserControl {
     private void setAcceptInsecureCertificates() {
         try {
             if (OperaSettings.AcceptInsecureCertificates != null) {
-                Options.setCapability(ACCEPT_INSECURE_CERTS, OperaSettings.AcceptInsecureCertificates);
+                operaOptions.setCapability(ACCEPT_INSECURE_CERTS, OperaSettings.AcceptInsecureCertificates);
                 System.out.format("Set accept insecure certificates to: %s", OperaSettings.AcceptInsecureCertificates.toString());
                 System.out.println();
             }
@@ -191,13 +211,11 @@ public class OperaControl extends BrowserControl {
     private void setSSLCertificates() {
         try {
             if (OperaSettings.AcceptSSLCertificates != null) {
-                Options.setCapability(ACCEPT_SSL_CERTS, OperaSettings.AcceptSSLCertificates);
-                System.out.format("Set accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
-                System.out.println();
+                operaOptions.setCapability(ACCEPT_SSL_CERTS, OperaSettings.AcceptSSLCertificates);
+                System.out.format("\nSet accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
-            System.out.println();
+            System.out.format("\nCould not set accept SSL certificates to: %s", OperaSettings.AcceptSSLCertificates.toString());
 
         }
     }
@@ -205,13 +223,11 @@ public class OperaControl extends BrowserControl {
     private void setPageLoadStrategy() {
         try {
             if (OperaSettings.PageLoadStrategy != null) {
-                Options.setCapability(PAGE_LOAD_STRATEGY, OperaSettings.PageLoadStrategy);
-                System.out.format("Set page load strategy to: %s", OperaSettings.PageLoadStrategy);
-                System.out.println();
+                operaOptions.setCapability(PAGE_LOAD_STRATEGY, OperaSettings.PageLoadStrategy);
+                System.out.format("\nSet page load strategy to: %s", OperaSettings.PageLoadStrategy);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set page load strategy to: %s", OperaSettings.PageLoadStrategy);
-            System.out.println();
+            System.out.format("\nCould not set page load strategy to: %s", OperaSettings.PageLoadStrategy);
 
         }
     }
@@ -219,13 +235,11 @@ public class OperaControl extends BrowserControl {
     private void setTakesScreenshot() {
         try {
             if (OperaSettings.TakesScreenshot != null) {
-                Options.setCapability(TAKES_SCREENSHOT, OperaSettings.TakesScreenshot);
-                System.out.format("Set Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
-                System.out.println();
+                operaOptions.setCapability(TAKES_SCREENSHOT, OperaSettings.TakesScreenshot);
+                System.out.format("\nSet Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
-            System.out.println();
+            System.out.format("\nCould not set Takes Screenshot to: %s", OperaSettings.TakesScreenshot.toString());
 
         }
     }
@@ -233,13 +247,11 @@ public class OperaControl extends BrowserControl {
     private void setUnexpectedAlertBehaviour() {
         try {
             if (OperaSettings.UnexpectedAlertBehaviour != null) {
-                Options.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, OperaSettings.UnexpectedAlertBehaviour);
-                System.out.format("Set Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
-                System.out.println();
+                operaOptions.setCapability(UNEXPECTED_ALERT_BEHAVIOUR, OperaSettings.UnexpectedAlertBehaviour);
+                System.out.format("\nSet Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
-            System.out.println();
+            System.out.format("\nCould not set Unexpected Alert Behaviour to: %s", OperaSettings.UnexpectedAlertBehaviour);
 
         }
     }
@@ -247,26 +259,23 @@ public class OperaControl extends BrowserControl {
     private void setUnhandledPromptBehaviour() {
         try {
             if (OperaSettings.UnhandledPromptBehaviour != null) {
-                Options.setCapability(UNHANDLED_PROMPT_BEHAVIOUR, OperaSettings.UnhandledPromptBehaviour);
-                System.out.format("Set Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
-                System.out.println();
+                operaOptions.setCapability(UNHANDLED_PROMPT_BEHAVIOUR, OperaSettings.UnhandledPromptBehaviour);
+                System.out.format("\nSet Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
-            System.out.println();
+            System.out.format("\nCould not set Unhandled Prompt Behaviour to: %s", OperaSettings.UnhandledPromptBehaviour);
 
         }
     }
 
 
-    private void SetOperaDriverService() {
+    private void setOperaDriverService() {
         try {
-            Builder = new OperaDriverService.Builder();
-            //setDriverExecutable();
+            builder = new OperaDriverService.Builder();
             setSilentRunning();
             setVerboseLogging();
             setPort();
-            Service = Builder.build();
+            operaDriverService = builder.build();
         } catch (Exception ex) {
             switch (BaseSettings.DebugLevel) {
                 case Human:
@@ -285,58 +294,39 @@ public class OperaControl extends BrowserControl {
         }
     }
 
-    private void setDriverExecutable() {
-        try {
-            if (BaseSettings.OperaDriverLocation != null && BaseSettings.OperaDriverLocation.length() > 0) {
-                Builder.usingDriverExecutable(new File(BaseSettings.OperaDriverLocation));
-                System.out.format("Set the driver executable using the location: %s", BaseSettings.OperaDriverLocation);
-                System.out.println();
-            }
-        } catch (Exception ex) {
-            System.out.format("Could not set the driver executable using the location: %s", BaseSettings.OperaDriverLocation);
-            System.out.println();
-        }
-    }
-
     private void setSilentRunning() {
         try {
             if (OperaSettings.SuppressInitialDiagnosticInformation != null) {
-                Builder.withSilent(OperaSettings.SuppressInitialDiagnosticInformation);
-                System.out.format("Set silent running to: %s", OperaSettings.SuppressInitialDiagnosticInformation);
-                System.out.println();
+                builder.withSilent(OperaSettings.SuppressInitialDiagnosticInformation);
+                System.out.format("\nSet silent running to: %s", OperaSettings.SuppressInitialDiagnosticInformation);
             }
         } catch (Exception ex) {
-            System.out.format("Could not set silent running to: %s", OperaSettings.SuppressInitialDiagnosticInformation);
-            System.out.println();
+            System.out.format("\nCould not set silent running to: %s", OperaSettings.SuppressInitialDiagnosticInformation);
         }
     }
 
     private void setVerboseLogging() {
         try {
             if (OperaSettings.EnableVerboseLogging != null) {
-                Builder.withVerbose(OperaSettings.EnableVerboseLogging);
-                System.out.format("Set verbose logging to: %s", OperaSettings.EnableVerboseLogging.toString());
-                System.out.println();
+                builder.withVerbose(OperaSettings.EnableVerboseLogging);
+                System.out.format("\nSet verbose logging to: %s", OperaSettings.EnableVerboseLogging.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set verbose logging to: %s", OperaSettings.EnableVerboseLogging.toString());
-            System.out.println();
+            System.out.format("\nCould not set verbose logging to: %s", OperaSettings.EnableVerboseLogging.toString());
         }
     }
 
     private void setPort() {
         try {
             if (OperaSettings.Port != null && OperaSettings.Port > 0) {
-                Builder.usingPort(OperaSettings.Port);
-                System.out.format("Set port to: %s", OperaSettings.Port.toString());
-                System.out.println();
+                builder.usingPort(OperaSettings.Port);
+                System.out.format("\nSet port to: %s", OperaSettings.Port.toString());
             } else {
-                Builder.usingAnyFreePort();
+                builder.usingAnyFreePort();
                 System.out.println("Using any free port, as no specific port was chosen.");
             }
         } catch (Exception ex) {
-            System.out.format("Could not set port to: %s", OperaSettings.Port.toString());
-            System.out.println();
+            System.out.format("\nCould not set port to: %s", OperaSettings.Port.toString());
         }
     }
 }

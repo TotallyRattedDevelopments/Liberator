@@ -7,7 +7,7 @@ using NUnit.Framework;
 using System.Diagnostics;
 using System.Threading;
 
-namespace Liberator.DriverTests
+namespace Liberator.Tests.Driver
 {
     public class Hooks
     {

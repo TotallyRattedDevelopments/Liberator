@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.preferences;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class OperaPreferences extends BasePreferences {
 
     public OperaPreferences()
@@ -10,12 +11,24 @@ public class OperaPreferences extends BasePreferences {
         HideCommandPromptWindow = true;
         Port = 4444;
         SuppressInitialDiagnosticInformation = true;
+
+        DebuggerAddress = null;
+        MinidumpPath = null;
+        LogPath = null;
+        PortServerAddress = null;
+        UnexpectedAlertBehaviour = null;
+        UrlPathPrefix = null;
+        AcceptInsecureCertificates = null;
+        AcceptSSLCertificates = null;
+        PageLoadStrategy = null;
+        TakesScreenshot = null;
+        UnhandledPromptBehaviour = null;
     }
 
     /**
      * Gets or sets the address of a Opera debugger server to connect to. Should be of the form "{hostname|IP address}:port".
      */
-    public String DebuggerAddress = null;
+    public String DebuggerAddress;
 
     /**
      * Gets or sets a value indicating whether Opera should be left running after the OperaDriver instance is exited. Defaults to false.
@@ -25,7 +38,7 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the directory in which to store minidump files.
      */
-    public String MinidumpPath = null;
+    public String MinidumpPath;
 
     /**
      * Gets or sets the port on which the Android Debug Bridge is listening for commands.
@@ -45,7 +58,7 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the location of the log file written to by the OperaDriver executable.
      */
-    public String LogPath = null;
+    public String LogPath;
 
     /**
      * Gets or sets the port of the service.
@@ -55,7 +68,7 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the address of a server to contact for reserving a port.
      */
-    public String PortServerAddress = null;
+    public String PortServerAddress;
 
     /**
      * Gets or sets a value indicating whether the initial diagnostic information is
@@ -67,35 +80,35 @@ public class OperaPreferences extends BasePreferences {
     /**
      * Gets or sets the base URL path prefix for commands (e.g., "wd/url").
      */
-    public String UrlPathPrefix = null;
+    public String UrlPathPrefix;
 
     /**
      * Whether to accept insecure certificates
      */
-    public Boolean AcceptInsecureCertificates = null;
+    public Boolean AcceptInsecureCertificates;
 
     /**
      * Whether to accept SSL certificates
      */
-    public Boolean AcceptSSLCertificates = null;
+    public Boolean AcceptSSLCertificates;
 
     /**
      * The page load strategy for the driver
      */
-    public String PageLoadStrategy = null;
+    public String PageLoadStrategy;
 
     /**
      * Whether the driver should take screenshots
      */
-    public Boolean TakesScreenshot = null;
+    public Boolean TakesScreenshot;
 
     /**
      * The unexpected alert behaviour
      */
-    public String UnexpectedAlertBehaviour = null;
+    public String UnexpectedAlertBehaviour;
 
     /**
      * The unhandled prompt behaviour
      */
-    public String UnhandledPromptBehaviour = null;
+    public String UnhandledPromptBehaviour;
 }

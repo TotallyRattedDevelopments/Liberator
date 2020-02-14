@@ -2,6 +2,7 @@ package org.liberator.ratdriver.preferences;
 
 import org.openqa.selenium.PageLoadStrategy;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class EdgePreferences extends BasePreferences{
 
     public EdgePreferences() {

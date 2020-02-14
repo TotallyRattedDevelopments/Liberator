@@ -4,6 +4,8 @@ import static org.openqa.selenium.PageLoadStrategy.EAGER;
 import static org.openqa.selenium.UnexpectedAlertBehaviour.ACCEPT;
 import static org.openqa.selenium.UnexpectedAlertBehaviour.DISMISS;
 
+
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class OperaSettings extends BaseSettings {
 
     static {

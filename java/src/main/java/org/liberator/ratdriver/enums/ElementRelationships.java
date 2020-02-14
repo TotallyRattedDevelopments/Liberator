@@ -3,6 +3,7 @@ package org.liberator.ratdriver.enums;
 /**
  * Enumerations of relationships between elements
  */
+@SuppressWarnings("unused")
 public enum ElementRelationships
 {
     /**

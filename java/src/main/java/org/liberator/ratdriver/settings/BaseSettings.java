@@ -1,12 +1,13 @@
 package org.liberator.ratdriver.settings;
 
 import com.sun.javafx.PlatformUtil;
-import javafx.application.Application;
 import org.liberator.ratdriver.enums.ConsoleDebugLevel;
+import org.openqa.selenium.Proxy;
 
 /**
  * Base settings for RAT Driver
  */
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class BaseSettings {
 
     static {
@@ -45,7 +46,9 @@ public class BaseSettings {
         PageLoad = 30;
         AsyncJavaScript = 30;
         ImplicitWait = 30;
+        autodetect = false;
     }
+
     /**
      * Standard timeout
      */
@@ -111,6 +114,9 @@ public class BaseSettings {
      */
     public static String OperaDriverLocation;
 
+    /**
+     *
+     */
     public static String SafariDriverLocation;
 
     /**
@@ -128,10 +134,26 @@ public class BaseSettings {
      */
     public static String OperaLocation;
 
+    /**
+     *
+     */
     public static String SafariLocation;
 
     /**
      * The debug level to use for the test run
      */
-    public static ConsoleDebugLevel DebugLevel = null;
+    public static ConsoleDebugLevel DebugLevel;
+
+
+    public static Proxy.ProxyType proxyType;
+    public static boolean autodetect;
+    public static String ftpProxy;
+    public static String httpProxy;
+    public static String noProxy;
+    public static String sslProxy;
+    public static String socksProxy;
+    public static Integer socksVersion;
+    public static String socksUsername;
+    public static String socksPassword;
+    public static String proxyAutoconfigUrl;
 }

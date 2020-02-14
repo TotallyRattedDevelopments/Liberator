@@ -128,19 +128,7 @@ namespace Liberator.Driver.Preferences
             InternalTimers = true;
         }
 
-#if NET461 || NET462 || NET47 || NET471 || NET472
-        static private void FindDrivers()
-        {
-            string grandfatherDirectory = GetGrandfatherDirectory();
-            ChromeDriverLocation = FindExecutables(grandfatherDirectory, "chromedriver.exe");
-            EdgeDriverLocation = @"C:\Windows\System32\MicrosoftWebDriver.exe";
-            FirefoxDriverLocation = FindExecutables(grandfatherDirectory, "geckodriver.exe");
-            InternetExplorerDriverLocation = FindExecutables(grandfatherDirectory, "IEDriverServer.exe");
-            OperaDriverLocation = FindExecutables(grandfatherDirectory, "operadriver.exe");
-        }
-#endif
 
-#if  NETCOREAPP2_0 || NETCOREAPP2_1 || NETCOREAPP2_2 || NETSTANDARD2_0
         static private void FindDrivers()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -154,11 +142,11 @@ namespace Liberator.Driver.Preferences
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                ChromeDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "chromedriver"); ;
+                ChromeDriverLocation = FindExecutables(@"./BrowserDrivers/Mac/", "chromedriver"); ;
                 EdgeDriverLocation = null;
-                FirefoxDriverLocation = FindExecutables(@".\BrowserDrivers\Mac\", "geckodriver");
+                FirefoxDriverLocation = FindExecutables(@"./BrowserDrivers/Mac/", "geckodriver");
                 InternetExplorerDriverLocation = null;
-                OperaDriverLocation = FindExecutables(@".\BrowserDrivers\Win\", "operadriver.exe"); ;
+                OperaDriverLocation = FindExecutables(@"./BrowserDrivers/Mac/", "operadriver"); ;
                 SafariDriverLocation = "/usr/bin/safaridriver";
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -171,7 +159,7 @@ namespace Liberator.Driver.Preferences
                 SafariDriverLocation = null;
             }
         }
-#endif
+
 
         static private void FindApplications()
         {

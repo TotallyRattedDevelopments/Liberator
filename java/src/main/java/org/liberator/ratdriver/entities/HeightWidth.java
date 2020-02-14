@@ -7,6 +7,7 @@ import lombok.Setter;
 /**
  * Represents the offsets for the element
  */
+@SuppressWarnings("unused")
 public class HeightWidth
 {
     /**

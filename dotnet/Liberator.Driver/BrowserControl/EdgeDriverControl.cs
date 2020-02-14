@@ -11,7 +11,7 @@ namespace Liberator.Driver.BrowserControl
     internal class EdgeDriverControl : IBrowserControl
     {
         #region Public Properties
-        
+
         /// <summary>
         /// Holds the instantiated Edge Driver
         /// </summary>
@@ -72,12 +72,12 @@ namespace Liberator.Driver.BrowserControl
             {
                 SetEdgeDriverService();
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                Driver = new EdgeDriver(Directory.GetParent(Preferences.BaseSettings.EdgeDriverLocation).FullName, Options, Preferences.BaseSettings.Timeout);
+                Driver = new EdgeDriver(Directory.GetParent(BaseSettings.EdgeDriverLocation).FullName, Options, BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start Edge driver.");
@@ -100,7 +100,7 @@ namespace Liberator.Driver.BrowserControl
 
         #region Private Methods
 
-        
+
         /// <summary>
         /// Sets the Chrome Driver Service setting from the app.config file
         /// </summary>
@@ -109,15 +109,15 @@ namespace Liberator.Driver.BrowserControl
             try
             {
 
-                bool.TryParse(Preferences.Edge.HideCommandPromptWindow, out bool command);
-                int.TryParse(Preferences.Edge.Port, out int port);
-                bool.TryParse(Preferences.Edge.SuppressInitialDiagnosticInformation, out bool sidi);
-                bool.TryParse(Preferences.Edge.UseVerboseLogging, out bool verbose);
-                
-                string driverLocation = Directory.GetParent(Preferences.BaseSettings.EdgeDriverLocation).FullName;
+                bool.TryParse(Edge.HideCommandPromptWindow, out bool command);
+                int.TryParse(Edge.Port, out int port);
+                bool.TryParse(Edge.SuppressInitialDiagnosticInformation, out bool sidi);
+                bool.TryParse(Edge.UseVerboseLogging, out bool verbose);
 
-                string host = Preferences.Edge.Host;
-                string package = Preferences.Edge.Package;
+                string driverLocation = Directory.GetParent(BaseSettings.EdgeDriverLocation).FullName;
+
+                string host = Edge.Host;
+                string package = Edge.Package;
 
                 EdgeDriverService service = EdgeDriverService.CreateDefaultService(driverLocation);
                 service.HideCommandPromptWindow = command;
@@ -130,7 +130,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not configure the Edge Driver Service settings.");
