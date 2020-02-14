@@ -4,8 +4,8 @@
 /obj/*
 /packages/*
 /bin/*
-Liberator.DriverTests/bin/
-Liberator.DriverTests/obj/
+Liberator.Tests.Driver/bin/
+Liberator.Tests.Driver/obj/
 Liberator.Package/bin/
 Liberator.Package/obj/
 Liberator/bin/
