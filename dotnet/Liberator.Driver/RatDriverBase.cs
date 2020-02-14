@@ -349,7 +349,7 @@ namespace Liberator.Driver
                     }
                     break;
                 case "operadriver":
-                    if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     {
                         _runTests = true;
                         _browserError = null;
@@ -357,7 +357,7 @@ namespace Liberator.Driver
                     else
                     {
                         _runTests = false;
-                        _browserError = "Opera Driver currently displays errors on Mac OS X.";
+                        _browserError = "Opera Driver currently displays errors on Mac OS X & Linux.";
                     }
                     break;
                 case "safaridriver":
