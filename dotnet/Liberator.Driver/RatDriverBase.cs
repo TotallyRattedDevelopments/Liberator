@@ -60,14 +60,14 @@ namespace Liberator.Driver
                 if (!_runTests) { throw new LiberatorOSException(_browserError); }
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
-                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
                     GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
                 }
 
 
                 string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
-                IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
+                IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type), driverSettings);
                 Driver = (TWebDriver)controller.StartDriver();
 
                 if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -77,7 +77,7 @@ namespace Liberator.Driver
 
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
-                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
                     GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
                 }
@@ -116,7 +116,7 @@ namespace Liberator.Driver
                 {
                     EstablishDriverSettings(driverType);
                     if (!_runTests) { throw new LiberatorOSException(_browserError); }
-                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    FirefoxDriverControl controller = new FirefoxDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
@@ -172,7 +172,7 @@ namespace Liberator.Driver
                 {
                     EstablishDriverSettings(driverType);
                     if (!_runTests) { throw new LiberatorOSException(_browserError); }
-                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    FirefoxDriverControl controller = new FirefoxDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
@@ -227,7 +227,7 @@ namespace Liberator.Driver
                 {
                     EstablishDriverSettings(driverType);
                     if (!_runTests) { throw new LiberatorOSException(_browserError); }
-                    ChromeDriverControl controller = new ChromeDriverControl();
+                    ChromeDriverControl controller = new ChromeDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
@@ -286,7 +286,7 @@ namespace Liberator.Driver
                     EstablishDriverSettings(driverType);
                     if (!_runTests) { throw new LiberatorOSException(_browserError); }
 
-                    ChromeDriverControl controller = new ChromeDriverControl();
+                    ChromeDriverControl controller = new ChromeDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
@@ -361,6 +361,7 @@ namespace Liberator.Driver
                     }
                     break;
                 case "safaridriver":
+
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     {
                         _runTests = true;
@@ -441,6 +442,8 @@ namespace Liberator.Driver
                     return "iexplore";
                 case "operadriver":
                     return "opera";
+                case "safaridriver":
+                    return "Safari";
 
             }
             return null;
@@ -464,6 +467,8 @@ namespace Liberator.Driver
                     return "IEDriverServer";
                 case "operadriver":
                     return "operadriver";
+                case "safaridriver":
+                    return "safaridriver";
             }
             return null;
         }
@@ -524,18 +529,22 @@ namespace Liberator.Driver
         private void KillTestProcesses()
         {
             Console.Out.WriteLine("Killing driver and browser processes opened by the test.");
-            foreach (RatProcess process in testProcesses)
+            if (testProcesses != null)
             {
-                try
+                foreach (RatProcess process in testProcesses)
                 {
-                    var processObject = Process.GetProcessById(process.Id);
-                    if (!processObject.HasExited)
+                    try
                     {
-                        processObject.Kill();
-                        processObject.WaitForExit();
+                        Process processObject = Process.GetProcessById(process.Id);
+                        if (!processObject.HasExited)
+                        {
+                            processObject.Kill();
+                            processObject.WaitForExit();
+                        }
                     }
+                    catch { } //No need to act, the process is already closed
                 }
-                catch { } //No need to act, the process is already closed
+
             }
         }
 

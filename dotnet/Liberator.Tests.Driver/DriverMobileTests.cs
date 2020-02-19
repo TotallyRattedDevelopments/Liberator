@@ -9,7 +9,7 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverMobileTests
     {
-        public string WebsiteToTest { get; set; } = "http://localhost:80";
+        public string WebsiteToTest { get; set; } = "http://localhost:8000";
 
         [Test]
         [TestCase(EnumPhoneType.AmazonKindleFireHDX, true)]
@@ -21,7 +21,7 @@ namespace Liberator.Tests.Driver
         [TestCase(EnumPhoneType.AppleiPhone6, true)]
         [TestCase(EnumPhoneType.AppleiPhone6Plus, true)]
         [TestCase(EnumPhoneType.BlackBerryPlayBook, true)]
-        [TestCase(EnumPhoneType .BlackBeryZ30, true)]
+        [TestCase(EnumPhoneType.BlackBeryZ30, true)]
         [TestCase(EnumPhoneType.GoogleNexus10, true)]
         [TestCase(EnumPhoneType.GoogleNexus4, true)]
         [TestCase(EnumPhoneType.GoogleNexus5, true)]

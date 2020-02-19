@@ -16,7 +16,7 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverMethodTests
     {
-        public string WebsiteToTest { get; set; } = "http://localhost:80";
+        public string WebsiteToTest { get; set; } = "http://localhost:8000";
 
         [Test]
         [Category("Firefox")]
