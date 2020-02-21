@@ -7,6 +7,7 @@ import org.openqa.selenium.PageLoadStrategy;
 
 import java.time.Duration;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class IEPreferences extends BasePreferences {
 
     public IEPreferences()
@@ -33,18 +34,29 @@ public class IEPreferences extends BasePreferences {
 
         FileUploadTimeout = Duration.ofSeconds(30);
         AttachTimeout = Duration.ofSeconds(30);
+
+        Host = null;
+        LibraryExtractionPath = null;
+        LogFile = null;
+
+        WhitelistedIPAddresses = null;
+        FtpProxy = null;
+        HttpProxy = null;
+
+        ProxyKind = null;
+        CommandLineArguments = null;
     }
 
     /**
      * Gets or sets the command line arguments used in launching Internet Explorer when the Windows CreateProcess API is used.
      * This property only has an effect when the OpenQA.Selenium.IE.InternetExplorerOptions.ForceCreateProcessApi is true.
      */
-    public String CommandLineArguments = null;
+    public String CommandLineArguments;
 
     /**
      * Gets or sets the value for describing how elements are scrolled into view in the IE driver. Defaults to scrolling the element to the top of the viewport.
      */
-    public ElementScrollBehavior ScrollBehavior = null;
+    public ElementScrollBehavior ScrollBehavior;
 
     /**
      *
@@ -125,17 +137,17 @@ public class IEPreferences extends BasePreferences {
     /**
      * Gets or sets the value of the host adapter on which the IEDriverServer should listen for connections.
      */
-    public String Host = null;
+    public String Host;
 
     /**
      * Gets or sets the path to which the supporting library of the IEDriverServer.exe is extracted. Defaults to the temp directory if this property is not set.
      */
-    public String LibraryExtractionPath = null;
+    public String LibraryExtractionPath;
 
     /**
      * Gets or sets the location of the log file written to by the IEDriverServer.
      */
-    public String LogFile = null;
+    public String LogFile;
 
     /**
      * Gets or sets the logging level used by the IEDriverServer.
@@ -157,17 +169,17 @@ public class IEPreferences extends BasePreferences {
      * Gets or sets the comma-delimited list of IP addresses that are approved to connect to this instance of the
      * IEDriverServer. Defaults to an empty String, which means only the local loopback address can connect.
      */
-    public String WhitelistedIPAddresses = null;
+    public String WhitelistedIPAddresses;
 
     /**
      * Gets or sets the value of the proxy for the FTP protocol.
      */
-    public String FtpProxy = null;
+    public String FtpProxy;
 
     /**
      * Gets or sets the value of the proxy for the HTTP protocol.
      */
-    public String HttpProxy = null;
+    public String HttpProxy;
 
     /**
      * Gets or sets a value indicating whether the proxy uses automatic detection.
@@ -177,37 +189,37 @@ public class IEPreferences extends BasePreferences {
     /**
      * Gets or sets the type of proxy.
      */
-    public String ProxyKind = null;
+    public String ProxyKind;
 
     /**
      * Gets or sets the value for bypass proxy addresses.
      */
-    public String NoProxy = null;
+    public String NoProxy;
 
     /**
      * Gets or sets the URL used for proxy automatic configuration.
      */
-    public String ProxyAutoConfigUrl = null;
+    public String ProxyAutoConfigUrl;
 
     /**
      * Gets or sets the value of password for the SOCKS proxy.
      */
-    public String SocksPassword = null;
+    public String SocksPassword;
 
     /**
      * Gets or sets the value of the proxy for the SOCKS protocol.
      */
-    public String SocksProxy = null;
+    public String SocksProxy;
 
     /**
      * Gets or sets the value of username for the SOCKS proxy.
      */
-    public String SocksUserName = null;
+    public String SocksUserName;
 
     /**
      * Gets or sets the value of the proxy for the SSL protocol.
      */
-    public String SslProxy = null;
+    public String SslProxy;
 
     /**
      * Gets or sets the amount of time the driver will attempt to look for the file selection dialog when attempting to upload a file.

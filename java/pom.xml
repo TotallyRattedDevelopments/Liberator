@@ -59,10 +59,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JavaFx :
-          sudo apt install openjfx
-          dpkg-query -L openjfx
-        -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>

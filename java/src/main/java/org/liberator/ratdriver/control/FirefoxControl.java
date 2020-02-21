@@ -2,6 +2,7 @@ package org.liberator.ratdriver.control;
 
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.FirefoxPreferences;
+import org.liberator.ratdriver.settings.BaseSettings;
 import org.liberator.ratdriver.settings.FirefoxSettings;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import org.openqa.selenium.firefox.*;
 import java.io.File;
 import java.util.Arrays;
 
-public class FirefoxControl extends BrowserControl {
+public class FirefoxControl extends RemoteControl {
 
     //region Public Properties
 
@@ -18,6 +19,8 @@ public class FirefoxControl extends BrowserControl {
      * Holds a firefox profile
      */
     private FirefoxProfile Profile = null;
+
+    private Proxy proxy;
 
     /**
      * Holds the preset values for Firefox Options
@@ -30,11 +33,6 @@ public class FirefoxControl extends BrowserControl {
     private GeckoDriverService Service = null;
 
     /**
-     * Holds the proxy settings for connection to the Firefox driver
-     */
-    public Proxy ProxySettings = null;
-
-    /**
      * WebDriver
      */
     public WebDriver Driver = null;
@@ -42,12 +40,6 @@ public class FirefoxControl extends BrowserControl {
     //endregion
 
     //region Constructors
-
-    /**
-     * Default constructor
-     */
-    public FirefoxControl() {
-    }
 
 
     /**
@@ -57,6 +49,17 @@ public class FirefoxControl extends BrowserControl {
      */
     public FirefoxControl(FirefoxPreferences firefoxPreferences) {
         if (firefoxPreferences != null) {
+
+            FirefoxSettings.Timeout = firefoxPreferences.Timeout;
+            FirefoxSettings.AsyncJavaScript = firefoxPreferences.AsyncJavaScript;
+            FirefoxSettings.DebugLevel = firefoxPreferences.DebugLevel;
+            FirefoxSettings.ImplicitWait = firefoxPreferences.ImplicitWait;
+            FirefoxSettings.PageLoad = firefoxPreferences.PageLoad;
+            FirefoxSettings.AlertHandling = firefoxPreferences.AlertHandling;
+            FirefoxSettings.InternalTimers = firefoxPreferences.InternalTimers;
+            FirefoxSettings.MenuHoverTime = firefoxPreferences.MenuHoverTime;
+            FirefoxSettings.Sleep = firefoxPreferences.Sleep;
+
             FirefoxSettings.AcceptUntrustedCertificates = firefoxPreferences.AcceptUntrustedCertificates;
             FirefoxSettings.AlwaysLoadNoFocusLibrary = firefoxPreferences.AlwaysLoadNoFocusLibrary;
             FirefoxSettings.AssumeUntrustedCertificateIssuer = firefoxPreferences.AssumeUntrustedCertificateIssuer;
@@ -86,15 +89,14 @@ public class FirefoxControl extends BrowserControl {
      *
      * @return A web driver instance
      */
-    @Override
-    public WebDriver StartDriver() {
+    public WebDriver startDriver() {
         try {
             System.setProperty("webdriver.gecko.driver", FirefoxSettings.FirefoxDriverLocation);
             setOptions();
             setFirefoxProfile(Options);
             setDriverService();
             addPreferencesToFirefoxProfile();
-            //setFirefoxProxy();
+            setProxy();
 
             if (Service != null && Options != null) {
                 Driver = new FirefoxDriver(Service, Options);
@@ -117,8 +119,7 @@ public class FirefoxControl extends BrowserControl {
      * @param driverSettings Preference injection object
      * @return A web driver instance
      */
-    @Override
-    public WebDriver StartDriver(BasePreferences driverSettings) {
+    public WebDriver startDriver(BasePreferences driverSettings) {
         try {
             System.setProperty("webdriver.gecko.driver", FirefoxSettings.FirefoxDriverLocation);
 
@@ -126,7 +127,7 @@ public class FirefoxControl extends BrowserControl {
             setFirefoxProfile(Options);
             setDriverService();
             addPreferencesToFirefoxProfile();
-            //setFirefoxProxy();
+            setProxy();
 
             if (Service != null && Options != null) {
                 Driver = new FirefoxDriver(Service, Options);
@@ -492,16 +493,118 @@ public class FirefoxControl extends BrowserControl {
         }
     }
 
-    //TODO: Finish proxy loading code
-    private void setFirefoxProxy(){
+    public void setProxy(){
         try {
-            Proxy proxy = new Proxy();
-            proxy.setProxyType(Proxy.ProxyType.AUTODETECT);
-            proxy.setProxyAutoconfigUrl(FirefoxSettings.ProxyPreferences);
+            if (BaseSettings.proxyType != null) {
+                proxy = new Proxy();
+                setProxyAutoConfigUrl();
+                setProxyType();
+                setAutoDetect();
+                setFtpProxy();
+                setHttpProxy();
+                setNoProxy();
+                setSocks();
+                setSslProxy();
+            }
+        } catch (Exception ex){
+            System.out.println("Could not set up the proxy with current settings.");
+        }
+    }
 
-            Options.setProxy(proxy);
-        } catch (Exception e){
-            System.out.println("Could not set the proxy for firefox.");
+    private void setProxyAutoConfigUrl() {
+        try {
+            if (BaseSettings.proxyAutoconfigUrl != null && BaseSettings.proxyAutoconfigUrl.length() > 0) {
+                proxy.setProxyAutoconfigUrl(BaseSettings.proxyAutoconfigUrl);
+                System.out.format("Set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set auto-config URL to: %s", BaseSettings.proxyAutoconfigUrl);
+        }
+    }
+
+    private void setProxyType() {
+        try {
+            if (BaseSettings.proxyType != null) {
+                proxy.setProxyType(BaseSettings.proxyType);
+                System.out.format("Set proxy type to: %s", BaseSettings.proxyType.name());
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set proxy type to: %s", BaseSettings.proxyType.name());
+        }
+    }
+
+    private void setAutoDetect() {
+        try {
+            if (BaseSettings.autodetect) {
+                proxy.setAutodetect(true);
+            } else {
+                proxy.setAutodetect(false);
+            }
+            System.out.format("Set proxy autodetect to: %s", BaseSettings.proxyType.name());
+        } catch (Exception e) {
+            System.out.format("Could not set proxy autodetect to: %s", BaseSettings.proxyType.name());
+        }
+    }
+
+    private void setFtpProxy() {
+        try {
+            if (BaseSettings.ftpProxy != null) {
+                proxy.setFtpProxy(BaseSettings.ftpProxy);
+                System.out.format("Set ftp proxy to: %s", BaseSettings.ftpProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set ftp proxy to: %s", BaseSettings.ftpProxy);
+        }
+    }
+
+    private void setNoProxy() {
+        try {
+            if (BaseSettings.noProxy != null) {
+                proxy.setNoProxy(BaseSettings.noProxy);
+                System.out.format("Set 'no proxy' to: %s", BaseSettings.noProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set 'no proxy' to: %s", BaseSettings.noProxy);
+        }
+    }
+
+    private void setHttpProxy() {
+        try {
+            if (BaseSettings.httpProxy != null) {
+                proxy.setHttpProxy(BaseSettings.httpProxy);
+                System.out.format("Set http proxy to: %s", BaseSettings.httpProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set http proxy to: %s", BaseSettings.httpProxy);
+        }
+    }
+
+    private void setSocks() {
+        try {
+            if (BaseSettings.socksProxy != null) {
+                proxy.setSocksProxy(BaseSettings.socksProxy);
+                proxy.setSocksVersion(BaseSettings.socksVersion);
+                proxy.setSocksUsername(BaseSettings.socksUsername);
+                proxy.setSocksPassword(BaseSettings.socksPassword);
+
+                System.out.format("Set socks proxy to: %s", BaseSettings.socksProxy);
+                System.out.format("Set socks proxy version to: %s", BaseSettings.socksVersion);
+                System.out.format("Set socks proxy username to: %s", BaseSettings.socksUsername);
+                System.out.format("Set socks proxy password to: %s", BaseSettings.socksPassword);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set socks proxy to.");
+        }
+    }
+
+    private void setSslProxy() {
+        try {
+            if (BaseSettings.sslProxy != null) {
+                proxy.setHttpProxy(BaseSettings.sslProxy);
+                System.out.format("Set SSL proxy to: %s", BaseSettings.sslProxy);
+            }
+        } catch (Exception e) {
+            System.out.format("Could not set SSL proxy to: %s", BaseSettings.sslProxy);
         }
     }
 }

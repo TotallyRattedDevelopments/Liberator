@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import static org.openqa.selenium.PageLoadStrategy.*;
 import static org.openqa.selenium.UnexpectedAlertBehaviour.*;
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class FirefoxPreferences extends BasePreferences {
     
     public FirefoxPreferences()
@@ -137,5 +138,5 @@ public class FirefoxPreferences extends BasePreferences {
 
     public PageLoadStrategy PageLoadStrategy;
 
-    public UnexpectedAlertBehaviour UnexpectedAlertBehaviour = null;
+    public UnexpectedAlertBehaviour UnexpectedAlertBehaviour;
 }

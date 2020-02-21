@@ -1,5 +1,6 @@
 package org.liberator.ratdriver.control;
 
+import org.liberator.ratdriver.ErrorHandler;
 import org.liberator.ratdriver.preferences.BasePreferences;
 import org.liberator.ratdriver.preferences.SafariPreferences;
 import org.liberator.ratdriver.settings.BaseSettings;
@@ -11,80 +12,100 @@ import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.File;
 
-public class SafariControl extends BrowserControl {
+public class SafariControl extends RemoteControl {
 
-    public SafariOptions Options;
+    public SafariOptions safariOptions;
 
-    public SafariDriverService.Builder Builder;
+    public SafariDriverService.Builder builder;
 
-    public SafariDriverService Service;
+    public SafariDriverService safariDriverService;
 
-    public SafariControl() {
-    }
+    public WebDriver driver;
 
     public SafariControl(BasePreferences preferences) {
         setImportedPreferences((SafariPreferences) preferences);
     }
 
-    public WebDriver StartDriver() {
+    public WebDriver startDriver() {
         try {
             System.setProperty("webdriver.safari.driver", BaseSettings.SafariDriverLocation);
 
             setSafariOptions();
             setSafariService();
+            setProxy();
 
-            if (Service != null && Options != null) {
-                Driver = new SafariDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new SafariDriver(Service);
-            } else if (Options != null) {
-                Driver = new SafariDriver(Options);
+            if (safariDriverService != null && safariOptions != null) {
+                driver = new SafariDriver(safariDriverService, safariOptions);
+            } else if (safariOptions == null && safariDriverService != null) {
+                driver = new SafariDriver(safariDriverService);
+            } else if (safariOptions != null) {
+                driver = new SafariDriver(safariOptions);
             }
 
             System.out.println("Started safari driver.");
-            return Driver;
-        } catch (Exception ex) {
-            System.out.println("Could not start safari driver.");
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "SafariControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
 
-    public WebDriver StartDriver(BasePreferences preferences) {
+    public WebDriver startDriver(BasePreferences preferences) {
         try {
             System.setProperty("webdriver.safari.driver", BaseSettings.SafariDriverLocation);
             setImportedPreferences((SafariPreferences) preferences);
-
-            setSafariOptions();
-            setSafariService();
-
-            if (Service != null && Options != null) {
-                Driver = new SafariDriver(Service, Options);
-            } else if (Options == null && Service != null) {
-                Driver = new SafariDriver(Service);
-            } else if (Options != null) {
-                Driver = new SafariDriver(Options);
-            }
-
-            System.out.println("Started safari driver.");
-            return Driver;
-        } catch (Exception ex) {
-            System.out.println("Could not start safari driver.");
+            startDriver();
+            return driver;
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "SafariControl",
+                    "startDriver",
+                    "Unable to instantiate driver."
+            );
             return null;
         }
     }
 
-    private void setImportedPreferences(SafariPreferences preferences){
-        if (preferences != null){
-            SafariSettings.Port = preferences.Port;
-            SafariSettings.TechnologyPreview = preferences.TechnologyPreview;
-            SafariSettings.AutomaticInspection = preferences.AutomaticInspection;
-            SafariSettings.AutomaticProfiling = preferences.AutomaticProfiling;
+    private void setImportedPreferences(SafariPreferences safariPreferences) {
+        try {
+            if (safariPreferences != null) {
+                SafariSettings.Timeout = safariPreferences.Timeout;
+                SafariSettings.AsyncJavaScript = safariPreferences.AsyncJavaScript;
+                SafariSettings.DebugLevel = safariPreferences.DebugLevel;
+                SafariSettings.ImplicitWait = safariPreferences.ImplicitWait;
+                SafariSettings.PageLoad = safariPreferences.PageLoad;
+                SafariSettings.AlertHandling = safariPreferences.AlertHandling;
+                SafariSettings.InternalTimers = safariPreferences.InternalTimers;
+                SafariSettings.MenuHoverTime = safariPreferences.MenuHoverTime;
+                SafariSettings.Sleep = safariPreferences.Sleep;
+
+                SafariSettings.Port = safariPreferences.Port;
+                SafariSettings.TechnologyPreview = safariPreferences.TechnologyPreview;
+                SafariSettings.AutomaticInspection = safariPreferences.AutomaticInspection;
+                SafariSettings.AutomaticProfiling = safariPreferences.AutomaticProfiling;
+            }
+        } catch (Exception exception) {
+            ErrorHandler.HandleErrors(
+                    driver,
+                    exception,
+                    "SafariControl",
+                    "setImportedPreferences",
+                    "Unable to instantiate driver."
+            );
         }
     }
 
     private void setSafariOptions() {
         try {
-            Options = new SafariOptions();
+            safariOptions = new SafariOptions();
             setAutomaticInspection();
             setAutomaticProfiling();
             setTechnologyPreview();
@@ -95,11 +116,11 @@ public class SafariControl extends BrowserControl {
 
     private void setSafariService() {
         try {
-            Builder = new SafariDriverService.Builder();
+            builder = new SafariDriverService.Builder();
             if (BaseSettings.SafariDriverLocation != null || SafariSettings.Port > 0) {
                 setDriverExecutable();
                 setDriverPort();
-                Service = Builder.build();
+                safariDriverService = builder.build();
                 System.out.println("Built Safari Driver Service");
             }
         } catch (Exception ex) {
@@ -110,67 +131,59 @@ public class SafariControl extends BrowserControl {
     private void setDriverExecutable() {
         try {
             if (BaseSettings.SafariDriverLocation != null && BaseSettings.SafariDriverLocation.length() > 0) {
-                Builder.usingDriverExecutable(new File(BaseSettings.SafariDriverLocation));
-                System.out.format("Added the driver executable at: %s", BaseSettings.SafariDriverLocation);
-                System.out.println();
+                builder.usingDriverExecutable(new File(BaseSettings.SafariDriverLocation));
+                System.out.format("\nAdded the driver executable at: %s", BaseSettings.SafariDriverLocation);
             }
         } catch (Exception ex) {
-            System.out.format("Could not add the driver executable at: %s", BaseSettings.SafariDriverLocation);
-            System.out.println();
+            System.out.format("\nCould not add the driver executable at: %s", BaseSettings.SafariDriverLocation);
         }
     }
 
     private void setDriverPort() {
         try {
             if (SafariSettings.Port != null && SafariSettings.Port > 0) {
-                Builder.usingPort(SafariSettings.Port);
-                System.out.format("Added port %s to the driver.", SafariSettings.Port.toString());
+                builder.usingPort(SafariSettings.Port);
+                System.out.format("\nAdded port %s to the driver.", SafariSettings.Port.toString());
             } else {
-                Builder.usingAnyFreePort();
-                System.out.println("Used any free port for driver service.");
+                builder.usingAnyFreePort();
+                System.out.println("\nUsed any free port for driver service.");
             }
             System.out.println();
         } catch (Exception ex) {
-            System.out.println("Could not assign port to driver.");
+            System.out.println("\nCould not assign port to driver.");
         }
     }
 
     private void setAutomaticInspection() {
         try {
             if (SafariSettings.AutomaticInspection != null) {
-                Options.setAutomaticInspection(SafariSettings.AutomaticInspection);
-                System.out.format("Set automatic inspection to: %s", SafariSettings.AutomaticInspection.toString());
-                System.out.println();
+                safariOptions.setAutomaticInspection(SafariSettings.AutomaticInspection);
+                System.out.format("\nSet automatic inspection to: %s", SafariSettings.AutomaticInspection.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set automatic inspection to: %s", SafariSettings.AutomaticInspection.toString());
-            System.out.println();
+            System.out.format("\nCould not set automatic inspection to: %s", SafariSettings.AutomaticInspection.toString());
         }
     }
 
     private void setAutomaticProfiling() {
         try {
             if (SafariSettings.AutomaticProfiling != null) {
-                Options.setAutomaticProfiling(SafariSettings.AutomaticProfiling);
-                System.out.format("Set automatic profiling to: %s", SafariSettings.AutomaticProfiling.toString());
-                System.out.println();
+                safariOptions.setAutomaticProfiling(SafariSettings.AutomaticProfiling);
+                System.out.format("\nSet automatic profiling to: %s", SafariSettings.AutomaticProfiling.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set automatic profiling to: %s", SafariSettings.AutomaticProfiling.toString());
-            System.out.println();
+            System.out.format("\nCould not set automatic profiling to: %s", SafariSettings.AutomaticProfiling.toString());
         }
     }
 
     private void setTechnologyPreview() {
         try {
             if (SafariSettings.TechnologyPreview != null) {
-                Options.setAutomaticProfiling(SafariSettings.TechnologyPreview);
-                System.out.format("Set technology preview to: %s", SafariSettings.TechnologyPreview.toString());
-                System.out.println();
+                safariOptions.setAutomaticProfiling(SafariSettings.TechnologyPreview);
+                System.out.format("\nSet technology preview to: %s", SafariSettings.TechnologyPreview.toString());
             }
         } catch (Exception ex) {
-            System.out.format("Could not set technology preview to: %s", SafariSettings.TechnologyPreview.toString());
-            System.out.println();
+            System.out.format("\nCould not set technology preview to: %s", SafariSettings.TechnologyPreview.toString());
         }
     }
 }

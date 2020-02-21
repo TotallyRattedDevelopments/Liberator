@@ -5,6 +5,7 @@ import com.sun.javafx.PlatformUtil;
 /**
  * Settings file for dependency injection
  */
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class ChromePreferences extends BasePreferences {
     /**
      * Gets or sets the location of the Chrome browser's binary executable file.
@@ -14,7 +15,7 @@ public class ChromePreferences extends BasePreferences {
     /**
      * Gets or sets the address of a Chrome debugger server to connect to. Should be of the form "{hostname|IP address}:port".
      */
-    public String DebuggerAddress = null;
+    public String DebuggerAddress;
 
     /**
      * Gets or sets a value indicating whether Chrome should be left running after the ChromeDriver instance is exited. Defaults to false.
@@ -54,17 +55,17 @@ public class ChromePreferences extends BasePreferences {
     /**
      * Comma separated list of extension locations
      */
-    public String ExtensionsList = null;
+    public String ExtensionsList;
 
     /**
      * Comma separated list of local state preferences in the format {name}={value}|{type}
      */
-    public String LocalStatePreferences = null;
+    public String LocalStatePreferences;
 
     /**
      * Comma separated list of user profile preferences in the format {name}={value}|{type}
      */
-    public String UserProfilePreferences = null;
+    public String UserProfilePreferences;
 
     /**
      * Gets or sets the port on which the Android Debug Bridge is listening for commands.
@@ -94,7 +95,7 @@ public class ChromePreferences extends BasePreferences {
     /**
      * Gets or sets the address of a server to contact for reserving a port.
      */
-    public String PortServerAddress = null;
+    public String PortServerAddress;
 
     /**
      * Gets or sets a value indicating whether the initial diagnostic information is
@@ -108,7 +109,7 @@ public class ChromePreferences extends BasePreferences {
      * to this instance of the Chrome driver. Defaults to an empty String, which means
      * only the local loopback address can connect.
      */
-    public String WhitelistedIPAddresses = null;
+    public String WhitelistedIPAddresses;
 
     /**
      * Gets or sets a value indicating whether touch events should be enabled by the browser when emulating a mobile device. Defaults to true.
@@ -177,5 +178,12 @@ public class ChromePreferences extends BasePreferences {
         PixelRatio = "3";
         UserAgent = "";
         Width = "640";
+
+        DebuggerAddress = null;
+        PortServerAddress = null;
+        WhitelistedIPAddresses = null;
+        ExtensionsList = null;
+        UserProfilePreferences = null;
+        LocalStatePreferences = null;
     }
 }
