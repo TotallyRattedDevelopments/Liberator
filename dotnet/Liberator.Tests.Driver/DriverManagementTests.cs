@@ -1323,7 +1323,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<InternetExplorerDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
-            var devLink = ((RatDriver<EdgeDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
+            var devLink = ((RatDriver<InternetExplorerDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
             Assert.IsTrue(ratDriver.GetPageSource().Length >= 256);
             ratDriver.ClosePagesAndQuitDriver();

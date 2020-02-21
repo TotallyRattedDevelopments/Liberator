@@ -285,7 +285,7 @@ namespace Liberator.Tests.Driver
         [Category("Safari")]
         public void Safari_ClickLinkWithClockBy()
         {
-            ratDriver = new RatDriver<OperaDriver>();
+            ratDriver = new RatDriver<SafariDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             ratDriver.MaximiseView();
             var devLink = ratDriver.FindElementByLinkText("Developments");
