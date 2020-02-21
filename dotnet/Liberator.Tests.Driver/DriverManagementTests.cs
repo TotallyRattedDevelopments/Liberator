@@ -12,23 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using static Liberator.Tests.Driver.Hooks;
 
 namespace Liberator.Tests.Driver
 {
     [TestFixture]
     public class DriverManagementTests
     {
-        IRodent ratDriver;
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (ratDriver.DriverName != null)
-            {
-                ratDriver.ReturnEncapsulatedDriver().Close();
-            }
-        }
-
         public string WebsiteToTest { get; set; } = "http://localhost:8000";
         private string WebsiteUrl { get; set; } = "localhost";
 

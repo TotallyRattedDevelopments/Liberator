@@ -21,7 +21,14 @@ namespace Liberator.Driver
         /// <returns>The encapsulated IWebDriver</returns>
         public IWebDriver ReturnEncapsulatedDriver()
         {
-            return Driver;
+            if (Driver != null)
+            {
+                return Driver;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -722,12 +729,14 @@ namespace Liberator.Driver
                     {
                         Driver.SwitchTo().Window(handle);
                         Driver.Close();
+                        DriverName = null;
                     }
                 }
                 if (Driver != null)
                 {
                     Driver.Quit();
                     KillTestProcesses();
+                    DriverName = null;
                 }
             }
             catch (Exception ex)

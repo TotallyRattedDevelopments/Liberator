@@ -24,8 +24,8 @@ namespace Liberator.Driver
 
             if (ex.GetType() == typeof(LiberatorOSException))
             {
-                KillTestProcesses();
                 Assert.Inconclusive("Browser/OS Incompatibility" + "\n\r");
+                KillTestProcesses();
             }
 
             if (ex.GetType() == typeof(XPathLookupException)) { HandleXPathLookupException(); }

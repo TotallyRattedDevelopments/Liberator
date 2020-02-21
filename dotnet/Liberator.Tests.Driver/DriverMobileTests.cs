@@ -3,6 +3,7 @@ using Liberator.Driver.Enums;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using static Liberator.Tests.Driver.Hooks;
 
 namespace Liberator.Tests.Driver
 {
@@ -41,7 +42,7 @@ namespace Liberator.Tests.Driver
         [Category("MobileEmulation")]
         public void Chrome_MobileDriver(EnumPhoneType phone, bool touch)
         {
-            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
+            ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
             ratDriver.ClosePagesAndQuitDriver();
@@ -52,7 +53,7 @@ namespace Liberator.Tests.Driver
         [Category("MobileNavigation")]
         public void Chrome_MobileDriver_ClickLink(EnumPhoneType phone, bool touch)
         {
-            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
+            ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
 
@@ -69,7 +70,7 @@ namespace Liberator.Tests.Driver
         [Category("MobileNavigation")]
         public void Chrome_MobileDriver_ClickMenu(EnumPhoneType phone, bool touch)
         {
-            RatDriver<ChromeDriver> ratDriver = new RatDriver<ChromeDriver>(phone, touch);
+            ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
 

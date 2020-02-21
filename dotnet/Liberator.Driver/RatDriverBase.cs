@@ -364,8 +364,16 @@ namespace Liberator.Driver
 
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     {
-                        _runTests = true;
-                        _browserError = null;
+                        if (Environment.OSVersion.Version.Major != 19)
+                        {
+                            _runTests = true;
+                            _browserError = null;
+                        }
+                        else
+                        {
+                            _runTests = false;
+                            _browserError = "Safari automation is currently broken on Darwin v19 (Catalina).";
+                        }
                     }
                     else
                     {

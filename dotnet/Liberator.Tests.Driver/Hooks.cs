@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Liberator.Driver;
 using NUnit.Framework;
-using System.Diagnostics;
-using System.Threading;
 
 namespace Liberator.Tests.Driver
 {
-    public class Hooks
+    public static class Hooks
     {
+
+        public static IRodent ratDriver;
+
         [TearDown]
-        public void TearDown()
+        public static void TearDown()
         {
-            
+            if (ratDriver != null)
+            {
+                if (ratDriver.DriverName != null)
+                {
+                    ratDriver.ReturnEncapsulatedDriver().Close();
+                }
+            }
         }
     }
 }
