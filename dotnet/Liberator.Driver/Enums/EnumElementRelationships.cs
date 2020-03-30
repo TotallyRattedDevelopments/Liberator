@@ -26,20 +26,44 @@ using System;
 
 namespace Liberator.Driver.Enums
 {
+    /// <summary>
+    /// Enumeration for the relationships between elements
+    /// </summary>
     public enum EnumElementRelationships
     {
+        /// <summary>
+        /// No response was returned
+        /// </summary>
         NoResponse = 0,
 
+        /// <summary>
+        /// There is no relationship between the nodes
+        /// </summary>
         NoRelationship = 1,
 
+        /// <summary>
+        /// The first node is found to be after the second node
+        /// </summary>
         FirstAfterSecond = 2,
 
+        /// <summary>
+        /// The second node is found to be after the first node
+        /// </summary>
         FirstBeforeSecond = 4,
 
+        /// <summary>
+        /// The first node is found to be inside the second node
+        /// </summary>
         FirstInsideSecond = 8,
 
+        /// <summary>
+        /// The first node is found to be outside the second node
+        /// </summary>
         FirstOutsideSecond = 16,
 
+        /// <summary>
+        /// The status if the relationship is unknown
+        /// </summary>
         Unknown = 32
     }
 }

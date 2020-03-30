@@ -31,7 +31,7 @@ using OpenQA.Selenium.Safari;
 
 namespace Liberator.Driver.BrowserControl
 {
-    public class SafariDriverControl : IBrowserControl
+    internal class SafariDriverControl : IBrowserControl
     {
 
         public IWebDriver Driver { get; set; }
