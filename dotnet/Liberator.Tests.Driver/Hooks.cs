@@ -5,8 +5,10 @@ namespace Liberator.Tests.Driver
 {
     public static class Hooks
     {
-
         public static IRodent ratDriver;
+
+        public static string WebsiteToTest { get; set; } = "http://localhost:80";
+        public static string WebsiteUrl { get; set; } = "localhost";
 
         [TearDown]
         public static void TearDown()

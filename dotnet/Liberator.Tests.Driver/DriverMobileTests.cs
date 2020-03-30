@@ -10,7 +10,6 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverMobileTests
     {
-        public string WebsiteToTest { get; set; } = "http://localhost:8000";
 
         [Test]
         [TestCase(EnumPhoneType.AmazonKindleFireHDX, true)]

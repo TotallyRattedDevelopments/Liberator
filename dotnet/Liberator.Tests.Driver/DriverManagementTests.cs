@@ -19,7 +19,7 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverManagementTests
     {
-        public string WebsiteToTest { get; set; } = "http://localhost:8000";
+        public string WebsiteToTest { get; set; } = "http://localhost";
         private string WebsiteUrl { get; set; } = "localhost";
 
         [Test]
