@@ -1,6 +1,5 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 
 /java/target/classes
 /java/lib
@@ -9,5 +8,9 @@
 /dotnet/Liberator.Sequaliser/obj/Release
 /dotnet/Liberator.DynamicPageEngine/obj/Release
 /dotnet/Liberator.DynamicPageEngine/bin/Debug
-/dotnet
 /.vs
+/dotnet/Liberator.DynamicPageEngineTests
+/dotnet/Liberator.Tests.Driver/bin/Debug/netcoreapp2.2
+/dotnet/Liberator.DynamicPageEngine/obj
+*.user
+/dotnet/Liberator.DriverTests/obj

@@ -29,7 +29,15 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeClickable(element); }
                 Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
-                element.Click();
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && DriverName.ToLower().Contains("safari"))
+                {
+                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)ReturnEncapsulatedDriver();
+                    javaScriptExecutor.ExecuteScript("arguments[0].click();", Element);
+                }
+                else
+                {
+                    element.Click();
+                }
             }
             catch (Exception)
             {
@@ -50,7 +58,15 @@ namespace Liberator.Driver
             {
                 if (wait) { WaitForElementToBeClickable(element); }
                 Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
-                element.Click();
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && DriverName.ToLower().Contains("safari"))
+                {
+                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)ReturnEncapsulatedDriver();
+                    javaScriptExecutor.ExecuteScript("arguments[0].click();", Element);
+                }
+                else
+                {
+                    element.Click();
+                }
             }
             catch (Exception)
             {
@@ -71,7 +87,15 @@ namespace Liberator.Driver
                 Element = Driver.FindElement(locator);
                 if (wait) { WaitForElementToBeClickable(Element); }
                 Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
-                Element.Click();
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && DriverName.ToLower().Contains("safari"))
+                {
+                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)ReturnEncapsulatedDriver();
+                    javaScriptExecutor.ExecuteScript("arguments[0].click();", Element);
+                }
+                else
+                {
+                    Element.Click();
+                }
             }
             catch (Exception)
             {
@@ -100,7 +124,15 @@ namespace Liberator.Driver
                 if (typeof(TWebDriver) != typeof(OperaDriver))
                 {
                     Console.Out.WriteLine("Clicked on the <{0}> element passed.", Element.TagName);
-                    Element.Click();
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && DriverName.ToLower().Contains("safari"))
+                    {
+                        IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)ReturnEncapsulatedDriver();
+                        javaScriptExecutor.ExecuteScript("arguments[0].click();", Element);
+                    }
+                    else
+                    {
+                        Element.Click();
+                    }
                 }
             }
             catch (Exception)

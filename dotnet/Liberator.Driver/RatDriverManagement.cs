@@ -8,6 +8,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Liberator.Driver
 {
@@ -20,7 +21,14 @@ namespace Liberator.Driver
         /// <returns>The encapsulated IWebDriver</returns>
         public IWebDriver ReturnEncapsulatedDriver()
         {
-            return Driver;
+            if (Driver != null)
+            {
+                return Driver;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -579,7 +587,10 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().Back();
-                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                }
                 Console.Out.WriteLine("Pressed the back button.");
             }
             catch (Exception ex)
@@ -598,7 +609,10 @@ namespace Liberator.Driver
             {
                 LastPage = Driver.FindElement(By.TagName("html"));
                 Driver.Navigate().Forward();
-                var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    var wait = new WebDriverWait(Driver, Preferences.BaseSettings.Timeout).Until(ExpectedConditions.StalenessOf(LastPage));
+                }
                 Console.Out.WriteLine("Pressed the forward button.");
             }
             catch (Exception ex)
@@ -715,12 +729,14 @@ namespace Liberator.Driver
                     {
                         Driver.SwitchTo().Window(handle);
                         Driver.Close();
+                        DriverName = null;
                     }
                 }
                 if (Driver != null)
                 {
                     Driver.Quit();
                     KillTestProcesses();
+                    DriverName = null;
                 }
             }
             catch (Exception ex)

@@ -179,7 +179,6 @@
         public ChromeSettings()
         {
             // Driver Pre-sets
-            BinaryLocation = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
             LeaveBrowserRunning = "False";
             MinidumpPath = @"\Outputs\";
 
