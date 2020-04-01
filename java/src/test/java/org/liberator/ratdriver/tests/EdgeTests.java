@@ -21,6 +21,9 @@ public class EdgeTests {
 
     IRodent ratDriver;
 
+    String website = "http://localhost:8000";
+    String hostname = "localhost";
+
     @After
     public void cleanUp(){
         ratDriver.closePagesAndQuitDriver();
@@ -29,15 +32,15 @@ public class EdgeTests {
     @Test
     public void testInstantiationEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
-        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("totallyratted"));
+        ratDriver.navigateToPage(website);
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains(hostname));
         ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testClickLinkEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.elementExists(devLink));
         ratDriver.clickLinkAndWait(devLink);
@@ -48,7 +51,7 @@ public class EdgeTests {
     @Test
     public void testGetTextEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.elementExists(devLink));
@@ -62,7 +65,7 @@ public class EdgeTests {
     @Test
     public void testCheckPageSourceEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.elementExists(devLink));
@@ -78,7 +81,7 @@ public class EdgeTests {
     public void testGetAvailableLogTypesEdge() {
 
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         Set<String> logTypes = ratDriver.getAvailableLogTypes();
         Assert.assertTrue(logTypes.contains("browser"));
         Assert.assertTrue(logTypes.contains("driver"));
@@ -90,7 +93,7 @@ public class EdgeTests {
     @Test
     public void testGetBrowserLogEntriesEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         List<LogEntry> logEntries = ratDriver.getAvailableLogEntries("browser");
         Assert.assertNotNull(logEntries);
         ratDriver.closePagesAndQuitDriver();
@@ -100,7 +103,7 @@ public class EdgeTests {
     public void testSetImplicitWaitEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
         ratDriver.setImplicitWait(0, 5, 0);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.closePagesAndQuitDriver();
     }
 
@@ -108,14 +111,14 @@ public class EdgeTests {
     public void testSetPageLoadTimeoutEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
         ratDriver.setPageLoadTimeout(0, 30, 0);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetWindowPositionEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         Point position = ratDriver.getWindowPosition();
         Assert.assertTrue(position.x >= 0);
         Assert.assertTrue(position.y >= 0);
@@ -125,7 +128,7 @@ public class EdgeTests {
     @Test
     public void testGetWindowSizeEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         Dimension position = ratDriver.getWindowSize();
         Assert.assertTrue(position.width >= 0);
         Assert.assertTrue(position.height >= 0);
@@ -135,7 +138,7 @@ public class EdgeTests {
     @Test
     public void testResizeWindowEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.resizeBrowserWindow(640, 480);
         Dimension size = ratDriver.getWindowSize();
         Assert.assertEquals(640, size.width);
@@ -146,7 +149,7 @@ public class EdgeTests {
     @Test
     public void testBrowserButtonsEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.elementExists(devLink));
@@ -166,7 +169,7 @@ public class EdgeTests {
     @Test
     public void testGetPageSourceEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, true);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement devLink = ratDriver.findElementByLinkText("Developments", true);
         Assert.assertTrue(ratDriver.elementExists(devLink));
@@ -177,21 +180,21 @@ public class EdgeTests {
     @Test
     public void testSwitchToWindowEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         String window = ratDriver.getCurrentWindowHandle();
         ratDriver.openNewView();
         ratDriver.navigateToPage("http://www.google.com");
         Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("google"));
         ratDriver.switchToWindow(window);
-        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains("ratted"));
+        Assert.assertTrue(ratDriver.getBrowserWindowUrl().contains(hostname));
         ratDriver.closePagesAndQuitDriver();
     }
 
     @Test
     public void testGetBrowserWindowTitleEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         String title = ratDriver.getBrowserWindowTitle();
         Assert.assertTrue(title.contains("Totally Ratted Limited"));
@@ -201,7 +204,7 @@ public class EdgeTests {
     @Test
     public void testGetAllWindowHandlesEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         Set<String> handles = ratDriver.getAllWindowHandles();
         Assert.assertNotNull(handles);
@@ -211,7 +214,7 @@ public class EdgeTests {
     @Test
     public void testClickLinkAndWaitForPageEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement devLink = ratDriver.findElementByLinkText("Developments", false);
         Assert.assertTrue(ratDriver.elementExists(devLink));
@@ -222,7 +225,7 @@ public class EdgeTests {
     @Test
     public void testGetElementAttributeEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementById("carousel-example", false);
         Assert.assertTrue(ratDriver.getElementAttribute(element, "data-ride", false).contains("carousel"));
@@ -232,7 +235,7 @@ public class EdgeTests {
     @Test
     public void testFindByClassNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementByClassName("carousel-inner", false);
         Assert.assertTrue(element.isDisplayed());
@@ -243,7 +246,7 @@ public class EdgeTests {
     @Test
     public void testFindElementsByClassNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         List<WebElement> elements = ratDriver.findElementsByClassName("menutext", false);
         Assert.assertEquals(5, elements.size());
@@ -253,7 +256,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByClassNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement parent = ratDriver.findElementByCssSelector(".nav.navbar-nav.navbar-right", false);
         List<WebElement> elements = ratDriver.findSubElementsByClassName("menutext", parent, false);
@@ -264,7 +267,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByClassNameLocatorEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         List<WebElement> elements = ratDriver.findSubElementsByClassName("menutext", By.className("container"), false);
         Assert.assertEquals(5, elements.size());
@@ -274,7 +277,7 @@ public class EdgeTests {
     @Test
     public void testFindByIdEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementById("home", false);
         Assert.assertTrue(element.isDisplayed());
@@ -285,7 +288,7 @@ public class EdgeTests {
     @Test
     public void testFindByLinkTextEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementByLinkText("Developments", false);
         Assert.assertTrue(element.isEnabled());
@@ -296,7 +299,7 @@ public class EdgeTests {
     @Test
     public void testFindElementsByLinkTextEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         List<WebElement> elements = ratDriver.findElementsByLinkText("Read Details", false);
         Assert.assertEquals(6, elements.size());
@@ -306,7 +309,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByLinkTextEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement parent = ratDriver.findElementById("just-intro", false);
         List<WebElement> elements = ratDriver.findSubElementsByLinkText("Read Details", parent, false);
@@ -317,7 +320,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByLinkTextLocatorEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         By parent = By.id("just-intro");
         List<WebElement> elements = ratDriver.findSubElementsByLinkText("Read Details", parent, false);
@@ -328,7 +331,7 @@ public class EdgeTests {
     @Test
     public void testFindElementByTagNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementByTag("body", false);
         Assert.assertNotNull(element);
@@ -338,7 +341,7 @@ public class EdgeTests {
     @Test
     public void testFindElementsByTagNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         List<WebElement> elements = ratDriver.findElementsByTag("section", false);
         Assert.assertEquals(5, elements.size());
@@ -348,7 +351,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByTagNameEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement parent = ratDriver.findElementById("just-intro", false);
         List<WebElement> elements = ratDriver.findSubElementsByTag("a", parent, false);
@@ -359,7 +362,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByTagNameLocatorEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         By parent = By.id("just-intro");
         List<WebElement> elements = ratDriver.findSubElementsByTag("a", parent, false);
@@ -370,7 +373,7 @@ public class EdgeTests {
     @Test
     public void testFindElementByXPathEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement element = ratDriver.findElementByXPath(".//*[@id='carousel-example']", false);
         Assert.assertTrue(element.isDisplayed());
@@ -381,7 +384,7 @@ public class EdgeTests {
     @Test
     public void testFindElementsByXPathEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         List<WebElement> elements = ratDriver.findElementsByXPath(".//section", false);
         Assert.assertEquals(5, elements.size());
@@ -391,7 +394,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByXPathEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         WebElement parent = ratDriver.findElementByXPath("html/body", false);
         List<WebElement> elements = ratDriver.findSubElementsByXPath(".//section", parent, false);
@@ -402,7 +405,7 @@ public class EdgeTests {
     @Test
     public void testFindSubElementsByXPathLocatorEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         By parent = By.xpath("html/body");
         List<WebElement> elements = ratDriver.findSubElementsByXPath(".//section", parent, false);
@@ -413,7 +416,7 @@ public class EdgeTests {
     @Test
     public void testExtractElementFromCollectionByAttributeLocatorEdge() {
         ratDriver = new RatDriver(DriverType.EdgeDriver, false);
-        ratDriver.navigateToPage("http://www.totallyratted.com");
+        ratDriver.navigateToPage(website);
         ratDriver.maximiseView();
         By parent = By.xpath("html/body");
         WebElement element = ratDriver.extractElementFromCollectionByAttribute(parent, LocatorType.XPath, ".//section", "class", "note-sec", false);
