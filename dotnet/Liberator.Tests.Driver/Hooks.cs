@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Liberator.Tests.Driver
 {
+    [TestFixture]
     public static class Hooks
     {
         public static IRodent ratDriver;

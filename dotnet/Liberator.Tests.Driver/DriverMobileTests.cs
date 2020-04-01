@@ -10,7 +10,6 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverMobileTests
     {
-
         [Test]
         [TestCase(EnumPhoneType.AmazonKindleFireHDX, true)]
         [TestCase(EnumPhoneType.AppleiPad, true)]
@@ -43,7 +42,7 @@ namespace Liberator.Tests.Driver
         {
             ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -54,7 +53,7 @@ namespace Liberator.Tests.Driver
         {
             ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
 
             var devLink = ratDriver.FindElementByXPath(".//*[@id='just-intro']/div/div/div[1]/a");
             Assert.IsTrue(ratDriver.ElementExists(devLink));
@@ -71,7 +70,7 @@ namespace Liberator.Tests.Driver
         {
             ratDriver = new RatDriver<ChromeDriver>(phone, touch);
             ratDriver.NavigateToPage(WebsiteToTest);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
 
             var buttonLink = ratDriver.FindElementByXPath("html/body/div[1]/div/div[1]/button");
             Assert.IsTrue(ratDriver.ElementExists(buttonLink));

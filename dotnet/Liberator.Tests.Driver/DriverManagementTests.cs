@@ -19,9 +19,6 @@ namespace Liberator.Tests.Driver
     [TestFixture]
     public class DriverManagementTests
     {
-        public string WebsiteToTest { get; set; } = "http://localhost";
-        private string WebsiteUrl { get; set; } = "localhost";
-
         [Test]
         [Category("Firefox")]
         public void InstantiateFirefoxDriver()
@@ -29,7 +26,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<FirefoxDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<FirefoxDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -40,7 +37,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<FirefoxDriver>("Automation");
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<FirefoxDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -51,7 +48,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<ChromeDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<ChromeDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -62,7 +59,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<EdgeDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<EdgeDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -73,7 +70,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<InternetExplorerDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<InternetExplorerDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -84,7 +81,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<OperaDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<OperaDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -95,7 +92,7 @@ namespace Liberator.Tests.Driver
             ratDriver = new RatDriver<SafariDriver>();
             ratDriver.NavigateToPage(WebsiteToTest);
             Assert.IsTrue(((RatDriver<SafariDriver>)ratDriver).Driver != null);
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             ratDriver.ClosePagesAndQuitDriver();
         }
 
@@ -1197,7 +1194,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<FirefoxDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1212,7 +1209,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<ChromeDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1227,7 +1224,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<EdgeDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1242,7 +1239,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<InternetExplorerDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1257,7 +1254,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<OperaDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
@@ -1272,7 +1269,7 @@ namespace Liberator.Tests.Driver
             ratDriver.MaximiseView();
             var devLink = ((RatDriver<SafariDriver>)ratDriver).Driver.FindElement(By.LinkText("Developments"));
             Assert.IsTrue(ratDriver.ElementExists(devLink));
-            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains("localhost"));
+            Assert.IsTrue(ratDriver.GetBrowserWindowUrl().Contains(WebsiteUrl));
             Assert.IsFalse(ratDriver.GetBrowserWindowUrl().Contains("developments"));
             ratDriver.ClosePagesAndQuitDriver();
         }
