@@ -788,7 +788,7 @@ namespace Liberator.Driver
 
         #endregion
 
-        //#region Touch Actions
+        #region Touch Actions
 
         ///// <summary>
         ///// Double taps on the WebElement
@@ -1388,7 +1388,6 @@ namespace Liberator.Driver
                 HandleErrors(ex);
             }
         }
-
         #endregion
     }
 }

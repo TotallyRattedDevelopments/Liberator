@@ -33,6 +33,9 @@ namespace Liberator.Driver
         int _browserPid = 0;
         int _driverPid = 0;
 
+        bool _runTests = false;
+        string _browserError = null;
+
         #endregion
 
         #region Constructor & Helpers
@@ -50,13 +53,21 @@ namespace Liberator.Driver
                 RecordPerformance = performanceTimings;
                 if (performanceTimings) { InitialiseRatWatch(performanceTimings); }
 
-                EstablishDriverSettings();
-                string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                string driverType = typeof(TWebDriver).Name;
+                EstablishDriverSettings(driverType);
+
+                if (!_runTests) { throw new LiberatorOSException(_browserError); }
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
+
 
                 string type = "Liberator.Driver.BrowserControl." + driverType + "Control";
-                IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type));
+                IBrowserControl controller = (IBrowserControl)Activator.CreateInstance(Type.GetType(type), driverSettings);
                 Driver = (TWebDriver)controller.StartDriver();
 
                 if (performanceTimings) { RatTimerCollection.StopTimer(EnumTiming.Instantiation); }
@@ -64,11 +75,17 @@ namespace Liberator.Driver
                 WaitForPageToLoad(null);
                 WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                }
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -89,16 +106,25 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
-                    EstablishDriverSettings();
-                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
+                    FirefoxDriverControl controller = new FirefoxDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartDriverSavedProfile(profileName);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -110,7 +136,10 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                {
+                    Console.Out.WriteLine("An unexpected error has been detected.");
+                }
                 HandleErrors(ex);
             }
         }
@@ -133,16 +162,25 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(FirefoxDriver))
                 {
-                    EstablishDriverSettings();
-                    FirefoxDriverControl controller = new FirefoxDriverControl();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
+                    FirefoxDriverControl controller = new FirefoxDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartDriverLoadProfileFromDisk(profileDirectory, cleanDirectory);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -154,7 +192,9 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -177,16 +217,25 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
-                    EstablishDriverSettings();
-                    ChromeDriverControl controller = new ChromeDriverControl();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
+                    ChromeDriverControl controller = new ChromeDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartMobileDriver(type, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -198,7 +247,8 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -225,16 +275,26 @@ namespace Liberator.Driver
 
                 string driverType = typeof(TWebDriver).Name;
 
-                GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    GetProcesses(driverType, ProcessCollectionTime.InitialisationStart);
+                }
 
                 if (typeof(TWebDriver) == typeof(ChromeDriver))
                 {
-                    EstablishDriverSettings();
-                    ChromeDriverControl controller = new ChromeDriverControl();
+                    EstablishDriverSettings(driverType);
+                    if (!_runTests) { throw new LiberatorOSException(_browserError); }
+
+                    ChromeDriverControl controller = new ChromeDriverControl(driverSettings);
                     Driver = (TWebDriver)controller.StartMobileDriver(height, width, userAgent, pixelRatio, touch);
                     WindowHandles.Add(Driver.CurrentWindowHandle, Driver.Title);
 
-                    GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                    {
+                        GetProcesses(driverType, ProcessCollectionTime.InitialisationEnd);
+                    }
                 }
                 else
                 {
@@ -246,7 +306,8 @@ namespace Liberator.Driver
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("An unexpected error has been detected.");
+                if (ex.GetType() != typeof(LiberatorOSException))
+                { Console.Out.WriteLine("An unexpected error has been detected."); }
                 HandleErrors(ex);
             }
         }
@@ -255,9 +316,75 @@ namespace Liberator.Driver
 
         #region Private Methods
 
-        private void GetWebDriverSettings()
+        private void GetWebDriverSettings(string driverType)
         {
+            switch (driverType.ToLower())
+            {
+                case "chromedriver":
+                case "firefoxdriver":
+                    _runTests = true;
+                    break;
+                case "edgedriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Edge is only available for Windows.";
+                    }
+                    break;
+                case "internetexplorerdriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Internet Explorer is only available for Windows.";
+                    }
+                    break;
+                case "operadriver":
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        _runTests = true;
+                        _browserError = null;
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Opera Driver currently displays errors on Mac OS X & Linux.";
+                    }
+                    break;
+                case "safaridriver":
 
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    {
+                        if (Environment.OSVersion.Version.Major != 19)
+                        {
+                            _runTests = true;
+                            _browserError = null;
+                        }
+                        else
+                        {
+                            _runTests = false;
+                            _browserError = "Safari automation is currently broken on Darwin v19 (Catalina).";
+                        }
+                    }
+                    else
+                    {
+                        _runTests = false;
+                        _browserError = "Safari is only available for Mac OS X.";
+                    }
+                    break;
+                default:
+                    _runTests = false;
+                    break;
+            }
         }
 
         #endregion
@@ -298,11 +425,11 @@ namespace Liberator.Driver
         /// <summary>
         /// Initialises driver settings.
         /// </summary>
-        private void EstablishDriverSettings()
+        private void EstablishDriverSettings(string driverType)
         {
             Id = Guid.NewGuid();
             WindowHandles = new Dictionary<string, string>();
-            GetWebDriverSettings();
+            GetWebDriverSettings(driverType);
         }
 
         /// <summary>
@@ -323,6 +450,8 @@ namespace Liberator.Driver
                     return "iexplore";
                 case "operadriver":
                     return "opera";
+                case "safaridriver":
+                    return "Safari";
 
             }
             return null;
@@ -346,6 +475,8 @@ namespace Liberator.Driver
                     return "IEDriverServer";
                 case "operadriver":
                     return "operadriver";
+                case "safaridriver":
+                    return "safaridriver";
             }
             return null;
         }
@@ -406,18 +537,22 @@ namespace Liberator.Driver
         private void KillTestProcesses()
         {
             Console.Out.WriteLine("Killing driver and browser processes opened by the test.");
-            foreach (RatProcess process in testProcesses)
+            if (testProcesses != null)
             {
-                try
+                foreach (RatProcess process in testProcesses)
                 {
-                    var processObject = Process.GetProcessById(process.Id);
-                    if (!processObject.HasExited)
+                    try
                     {
-                        processObject.Kill();
-                        processObject.WaitForExit();
+                        Process processObject = Process.GetProcessById(process.Id);
+                        if (!processObject.HasExited)
+                        {
+                            processObject.Kill();
+                            processObject.WaitForExit();
+                        }
                     }
+                    catch { } //No need to act, the process is already closed
                 }
-                catch { } //No need to act, the process is already closed
+
             }
         }
 

@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System;
-using System.Diagnostics;
 using System.IO;
 using Liberator.Driver.Preferences;
 
@@ -125,12 +124,13 @@ namespace Liberator.Driver.BrowserControl
                 //SetInternetExplorerProxy();
                 SetInternetExplorerOptions();
                 SetInternetExplorerDriverService();
-                Driver = new InternetExplorerDriver(Service, Options, Preferences.BaseSettings.Timeout);
+                Driver = new InternetExplorerDriver(Service);
+                //Driver = new InternetExplorerDriver(Service, Options, BaseSettings.Timeout);
                 return Driver;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start internet explorer driver.");
@@ -162,7 +162,7 @@ namespace Liberator.Driver.BrowserControl
             {
 
                 InternetExplorerElementScrollBehavior scroll = InternetExplorerElementScrollBehavior.Bottom;
-                Enum.TryParse(Preferences.InternetExplorer.ScrollBehavior, out scroll);
+                Enum.TryParse(InternetExplorer.ScrollBehavior, out scroll);
 
                 bool.TryParse(InternetExplorer.EnableFullPageScreenshot, out bool screenshot);
                 bool.TryParse(InternetExplorer.EnableNativeEvents, out bool native);
@@ -175,37 +175,37 @@ namespace Liberator.Driver.BrowserControl
                 bool.TryParse(InternetExplorer.RequireWindowFocus, out bool requireFocus);
                 bool.TryParse(InternetExplorer.UsePerProcessProxy, out bool perProcess);
 
-                string cmdLine = Preferences.InternetExplorer.CommandLineArguments;
-                string url = Preferences.InternetExplorer.InitialBrowserUrl;
+                string cmdLine = InternetExplorer.CommandLineArguments;
+                string url = InternetExplorer.InitialBrowserUrl;
 
                 InternetExplorerOptions options = new InternetExplorerOptions
                 {
-                    BrowserAttachTimeout = Preferences.BaseSettings.Timeout
+                    BrowserAttachTimeout = BaseSettings.Timeout
                 };
 
                 options.BrowserCommandLineArguments = cmdLine ?? null;
 
                 options.ElementScrollBehavior = scroll;
-//              options.EnableFullPageScreenshot = screenshot;
+                //              options.EnableFullPageScreenshot = screenshot;
                 options.EnableNativeEvents = native;
                 options.EnablePersistentHover = hover;
                 options.EnsureCleanSession = cleanSession;
-                options.FileUploadDialogTimeout = Preferences.InternetExplorer.FileUploadTimeout;
+                options.FileUploadDialogTimeout = InternetExplorer.FileUploadTimeout;
                 options.ForceCreateProcessApi = forceCreate;
                 options.ForceShellWindowsApi = forceShell;
                 options.IgnoreZoomLevel = ignoreZoom;
                 options.InitialBrowserUrl = url;
                 options.IntroduceInstabilityByIgnoringProtectedModeSettings = instability;
-//              options.Proxy = IEProxy;
+                //              options.Proxy = IEProxy;
                 options.RequireWindowFocus = requireFocus;
-//              options.UnexpectedAlertBehavior = alert;
+                //              options.UnexpectedAlertBehavior = alert;
                 options.UsePerProcessProxy = perProcess;
 
                 Options = options;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the internet explorer driver options settings.");
@@ -231,31 +231,31 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 InternetExplorerDriverLogLevel logLevel = InternetExplorerDriverLogLevel.Debug;
-                Enum.TryParse(Preferences.InternetExplorer.LoggingLevel, out logLevel);
+                Enum.TryParse(InternetExplorer.LoggingLevel, out logLevel);
 
-                bool.TryParse(Preferences.InternetExplorer.HideCommandPromptWindow, out bool hidePrompt);
-                int.TryParse(Preferences.InternetExplorer.Port, out int port);
-                bool.TryParse(Preferences.InternetExplorer.SuppressInitialDiagnosticInformation, out bool sidi);
+                bool.TryParse(InternetExplorer.HideCommandPromptWindow, out bool hidePrompt);
+                int.TryParse(InternetExplorer.Port, out int port);
+                bool.TryParse(InternetExplorer.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                string ieHost = Preferences.InternetExplorer.Host;
-                string extract = Preferences.InternetExplorer.LibraryExtractionPath;
-                string log = Preferences.InternetExplorer.LibraryExtractionPath;
-                string whitelist = Preferences.InternetExplorer.WhitelistedIPAddresses;
+                string ieHost = InternetExplorer.Host;
+                string extract = InternetExplorer.LibraryExtractionPath;
+                string log = InternetExplorer.LibraryExtractionPath;
+                string whitelist = InternetExplorer.WhitelistedIPAddresses;
 
-                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Directory.GetParent(Preferences.BaseSettings.InternetExplorerDriverLocation).FullName);
+                InternetExplorerDriverService service = InternetExplorerDriverService.CreateDefaultService(Directory.GetParent(BaseSettings.InternetExplorerDriverLocation).FullName);
                 service.HideCommandPromptWindow = hidePrompt;
                 service.Host = ieHost ?? null;
                 service.LibraryExtractionPath = extract ?? null;
                 service.LogFile = log ?? null;
                 service.LoggingLevel = logLevel;
-                service.Port = port;
+                //service.Port = port;
                 service.SuppressInitialDiagnosticInformation = sidi;
                 service.WhitelistedIPAddresses = whitelist ?? null;
                 Service = service;
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the internet explorer driver service settings.");
@@ -280,16 +280,16 @@ namespace Liberator.Driver.BrowserControl
         //{
         //    Proxy proxy = new Proxy()
         //    {
-        //        FtpProxy = Preferences.Preferences.GetPreferenceSetting("IE_FtpProxy"),
-        //        HttpProxy = Preferences.Preferences.GetPreferenceSetting("IE_HttpProxy"),
-        //        IsAutoDetect = Convert.ToBoolean(Preferences.Preferences.GetPreferenceSetting("IE_IsAutoDetect")),
-        //        Kind = (ProxyKind)Enum.Parse(typeof(ProxyKind), Preferences.Preferences.GetPreferenceSetting("IE_ProxyKind")),
-        //        NoProxy = Preferences.Preferences.GetPreferenceSetting("IE_NoProxy"),
-        //        ProxyAutoConfigUrl = Preferences.Preferences.GetPreferenceSetting("IE_ProxyAutoConfigUrl"),
-        //        SocksPassword = Preferences.Preferences.GetPreferenceSetting("IE_SocksPassword"),
-        //        SocksProxy = Preferences.Preferences.GetPreferenceSetting("IE_SocksProxy"),
-        //        SocksUserName = Preferences.Preferences.GetPreferenceSetting("IE_SocksUserName"),
-        //        SslProxy = Preferences.Preferences.GetPreferenceSetting("IE_SslProxy")
+        //        FtpProxy = GetPreferenceSetting("IE_FtpProxy"),
+        //        HttpProxy = GetPreferenceSetting("IE_HttpProxy"),
+        //        IsAutoDetect = Convert.ToBoolean(GetPreferenceSetting("IE_IsAutoDetect")),
+        //        Kind = (ProxyKind)Enum.Parse(typeof(ProxyKind), GetPreferenceSetting("IE_ProxyKind")),
+        //        NoProxy = GetPreferenceSetting("IE_NoProxy"),
+        //        ProxyAutoConfigUrl = GetPreferenceSetting("IE_ProxyAutoConfigUrl"),
+        //        SocksPassword = GetPreferenceSetting("IE_SocksPassword"),
+        //        SocksProxy = GetPreferenceSetting("IE_SocksProxy"),
+        //        SocksUserName = GetPreferenceSetting("IE_SocksUserName"),
+        //        SslProxy = GetPreferenceSetting("IE_SslProxy")
         //    };
         //    IEProxy = proxy;
         //}
