@@ -3573,6 +3573,15 @@
         </member>
         <member name="M:Liberator.Driver.IRodent.FindSubElementsByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
             <summary>
+            Finds a child element of a given WebElement whose link text is as specified
+            </summary>
+            <param name="linkText">The text to search for</param>
+            <param name="element">The parent WebElement</param>
+            <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
+            <returns>A WebElement with the specified Link Text</returns>
+        </member>
+        <member name="M:Liberator.Driver.IRodent.FindSubElementsByLinkText(System.String,OpenQA.Selenium.By,System.Boolean)">
+            <summary>
             Finds the child elements of a given WebElement whose link text is as specified
             </summary>
             <param name="linkText">The text to search for</param>
@@ -6217,6 +6226,50 @@
             <param name="value">The value to choose</param>
             <param name="wait">(Optional parameter) Whether to wait for the clickability of the element</param>
         </member>
+        <member name="M:Liberator.Driver.RatDriver`1.TakeScreenshot(System.String)">
+            <summary>
+            Takes a screenshot of the active web page
+            </summary>
+            <param name="path">The path and name under which to save the image</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.Scripts">
+            <summary>
+            Returns a JavaScript Executor to the end user for custom JavaScript
+            </summary>
+            <returns>A JavaScript Executor</returns>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String)">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteJavaScript(System.String,System.Object[])">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+            <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String)">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ExecuteAsyncJavaScript(System.String,System.Object[])">
+            <summary>
+            Executes a JavaScript statement passed as a string
+            </summary>
+            <param name="script">The JavaScript to be executed</param>
+            <param name="parameters">The parameters for the passed JavaScript</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ScrollToElement(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Scrolls to an element using JavaScript
+            </summary>
+            <param name="webElement"></param>
+        </member>
         <member name="M:Liberator.Driver.RatDriver`1.#ctor(Liberator.Driver.Preferences.IDriverSettings,System.Boolean)">
             <summary>
             Base constructor for RatDriver
@@ -6624,6 +6677,45 @@
             <summary>
             Switches to the parent frame of a selected WebElement
             </summary>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            Clicks on a WebElement
+            </summary>
+            <param name="element">The element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.IWebElement,System.Int32)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="element">The element for which to wait</param>
+            <param name="seconds">Maximum number of seconds to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForElementToLoad(OpenQA.Selenium.By,System.Int32)">
+            <summary>
+            Waits for an element to be loaded
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+            <param name="seconds">Maximum number of seconds to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElement(OpenQA.Selenium.By)">
+            <summary>
+            Waits for an element to disappear from the DOM
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+        </member>
+        <member name="M:Liberator.Driver.RatDriver`1.WaitForInvisibilityOfElementWithText(OpenQA.Selenium.By,System.String)">
+            <summary>
+            Waits for an element containing text to disappear from the DOM
+            </summary>
+            <param name="locator">The locator for the element for which to wait</param>
+            <param name="text">The text that should be found in the element</param>
         </member>
         <member name="M:Liberator.Driver.RatDriver`1.ClickLink(OpenQA.Selenium.IWebElement,System.Boolean)">
             <summary>
