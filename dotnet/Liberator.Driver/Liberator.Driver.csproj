@@ -1,71 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Liberator.Driver</PackageId>
-    <Version>0.8.3.3</Version>
-    <Authors>LiberatorTestTools</Authors>
-    <Product>Liberator.Driver</Product>
-    <Copyright>2015-2019, Liberator Test Tools</Copyright>
-    <PackageTags>Selenium QA Automation</PackageTags>
-    <AssemblyVersion>0.8.3.3</AssemblyVersion>
-    <FileVersion>0.8.3.3</FileVersion>
-    <PackageReleaseNotes>Add further JavaScript extensions</PackageReleaseNotes>
-    <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Liberator.Driver</PackageId>
+        <Version>0.9.0.0</Version>
+        <Authors>LiberatorTestTools</Authors>
+        <Product>Liberator.Driver</Product>
+        <Copyright>2015-2020, Liberator Test Tools</Copyright>
+        <PackageTags>Selenium QA Automation</PackageTags>
+        <AssemblyVersion>0.9.0.0</AssemblyVersion>
+        <FileVersion>0.9.0.0</FileVersion>
+        <PackageReleaseNotes>Update to be multi-platform. Now working on Windows, MacOs &amp; Linux. Please see website for setup details for each package.</PackageReleaseNotes>
+        <Description>Liberator Driver works as an abstraction layer over Selenium WebDriver.
 
 Liberator uses Expected Conditions to avoid the race conditions common when automating a user interface, thereby ensuring a more efficient performance. Every setting of the individual driver types can be set using preferences, enabling the dependent frameworks built on its functionality to fine tune their performance. Errors in browser interaction are  correctly trapped for all Selenium methods.</Description>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
-    <RootNamespace>Liberator.Driver</RootNamespace>
-    <AssemblyName>Liberator.Driver</AssemblyName>
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net461|AnyCPU'">
-    <DocumentationFile>.\Liberator.Driver.xml</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="BrowserDrivers\chromedriver.exe" />
-    <None Remove="BrowserDrivers\geckodriver.exe" />
-    <None Remove="BrowserDrivers\IEDriverServer.exe" />
-    <None Remove="BrowserDrivers\MicrosoftWebDriver.exe" />
-    <None Remove="BrowserDrivers\operadriver.exe" />
-    <None Remove="Liberator.Driver.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BrowserDrivers\chromedriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BrowserDrivers\geckodriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BrowserDrivers\IEDriverServer.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BrowserDrivers\MicrosoftWebDriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BrowserDrivers\operadriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Liberator.Driver.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="MathNet.Numerics" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="NUnit" Version="3.11.0" />
-    <PackageReference Include="Selenium.Support" Version="3.141.0" />
-    <PackageReference Include="System.Buffers" Version="4.5.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+        <RootNamespace>Liberator.Driver</RootNamespace>
+        <AssemblyName>Liberator.Driver</AssemblyName>
+        <LangVersion>7.1</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="BrowserDrivers\chromedriver.exe" />
+        <None Remove="BrowserDrivers\geckodriver.exe" />
+        <None Remove="BrowserDrivers\IEDriverServer.exe" />
+        <None Remove="BrowserDrivers\MicrosoftWebDriver.exe" />
+        <None Remove="BrowserDrivers\operadriver.exe" />
+        <None Remove="Liberator.Driver.xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="BrowserDrivers\Win\chromedriver.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="BrowserDrivers\Win\geckodriver.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="BrowserDrivers\Win\IEDriverServer.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="BrowserDrivers\Win\MicrosoftWebDriver.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="BrowserDrivers\Win\operadriver.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Liberator.Driver.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="NUnit" Version="3.12.0" />
+        <PackageReference Include="Selenium.Support" Version="3.141.0" />
+        <PackageReference Include="System.Buffers" Version="4.5.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+        <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="BrowserDrivers\Mac\" />
+        <Folder Include="BrowserDrivers\Linux\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="BrowserDrivers\Linux\operadriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Linux\operadriver.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Linux\geckodriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Linux\chromedriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Mac\operadriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Mac\geckodriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="BrowserDrivers\Mac\chromedriver">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

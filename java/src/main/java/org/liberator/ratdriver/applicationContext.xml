@@ -1,0 +1,133 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="basePreferences" class="org.liberator.ratdriver.preferences.BasePreferences" >
+        <property name="Timeout" value="30" />
+        <property name="Sleep" value="30" />
+        <property name="ImplicitWait" value="30" />
+        <property name="MenuHoverTime" value="30" />
+        <property name="PageLoad" value="30" />
+        <property name="AsyncJavaScript" value="30" />
+        <property name="AlertHandling" value="false" />
+        <property name="InternalTimers" value="true" />
+        <property name="ChromeDriverLocation" value="/resources/drivers/chromedriver" />
+        <property name="FirefoxDriverLocation" value="/resources/drivers/geckodriver" />
+        <property name="OperaDriverLocation" value="/resources/drivers/operadriver" />
+        <property name="ChromeLocation" value="/Applications/Google Chrome.app" />
+        <property name="FirefoxLocation" value="/Applications/Firefox.app" />
+        <property name="OperaLocation" value="/Applications/Opera.app" />
+        <property name="ConsoleDebugLevel" value="" />
+    </bean>
+
+    <bean id="chromePreferences" class="org.liberator.ratdriver.preferences.ChromePreferences">
+        <property name="BinaryLocation" value="/Applications/Google Chrome.app" />
+        <property name="DebuggerAddress" value="" />
+        <property name="LeaveBrowserRunning" value="false" />
+        <property name="MinidumpPath" value="" />
+        <property name="BufferUsageReportingInterval" value="1" />
+        <property name="IsCollectingNetworkEvents" value="true" />
+        <property name="IsCollectingPageEvents" value="true" />
+        <property name="CapabilityList" value="" />
+        <property name="TracingCategories" value="devtools.timeline" />
+        <property name="ExtensionsList" value="" />
+        <property name="LocalStatePreferences" value="" />
+        <property name="UserProfilePreferences" value="" />
+        <property name="AndroidDebugBridgePort" value="5037" />
+        <property name="EnableVerboseLogging" value="false" />
+        <property name="HideCommandPromptWindow" value="false" />
+        <property name="LogPath" value="" />
+        <property name="Port" value="4444" />
+        <property name="PortServerAddress" value="" />
+        <property name="SuppressInitialDiagnosticInformation" value="false" />
+        <property name="WhitelistedIPAddresses" value="" />
+        <property name="EnableTouchEvents" value="true" />
+        <property name="Height" value="360" />
+        <property name="PixelRatio" value="3" />
+        <property name="UserAgent" value="Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19" />
+        <property name="Width" value="640" />
+    </bean>
+
+    <bean id="edgePreferences" class="org.liberator.ratdriver.preferences.EdgePreferences">
+        <property name="HideCommandPromptWindow" value="false" />
+        <property name="Port" value="4444" />
+        <property name="SuppressInitialDiagnosticInformation" value="false" />
+        <property name="UseVerboseLogging" value="true" />
+        <property name="Host" value="" />
+        <property name="Package" value="" />
+    </bean>
+
+    <bean id="firefoxPreferences" class="org.liberator.ratdriver.preferences.FirefoxPreferences">
+        <property name="LogLevel" value="Trace" />
+        <property name="ProfileDirectory" value="" />
+        <property name="CleanProfile" value="false" />
+        <property name="UseLegacyImplementation" value="false" />
+        <property name="AcceptUntrustedCertificates" value="true" />
+        <property name="AlwaysLoadNoFocusLibrary" value="true" />
+        <property name="AssumeUntrustedCertificateIssuer" value="true" />
+        <property name="DeleteAfterUse" value="false" />
+        <property name="EnableNativeEvents" value="false" />
+        <property name="Port" value="4444" />
+        <property name="ProxyPreferences" value="" />
+        <property name="CommunicationPort" value="" />
+        <property name="ConnectToRunningBrowser" value="false" />
+        <property name="HideCommandPromptWindow" value="false" />
+        <property name="Host" value="" />
+        <property name="SuppressInitialDiagnosticInformation" value="false" />
+        <property name="Preferences" value="" />
+    </bean>
+
+    <bean id="iePreferences" class="org.liberator.ratdriver.preferences.IEPreferences">
+        <property name="CommandLineArguments" value="" />
+        <property name="ScrollBehavior" value="" />
+        <property name="EnableFullPageScreenshot" value="true" />
+        <property name="EnableNativeEvents" value="true" />
+        <property name="EnablePersistentHover" value="true" />
+        <property name="EnsureCleanSession" value="false" />
+        <property name="ForceCreateProcessApi" value="false" />
+        <property name="ForceShellWindowsApi" value="false" />
+        <property name="IgnoreZoomLevel" value="true" />
+        <property name="InitialBrowserUrl" value="http://www.totallyratted.com" />
+        <property name="IntroduceInstability" value="true" />
+        <property name="PageLoadStrategy" value="eager" />
+        <property name="RequireWindowFocus" value="false" />
+        <property name="UnexpectedAlertBehavior" value="default" />
+        <property name="UsePerProcessProxy" value="false" />
+        <property name="HideCommandPromptWindow" value="true" />
+        <property name="Host" value="" />
+        <property name="LibraryExtractionPath" value="" />
+        <property name="LogFile" value="" />
+        <property name="LoggingLevel" value="debug" />
+        <property name="Port" value="4444" />
+        <property name="SuppressInitialDiagnosticInformation" value="false" />
+        <property name="WhitelistedIPAddresses" value="" />
+        <property name="FtpProxy" value="" />
+        <property name="HttpProxy" value="" />
+        <property name="IsAutoDetect" value="false" />
+        <property name="ProxyKind" value="" />
+        <property name="NoProxy" value="" />
+        <property name="ProxyAutoConfigUrl" value="" />
+        <property name="SocksPassword" value="" />
+        <property name="SocksProxy" value="" />
+        <property name="SocksUserName" value="" />
+        <property name="SslProxy" value="" />
+        <property name="FileUploadTimeout" value="30" />
+    </bean>
+
+    <bean id="operaPreferences" class="org.liberator.ratdriver.preferences.OperaPreferences">
+        <property name="DebuggerAddress" value="" />
+        <property name="LeaveBrowserRunning" value="false" />
+        <property name="MinidumpPath" value="" />
+        <property name="AndroidDebugBridgePort" value="-1" />
+        <property name="EnableVerboseLogging" value="false" />
+        <property name="HideCommandPromptWindow" value="true" />
+        <property name="LogPath" value="" />
+        <property name="Port" value="4444" />
+        <property name="PortServerAddress" value="" />
+        <property name="SuppressInitialDiagnosticInformation" value="true" />
+        <property name="UrlPathPrefix" value="" />
+    </bean>
+</beans>

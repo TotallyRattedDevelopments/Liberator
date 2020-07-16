@@ -565,46 +565,6 @@
             Safari web driver
             </summary>
         </member>
-        <member name="T:Liberator.Driver.Enums.EnumElementRelationships">
-            <summary>
-            Enumerations of relationships between elements
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.NoResponse">
-            <summary>
-            No relationship has been calculated
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.NoRelationship">
-            <summary>
-            No relationship, the two nodes do not belong to the same document
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementAfterSecond">
-            <summary>
-            The first node (p1) is positioned after the second node (p2)
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementBeforeSecond">
-            <summary>
-            The first node (p1) is positioned before the second node (p2)
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.FirstElementInsideSecond">
-            <summary>
-            The first node (p1) is positioned inside the second node (p2)
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.SecondElementInsideFirst">
-            <summary>
-            The second node (p2) is positioned inside the first node (p1)
-            </summary>
-        </member>
-        <member name="F:Liberator.Driver.Enums.EnumElementRelationships.MayBeSameElement">
-            <summary>
-            No relationship, or the two nodes are two attributes on the same element
-            </summary>
-        </member>
         <member name="T:Liberator.Driver.Enums.EnumLocatorType">
             <summary>
             Type of locator being used
@@ -4753,6 +4713,7 @@
         <member name="P:Liberator.Driver.Preferences.BaseSettings.EdgeDriverLocation">
             <summary>
             Location of the Microsoft Web Driver. Defaults to the supplied version.
+            Windows only
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.FirefoxDriverLocation">
@@ -4763,11 +4724,18 @@
         <member name="P:Liberator.Driver.Preferences.BaseSettings.InternetExplorerDriverLocation">
             <summary>
             Location of the IEDriverServer executable. Defaults to the supplied version.
+            Windows only.
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.OperaDriverLocation">
             <summary>
             Location of the Opera Driver. Defaults to the supplied version.
+            </summary>
+        </member>
+        <member name="P:Liberator.Driver.Preferences.BaseSettings.SafariDriverLocation">
+            <summary>
+            Location of the Safari Driver. Defaults to the supplied version.
+            Mac OS X only
             </summary>
         </member>
         <member name="P:Liberator.Driver.Preferences.BaseSettings.ChromeLocation">

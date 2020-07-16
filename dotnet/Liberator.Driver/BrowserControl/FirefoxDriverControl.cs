@@ -2,7 +2,6 @@
 using Liberator.Driver.Preferences;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -127,7 +126,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start the Firefox driver.");
@@ -169,7 +168,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start the Firefox driver with the configured profile.");
@@ -198,7 +197,7 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                string setDirectory = Preferences.Firefox.ProfileDirectory;
+                string setDirectory = Firefox.ProfileDirectory;
                 profileDirectory = (profileDirectory == "") ? setDirectory : profileDirectory;
 
                 if (profileDirectory.Contains(@"\"))
@@ -222,7 +221,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not start the Firefox driver with the configured profile.");
@@ -250,7 +249,7 @@ namespace Liberator.Driver.BrowserControl
         //{
         //    try
         //    {
-        //        var host = Preferences.Preferences.GetPreferenceSetting["FirefoxHost");
+        //        var host = GetPreferenceSetting["FirefoxHost");
         //        CommandExecutor = new FirefoxDriverCommandExecutor(FirefoxBinary, profile, host, CommandTimeout);
         //        return CommandExecutor;
         //    }
@@ -295,7 +294,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not add the Firefox extension.");
@@ -323,15 +322,15 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 string[] timeout = new string[5];
-                BinaryPath = Preferences.BaseSettings.FirefoxLocation;
-                BrowserLoadTimeout = Preferences.BaseSettings.Timeout;
+                BinaryPath = BaseSettings.FirefoxLocation;
+                BrowserLoadTimeout = BaseSettings.Timeout;
             }
             catch (Exception ex)
             {
                 BinaryPath = null;
                 BrowserLoadTimeout = new TimeSpan(0, 0, 0, 30, 0);
 
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the Firefox path and timeout settings.");
@@ -356,13 +355,13 @@ namespace Liberator.Driver.BrowserControl
             try
             {
                 FirefoxDriverLogLevel logLevel = FirefoxDriverLogLevel.Default;
-                Enum.TryParse(Preferences.Firefox.LogLevel, out logLevel);
+                Enum.TryParse(Firefox.LogLevel, out logLevel);
 
-                bool.TryParse(Preferences.Firefox.CleanProfile, out bool cleanProfile);
-                bool.TryParse(Preferences.Firefox.UseLegacyImplementation, out bool legacy);
+                bool.TryParse(Firefox.CleanProfile, out bool cleanProfile);
+                bool.TryParse(Firefox.UseLegacyImplementation, out bool legacy);
 
-                string executable = Preferences.BaseSettings.FirefoxLocation;
-                string profile = Preferences.Firefox.ProfileDirectory;
+                string executable = BaseSettings.FirefoxLocation;
+                string profile = Firefox.ProfileDirectory;
 
                 FirefoxOptions options = new FirefoxOptions
                 {
@@ -376,7 +375,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the Firefox option settings.");
@@ -401,13 +400,13 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                bool.TryParse(Preferences.Firefox.AcceptUntrustedCertificates, out bool trust);
-                bool.TryParse(Preferences.Firefox.AlwaysLoadNoFocusLibrary, out bool noFocus);
-                bool.TryParse(Preferences.Firefox.AssumeUntrustedCertificateIssuer, out bool assume);
-                bool.TryParse(Preferences.Firefox.DeleteAfterUse, out bool delete);
-                bool.TryParse(Preferences.Firefox.EnableNativeEvents, out bool native);
-                int.TryParse(Preferences.Firefox.Port, out int port);
-                
+                bool.TryParse(Firefox.AcceptUntrustedCertificates, out bool trust);
+                bool.TryParse(Firefox.AlwaysLoadNoFocusLibrary, out bool noFocus);
+                bool.TryParse(Firefox.AssumeUntrustedCertificateIssuer, out bool assume);
+                bool.TryParse(Firefox.DeleteAfterUse, out bool delete);
+                bool.TryParse(Firefox.EnableNativeEvents, out bool native);
+                int.TryParse(Firefox.Port, out int port);
+
                 FirefoxProfile profile = new FirefoxProfile()
                 {
                     AcceptUntrustedCertificates = trust,
@@ -421,7 +420,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not create the Firefox profile specified in the config file.");
@@ -449,7 +448,7 @@ namespace Liberator.Driver.BrowserControl
             {
                 Dictionary<string, object> proxySettings = new Dictionary<string, object>();
 
-                string firfoxPrefs = Preferences.Firefox.ProxyPreferences;
+                string firfoxPrefs = Firefox.ProxyPreferences;
 
                 if (firfoxPrefs != null && firfoxPrefs.Contains(","))
                 {
@@ -466,7 +465,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the Firefox proxy settings.");
@@ -492,16 +491,16 @@ namespace Liberator.Driver.BrowserControl
             try
             {
 
-                int.TryParse(Preferences.Firefox.CommunicationPort, out int browserComm);
-                bool.TryParse(Preferences.Firefox.ConnectToRunningBrowser, out bool connect);
-                bool.TryParse(Preferences.Firefox.HideCommandPromptWindow, out bool hideCommand);
-                int.TryParse(Preferences.Firefox.Host, out int port);
-                bool.TryParse(Preferences.Firefox.SuppressInitialDiagnosticInformation, out bool sidi);
-                
-                string driverLocation = Directory.GetParent(Preferences.BaseSettings.FirefoxDriverLocation).FullName;
+                int.TryParse(Firefox.CommunicationPort, out int browserComm);
+                bool.TryParse(Firefox.ConnectToRunningBrowser, out bool connect);
+                bool.TryParse(Firefox.HideCommandPromptWindow, out bool hideCommand);
+                int.TryParse(Firefox.Host, out int port);
+                bool.TryParse(Firefox.SuppressInitialDiagnosticInformation, out bool sidi);
 
-                string binaryPath = Preferences.BaseSettings.FirefoxLocation;
-                string host = Preferences.Firefox.Host;
+                string driverLocation = Directory.GetParent(BaseSettings.FirefoxDriverLocation).FullName;
+
+                string binaryPath = BaseSettings.FirefoxLocation;
+                string host = Firefox.Host;
 
                 FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(driverLocation);
                 service.BrowserCommunicationPort = browserComm;
@@ -515,7 +514,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not set the Firefox driver service settings.");
@@ -540,7 +539,7 @@ namespace Liberator.Driver.BrowserControl
         {
             try
             {
-                var firefoxPrefs = Preferences.Firefox.Preferences;
+                var firefoxPrefs = Firefox.Preferences;
 
                 if (firefoxPrefs != null && firefoxPrefs.Contains(","))
                 {
@@ -555,7 +554,7 @@ namespace Liberator.Driver.BrowserControl
             }
             catch (Exception ex)
             {
-                switch (Preferences.BaseSettings.DebugLevel)
+                switch (BaseSettings.DebugLevel)
                 {
                     case EnumConsoleDebugLevel.Human:
                         Console.Out.WriteLine("Could not add the listed preferences to Firefox.");
